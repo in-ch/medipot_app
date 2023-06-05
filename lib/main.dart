@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+
+import 'package:medipot_app/pages/pages.dart';
 import 'package:medipot_app/style/theme.dart';
+import 'package:medipot_app/widgets/widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,59 +30,39 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool _isChecked = false;
-  void _handleFloating() {
-    setState(() {
-      print('handleFloating');
-    });
-  }
+  int _currentIndex = 0;
 
-  void _handleCheckbox(value) {
+  void _onTabTapped(int index) {
     setState(() {
-      _isChecked = !_isChecked;
+      _currentIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Theme.of(context).colorScheme.background,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('headlineLarge',
-                  style: Theme.of(context).textTheme.headlineLarge),
-              Text('headlineMedium',
-                  style: Theme.of(context).textTheme.headlineMedium),
-              Text('headlineSmall',
-                  style: Theme.of(context).textTheme.headlineSmall),
-              Text('bodyLarge', style: Theme.of(context).textTheme.bodyLarge),
-              Text('bodyMedium', style: Theme.of(context).textTheme.bodyMedium),
-              Text('bodySmall', style: Theme.of(context).textTheme.bodySmall),
-              OutlinedButton(
-                onPressed: () {},
-                child: const Text('Outline Button'),
-              ),
-              ElevatedButton(
-                onPressed: () {},
-                child: const Text('Elevate Button'),
-              ),
-              Checkbox(value: _isChecked, onChanged: _handleCheckbox),
-              const TextField(
-                decoration: InputDecoration(
-                  labelText: 'Text Field',
-                ),
-              ),
-            ],
-          ),
+    return MaterialApp(
+      home: Scaffold(
+        body: _buildPage(_currentIndex),
+        bottomNavigationBar: BottomNavigation(
+          currentIndex: _currentIndex,
+          onTabTapped: _onTabTapped,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _handleFloating,
-        child: const Icon(Icons.add),
-      ),
     );
+  }
+
+  Widget _buildPage(int index) {
+    switch (index) {
+      case 0:
+        return const HomePage();
+      case 1:
+        return Container();
+      case 2:
+        return Container();
+      case 3:
+        return Container();
+      default:
+        return Container();
+    }
   }
 }

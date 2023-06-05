@@ -8,6 +8,11 @@ final colorScheme = ColorScheme.fromSeed(
 );
 
 final appTheme = ThemeData(
+  // AppBar 스타일
+  appBarTheme: const AppBarTheme(
+    shadowColor: Colors.black45,
+    elevation: 1,
+  ),
   // 텍스트 스타일 설정
   colorScheme: colorScheme,
   textTheme: const TextTheme(
@@ -122,5 +127,16 @@ final appTheme = ThemeData(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(3.0), // 원하는 radius 값을 지정
     ),
+  ),
+  // tab 탭 스타일 설정
+  tabBarTheme: TabBarTheme(
+    unselectedLabelColor: Colors.black45,
+    labelColor: colorScheme.primary,
+    labelStyle: const TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 16,
+    ),
+    indicatorSize: TabBarIndicatorSize.tab,
+    indicatorColor: colorScheme.primary,
   ),
 );
