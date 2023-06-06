@@ -27,7 +27,7 @@ class FeedWidget extends StatelessWidget {
                         left: 8.0, right: 8.0, bottom: 8.0),
                     child: SizedBox(
                       // Header
-                      height: 55,
+                      height: 60,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

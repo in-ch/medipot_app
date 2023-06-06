@@ -7,7 +7,7 @@ class Hr extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: MediaQuery.of(context).size.width,
-        height: 10,
-        color: const Color.fromARGB(255, 236, 236, 236));
+        height: 8,
+        color: const Color.fromARGB(255, 243, 243, 243));
   }
 }
