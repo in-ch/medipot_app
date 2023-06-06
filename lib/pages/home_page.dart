@@ -29,7 +29,6 @@ class _HomePageState extends State<HomePage>
             preferredSize: const Size.fromHeight(100),
             child: AppBar(
               backgroundColor: Colors.white,
-              title: const Text("asdfasf", style: TextStyle(color: Colors.red)),
               bottom: TabBar(
                 indicatorWeight: 3,
                 isScrollable: true,
@@ -37,6 +36,46 @@ class _HomePageState extends State<HomePage>
                   return Tab(text: tags[index]);
                 }),
               ),
+              leading: Padding(
+                padding: const EdgeInsets.only(left: 9.0),
+                child: SizedBox(
+                  width: 100,
+                  height: 70,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.abc_outlined,
+                        size: 40,
+                        color: colorScheme.primary,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              actions: [
+                SizedBox(
+                  width: 85,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.search,
+                        size: 27,
+                        color: colorScheme.primary,
+                      ),
+                      const SizedBox(
+                        width: 12,
+                      ),
+                      Icon(
+                        Icons.person,
+                        size: 27,
+                        color: colorScheme.primary,
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
           body: TabBarView(

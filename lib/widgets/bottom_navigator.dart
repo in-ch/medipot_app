@@ -26,11 +26,11 @@ class _BottomNavigationWidgetState extends State<BottomNavigation> {
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
-          label: 'Home',
+          label: '홈',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.search),
-          label: 'Search',
+          icon: Icon(Icons.map),
+          label: '입지 매물',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.favorite),

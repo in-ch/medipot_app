@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
       case 0:
         return const HomePage();
       case 1:
-        return Container();
+        return const MapPage();
       case 2:
         return Container();
       case 3:
