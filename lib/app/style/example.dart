@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medipot_app/style/theme.dart';
+import 'package:medipot_app/app/style/theme.dart';
 
 void main() {
   runApp(const MyApp());

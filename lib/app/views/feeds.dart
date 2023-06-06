@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medipot_app/widgets/widgets.dart';
+import 'package:medipot_app/app/views/views.dart';
 
 class Feeds extends StatelessWidget {
   const Feeds({Key? key}) : super(key: key);

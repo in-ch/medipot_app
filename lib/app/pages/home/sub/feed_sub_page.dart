@@ -1,18 +1,18 @@
 // ignore_for_file: library_private_types_in_public_api
 import 'package:flutter/material.dart';
 
-import 'package:medipot_app/constants/constants.dart';
-import 'package:medipot_app/style/theme.dart';
-import 'package:medipot_app/widgets/widgets.dart';
+import 'package:medipot_app/app/constants/constants.dart';
+import 'package:medipot_app/app/style/theme.dart';
+import 'package:medipot_app/app/views/views.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class FeedSubPage extends StatefulWidget {
+  const FeedSubPage({super.key});
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _FeedSubPageState createState() => _FeedSubPageState();
 }
 
-class _HomePageState extends State<HomePage>
+class _FeedSubPageState extends State<FeedSubPage>
     with SingleTickerProviderStateMixin {
   @override
   void initState() {

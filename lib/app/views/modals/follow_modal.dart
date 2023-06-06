@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:medipot_app/style/theme.dart';
-import 'package:medipot_app/widgets/widgets.dart';
+import 'package:medipot_app/app/style/theme.dart';
+import 'package:medipot_app/app/views/views.dart';
 
 class FollowModal extends StatelessWidget {
   const FollowModal({Key? key}) : super(key: key);
