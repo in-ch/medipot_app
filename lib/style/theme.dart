@@ -27,7 +27,7 @@ final appTheme = ThemeData(
       color: Colors.black87,
     ),
     headlineSmall: TextStyle(
-      fontSize: 22,
+      fontSize: 20,
       fontWeight: FontWeight.bold,
       color: Colors.black87,
     ),
@@ -40,7 +40,7 @@ final appTheme = ThemeData(
       color: Colors.black87,
     ),
     bodySmall: TextStyle(
-      fontSize: 16,
+      fontSize: 15,
       color: Colors.black87,
     ),
   ),

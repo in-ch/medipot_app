@@ -1,2 +1,9 @@
 export 'bottom_navigator.dart';
 export 'small_circle.dart';
+export 'modals/follow_modal.dart';
+export 'feed.dart';
+export 'feeds.dart';
+export 'avatar.dart';
+export 'hr.dart';
+export 'feed_buttons.dart';
+export 'department_card.dart';

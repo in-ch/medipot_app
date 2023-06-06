@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:medipot_app/constants/constants.dart';
 import 'package:medipot_app/style/theme.dart';
+import 'package:medipot_app/widgets/widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -80,11 +81,8 @@ class _HomePageState extends State<HomePage>
           ),
           body: TabBarView(
             children: List<Widget>.generate(tags.length, (int index) {
-              return Center(
-                child: OutlinedButton(
-                  onPressed: () {},
-                  child: const Text('Outline Button'),
-                ),
+              return const Center(
+                child: Feeds(),
               );
             }),
           ),
