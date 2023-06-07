@@ -65,8 +65,8 @@ class FeedSubPage extends StatelessWidget {
           ),
           body: TabBarView(
             children: List<Widget>.generate(tags.length, (int index) {
-              return const Center(
-                child: Feeds(),
+              return Center(
+                child: Feeds(tag: tags[index], text: ""),
               );
             }),
           ),

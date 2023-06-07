@@ -35,22 +35,22 @@ class FeedWidget extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              GestureDetector(
-                                onTap: () => {
-                                  showModalBottomSheet<void>(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20.0),
-                                      ),
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return FollowModal();
-                                      })
-                                },
-                                child: const Avatar.medium(
-                                    url:
-                                        'https://avatars.githubusercontent.com/u/49556566?v=4'),
-                              ),
+                              // GestureDetector(
+                              //   onTap: () => {
+                              //     showModalBottomSheet<void>(
+                              //         shape: RoundedRectangleBorder(
+                              //           borderRadius:
+                              //               BorderRadius.circular(20.0),
+                              //         ),
+                              //         context: context,
+                              //         builder: (BuildContext context) {
+                              //           return FollowModal();
+                              //         })
+                              //   },
+                              //   child: const Avatar.medium(
+                              //       url:
+                              //           'https://avatars.githubusercontent.com/u/49556566?v=4'),
+                              // ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 15.0),
                                 child: SizedBox(

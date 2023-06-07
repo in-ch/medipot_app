@@ -8,16 +8,21 @@ class FeedController extends GetxController {
   RxInt totalCount = 0.obs;
   RxBool isLoading = false.obs;
 
+  final String tag;
+  final String text;
+
+  FeedController({required this.tag, required this.text});
+
+  @override
+  void onInit() {
+    super.onInit();
+    fetchList(tag, text);
+  }
+
   @override
   void onClose() {
     // 메모리 해제나 리소스 정리 등의 로직
     super.onClose();
-  }
-
-  void increase() {
-    print("asdfasdf");
-    totalCount++;
-    update();
   }
 
   /// [비즈니스 로직]
@@ -34,17 +39,18 @@ class FeedController extends GetxController {
             data['list'].map((item) => Writing.fromJson(item)));
         totalCount.value = response['totalCount'];
         isLoading.value = false;
-
         update();
       } else {
         throw Exception('Failed to fetch list');
       }
     } catch (error) {
       isLoading.value = false;
+
       update();
       // Handle error
     } finally {
       isLoading.value = false;
+
       update();
     }
   }
