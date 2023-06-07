@@ -5,19 +5,8 @@ import 'package:medipot_app/app/constants/constants.dart';
 import 'package:medipot_app/app/style/theme.dart';
 import 'package:medipot_app/app/views/views.dart';
 
-class FeedSubPage extends StatefulWidget {
+class FeedSubPage extends StatelessWidget {
   const FeedSubPage({super.key});
-
-  @override
-  _FeedSubPageState createState() => _FeedSubPageState();
-}
-
-class _FeedSubPageState extends State<FeedSubPage>
-    with SingleTickerProviderStateMixin {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
