@@ -26,21 +26,16 @@ class FeedSubPage extends StatelessWidget {
                   return Tab(text: tags[index]);
                 }),
               ),
-              leading: Padding(
-                padding: const EdgeInsets.only(left: 9.0),
-                child: SizedBox(
-                  width: 100,
-                  height: 70,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.abc_outlined,
-                        size: 40,
-                        color: colorScheme.primary,
-                      ),
-                    ],
-                  ),
+              title: const SizedBox(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text("커뮤니티",
+                        style: TextStyle(
+                            fontSize: 21.0,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700)),
+                  ],
                 ),
               ),
               actions: [

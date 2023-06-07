@@ -12,6 +12,7 @@ final appTheme = ThemeData(
   appBarTheme: const AppBarTheme(
     shadowColor: Colors.black45,
     elevation: 1,
+    centerTitle: false,
   ),
   // 텍스트 스타일 설정
   colorScheme: colorScheme,
