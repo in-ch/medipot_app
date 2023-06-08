@@ -5,9 +5,14 @@ import 'package:medipot_app/app/constants/constants.dart';
 import 'package:medipot_app/app/style/theme.dart';
 import 'package:medipot_app/app/views/views.dart';
 
-class FeedSubPage extends StatelessWidget {
+class FeedSubPage extends StatefulWidget {
   const FeedSubPage({super.key});
 
+  @override
+  State<FeedSubPage> createState() => _FeedSubPageState();
+}
+
+class _FeedSubPageState extends State<FeedSubPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -66,7 +71,7 @@ class FeedSubPage extends StatelessWidget {
           body: TabBarView(
             children: List<Widget>.generate(tags.length, (int index) {
               return Center(
-                child: Feeds(tag: tags[index], text: ""),
+                child: Feeds(tag: tags[index]),
               );
             }),
           ),
