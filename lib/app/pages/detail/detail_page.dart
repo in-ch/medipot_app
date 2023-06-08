@@ -1,18 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class DetailPage extends StatefulWidget {
-  const DetailPage({super.key});
+import 'package:medipot_app/app/controllers/controllers.dart';
+import 'package:medipot_app/app/style/theme.dart';
 
-  @override
-  State<DetailPage> createState() => _DetailPageState();
-}
+class DetailPage extends StatelessWidget {
+  const DetailPage({Key? key}) : super(key: key);
 
-class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Container(),
+    Get.put(DetailController());
+    return Theme(
+      data: appTheme,
+      child: Scaffold(
+        body: SizedBox(
+          height: 200,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              GetBuilder<DetailController>(
+                builder: (controller) {
+                  return GestureDetector(
+                    onTap: () {
+                      controller.someMethod();
+                    },
+                    child: Text('headlineLarge',
+                        style: Theme.of(context).textTheme.headlineLarge),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -7,4 +7,8 @@ class DetailController extends GetxController {
     count++;
     update(); // 상태 변경을 알림
   }
+
+  void someMethod() {
+    print("Hello world");
+  }
 }
