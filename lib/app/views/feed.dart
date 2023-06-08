@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:medipot_app/app/pages/pages.dart';
 
 import 'package:medipot_app/app/style/theme.dart';
 import 'package:medipot_app/app/views/views.dart';
@@ -105,7 +104,13 @@ class FeedWidget extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: GestureDetector(
                   onTap: () {
-                    Get.to(DetailPage(), transition: Transition.cupertino);
+                    Get.toNamed(
+                      '/detail',
+                      arguments: {
+                        'no': writing.no,
+                      },
+                      preventDuplicates: false,
+                    );
                   },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,

@@ -6,7 +6,6 @@ import 'package:medipot_app/app/style/theme.dart';
 void main() {
   // GetX 초기화
   WidgetsFlutterBinding.ensureInitialized();
-
   runApp(const MyApp());
 }
 

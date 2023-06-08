@@ -1,14 +1,43 @@
 import 'package:get/get.dart';
+import 'package:medipot_app/data/models/models.dart';
+import 'package:medipot_app/services/services.dart';
 
 class DetailController extends GetxController {
-  var count = 0;
+  RxBool isLoading = false.obs;
 
-  void increment() {
-    count++;
-    update(); // 상태 변경을 알림
-  }
+  // DetailController({required int no}) {
+  //   print('no: $no');
+  //   getList(no);
+  // }
+
+  late Writing writing;
 
   void someMethod() {
-    print("Hello world");
+    print("SEX");
+  }
+
+  /// [비즈니스 로직]
+  /// @params token 지울꺼임.
+  /// @params no 글 no값
+  Future<Writing> getList(int no) async {
+    try {
+      isLoading.value = true;
+      final response = await WritingsService.getWriting(no);
+      if (response['statusCode'] == 200) {
+        final data = response['data'];
+        writing = Writing.fromJson(data);
+        update();
+      } else {
+        throw Exception('Failed to fetch list');
+      }
+    } catch (error) {
+      isLoading.value = false;
+      update();
+      throw Exception(error);
+    } finally {
+      isLoading.value = false;
+      update();
+      throw Exception('Failed to fetch list');
+    }
   }
 }

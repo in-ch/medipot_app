@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:medipot_app/app/controllers/controllers.dart';
 import 'package:medipot_app/app/style/theme.dart';
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends GetView<DetailController> {
   const DetailPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.put(DetailController());
     return Theme(
       data: appTheme,
       child: Scaffold(
@@ -19,17 +17,15 @@ class DetailPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              GetBuilder<DetailController>(
-                builder: (controller) {
-                  return GestureDetector(
-                    onTap: () {
-                      controller.someMethod();
-                    },
-                    child: Text('headlineLarge',
-                        style: Theme.of(context).textTheme.headlineLarge),
-                  );
+              GestureDetector(
+                onTap: () {
+                  controller.someMethod();
                 },
-              ),
+                child: Text(
+                  'headlineLarge',
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
+              )
             ],
           ),
         ),

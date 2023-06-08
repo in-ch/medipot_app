@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:medipot_app/app/controllers/controllers.dart';
 
-class DetailBinding extends Bindings {
+class DetailBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put(DetailController()); // DetailController를 바인딩
+    Get.put(DetailController());
   }
 }

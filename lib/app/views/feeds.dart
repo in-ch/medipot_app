@@ -46,7 +46,7 @@ class _FeedsState extends State<Feeds>
 
   Future<List<Writing>> fetchList(String tag, String text) async {
     try {
-      final response = await WritingsService.fetchList(tag, text);
+      final response = await WritingsService.getWritings(tag, text);
       if (response['statusCode'] == 200) {
         final data = response['data'];
         final list = List<Writing>.from(

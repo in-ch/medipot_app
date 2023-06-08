@@ -1,4 +1,4 @@
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 import 'package:medipot_app/app/bindings/bindings.dart';
 import 'package:medipot_app/app/pages/pages.dart';
 import 'package:medipot_app/app/routes/routes.dart';
