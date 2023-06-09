@@ -37,7 +37,12 @@ class _CommentData extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.only(
+            left: 10,
+            right: 10,
+            top: 15,
+            bottom: 15,
+          ),
           child: SizedBox(
             // Header
             child: Row(
@@ -49,7 +54,7 @@ class _CommentData extends StatelessWidget {
                         url:
                             'https://avatars.githubusercontent.com/u/49556566?v=4'),
                     Padding(
-                      padding: const EdgeInsets.only(left: 18.0),
+                      padding: const EdgeInsets.only(left: 10.0),
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width * 0.75,
                         child: Align(
@@ -58,42 +63,39 @@ class _CommentData extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Row(
+                              Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
+                                  // Theme.of(context).textTheme.bodyLarge
                                   Row(
                                     children: [
                                       Text(
                                         '인철',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w900,
-                                            fontSize: 12,
-                                            color: Colors.black),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium,
                                       ),
-                                      SizedBox(width: 10),
-                                      Text(
+                                      const SizedBox(width: 10),
+                                      const Text(
                                         '3 일전',
                                         style: TextStyle(
                                             fontWeight: FontWeight.normal,
-                                            fontSize: 10,
+                                            fontSize: 12,
                                             color: Colors.black54),
                                       ),
                                     ],
                                   ),
-                                  Icon(
+                                  const Icon(
                                     CupertinoIcons.ellipsis_vertical,
                                     size: 15,
                                   ),
                                 ],
                               ),
                               const SizedBox(height: 10),
-                              const Text(
+                              Text(
                                 '안녕하세요 어쩌구저쩌꾸 삐리빠라빠리뽀안녕하세요 어쩌구저쩌꾸 삐리빠라빠리뽀안녕하세요 어쩌구저쩌꾸 삐리빠라빠리뽀안녕하세요 어쩌구저쩌꾸 삐리빠라빠리뽀',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 10,
-                                    color: Colors.black45),
+                                style: Theme.of(context).textTheme.bodySmall,
                               ),
                               const SizedBox(height: 10),
                               Row(
@@ -103,10 +105,10 @@ class _CommentData extends StatelessWidget {
                                       // Get.to(const ReplyScreen(),
                                       //     transition: Transition.cupertino);
                                     },
-                                    child: Text('댓글 7개',
+                                    child: Text('대 댓글 7개',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .headlineSmall),
+                                            .bodySmall),
                                   ),
                                 ],
                               ),
