@@ -1,28 +1,30 @@
 import 'package:get/get.dart';
+
 import 'package:medipot_app/data/models/models.dart';
 import 'package:medipot_app/services/services.dart';
 
 class DetailController extends GetxController {
   RxBool isLoading = false.obs;
 
-  // DetailController({required int no}) {
-  //   print('no: $no');
-  //   getList(no);
-  // }
-
   late Writing writing;
 
   void someMethod() {
-    print("SEX");
+    print(Get.arguments['no']);
+  }
+
+  @override
+  void onInit() {
+    getList();
+    super.onInit();
   }
 
   /// [비즈니스 로직]
   /// @params token 지울꺼임.
   /// @params no 글 no값
-  Future<Writing> getList(int no) async {
+  Future<Writing> getList() async {
     try {
       isLoading.value = true;
-      final response = await WritingsService.getWriting(no);
+      final response = await WritingsService.getWriting(Get.arguments['no']);
       if (response['statusCode'] == 200) {
         final data = response['data'];
         writing = Writing.fromJson(data);

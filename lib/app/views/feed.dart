@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:medipot_app/app/routes/routes.dart';
 
 import 'package:medipot_app/app/style/theme.dart';
 import 'package:medipot_app/app/views/views.dart';
@@ -105,7 +106,7 @@ class FeedWidget extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     Get.toNamed(
-                      '/detail',
+                      Routes.detail,
                       arguments: {
                         'no': writing.no,
                       },
@@ -115,6 +116,8 @@ class FeedWidget extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      Text(writing.no.toString(),
+                          style: TextStyle(color: Colors.red)),
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(writing.title,

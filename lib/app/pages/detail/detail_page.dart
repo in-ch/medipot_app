@@ -11,23 +11,34 @@ class DetailPage extends GetView<DetailController> {
     return Theme(
       data: appTheme,
       child: Scaffold(
-        body: SizedBox(
-          height: 200,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  controller.someMethod();
-                },
-                child: Text(
-                  'headlineLarge',
-                  style: Theme.of(context).textTheme.headlineLarge,
+        body: Obx(
+          () => controller.isLoading.value
+              ? const Center(child: CircularProgressIndicator())
+              : SizedBox(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          controller.someMethod();
+                        },
+                        child: Text(
+                          'headlineLarge',
+                          style: Theme.of(context).textTheme.headlineLarge,
+                        ),
+                      ),
+                      Text(
+                        controller.writing.title,
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        controller.writing.text,
+                        style: const TextStyle(fontSize: 14),
+                      ),
+                    ],
+                  ),
                 ),
-              )
-            ],
-          ),
         ),
       ),
     );
