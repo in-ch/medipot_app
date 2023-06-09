@@ -7,3 +7,4 @@ export 'avatar.dart';
 export 'hr.dart';
 export 'feed_buttons.dart';
 export 'department_card.dart';
+export 'comment_list.dart';

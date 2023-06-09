@@ -24,11 +24,11 @@ class FeedWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Theme(
       data: appTheme,
-      child: SizedBox(
+      child: Container(
+        color: Theme.of(context).colorScheme.surface,
         width: MediaQuery.of(context).size.width,
         child: Column(
           children: [
-            Hr(),
             !hideFollow
                 ? Padding(
                     padding: const EdgeInsets.only(
@@ -116,8 +116,6 @@ class FeedWidget extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(writing.no.toString(),
-                          style: TextStyle(color: Colors.red)),
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(writing.title,
@@ -126,7 +124,7 @@ class FeedWidget extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          maxLines: 3,
+                          maxLines: isDetail ? 100 : 3,
                           overflow: TextOverflow.ellipsis,
                           writing.text,
                           style: TextStyle(
@@ -148,7 +146,7 @@ class FeedWidget extends StatelessWidget {
                   padding: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 3.0),
                   child: FeedButtons()),
             ),
-            // !isDetail ? const CommentFeed() : Hr()
+            isDetail ? CommentList() : Hr()
           ],
         ),
       ),
