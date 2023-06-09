@@ -1,4 +1,4 @@
-package com.example.medipot_app
+package com.inch.medipot_app
 
 import io.flutter.embedding.android.FlutterActivity
 
