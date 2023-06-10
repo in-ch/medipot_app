@@ -1,11 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:medipot_app/app/pages/pages.dart';
 import 'package:medipot_app/app/style/theme.dart';
+import 'package:medipot_app/data/models/models.dart';
 
-void main() {
+void main() async {
   // GetX 초기화
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(); // Firebase 앱 초기화
+  DynamicLink().setup();
   runApp(const MyApp());
 }
 

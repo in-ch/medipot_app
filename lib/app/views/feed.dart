@@ -7,6 +7,7 @@ import 'package:medipot_app/app/routes/routes.dart';
 import 'package:medipot_app/app/style/theme.dart';
 import 'package:medipot_app/app/views/views.dart';
 import 'package:medipot_app/data/models/models.dart';
+import 'package:share_plus/share_plus.dart';
 
 class FeedWidget extends StatelessWidget {
   FeedWidget(
@@ -41,6 +42,18 @@ class FeedWidget extends StatelessWidget {
                         children: [
                           Row(
                             children: [
+                              GestureDetector(
+                                onTap: () async {
+                                  Share.share(
+                                    await DynamicLink().getShortLink(
+                                      '/detail',
+                                      writing.no,
+                                    ),
+                                  );
+                                },
+                                child: Text("공유",
+                                    style: TextStyle(color: Colors.red)),
+                              ),
                               GestureDetector(
                                 onTap: () => {
                                   showModalBottomSheet<void>(

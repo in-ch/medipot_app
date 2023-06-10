@@ -29,6 +29,13 @@
             {
               "client_id": "865112705620-vvjivlboc8doulh18sbt85qggdpm30n2.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "865112705620-8a6n90iosas2ghobo30va9i3huskv25i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.medipotApp"
+              }
             }
           ]
         }
