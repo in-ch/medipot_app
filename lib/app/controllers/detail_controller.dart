@@ -14,14 +14,14 @@ class DetailController extends GetxController {
 
   @override
   void onInit() {
-    getList();
+    getWriting();
     super.onInit();
   }
 
   /// [비즈니스 로직]
   /// @params token 지울꺼임.
   /// @params no 글 no값
-  Future<Writing> getList() async {
+  Future<Writing> getWriting() async {
     try {
       isLoading.value = true;
       final response = await WritingsService.getWriting(Get.arguments['no']);
@@ -30,7 +30,7 @@ class DetailController extends GetxController {
         writing = Writing.fromJson(data);
         update();
       } else {
-        throw Exception('Failed to fetch list');
+        throw Exception('Failed to GET DETAIL');
       }
     } catch (error) {
       isLoading.value = false;
@@ -39,7 +39,7 @@ class DetailController extends GetxController {
     } finally {
       isLoading.value = false;
       update();
-      throw Exception('Failed to fetch list');
+      throw Exception('Failed to GET DETAIL');
     }
   }
 }

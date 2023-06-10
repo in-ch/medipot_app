@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "865112705620",
+    "project_id": "medipot-app-ee177",
+    "storage_bucket": "medipot-app-ee177.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865112705620:android:33374255052949e7abfbc1",
+        "android_client_info": {
+          "package_name": "com.inch.medipot_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "865112705620-vvjivlboc8doulh18sbt85qggdpm30n2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6e-eL0gFQLww2F0TfIEQVtFkvDsvCYL0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "865112705620-vvjivlboc8doulh18sbt85qggdpm30n2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
