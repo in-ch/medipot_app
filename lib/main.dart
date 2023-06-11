@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:medipot_app/app/pages/pages.dart';
 import 'package:medipot_app/app/style/theme.dart';
 import 'package:medipot_app/data/models/models.dart';
@@ -16,6 +16,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+  static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
           name: '/not-found',
           page: () => const NotFoundPage()), // 알 수 없는 경로 설정 (옵션)
       debugShowCheckedModeBanner: false,
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: analytics),
+      ],
     );
   }
 }
