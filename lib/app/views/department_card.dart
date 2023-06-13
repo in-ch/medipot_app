@@ -91,7 +91,7 @@ class PopularCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 10.0),
+      margin: const EdgeInsets.only(left: 8.0),
       decoration: BoxDecoration(
         color: getDepartmentColor(department),
         borderRadius: BorderRadius.circular(3.0),

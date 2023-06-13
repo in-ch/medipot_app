@@ -1,18 +1,24 @@
+import 'dart:async';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 import 'package:medipot_app/app/pages/pages.dart';
 import 'package:medipot_app/app/style/theme.dart';
 import 'package:medipot_app/data/models/models.dart';
+import 'package:medipot_app/firebase_options.dart';
 
-Future main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   DynamicLink().setup();
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
   //화면 회전 막는 기능
   await SystemChrome.setPreferredOrientations(
@@ -20,7 +26,16 @@ Future main() async {
 
   await dotenv.load(fileName: '.env');
 
-  runApp(const MyApp());
+  runZonedGuarded(
+    () {
+      runApp(const MyApp());
+    },
+    (error, stack) => FirebaseCrashlytics.instance.recordError(
+      error,
+      stack,
+      fatal: true,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

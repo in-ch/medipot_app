@@ -1,4 +1,5 @@
 // ignore_for_file: library_private_types_in_public_api
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 
 import 'package:medipot_app/app/constants/constants.dart';
@@ -49,10 +50,15 @@ class _FeedSubPageState extends State<FeedSubPage> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(
-                        Icons.search,
-                        size: 27,
-                        color: colorScheme.primary,
+                      GestureDetector(
+                        onTap: () {
+                          FirebaseCrashlytics.instance.crash();
+                        },
+                        child: Icon(
+                          Icons.search,
+                          size: 27,
+                          color: colorScheme.primary,
+                        ),
                       ),
                       const SizedBox(
                         width: 12,
