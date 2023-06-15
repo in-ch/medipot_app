@@ -64,11 +64,11 @@ class DynamicLink {
       uriPrefix: dynamicLinkPrefix,
       link: Uri.parse('$dynamicLinkPrefix/$screenName?no=$no'),
       androidParameters: const AndroidParameters(
-        packageName: "com.inch.medipot_app",
+        packageName: 'com.inch.medipotApp',
         minimumVersion: 0,
       ),
       iosParameters: const IOSParameters(
-        bundleId: "com.inch.medipot_app",
+        bundleId: 'com.inch.medipotApp',
         minimumVersion: '0',
       ),
     );

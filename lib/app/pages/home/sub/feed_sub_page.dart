@@ -1,10 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 
 import 'package:medipot_app/app/constants/constants.dart';
 import 'package:medipot_app/app/style/theme.dart';
 import 'package:medipot_app/app/views/views.dart';
+import 'package:medipot_app/data/models/models.dart';
 
 class FeedSubPage extends StatefulWidget {
   const FeedSubPage({super.key});
@@ -16,6 +16,8 @@ class FeedSubPage extends StatefulWidget {
 class _FeedSubPageState extends State<FeedSubPage> {
   @override
   Widget build(BuildContext context) {
+    LocalNotification.requestPermission();
+
     return DefaultTabController(
       length: tags.length,
       child: Theme(
@@ -52,7 +54,7 @@ class _FeedSubPageState extends State<FeedSubPage> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          FirebaseCrashlytics.instance.crash();
+                          LocalNotification.sendNotification("TITLE", "TEXT");
                         },
                         child: Icon(
                           Icons.search,

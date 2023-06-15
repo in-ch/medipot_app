@@ -46,7 +46,7 @@ class FeedWidget extends StatelessWidget {
                                 onTap: () async {
                                   Share.share(
                                     await DynamicLink().getShortLink(
-                                      '/detail',
+                                      'detail',
                                       writing.no,
                                     ),
                                   );
