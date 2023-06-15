@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
+import 'package:medipot_app/app/controllers/controllers.dart';
 import 'package:medipot_app/app/pages/pages.dart';
 import 'package:medipot_app/app/style/theme.dart';
 import 'package:medipot_app/data/models/models.dart';
@@ -16,14 +17,10 @@ import 'package:medipot_app/firebase_options.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
-  DynamicLink().setup();
+  await DynamicLink().setup();
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-
-  //화면 회전 막는 기능
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-
   await dotenv.load(fileName: '.env');
 
   runZonedGuarded(
@@ -48,6 +45,8 @@ class MyApp extends StatelessWidget {
       theme: appTheme,
       home: const HomePage(), // 애플리케이션의 첫 번째 페이지 (필수)
       initialRoute: '/', // 초기 라우트 설정 (옵션)
+      initialBinding:
+          BindingsBuilder.put(() => NotificationController(), permanent: true),
       getPages: AppPages.pages, // 라우트 설정 (옵션)
       unknownRoute: GetPage(
           name: '/not-found',

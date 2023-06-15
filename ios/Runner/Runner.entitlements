@@ -7,4 +7,10 @@
 		<string>webcredentials:example.com</string>
 	</array>
 </dict>
+<dict>
+   <key>com.apple.developer.associated-domains</key>
+   <array>
+      <string>applinks:medipotapp.page.link</string>
+   </array>
+</dict>
 </plist>
