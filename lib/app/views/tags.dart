@@ -16,8 +16,13 @@ class Tags extends StatelessWidget {
         right: 10,
         left: isDetail ? 10 : 52,
       ),
-      child: Row(
-        children: tags.map((tag) => Tag(text: tag)).toList(),
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width - 20,
+        child: Wrap(
+          alignment: WrapAlignment.start,
+          spacing: 10,
+          children: tags.map((tag) => Tag(text: tag)).toList(),
+        ),
       ),
     );
   }

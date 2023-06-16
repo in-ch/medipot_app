@@ -9,7 +9,7 @@ class Tag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 8.0, bottom: 5.0),
+      padding: const EdgeInsets.only(bottom: 8.0),
       child: Theme(
         data: appTheme,
         child: Container(
