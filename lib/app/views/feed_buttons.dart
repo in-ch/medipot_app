@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:medipot_app/app/style/theme.dart';
+import 'package:medipot_app/data/models/models.dart';
 
 class FeedButtons extends StatefulWidget {
-  const FeedButtons({super.key});
+  const FeedButtons({super.key, required this.writing});
+
+  final Writing writing;
 
   @override
   State<FeedButtons> createState() => _FeedButtonsState();
@@ -11,6 +15,9 @@ class FeedButtons extends StatefulWidget {
 class _FeedButtonsState extends State<FeedButtons> {
   @override
   Widget build(BuildContext context) {
+    int likeCount = widget.writing.like.length;
+    int replyCount = widget.writing.reply.length;
+
     return Theme(
       data: appTheme,
       child: SizedBox(
@@ -21,19 +28,21 @@ class _FeedButtonsState extends State<FeedButtons> {
             const SizedBox(width: 5),
             Icon(
               Icons.thumb_up,
-              size: 20,
+              size: 15,
               color: colorScheme.primary,
             ),
             const SizedBox(width: 6),
-            Text("10", style: Theme.of(context).textTheme.bodySmall),
+            Text(likeCount.toString(),
+                style: Theme.of(context).textTheme.bodySmall),
             const SizedBox(width: 15),
             const Icon(
               Icons.chat_bubble_outline,
-              size: 20,
+              size: 15,
               color: Colors.black26,
             ),
             const SizedBox(width: 6),
-            Text("10", style: Theme.of(context).textTheme.bodySmall)
+            Text(replyCount.toString(),
+                style: Theme.of(context).textTheme.bodySmall)
           ],
         ),
       ),

@@ -2,12 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:medipot_app/app/routes/routes.dart';
 
+import 'package:medipot_app/app/routes/routes.dart';
 import 'package:medipot_app/app/style/theme.dart';
+import 'package:medipot_app/app/utils/utils.dart';
 import 'package:medipot_app/app/views/views.dart';
 import 'package:medipot_app/data/models/models.dart';
-import 'package:share_plus/share_plus.dart';
 
 class FeedWidget extends StatelessWidget {
   FeedWidget(
@@ -32,28 +32,16 @@ class FeedWidget extends StatelessWidget {
           children: [
             !hideFollow
                 ? Padding(
-                    padding: const EdgeInsets.only(
-                        left: 8.0, right: 8.0, bottom: 8.0),
+                    padding:
+                        const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
                     child: SizedBox(
                       // Header
-                      height: 60,
+                      height: 40,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Row(
                             children: [
-                              GestureDetector(
-                                onTap: () async {
-                                  Share.share(
-                                    await DynamicLink().getShortLink(
-                                      'detail',
-                                      writing.no,
-                                    ),
-                                  );
-                                },
-                                child: Text("공유",
-                                    style: TextStyle(color: Colors.red)),
-                              ),
                               GestureDetector(
                                 onTap: () => {
                                   showModalBottomSheet<void>(
@@ -66,7 +54,7 @@ class FeedWidget extends StatelessWidget {
                                         return FollowModal();
                                       })
                                 },
-                                child: Avatar.medium(url: writing.user.profile),
+                                child: Avatar.small(url: writing.user.profile),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 15.0),
@@ -83,17 +71,24 @@ class FeedWidget extends StatelessWidget {
                                       children: [
                                         Row(
                                           children: [
-                                            Text(writing.user.nickname,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodySmall),
+                                            SizedBox(
+                                              width: 85,
+                                              child: Text(writing.user.nickname,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall),
+                                            ),
                                             PopularCard(
                                                 department:
                                                     writing.user.department),
                                           ],
                                         ),
                                         SizedBox(height: 2),
-                                        Text("31123일 전",
+                                        Text(
+                                            diffTime(writing.user.createdAt
+                                                .toString()),
                                             style: TextStyle(
                                                 fontSize: 13.0,
                                                 color: Colors.black54)),
@@ -115,7 +110,12 @@ class FeedWidget extends StatelessWidget {
                 minWidth: double.infinity,
               ),
               child: Padding(
-                padding: const EdgeInsets.all(10),
+                padding: EdgeInsets.only(
+                  left: isDetail ? 10 : 55,
+                  bottom: 10,
+                  right: 10,
+                  top: 10,
+                ),
                 child: GestureDetector(
                   onTap: () {
                     Get.toNamed(
@@ -132,18 +132,19 @@ class FeedWidget extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(writing.title,
-                            style: Theme.of(context).textTheme.headlineSmall),
+                            style: Theme.of(context).textTheme.titleMedium),
                       ),
+                      Container(height: 10),
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          maxLines: isDetail ? 100 : 3,
+                          maxLines: isDetail ? 100 : 2,
                           overflow: TextOverflow.ellipsis,
                           writing.text,
                           style: TextStyle(
                               fontWeight: FontWeight.normal,
                               fontSize: 16,
-                              height: 1.6,
+                              height: 1.3,
                               color: Colors.black87),
                         ),
                       ),
@@ -154,10 +155,17 @@ class FeedWidget extends StatelessWidget {
             ),
             SizedBox(
               // footer
-              height: 30.0,
+              height: 35.0,
               child: Padding(
-                  padding: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 3.0),
-                  child: FeedButtons()),
+                  padding: EdgeInsets.only(
+                      left: isDetail ? 8 : 50.0, right: 8.0, bottom: 10.0),
+                  child: FeedButtons(
+                    writing: writing,
+                  )),
+            ),
+            Tags(
+              tags: writing.tags,
+              isDetail: isDetail,
             ),
             isDetail ? CommentList() : Hr()
           ],

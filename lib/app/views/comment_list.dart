@@ -67,14 +67,13 @@ class _CommentData extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  // Theme.of(context).textTheme.bodyLarge
                                   Row(
                                     children: [
                                       Text(
                                         '인철',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyMedium,
+                                            .bodySmall,
                                       ),
                                       const SizedBox(width: 10),
                                       const Text(

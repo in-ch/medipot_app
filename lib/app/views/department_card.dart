@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 enum UserDepartmentColor {
@@ -102,7 +104,7 @@ class PopularCard extends StatelessWidget {
           department ?? '',
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 12.0,
+            fontSize: 10.0,
           ),
         ),
       ),

@@ -33,18 +33,15 @@ final appTheme = ThemeData(
       fontWeight: FontWeight.bold,
       color: Colors.black87,
     ),
-    bodyLarge: TextStyle(
-      fontSize: 20,
-      color: Colors.black87,
-    ),
-    bodyMedium: TextStyle(
-      fontSize: 18,
-      color: Colors.black87,
-    ),
-    bodySmall: TextStyle(
-      fontSize: 15,
-      color: Colors.black87,
-    ),
+    titleLarge: TextStyle(
+        fontSize: 19, fontWeight: FontWeight.bold, color: Colors.black87),
+    titleMedium: TextStyle(
+        fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black87),
+    titleSmall: TextStyle(
+        fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black87),
+    bodyLarge: TextStyle(fontSize: 19, color: Colors.black87),
+    bodyMedium: TextStyle(fontSize: 17, color: Colors.black87),
+    bodySmall: TextStyle(fontSize: 14, color: Colors.black87),
   ),
   // 버튼 테마 스타일 설정
   outlinedButtonTheme: OutlinedButtonThemeData(
