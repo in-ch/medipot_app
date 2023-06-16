@@ -153,6 +153,13 @@ class FeedWidget extends StatelessWidget {
                 ),
               ),
             ),
+            writing.imgs.isNotEmpty
+                ? FeedImage(
+                    imageUrl: writing.imgs[0],
+                    isDetail: isDetail,
+                    images: writing.imgs,
+                  )
+                : Container(),
             SizedBox(
               // footer
               height: 35.0,

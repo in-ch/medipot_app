@@ -10,3 +10,4 @@ export './department_card.dart';
 export './comment_list.dart';
 export './tags.dart';
 export './tag.dart';
+export './feed_image.dart';
