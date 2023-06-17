@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,51 +15,85 @@ class CommentList extends StatefulWidget {
 }
 
 class _CommentListState extends State<CommentList> {
-  int totalCount = 0;
   int page = 0;
   int limit = 10;
+  List<ReplyDetail> comments = [];
+  bool isLoading = false;
+  bool hasMore = true;
 
-  List<ReplyDetail> list = [];
-  Future<List<ReplyDetail>> fetchList(
-      int writingNo, int page, int limit) async {
-    try {
-      final response = await ReplysService.getReplys(writingNo, page, limit);
-      if (response['statusCode'] == 200) {
-        final data = response['data'];
-        final list = List<ReplyDetail>.from(
-            data['list'].map((item) => ReplyDetail.fromJson(item)));
-        totalCount = response['totalCount'];
-        page = data['page'];
+  @override
+  void initState() {
+    super.initState();
+    fetchComments();
+  }
 
-        return list;
-      }
-    } catch (error) {
-      print("-------Error-------");
-      print(error);
+  Future<void> fetchComments() async {
+    if (isLoading) return;
+    setState(() {
+      isLoading = true;
+    });
+    final response =
+        await ReplysService.getReplys(widget.writingNo, page, limit);
+    if (response['statusCode'] == 200) {
+      final data = response['data'];
+      final List<ReplyDetail> newComments = List<ReplyDetail>.from(
+          data['list'].map((item) => ReplyDetail.fromJson(item)));
+
+      setState(() {
+        comments.addAll(newComments);
+        page++;
+        isLoading = false;
+        if (newComments.length < limit) {
+          hasMore = false;
+        }
+      });
+    } else {
+      setState(() {
+        isLoading = false;
+      });
     }
-    return [];
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<ReplyDetail>>(
-      future: fetchList(widget.writingNo, page, limit),
-      builder:
-          (BuildContext context, AsyncSnapshot<List<ReplyDetail>> snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          return Text('오류 발생: ${snapshot.error}');
-        } else if (snapshot.hasData && snapshot.data!.isEmpty) {
-          return const Text('데이터가 없습니다.');
-        } else {
-          return Column(
-            children: snapshot.data!
-                .map((reply) => _CommentData(reply: reply))
-                .toList(),
-          );
-        }
-      },
+    return Column(
+      children: [
+        SingleChildScrollView(
+          child: Column(
+            children:
+                comments.map((reply) => _CommentData(reply: reply)).toList(),
+          ),
+        ),
+        if (isLoading)
+          const CircularProgressIndicator()
+        else if (hasMore)
+          SizedBox(
+            width: double.infinity,
+            child: Row(
+              children: [
+                ElevatedButton(
+                  onPressed: fetchComments,
+                  style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(0), // 그림자 없애기
+                    backgroundColor: MaterialStateProperty.all(
+                        Colors.transparent), // 배경색 투명으로 설정하여 border 없애기
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(0), // 버튼의 모서리를 둥글지 않게 설정
+                        side: BorderSide.none, // border 없애기
+                      ),
+                    ),
+                  ),
+                  child: const Text('댓글 더보기',
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 66, 66, 66),
+                          fontSize: 14.0)),
+                )
+              ],
+            ),
+          ),
+      ],
     );
   }
 }
@@ -142,21 +174,18 @@ class _CommentData extends StatelessWidget {
                                 style: Theme.of(context).textTheme.displaySmall,
                               ),
                               const SizedBox(height: 10),
-                              Row(
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      // Get.to(const ReplyScreen(),
-                                      //     transition: Transition.cupertino);
-                                    },
-                                    child: Text(
-                                      '대 댓글 7개',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .displaySmall,
-                                    ),
-                                  ),
-                                ],
+                              GestureDetector(
+                                onTap: () {
+                                  // Get.to(const ReplyScreen(),
+                                  //     transition: Transition.cupertino);
+                                },
+                                child: Text(
+                                  reply.totalCount < 1
+                                      ? '대 댓글 달기'
+                                      : '대 댓글 ${reply.totalCount}개',
+                                  style:
+                                      Theme.of(context).textTheme.displaySmall,
+                                ),
                               ),
                             ],
                           ),

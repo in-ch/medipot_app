@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 import 'package:medipot_app/data/models/models.dart';
 
 class ReplyDetail {
@@ -6,6 +7,7 @@ class ReplyDetail {
   final DateTime updatedAt;
   final String comment;
   final User user;
+  final int totalCount;
 
   ReplyDetail({
     required this.no,
@@ -13,6 +15,7 @@ class ReplyDetail {
     required this.updatedAt,
     required this.comment,
     required this.user,
+    required this.totalCount,
   });
 
   factory ReplyDetail.fromJson(Map<String, dynamic> json) {
@@ -22,6 +25,7 @@ class ReplyDetail {
       updatedAt: DateTime.parse(json['updatedAt']),
       comment: json['comment'],
       user: User.fromJson(json['user']),
+      totalCount: json['totalCount'],
     );
   }
 }
