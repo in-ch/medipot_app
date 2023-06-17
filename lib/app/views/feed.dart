@@ -174,7 +174,7 @@ class FeedWidget extends StatelessWidget {
               tags: writing.tags,
               isDetail: isDetail,
             ),
-            isDetail ? CommentList() : Hr()
+            isDetail ? CommentList(writingNo: writing.no) : Hr()
           ],
         ),
       ),

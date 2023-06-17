@@ -1,28 +1,75 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:medipot_app/app/style/theme.dart';
 import 'package:medipot_app/app/views/views.dart';
+import 'package:medipot_app/data/models/models.dart';
+import 'package:medipot_app/services/services.dart';
 
-class CommentList extends StatelessWidget {
-  const CommentList({Key? key}) : super(key: key);
+class CommentList extends StatefulWidget {
+  const CommentList({Key? key, required this.writingNo}) : super(key: key);
+  final int writingNo;
 
   @override
-  Widget build(BuildContext context) {
-    return _Comment();
-  }
+  State<CommentList> createState() => _CommentListState();
 }
 
-class _Comment extends StatelessWidget {
+class _CommentListState extends State<CommentList> {
+  int totalCount = 0;
+  int page = 0;
+  int limit = 10;
+
+  List<ReplyDetail> list = [];
+  Future<List<ReplyDetail>> fetchList(
+      int writingNo, int page, int limit) async {
+    try {
+      final response = await ReplysService.getReplys(writingNo, page, limit);
+      if (response['statusCode'] == 200) {
+        final data = response['data'];
+        final list = List<ReplyDetail>.from(
+            data['list'].map((item) => ReplyDetail.fromJson(item)));
+        totalCount = response['totalCount'];
+        page = data['page'];
+
+        return list;
+      }
+    } catch (error) {
+      print("-------Error-------");
+      print(error);
+    }
+    return [];
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [_CommentData(), _CommentData(), _CommentData()],
+    return FutureBuilder<List<ReplyDetail>>(
+      future: fetchList(widget.writingNo, page, limit),
+      builder:
+          (BuildContext context, AsyncSnapshot<List<ReplyDetail>> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Text('오류 발생: ${snapshot.error}');
+        } else if (snapshot.hasData && snapshot.data!.isEmpty) {
+          return const Text('데이터가 없습니다.');
+        } else {
+          return Column(
+            children: snapshot.data!
+                .map((reply) => _CommentData(reply: reply))
+                .toList(),
+          );
+        }
+      },
     );
   }
 }
 
 class _CommentData extends StatelessWidget {
+  const _CommentData({Key? key, required this.reply}) : super(key: key);
+  final ReplyDetail reply;
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -50,9 +97,7 @@ class _CommentData extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const Avatar.medium(
-                        url:
-                            'https://avatars.githubusercontent.com/u/49556566?v=4'),
+                    Avatar.small(url: reply.user.profile),
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0),
                       child: SizedBox(
@@ -70,7 +115,7 @@ class _CommentData extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                        '인철',
+                                        reply.user.nickname,
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodySmall,
@@ -93,8 +138,8 @@ class _CommentData extends StatelessWidget {
                               ),
                               const SizedBox(height: 10),
                               Text(
-                                '안녕하세요 어쩌구저쩌꾸 삐리빠라빠리뽀안녕하세요 어쩌구저쩌꾸 삐리빠라빠리뽀안녕하세요 어쩌구저쩌꾸 삐리빠라빠리뽀안녕하세요 어쩌구저쩌꾸 삐리빠라빠리뽀',
-                                style: Theme.of(context).textTheme.bodySmall,
+                                reply.comment,
+                                style: Theme.of(context).textTheme.displaySmall,
                               ),
                               const SizedBox(height: 10),
                               Row(
@@ -104,10 +149,12 @@ class _CommentData extends StatelessWidget {
                                       // Get.to(const ReplyScreen(),
                                       //     transition: Transition.cupertino);
                                     },
-                                    child: Text('대 댓글 7개',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall),
+                                    child: Text(
+                                      '대 댓글 7개',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .displaySmall,
+                                    ),
                                   ),
                                 ],
                               ),
