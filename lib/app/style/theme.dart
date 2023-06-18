@@ -42,6 +42,8 @@ final appTheme = ThemeData(
     bodyLarge: TextStyle(fontSize: 19, color: Colors.black87),
     bodyMedium: TextStyle(fontSize: 17, color: Colors.black87),
     bodySmall: TextStyle(fontSize: 14, color: Colors.black87),
+    displayMedium:
+        TextStyle(fontSize: 14, color: Color.fromARGB(221, 56, 56, 56)),
     displaySmall:
         TextStyle(fontSize: 11, color: Color.fromARGB(221, 56, 56, 56)),
   ),

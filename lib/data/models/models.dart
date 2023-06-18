@@ -5,3 +5,4 @@ export './user_model.dart';
 export './dynamic_link.dart';
 export './local_notification.dart';
 export './reply_detail_model.dart';
+export './nested_reply_model.dart';

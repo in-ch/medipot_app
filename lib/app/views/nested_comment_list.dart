@@ -1,60 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import 'package:medipot_app/app/routes/routes.dart';
 import 'package:medipot_app/app/style/theme.dart';
 import 'package:medipot_app/app/views/views.dart';
 import 'package:medipot_app/data/models/models.dart';
-import 'package:medipot_app/services/services.dart';
 
-class CommentList extends StatefulWidget {
-  const CommentList({Key? key, required this.writingNo}) : super(key: key);
-  final int writingNo;
+class NestedCommentList extends StatelessWidget {
+  const NestedCommentList({
+    Key? key,
+    required this.nestedReplys,
+    required this.isLoading,
+    required this.hasMore,
+    required this.fetchMore,
+  }) : super(key: key);
 
-  @override
-  State<CommentList> createState() => _CommentListState();
-}
-
-class _CommentListState extends State<CommentList> {
-  int page = 0;
-  int limit = 10;
-  List<ReplyDetail> comments = [];
-  bool isLoading = false;
-  bool hasMore = true;
-
-  @override
-  void initState() {
-    super.initState();
-    fetchComments();
-  }
-
-  Future<void> fetchComments() async {
-    if (isLoading) return;
-    setState(() {
-      isLoading = true;
-    });
-    final response =
-        await ReplysService.getReplys(widget.writingNo, page, limit);
-    if (response['statusCode'] == 200) {
-      final data = response['data'];
-      final List<ReplyDetail> newComments = List<ReplyDetail>.from(
-          data['list'].map((item) => ReplyDetail.fromJson(item)));
-
-      setState(() {
-        comments.addAll(newComments);
-        page++;
-        isLoading = false;
-        if (newComments.length < limit) {
-          hasMore = false;
-        }
-      });
-    } else {
-      setState(() {
-        isLoading = false;
-      });
-    }
-  }
+  final List<NestedReply> nestedReplys;
+  final bool isLoading;
+  final bool hasMore;
+  final void Function() fetchMore;
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +25,9 @@ class _CommentListState extends State<CommentList> {
       children: [
         SingleChildScrollView(
           child: Column(
-            children:
-                comments.map((reply) => _CommentData(reply: reply)).toList(),
+            children: nestedReplys
+                .map((nestedReply) => _CommentData(nestedReply: nestedReply))
+                .toList(),
           ),
         ),
         if (isLoading)
@@ -74,7 +38,7 @@ class _CommentListState extends State<CommentList> {
             child: Row(
               children: [
                 ElevatedButton(
-                  onPressed: fetchComments,
+                  onPressed: fetchMore,
                   style: ButtonStyle(
                     elevation: MaterialStateProperty.all(0), // 그림자 없애기
                     backgroundColor: MaterialStateProperty.all(
@@ -101,8 +65,8 @@ class _CommentListState extends State<CommentList> {
 }
 
 class _CommentData extends StatelessWidget {
-  const _CommentData({Key? key, required this.reply}) : super(key: key);
-  final ReplyDetail reply;
+  const _CommentData({Key? key, required this.nestedReply}) : super(key: key);
+  final NestedReply nestedReply;
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +86,6 @@ class _CommentData extends StatelessWidget {
             left: 10,
             right: 10,
             top: 15,
-            bottom: 15,
           ),
           child: SizedBox(
             // Header
@@ -131,7 +94,7 @@ class _CommentData extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Avatar.small(url: reply.user.profile),
+                    Avatar.small(url: nestedReply.user.profile),
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0),
                       child: SizedBox(
@@ -149,7 +112,7 @@ class _CommentData extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                        reply.user.nickname,
+                                        nestedReply.user.nickname,
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodySmall,
@@ -172,29 +135,10 @@ class _CommentData extends StatelessWidget {
                               ),
                               const SizedBox(height: 10),
                               Text(
-                                reply.comment,
+                                nestedReply.comment,
                                 style: Theme.of(context).textTheme.displaySmall,
                               ),
                               const SizedBox(height: 10),
-                              GestureDetector(
-                                onTap: () {
-                                  Get.toNamed(
-                                    Routes.nestedReply,
-                                    arguments: {
-                                      'no': reply.no,
-                                      'userName': reply.user.nickname,
-                                    },
-                                    preventDuplicates: false,
-                                  );
-                                },
-                                child: Text(
-                                  reply.totalCount < 1
-                                      ? '대 댓글 달기'
-                                      : '대 댓글 ${reply.totalCount}개',
-                                  style:
-                                      Theme.of(context).textTheme.displaySmall,
-                                ),
-                              ),
                             ],
                           ),
                         ),

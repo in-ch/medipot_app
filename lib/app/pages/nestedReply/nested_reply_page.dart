@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import 'package:medipot_app/app/controllers/controllers.dart';
 import 'package:medipot_app/app/style/theme.dart';
+import 'package:medipot_app/app/views/views.dart';
 
 class NestedReplyPage extends GetView<NestedReplyController> {
   const NestedReplyPage({Key? key}) : super(key: key);
@@ -27,9 +28,40 @@ class NestedReplyPage extends GetView<NestedReplyController> {
                     Navigator.of(context).pop();
                   }),
             ),
-            title: const Text("Nested Page"),
+            title: Obx(
+              () => controller.isLoading.value
+                  ? Text("로딩 중...",
+                      style: Theme.of(context).textTheme.headlineSmall)
+                  : SizedBox(
+                      width: 200,
+                      child: Text('${controller.userName.value}님의 댓글',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.headlineSmall),
+                    ),
+            ),
           ),
-          body: Container(),
+          body: Padding(
+            padding: const EdgeInsets.only(bottom: 20.0),
+            child: Obx(
+              () => controller.isLoading.value
+                  ? const Center(child: CircularProgressIndicator())
+                  : controller.nestedReplys.isNotEmpty
+                      ? SingleChildScrollView(
+                          child: NestedCommentList(
+                            nestedReplys: controller.nestedReplys,
+                            isLoading: controller.isLoading.value,
+                            hasMore: controller.hasMore.value,
+                            fetchMore: controller.getNestedReplys,
+                          ),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.only(left: 20.0, top: 10.0),
+                          child: Text("대댓글이 아직 없습니다.",
+                              style: Theme.of(context).textTheme.displayMedium),
+                        ),
+            ),
+          ),
         ));
   }
 }
