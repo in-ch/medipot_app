@@ -21,7 +21,7 @@ class DetailController extends GetxController {
   /// [비즈니스 로직]
   /// @params token 지울꺼임.
   /// @params no 글 no값
-  Future<Writing> getWriting() async {
+  Future<dynamic> getWriting() async {
     try {
       isLoading.value = true;
       final response = await WritingsService.getWriting(Get.arguments['no']);
@@ -39,7 +39,6 @@ class DetailController extends GetxController {
     } finally {
       isLoading.value = false;
       update();
-      throw Exception('Failed to GET DETAIL');
     }
   }
 }
