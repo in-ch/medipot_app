@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import 'package:medipot_app/app/routes/routes.dart';
 import 'package:medipot_app/app/style/theme.dart';
 import 'package:medipot_app/app/views/views.dart';
 import 'package:medipot_app/data/models/models.dart';
@@ -176,8 +178,13 @@ class _CommentData extends StatelessWidget {
                               const SizedBox(height: 10),
                               GestureDetector(
                                 onTap: () {
-                                  // Get.to(const ReplyScreen(),
-                                  //     transition: Transition.cupertino);
+                                  Get.toNamed(
+                                    Routes.nestedReply,
+                                    arguments: {
+                                      'no': reply.no,
+                                    },
+                                    preventDuplicates: false,
+                                  );
                                 },
                                 child: Text(
                                   reply.totalCount < 1
