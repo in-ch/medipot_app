@@ -25,11 +25,7 @@ class LocalNotification {
     await _flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onDidReceiveNotificationResponse: (NotificationResponse details) async {
       /// local 클릭했을 시 이벤트 실행
-      print("-------------------------------------------------------------");
-      print('onDidReceiveNotificationResponse - payload: ${details.payload}');
-      print("-------------------------------------------------------------");
-
-      final payload = details.payload ?? '';
+      // final payload = details.payload ?? '';
       // if (!parsedJson.containsKey('routeTo')) {
       //   return;
       // }
