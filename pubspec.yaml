@@ -23,6 +23,7 @@ dependencies:
   firebase_crashlytics: ^3.3.3
   firebase_messaging: ^14.6.3
   flutter_local_notifications: ^14.1.1
+  kakao_map_plugin: ^0.1.6
 
 dev_dependencies:
   flutter_test:
