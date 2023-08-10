@@ -21,7 +21,6 @@ class MapSubPageState extends State<MapSubPage> {
       body: KakaoMap(
         onMapCreated: (controller) async {
           mapController = controller;
-
           markers.add(Marker(
             markerId: UniqueKey().toString(),
             latLng: await mapController.getCenter(),
@@ -32,6 +31,7 @@ class MapSubPageState extends State<MapSubPage> {
           36.6083,
           127.4358,
         ),
+        currentLevel: 10,
         zoomControl: true,
         zoomControlPosition: ControlPosition.bottomRight,
         markers: markers.toList(),

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		08EDA87F2A38BE1200E888AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08EDA87E2A38BE1200E888AC /* GoogleService-Info.plist */; };
+		0824D9CF2A85285B00DC657C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08EDA8842A38C0FB00E888AC /* GoogleService-Info.plist */; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
@@ -270,7 +270,7 @@
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
-				08EDA87F2A38BE1200E888AC /* GoogleService-Info.plist in Resources */,
+				0824D9CF2A85285B00DC657C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
