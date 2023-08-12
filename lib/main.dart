@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:get/get.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:kakao_map_plugin/kakao_map_plugin.dart';
 
 import 'package:medipot_app/app/controllers/controllers.dart';
 import 'package:medipot_app/app/pages/pages.dart';
@@ -23,7 +23,8 @@ Future<void> main() async {
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   await dotenv.load(fileName: '.env');
-  AuthRepository.initialize(appKey: 'c8bff50df2e4702e2e38d49dc8f1e7bd');
+
+  await NaverMapSdk.instance.initialize(clientId: "rcpv8jhvr8");
 
   runZonedGuarded(
     () {

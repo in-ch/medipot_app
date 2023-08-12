@@ -1,7 +1,5 @@
-// ignore_for_file: must_call_super
-
 import 'package:flutter/material.dart';
-import 'package:kakao_map_plugin/kakao_map_plugin.dart';
+import 'package:flutter_naver_map/flutter_naver_map.dart';
 
 class MapSubPage extends StatefulWidget {
   const MapSubPage({Key? key}) : super(key: key);
@@ -11,30 +9,22 @@ class MapSubPage extends StatefulWidget {
 }
 
 class MapSubPageState extends State<MapSubPage> {
-  late KakaoMapController mapController;
+  late NaverMapController mapController;
 
-  Set<Marker> markers = {};
+  void onMapReady(NaverMapController controller) {
+    mapController = controller;
+    final marker2 = NMarker(id: '2', position: const NLatLng(37.5666, 126.979));
+    final circle =
+        NCircleOverlay(id: '1', center: const NLatLng(37.5666, 126.100));
+    mapController.addOverlayAll({marker2, circle});
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: KakaoMap(
-        onMapCreated: (controller) async {
-          mapController = controller;
-          markers.add(Marker(
-            markerId: UniqueKey().toString(),
-            latLng: await mapController.getCenter(),
-          ));
-          setState(() {});
-        },
-        center: LatLng(
-          36.6083,
-          127.4358,
-        ),
-        currentLevel: 10,
-        zoomControl: true,
-        zoomControlPosition: ControlPosition.bottomRight,
-        markers: markers.toList(),
+      body: NaverMap(
+        options: const NaverMapViewOptions(),
+        onMapReady: onMapReady,
       ),
     );
   }
