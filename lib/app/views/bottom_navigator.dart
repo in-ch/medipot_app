@@ -29,10 +29,6 @@ class _BottomNavigationWidgetState extends State<BottomNavigation> {
           label: '홈',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.map),
-          label: '입지 매물',
-        ),
-        BottomNavigationBarItem(
           icon: Icon(Icons.favorite),
           label: 'Favorites',
         ),

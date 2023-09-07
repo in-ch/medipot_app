@@ -34,10 +34,12 @@ class _HomePageState extends State<HomePage> {
   Widget _buildPage(int index) {
     switch (index) {
       case 0:
-        return const MapSubPage();
+        return const FeedSubPage();
       case 1:
-        return Container();
+        return const MapSubPage();
       case 2:
+        return Container();
+      case 3:
         return Container();
       default:
         return Container();
