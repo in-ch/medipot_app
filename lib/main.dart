@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:medipot_app/app/routes/routes.dart';
 
 import 'package:medipot_app/app/controllers/controllers.dart';
 import 'package:medipot_app/app/pages/pages.dart';
@@ -43,8 +44,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       theme: appTheme,
-      home: const HomePage(), // 애플리케이션의 첫 번째 페이지 (필수)
-      initialRoute: '/', // 초기 라우트 설정 (옵션)
+      home: const HomePage(),
+      initialRoute: Routes.home,
       initialBinding:
           BindingsBuilder.put(() => NotificationController(), permanent: true),
       getPages: AppPages.pages, // 라우트 설정 (옵션)

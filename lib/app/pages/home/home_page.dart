@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medipot_app/app/pages/pages.dart';
 import 'package:medipot_app/app/views/views.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,6 +13,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
+  bool isAuth = false;
+
+  @override
+  void didChangeDependencies() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    isAuth = prefs.getBool('isLogin') ?? false;
+    super.didChangeDependencies();
+  }
+
   void _onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
@@ -22,11 +32,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: _buildPage(_currentIndex),
-        bottomNavigationBar: BottomNavigation(
-          currentIndex: _currentIndex,
-          onTabTapped: _onTabTapped,
-        ),
+        body: isAuth ? _buildPage(_currentIndex) : const LoginPage(),
+        bottomNavigationBar: isAuth
+            ? BottomNavigation(
+                currentIndex: _currentIndex,
+                onTabTapped: _onTabTapped,
+              )
+            : Container(height: 0),
       ),
     );
   }

@@ -10,6 +10,18 @@ class MapSubPage extends StatefulWidget {
 class MapSubPageState extends State<MapSubPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Container());
+    return const Scaffold(
+        body: Column(
+      children: [
+        Text("MAP"),
+        Text("MAP"),
+        Text("MAP"),
+        Text("MAP"),
+        Text("MAP"),
+        Text("MAP"),
+        Text("MAP"),
+        Text("MAP")
+      ],
+    ));
   }
 }
