@@ -35,3 +35,4 @@ flutter:
   assets:
   - .env
   - assets/image/logo.png
+  - assets/image/kakao_logo.png
