@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: isAuth ? _buildPage(_currentIndex) : const LoginPage(),
+        body: isAuth ? _buildPage(_currentIndex) : LoginPage(),
         bottomNavigationBar: isAuth
             ? BottomNavigation(
                 currentIndex: _currentIndex,

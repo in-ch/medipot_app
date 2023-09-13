@@ -16,7 +16,7 @@ abstract class AppPages {
   static final pages = [
     GetPage(
       name: Routes.login,
-      page: () => const LoginPage(),
+      page: () => LoginPage(),
       bindings: [LoginBinding()],
     ),
     GetPage(

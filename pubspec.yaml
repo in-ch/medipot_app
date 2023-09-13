@@ -24,6 +24,7 @@ dependencies:
   firebase_messaging: ^14.6.3
   flutter_local_notifications: ^14.1.1
   shared_preferences: ^2.2.1
+  kakao_flutter_sdk_user: ^1.5.0
 
 dev_dependencies:
   flutter_test:
