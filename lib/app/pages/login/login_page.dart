@@ -46,7 +46,7 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                     onPressed: () async {
-                      controller.kakaoLogin();
+                      controller.kakaoLogin(context);
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

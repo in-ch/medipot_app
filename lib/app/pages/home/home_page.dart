@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   void didChangeDependencies() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     isAuth = prefs.getBool('isLogin') ?? false;
+    setState(() {});
     super.didChangeDependencies();
   }
 
