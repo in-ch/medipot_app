@@ -24,7 +24,6 @@ class LoginController extends GetxController {
           ),
         );
       } catch (error) {
-        showToast(scaffold, '카카오톡 로그인에 실패하였습니다.');
         if (error is PlatformException && error.code == 'CANCELED') {
           return;
         }

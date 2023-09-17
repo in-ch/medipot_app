@@ -13,7 +13,7 @@ class LoginService {
       'Authorization': 'Bearer $accessToken',
     };
 
-    final url = Uri.parse('http://localhost:4000/kakao/login');
+    final url = Uri.parse('https://medipod.shop/kakao/login');
 
     final response =
         await http.post(url, headers: headers, body: jsonEncode(payload));

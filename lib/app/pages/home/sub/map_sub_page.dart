@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -34,8 +32,7 @@ class MapSubPageState extends State<MapSubPage> {
           },
         ),
       )
-      ..loadRequest(Uri.parse(
-          'https://medi-pots.com/webview/map?isIos=$Platform.isAndroid'));
+      ..loadRequest(Uri.parse('https://medi-pots.com/webview/map'));
 
     setState(() {});
   }
