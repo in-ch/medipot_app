@@ -10,6 +10,7 @@ class MapSubPage extends StatefulWidget {
 
 class MapSubPageState extends State<MapSubPage> {
   late final WebViewController controller;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -24,12 +25,6 @@ class MapSubPageState extends State<MapSubPage> {
           onPageStarted: (String url) {},
           onPageFinished: (String url) {},
           onWebResourceError: (WebResourceError error) {},
-          onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith('https://www.youtube.com/')) {
-              return NavigationDecision.prevent;
-            }
-            return NavigationDecision.navigate;
-          },
         ),
       )
       ..loadRequest(Uri.parse('https://medi-pots.com/webview/map'));
@@ -37,15 +32,28 @@ class MapSubPageState extends State<MapSubPage> {
     setState(() {});
   }
 
+  Future<bool> _onWillPop() async {
+    if (await controller.canGoBack()) {
+      controller.goBack();
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: SizedBox(child: WebViewWidget(controller: controller)),
-          ),
-        ],
+      key: _scaffoldKey,
+      body: WillPopScope(
+        onWillPop: _onWillPop,
+        child: Column(
+          children: [
+            Expanded(
+              child: SizedBox(child: WebViewWidget(controller: controller)),
+            ),
+          ],
+        ),
       ),
     );
   }
