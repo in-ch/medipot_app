@@ -9,6 +9,7 @@ export '../controllers/controllers.dart';
 export './NotFound/not_found.dart';
 export './home/sub/feed_sub_page.dart';
 export './home/sub/map_sub_page.dart';
+export './home/sub/favorites_sub_page.dart';
 export './detail/detail_page.dart';
 export './nestedReply/nested_reply_page.dart';
 export './login/login_page.dart';

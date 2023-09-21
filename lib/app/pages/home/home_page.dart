@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
       case 0:
         return const MapSubPage();
       case 1:
-        return Container();
+        return const FavoritesSubPage();
       case 2:
         return Container();
       default:
