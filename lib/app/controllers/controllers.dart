@@ -4,3 +4,4 @@ export './detail_controller.dart';
 export './notification_controller.dart';
 export './nested_reply_controller.dart';
 export './favorites_controller.dart';
+export './setting_controller.dart';

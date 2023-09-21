@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:medipot_app/app/controllers/controllers.dart';
 import 'package:medipot_app/app/style/theme.dart';
 
-class FavoritesSubPage extends GetView<FavoritesController> {
-  const FavoritesSubPage({Key? key}) : super(key: key);
+class SettingSubPage extends GetView<SettingController> {
+  const SettingSubPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,19 +16,19 @@ class FavoritesSubPage extends GetView<FavoritesController> {
             title: Container(),
           ),
           body: const Column(
-            children: [Expanded(child: _FavoritesBody())],
+            children: [Expanded(child: _SettingBody())],
           )),
     );
   }
 }
 
-class _FavoritesBody extends StatelessWidget {
-  const _FavoritesBody();
+class _SettingBody extends StatelessWidget {
+  const _SettingBody();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: const Text("Hello favorites page"),
+      child: const Text("Hello Setting page"),
     );
   }
 }

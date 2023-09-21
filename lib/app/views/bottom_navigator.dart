@@ -30,11 +30,11 @@ class _BottomNavigationWidgetState extends State<BottomNavigation> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.favorite),
-          label: 'Favorites',
+          label: '마이 페이지',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),
-          label: 'Settings',
+          label: '설정',
         ),
       ],
       selectedItemColor: colorScheme.primary, // 선택된 아이템의 아이콘 색상

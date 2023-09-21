@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
       case 1:
         return const FavoritesSubPage();
       case 2:
-        return Container();
+        return const SettingSubPage();
       default:
         return Container();
     }
