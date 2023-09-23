@@ -35,9 +35,12 @@ class _HomePageState extends State<HomePage> {
       home: Scaffold(
         body: isAuth ? _buildPage(_currentIndex) : LoginPage(),
         bottomNavigationBar: isAuth
-            ? BottomNavigation(
-                currentIndex: _currentIndex,
-                onTabTapped: _onTabTapped,
+            ? Material(
+                elevation: 8,
+                child: BottomNavigation(
+                  currentIndex: _currentIndex,
+                  onTabTapped: _onTabTapped,
+                ),
               )
             : Container(height: 0),
       ),

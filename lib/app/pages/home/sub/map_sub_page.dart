@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medipot_app/app/style/theme.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class MapSubPage extends StatefulWidget {
@@ -11,6 +12,7 @@ class MapSubPage extends StatefulWidget {
 class MapSubPageState extends State<MapSubPage> {
   late final WebViewController controller;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool isLoading = true;
 
   @override
   void initState() {
@@ -22,8 +24,16 @@ class MapSubPageState extends State<MapSubPage> {
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {},
-          onPageStarted: (String url) {},
-          onPageFinished: (String url) {},
+          onPageStarted: (String url) {
+            setState(() {
+              isLoading = true;
+            });
+          },
+          onPageFinished: (String url) {
+            setState(() {
+              isLoading = false;
+            });
+          },
           onWebResourceError: (WebResourceError error) {},
         ),
       )
@@ -50,7 +60,21 @@ class MapSubPageState extends State<MapSubPage> {
         child: Column(
           children: [
             Expanded(
-              child: SizedBox(child: WebViewWidget(controller: controller)),
+              child: SizedBox(
+                  child: isLoading
+                      ? SizedBox(
+                          width: double.infinity,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              CircularProgressIndicator(
+                                color: colorScheme.primary,
+                              ),
+                            ],
+                          ),
+                        )
+                      : WebViewWidget(controller: controller)),
             ),
           ],
         ),
