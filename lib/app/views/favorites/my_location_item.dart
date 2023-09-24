@@ -4,19 +4,19 @@ import 'package:medipot_app/app/style/theme.dart';
 import 'package:medipot_app/app/views/views.dart';
 import 'package:medipot_app/data/models/models.dart';
 
-class LikeLocationItem extends StatefulWidget {
-  final LikeLocation likeLocation;
+class MyLocationItem extends StatefulWidget {
+  final Location location;
 
-  const LikeLocationItem({
+  const MyLocationItem({
     Key? key,
-    required this.likeLocation,
+    required this.location,
   }) : super(key: key);
 
   @override
-  State<LikeLocationItem> createState() => _LikeLocationItemState();
+  State<MyLocationItem> createState() => _MyLocationItemState();
 }
 
-class _LikeLocationItemState extends State<LikeLocationItem> {
+class _MyLocationItemState extends State<MyLocationItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -35,7 +35,7 @@ class _LikeLocationItemState extends State<LikeLocationItem> {
                   Positioned(
                     top: 0,
                     left: 0,
-                    child: Image.network(widget.likeLocation.location.imgs[0],
+                    child: Image.network(widget.location.imgs[0],
                         fit: BoxFit.cover, width: 150, height: 150),
                   ),
                   Positioned(
@@ -62,7 +62,7 @@ class _LikeLocationItemState extends State<LikeLocationItem> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("비공개",
+                          Text("승인 완료",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 12)),
                         ],
@@ -78,25 +78,24 @@ class _LikeLocationItemState extends State<LikeLocationItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.likeLocation.location.simpleAddress,
+                    widget.location.simpleAddress,
                     style: appTheme.textTheme.titleMedium,
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    "${widget.likeLocation.location.deposit == 0 ? '가격 문의' : widget.likeLocation.location.deposit} / ${widget.likeLocation.location.depositMonly == 0 ? '가격 문의' : widget.likeLocation.location.depositMonly}",
+                    "${widget.location.deposit == 0 ? '가격 문의' : widget.location.deposit} / ${widget.location.depositMonly == 0 ? '가격 문의' : widget.location.depositMonly}",
                     style: appTheme.textTheme.titleSmall,
                   ),
                   const SizedBox(height: 3),
                   Text(
-                    "${widget.likeLocation.location.dedicatedArea}㎡ / ${widget.likeLocation.location.supplyArea}㎡",
+                    "${widget.location.dedicatedArea}㎡ / ${widget.location.supplyArea}㎡",
                     style: appTheme.textTheme.titleSmall,
                   ),
                   const SizedBox(height: 10),
                   SizedBox(
                     width: 250,
                     child: Wrap(
-                      children:
-                          widget.likeLocation.location.keywords.map((keyword) {
+                      children: widget.location.keywords.map((keyword) {
                         return Tag(text: keyword);
                       }).toList(),
                     ),

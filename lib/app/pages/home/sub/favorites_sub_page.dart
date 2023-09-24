@@ -99,14 +99,10 @@ class _FavoritesBodyState extends State<_FavoritesBody>
                   height: double.infinity,
                   child: LikeLocations(),
                 ),
-                Container(
-                  color: const Color.fromARGB(255, 141, 205, 93),
+                const SizedBox(
                   width: double.infinity,
                   height: double.infinity,
-                  child: const Text(
-                    "222",
-                    selectionColor: Colors.red,
-                  ),
+                  child: MyLocations(),
                 ),
                 Container(
                   color: const Color.fromARGB(255, 93, 183, 205),

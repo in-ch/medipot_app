@@ -6,3 +6,4 @@ export './nested_reply_controller.dart';
 export './favorites_controller.dart';
 export './setting_controller.dart';
 export './like_location_controller.dart';
+export './my_location_controller.dart';

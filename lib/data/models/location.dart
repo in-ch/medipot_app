@@ -10,8 +10,8 @@ class Location {
   int brokerage;
   List<String> departments;
   List<String> keywords;
-  double dedicatedArea;
-  double supplyArea;
+  dynamic dedicatedArea;
+  dynamic supplyArea;
   String etc;
   String simpleAddress;
   String parkingCapacity;
