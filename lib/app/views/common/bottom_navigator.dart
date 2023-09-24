@@ -30,7 +30,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigation> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.favorite),
-          label: '마이 페이지',
+          label: '관심 목록',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),

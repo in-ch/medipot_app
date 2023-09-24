@@ -6,6 +6,7 @@ final colorScheme = ColorScheme.fromSeed(
   secondary: const Color.fromRGBO(45, 66, 185, 1),
   background: const Color.fromARGB(31, 241, 241, 241),
   surface: const Color.fromARGB(31, 255, 255, 255),
+  tertiary: const Color.fromARGB(255, 136, 136, 136),
 );
 
 final appTheme = ThemeData(
