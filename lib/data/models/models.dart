@@ -7,6 +7,7 @@ export './dynamic_link.dart';
 export './local_notification.dart';
 export './reply_detail_model.dart';
 export './nested_reply_model.dart';
-export './api_response_modeal.dart';
+export 'api_response_model.dart';
 export './location.dart';
 export './like_location.dart';
+export './consult_model.dart';

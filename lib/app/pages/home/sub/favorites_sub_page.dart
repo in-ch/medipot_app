@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import 'package:medipot_app/app/controllers/controllers.dart';
 import 'package:medipot_app/app/style/theme.dart';
+import 'package:medipot_app/app/views/favorites/my_consults.dart';
 import 'package:medipot_app/app/views/views.dart';
 
 class FavoritesSubPage extends GetView<FavoritesController> {
@@ -93,25 +94,21 @@ class _FavoritesBodyState extends State<_FavoritesBody>
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: [
-                const SizedBox(
+              children: const [
+                SizedBox(
                   width: double.infinity,
                   height: double.infinity,
                   child: LikeLocations(),
                 ),
-                const SizedBox(
+                SizedBox(
                   width: double.infinity,
                   height: double.infinity,
                   child: MyLocations(),
                 ),
-                Container(
-                  color: const Color.fromARGB(255, 93, 183, 205),
+                SizedBox(
                   width: double.infinity,
                   height: double.infinity,
-                  child: const Text(
-                    "333",
-                    selectionColor: Colors.red,
-                  ),
+                  child: MyConsults(),
                 ),
               ],
             ),
