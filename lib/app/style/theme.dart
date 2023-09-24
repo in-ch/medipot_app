@@ -35,11 +35,17 @@ final appTheme = ThemeData(
       color: Colors.black87,
     ),
     titleLarge: TextStyle(
-        fontSize: 19, fontWeight: FontWeight.bold, color: Colors.black87),
+        fontSize: 19,
+        fontWeight: FontWeight.w900,
+        color: Color.fromARGB(255, 10, 10, 10)),
     titleMedium: TextStyle(
-        fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black87),
+        fontSize: 17,
+        fontWeight: FontWeight.w300,
+        color: Color.fromARGB(255, 50, 50, 50)),
     titleSmall: TextStyle(
-        fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black87),
+        fontSize: 14,
+        fontWeight: FontWeight.w300,
+        color: Color.fromARGB(255, 100, 100, 100)),
     bodyLarge: TextStyle(fontSize: 19, color: Colors.black87),
     bodyMedium: TextStyle(fontSize: 17, color: Colors.black87),
     bodySmall: TextStyle(fontSize: 14, color: Colors.black87),

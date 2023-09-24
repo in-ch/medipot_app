@@ -18,3 +18,4 @@ export './tag.dart';
 export './nested_comment_list.dart';
 
 export './favorites/like_locations.dart';
+export './favorites//like_location_item.dart';

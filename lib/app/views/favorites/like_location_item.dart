@@ -1,0 +1,111 @@
+import 'package:flutter/material.dart';
+
+import 'package:medipot_app/app/style/theme.dart';
+import 'package:medipot_app/app/views/views.dart';
+import 'package:medipot_app/data/models/models.dart';
+
+class LikeLocationItem extends StatefulWidget {
+  final LikeLocation likeLocation;
+
+  const LikeLocationItem({
+    Key? key,
+    required this.likeLocation,
+  }) : super(key: key);
+
+  @override
+  State<LikeLocationItem> createState() => _LikeLocationItemState();
+}
+
+class _LikeLocationItemState extends State<LikeLocationItem> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8.0),
+      child: SizedBox(
+        width: double.infinity,
+        height: 150,
+        child: Row(
+          children: [
+            SizedBox(
+              width: 150,
+              height: double.infinity,
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: Image.network(widget.likeLocation.location.imgs[0],
+                        fit: BoxFit.cover, width: 150, height: 150),
+                  ),
+                  Positioned(
+                      top: 10,
+                      right: 10,
+                      child: GestureDetector(
+                        child: SizedBox(
+                          width: 30,
+                          height: 30,
+                          child: Image.asset(
+                            'assets/image/heart.png',
+                            width: 30,
+                            height: 30,
+                          ),
+                        ),
+                      )),
+                  Positioned(
+                    bottom: 0,
+                    child: Container(
+                      width: 150,
+                      height: 26,
+                      color: const Color.fromARGB(200, 50, 50, 50),
+                      child: const Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("비공개",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 12)),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 12.0, top: 3.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.likeLocation.location.simpleAddress,
+                    style: appTheme.textTheme.titleMedium,
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    "${widget.likeLocation.location.deposit == 0 ? '가격 문의' : widget.likeLocation.location.deposit} / ${widget.likeLocation.location.depositMonly == 0 ? '가격 문의' : widget.likeLocation.location.depositMonly}",
+                    style: appTheme.textTheme.titleSmall,
+                  ),
+                  const SizedBox(height: 3),
+                  Text(
+                    "${widget.likeLocation.location.dedicatedArea}㎡ / ${widget.likeLocation.location.supplyArea}㎡",
+                    style: appTheme.textTheme.titleSmall,
+                  ),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    width: 250,
+                    child: Wrap(
+                      children:
+                          widget.likeLocation.location.keywords.map((keyword) {
+                        return Tag(text: keyword);
+                      }).toList(),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}

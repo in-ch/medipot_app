@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'package:medipot_app/app/style/theme.dart';
 import 'package:medipot_app/app/views/views.dart';
 import 'package:medipot_app/data/models/models.dart';
+import 'package:medipot_app/app/controllers/controllers.dart';
 
 class LikeLocations extends StatefulWidget {
   const LikeLocations({Key? key}) : super(key: key);
@@ -15,6 +17,9 @@ class LikeLocations extends StatefulWidget {
 class _LikeLocationsState extends State<LikeLocations> {
   final PagingController<int, LikeLocation> _pagingController =
       PagingController(firstPageKey: 0);
+
+  final LikeLocationController likeLocationController =
+      Get.put(LikeLocationController());
 
   /// [변수]
   /// likeLocations 전용 paging 변수
@@ -30,7 +35,7 @@ class _LikeLocationsState extends State<LikeLocations> {
   @override
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
-      // context.read<HomeProvider>().fetchLikeListExplore(context, _pagingController, page, addPage);
+      likeLocationController.getLikeLocations(_pagingController);
     });
     super.initState();
   }
@@ -53,7 +58,7 @@ class _LikeLocationsState extends State<LikeLocations> {
               color: colorScheme.background,
               height: double.infinity,
               child: PagedListView<int, dynamic>(
-                padding: const EdgeInsets.only(top: 22),
+                padding: const EdgeInsets.all(8.0),
                 pagingController: _pagingController,
                 builderDelegate: PagedChildBuilderDelegate<dynamic>(
                   firstPageProgressIndicatorBuilder: (context) => Container(
@@ -76,8 +81,9 @@ class _LikeLocationsState extends State<LikeLocations> {
                     ),
                   ),
                   itemBuilder: (context, item, index) {
-                    return Container(
-                        width: 50, height: 50, color: Colors.black38);
+                    return LikeLocationItem(
+                      likeLocation: item,
+                    );
                   },
                 ),
               ),

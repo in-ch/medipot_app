@@ -9,7 +9,7 @@ class Tag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
+      padding: const EdgeInsets.only(bottom: 5.0, right: 5.0),
       child: Theme(
         data: appTheme,
         child: Container(
@@ -17,18 +17,18 @@ class Tag extends StatelessWidget {
             color: Colors.transparent, // 색상 비어있음
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
-              color: const Color.fromARGB(255, 189, 189, 189), // border 색상
+              color: colorScheme.primary, // border 색상
               width: 1.1,
             ),
           ),
           child: Padding(
             padding: const EdgeInsets.only(
-                top: 5.0, bottom: 3.0, left: 8.0, right: 8.0),
+                top: 5.0, bottom: 4.0, left: 8.0, right: 8.0),
             child: Text(
               text,
-              style: const TextStyle(
-                  color: Color.fromARGB(255, 111, 111, 111),
-                  fontSize: 11,
+              style: TextStyle(
+                  color: colorScheme.primary,
+                  fontSize: 9,
                   fontWeight: FontWeight.w300),
             ),
           ),
