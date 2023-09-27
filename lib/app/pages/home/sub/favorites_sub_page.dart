@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import 'package:medipot_app/app/controllers/controllers.dart';
 import 'package:medipot_app/app/style/theme.dart';
-import 'package:medipot_app/app/views/favorites/my_consults.dart';
 import 'package:medipot_app/app/views/views.dart';
 
 class FavoritesSubPage extends GetView<FavoritesController> {
