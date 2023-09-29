@@ -11,3 +11,4 @@ export 'api_response_model.dart';
 export './location.dart';
 export './like_location.dart';
 export './consult_model.dart';
+export './refresh_model.dart';

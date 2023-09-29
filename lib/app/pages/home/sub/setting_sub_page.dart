@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:medipot_app/app/controllers/controllers.dart';
+
 import 'package:medipot_app/app/style/theme.dart';
 
-class SettingSubPage extends GetView<SettingController> {
+class SettingSubPage extends StatefulWidget {
   const SettingSubPage({Key? key}) : super(key: key);
+
+  @override
+  State<SettingSubPage> createState() => _SettingSubPageState();
+}
+
+class _SettingSubPageState extends State<SettingSubPage> {
+  final SettingController settingController = Get.put(SettingController());
 
   @override
   Widget build(BuildContext context) {
@@ -15,20 +22,20 @@ class SettingSubPage extends GetView<SettingController> {
           appBar: AppBar(
             title: Container(),
           ),
-          body: const Column(
-            children: [Expanded(child: _SettingBody())],
+          body: Column(
+            children: [
+              Column(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      settingController.logout(context);
+                    },
+                    child: const Text("로그아웃"),
+                  ),
+                ],
+              )
+            ],
           )),
-    );
-  }
-}
-
-class _SettingBody extends StatelessWidget {
-  const _SettingBody();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: const Text("Hello Setting page"),
     );
   }
 }

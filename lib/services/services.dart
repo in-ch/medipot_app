@@ -5,3 +5,4 @@ export './login_service.dart';
 export './like_location_service.dart';
 export './my_location_service.dart';
 export './consult_service.dart';
+export './user_service.dart';

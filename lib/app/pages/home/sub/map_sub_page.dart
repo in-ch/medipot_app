@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'package:medipot_app/app/style/theme.dart';
+import 'package:medipot_app/app/controllers/controllers.dart';
 
 class MapSubPage extends StatefulWidget {
   const MapSubPage({Key? key}) : super(key: key);
@@ -14,39 +16,45 @@ class MapSubPage extends StatefulWidget {
 class MapSubPageState extends State<MapSubPage> {
   late final WebViewController controller;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final MapController mapController = Get.put(MapController());
   bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
     Future.delayed(Duration.zero, () async {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-      String? accessToken = prefs.getString('accessToken');
-      String? refreshToken = prefs.getString('refreshToken');
+      bool isTokenValid = await mapController.tokenCheck();
+      if (isTokenValid) {
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        String? accessToken = prefs.getString('accessToken');
+        String? refreshToken = prefs.getString('refreshToken');
 
-      print(
-          'http://localhost:3000/webview/map?user_token_refresh_token=$accessToken///$refreshToken');
-      controller = WebViewController()
-        ..setJavaScriptMode(JavaScriptMode.unrestricted)
-        ..setBackgroundColor(const Color(0x00000000))
-        ..setNavigationDelegate(
-          NavigationDelegate(
-            onProgress: (int progress) {},
-            onPageStarted: (String url) {
-              setState(() {
-                isLoading = true;
-              });
-            },
-            onPageFinished: (String url) {
-              setState(() {
-                isLoading = false;
-              });
-            },
-            onWebResourceError: (WebResourceError error) {},
-          ),
-        )
-        ..loadRequest(Uri.parse(
-            'http://localhost:3000/webview/map?user_token_refresh_token=$accessToken///$refreshToken'));
+        controller = WebViewController()
+          ..setJavaScriptMode(JavaScriptMode.unrestricted)
+          ..setBackgroundColor(const Color(0x00000000))
+          ..setNavigationDelegate(
+            NavigationDelegate(
+              onProgress: (int progress) {},
+              onPageStarted: (String url) {
+                setState(() {
+                  isLoading = true;
+                });
+              },
+              onPageFinished: (String url) {
+                setState(() {
+                  isLoading = false;
+                });
+              },
+              onWebResourceError: (WebResourceError error) {},
+            ),
+          )
+          ..loadRequest(Uri.parse(
+              'http://localhost:3000/webview/map?user_token_refresh_token=$accessToken///$refreshToken'));
+      } else {
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setBool('isLogin', false);
+        setState(() {}); // 화면 갱신
+      }
     });
   }
 
