@@ -23,12 +23,12 @@ class LikeLocationItem extends StatefulWidget {
 class _LikeLocationItemState extends State<LikeLocationItem> {
   bool isLiked = true;
 
-  void toggleLike(int locationNo) {
+  void toggleLike(Location location) {
     if (isLiked) {
-      widget.unlike(locationNo);
+      widget.unlike(location);
       isLiked = false;
     } else {
-      widget.like(locationNo);
+      widget.like(location);
       isLiked = true;
     }
     setState(() {});
@@ -59,8 +59,7 @@ class _LikeLocationItemState extends State<LikeLocationItem> {
                       top: 10,
                       right: 10,
                       child: GestureDetector(
-                        onTap: () =>
-                            toggleLike(widget.likeLocation.location.no),
+                        onTap: () => toggleLike(widget.likeLocation.location),
                         child: SizedBox(
                           width: 30,
                           height: 30,

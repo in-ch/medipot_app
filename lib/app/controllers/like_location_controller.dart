@@ -10,7 +10,7 @@ import 'package:medipot_app/services/services.dart';
 
 class LikeLocationController extends GetxController {
   RxInt page = 0.obs;
-  List<LikeLocation> likeLocations = [];
+  List<Location> likeLocations = [];
 
   /// [비즈니스 로직]
   /// fetch likeLocations list
@@ -21,7 +21,9 @@ class LikeLocationController extends GetxController {
         final data = response['data'] as List;
         final list = List<LikeLocation>.from(
             data.map((item) => LikeLocation.fromJson(item)));
-        likeLocations.addAll(list);
+        for (var _location in list) {
+          likeLocations.add(_location.location);
+        }
         pagingController.appendLastPage(list);
         update();
       } else {
@@ -35,11 +37,12 @@ class LikeLocationController extends GetxController {
     }
   }
 
-  Future<void> likeLocation(BuildContext context, int locationNo) async {
+  Future<void> likeLocation(BuildContext context, Location location) async {
     try {
-      final response = await LikeLocationService.likeLocation(locationNo);
+      final response = await LikeLocationService.likeLocation(location.no);
       final scaffold = ScaffoldMessenger.of(context);
       if (response['statusCode'] == 200) {
+        likeLocations.add(location);
         update();
       } else if (response['statusCode'] == 409) {
         showToast(scaffold, '이미 좋아요한 매물입니다.');
@@ -55,11 +58,12 @@ class LikeLocationController extends GetxController {
     }
   }
 
-  Future<void> unlikeLocation(BuildContext context, int locationNo) async {
+  Future<void> unlikeLocation(BuildContext context, Location location) async {
     try {
-      final response = await LikeLocationService.unlikeLocation(locationNo);
+      final response = await LikeLocationService.unlikeLocation(location.no);
       final scaffold = ScaffoldMessenger.of(context);
       if (response['statusCode'] == 200) {
+        likeLocations.remove(location);
         update();
       } else if (response['statusCode'] == 409) {
         showToast(scaffold, '이미 좋아요 취소한 매물입니다.');

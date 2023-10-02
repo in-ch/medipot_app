@@ -84,10 +84,10 @@ class _LikeLocationsState extends State<LikeLocations> {
                   itemBuilder: (context, item, index) {
                     return LikeLocationItem(
                       likeLocation: item,
-                      like: (locationNo) => likeLocationController.likeLocation(
-                          context, locationNo),
-                      unlike: (locationNo) => likeLocationController
-                          .unlikeLocation(context, locationNo),
+                      like: (location) => likeLocationController.likeLocation(
+                          context, location),
+                      unlike: (location) => likeLocationController
+                          .unlikeLocation(context, location),
                     );
                   },
                 ),

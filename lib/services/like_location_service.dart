@@ -17,14 +17,14 @@ class LikeLocationService {
     }
   }
 
-  static Future<Map<String, dynamic>> likeLocation(int locationNo) async {
+  static Future<Map<String, dynamic>> likeLocation(dynamic locationNo) async {
     final url = Uri.parse('http://localhost:4000/likeLocation');
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? accessToken = prefs.getString('accessToken');
     final headers = {'Authorization': 'Bearer $accessToken'};
-    final body = {"locationNo": locationNo};
-    final response =
-        await http.post(url, headers: headers, body: jsonEncode(body));
+
+    final response = await http.post(url,
+        headers: headers, body: {'locationNo': locationNo.toString()});
     return jsonDecode(response.body);
   }
 
