@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class NoDatas extends StatelessWidget {
-  const NoDatas({Key? key}) : super(key: key);
+  NoDatas({Key? key, required this.text}) : super(key: key);
+  String text;
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
+    return SizedBox(
       width: double.infinity,
       height: double.infinity,
       child: Row(
@@ -14,7 +16,9 @@ class NoDatas extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('정보가 없습니다.', style: TextStyle(color: Colors.white))
+              Text(text,
+                  style: const TextStyle(
+                      color: Color.fromARGB(255, 154, 154, 154)))
             ],
           )
         ],

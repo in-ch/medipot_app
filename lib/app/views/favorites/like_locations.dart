@@ -70,7 +70,8 @@ class _LikeLocationsState extends State<LikeLocations> {
                           AlwaysStoppedAnimation<Color>(colorScheme.primary),
                     ),
                   ),
-                  noItemsFoundIndicatorBuilder: (context) => const NoDatas(),
+                  noItemsFoundIndicatorBuilder: (context) =>
+                      NoDatas(text: '찜한 목록이 없습니다.'),
                   newPageProgressIndicatorBuilder: (context) => Container(
                     alignment: Alignment.center,
                     width: 50,
@@ -83,6 +84,10 @@ class _LikeLocationsState extends State<LikeLocations> {
                   itemBuilder: (context, item, index) {
                     return LikeLocationItem(
                       likeLocation: item,
+                      like: (locationNo) => likeLocationController.likeLocation(
+                          context, locationNo),
+                      unlike: (locationNo) => likeLocationController
+                          .unlikeLocation(context, locationNo),
                     );
                   },
                 ),

@@ -69,7 +69,8 @@ class _MyLocationsState extends State<MyConsults> {
                           AlwaysStoppedAnimation<Color>(colorScheme.primary),
                     ),
                   ),
-                  noItemsFoundIndicatorBuilder: (context) => const NoDatas(),
+                  noItemsFoundIndicatorBuilder: (context) =>
+                      NoDatas(text: '상담 목록이 없습니다.'),
                   newPageProgressIndicatorBuilder: (context) => Container(
                     alignment: Alignment.center,
                     width: 50,

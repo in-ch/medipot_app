@@ -6,10 +6,14 @@ import 'package:medipot_app/data/models/models.dart';
 
 class LikeLocationItem extends StatefulWidget {
   final LikeLocation likeLocation;
+  final Future<void> Function(dynamic) like;
+  final Future<void> Function(dynamic) unlike;
 
   const LikeLocationItem({
     Key? key,
     required this.likeLocation,
+    required this.like,
+    required this.unlike,
   }) : super(key: key);
 
   @override
@@ -17,6 +21,19 @@ class LikeLocationItem extends StatefulWidget {
 }
 
 class _LikeLocationItemState extends State<LikeLocationItem> {
+  bool isLiked = true;
+
+  void toggleLike(int locationNo) {
+    if (isLiked) {
+      widget.unlike(locationNo);
+      isLiked = false;
+    } else {
+      widget.like(locationNo);
+      isLiked = true;
+    }
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -42,11 +59,15 @@ class _LikeLocationItemState extends State<LikeLocationItem> {
                       top: 10,
                       right: 10,
                       child: GestureDetector(
+                        onTap: () =>
+                            toggleLike(widget.likeLocation.location.no),
                         child: SizedBox(
                           width: 30,
                           height: 30,
                           child: Image.asset(
-                            'assets/image/heart.png',
+                            isLiked
+                                ? 'assets/image/heart_fill.png'
+                                : 'assets/image/heart.png',
                             width: 30,
                             height: 30,
                           ),

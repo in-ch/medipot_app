@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LikeLocationService {
   static Future<Map<String, dynamic>> getLikeLocations() async {
     final url = Uri.parse('http://localhost:4000/likeLocation');
-    final headers = {
-      'Authorization':
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJubyI6MSwiZW1haWwiOiJzeGluMjk0OUBuYXZlci5jb20iLCJuaWNrbmFtZSI6InVua25vd24uM2Q3M2c1M2h6IiwicGhvbmUiOiIwMTA1NjkyMjk0OSIsInByb2ZpbGUiOiJodHRwczovL2sua2FrYW9jZG4ubmV0L2RuL2RwazlsMS9idHFtR2hBMmxLTC9PejB3RHVKbjFZVjJESW45MmY2RFZLL2ltZ18xMTB4MTEwLmpwZyIsInRva2VuIjoiIiwicmVmcmVzaF90b2tlbiI6IiIsInBhc3N3b3JkIjoiMTEiLCJpYXQiOjE2OTQ4NTYzOTUsImV4cCI6MTgwMjg1NjM5NX0.NQHiedKEbjGYy2Vxt0czaACWtpXpshPfzrWn0bm2qME'
-    };
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString('accessToken');
+    final headers = {'Authorization': 'Bearer $accessToken'};
 
     final response = await http.get(url, headers: headers);
     if (response.statusCode == 200) {
@@ -15,5 +15,27 @@ class LikeLocationService {
     } else {
       throw Exception('Failed to likeLocations fetch list');
     }
+  }
+
+  static Future<Map<String, dynamic>> likeLocation(int locationNo) async {
+    final url = Uri.parse('http://localhost:4000/likeLocation');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString('accessToken');
+    final headers = {'Authorization': 'Bearer $accessToken'};
+    final body = {"locationNo": locationNo};
+    final response =
+        await http.post(url, headers: headers, body: jsonEncode(body));
+    return jsonDecode(response.body);
+  }
+
+  static Future<Map<String, dynamic>> unlikeLocation(dynamic locationNo) async {
+    final url = Uri.parse('http://localhost:4000/likeLocation');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString('accessToken');
+    final headers = {'Authorization': 'Bearer $accessToken'};
+    final body = {"locationNo": locationNo};
+    final response =
+        await http.delete(url, headers: headers, body: jsonEncode(body));
+    return jsonDecode(response.body);
   }
 }
