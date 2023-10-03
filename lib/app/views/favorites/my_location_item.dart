@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import 'package:medipot_app/app/pages/pages.dart';
 import 'package:medipot_app/app/style/theme.dart';
 import 'package:medipot_app/app/views/views.dart';
 import 'package:medipot_app/data/models/models.dart';
@@ -100,35 +102,41 @@ class _MyLocationItemState extends State<MyLocationItem> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 12.0, top: 3.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.location.simpleAddress,
-                    style: appTheme.textTheme.titleMedium,
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    "${widget.location.deposit == 0 ? '가격 문의' : widget.location.deposit} / ${widget.location.depositMonly == 0 ? '가격 문의' : widget.location.depositMonly}",
-                    style: appTheme.textTheme.titleSmall,
-                  ),
-                  const SizedBox(height: 3),
-                  Text(
-                    "${widget.location.dedicatedArea}㎡ / ${widget.location.supplyArea}㎡",
-                    style: appTheme.textTheme.titleSmall,
-                  ),
-                  const SizedBox(height: 10),
-                  SizedBox(
-                    width: 250,
-                    child: Wrap(
-                      children: widget.location.keywords.map((keyword) {
-                        return Tag(text: keyword);
-                      }).toList(),
+            GestureDetector(
+              onTap: () {
+                Get.to(() => const LocationDetailPage(),
+                    arguments: widget.location.no);
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 12.0, top: 3.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.location.simpleAddress,
+                      style: appTheme.textTheme.titleMedium,
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 5),
+                    Text(
+                      "${widget.location.deposit == 0 ? '가격 문의' : widget.location.deposit} / ${widget.location.depositMonly == 0 ? '가격 문의' : widget.location.depositMonly}",
+                      style: appTheme.textTheme.titleSmall,
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      "${widget.location.dedicatedArea}㎡ / ${widget.location.supplyArea}㎡",
+                      style: appTheme.textTheme.titleSmall,
+                    ),
+                    const SizedBox(height: 10),
+                    SizedBox(
+                      width: 250,
+                      child: Wrap(
+                        children: widget.location.keywords.map((keyword) {
+                          return Tag(text: keyword);
+                        }).toList(),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             )
           ],

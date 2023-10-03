@@ -14,6 +14,7 @@ export './home/sub/favorites_sub_page.dart';
 export './detail/detail_page.dart';
 export './nestedReply/nested_reply_page.dart';
 export './login/login_page.dart';
+export './locationDetail/location_detail_page.dart';
 
 abstract class AppPages {
   static final pages = [
@@ -32,8 +33,13 @@ abstract class AppPages {
       bindings: [DetailBinding()],
     ),
     GetPage(
-        name: Routes.nestedReply,
-        page: () => const NestedReplyPage(),
-        bindings: [NestedReplyBinding()])
+      name: Routes.nestedReply,
+      page: () => const NestedReplyPage(),
+      bindings: [NestedReplyBinding()],
+    ),
+    GetPage(
+      name: Routes.locationDetail,
+      page: () => const LocationDetailPage(),
+    ),
   ];
 }
