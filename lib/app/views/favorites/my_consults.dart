@@ -19,6 +19,8 @@ class _MyLocationsState extends State<MyConsults> {
       PagingController(firstPageKey: 0);
 
   final ConsultController consultController = Get.put(ConsultController());
+  final LikeLocationController likeLocationController =
+      Get.put(LikeLocationController());
 
   /// [변수]
   /// myConsults 전용 paging 변수
@@ -33,6 +35,7 @@ class _MyLocationsState extends State<MyConsults> {
 
   @override
   void initState() {
+    likeLocationController.fetchLikeLocations();
     _pagingController.addPageRequestListener((pageKey) {
       consultController.getMyConsults(_pagingController);
     });

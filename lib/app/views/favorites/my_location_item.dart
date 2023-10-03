@@ -6,10 +6,16 @@ import 'package:medipot_app/data/models/models.dart';
 
 class MyLocationItem extends StatefulWidget {
   final Location location;
+  final List<Location> likes;
+  final void Function(dynamic) like;
+  final void Function(dynamic) unlike;
 
   const MyLocationItem({
     Key? key,
     required this.location,
+    required this.likes,
+    required this.like,
+    required this.unlike,
   }) : super(key: key);
 
   @override
@@ -17,6 +23,25 @@ class MyLocationItem extends StatefulWidget {
 }
 
 class _MyLocationItemState extends State<MyLocationItem> {
+  bool isLiked = false;
+
+  void toggleLike(Location location) {
+    if (isLiked) {
+      widget.unlike(location);
+      isLiked = false;
+    } else {
+      widget.like(location);
+      isLiked = true;
+    }
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    isLiked = widget.likes.any((like) => like.no == widget.location.no);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -42,11 +67,14 @@ class _MyLocationItemState extends State<MyLocationItem> {
                       top: 10,
                       right: 10,
                       child: GestureDetector(
+                        onTap: () => toggleLike(widget.location),
                         child: SizedBox(
                           width: 30,
                           height: 30,
                           child: Image.asset(
-                            'assets/image/heart.png',
+                            isLiked
+                                ? 'assets/image/heart_fill.png'
+                                : 'assets/image/heart.png',
                             width: 30,
                             height: 30,
                           ),
@@ -58,13 +86,13 @@ class _MyLocationItemState extends State<MyLocationItem> {
                       width: 150,
                       height: 26,
                       color: const Color.fromARGB(200, 50, 50, 50),
-                      child: const Column(
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("승인 완료",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 12)),
+                          Text(widget.location.isApproved ? "승인 완료" : "미승인",
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 12)),
                         ],
                       ),
                     ),

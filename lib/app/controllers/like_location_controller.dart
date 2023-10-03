@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,6 +13,28 @@ class LikeLocationController extends GetxController {
   List<Location> likeLocations = [];
 
   /// [비즈니스 로직]
+  /// 단순히 LikeList를 초기화한다.
+  Future<dynamic> fetchLikeLocations() async {
+    try {
+      final response = await LikeLocationService.getLikeLocations();
+      if (response['statusCode'] == 200) {
+        likeLocations = [];
+        final data = response['data'] as List;
+        final list = List<LikeLocation>.from(
+            data.map((item) => LikeLocation.fromJson(item)));
+        for (var _location in list) {
+          likeLocations.add(_location.location);
+        }
+      }
+    } catch (error) {
+      print(error);
+      update();
+    } finally {
+      update();
+    }
+  }
+
+  /// [비즈니스 로직]
   /// fetch likeLocations list
   Future<dynamic> getLikeLocations(PagingController pagingController) async {
     try {
@@ -21,6 +43,7 @@ class LikeLocationController extends GetxController {
         final data = response['data'] as List;
         final list = List<LikeLocation>.from(
             data.map((item) => LikeLocation.fromJson(item)));
+        likeLocations = [];
         for (var _location in list) {
           likeLocations.add(_location.location);
         }
@@ -28,6 +51,27 @@ class LikeLocationController extends GetxController {
         update();
       } else {
         throw Exception('Failed to FETCH LikeLocations');
+      }
+    } catch (error) {
+      update();
+      throw Exception(error);
+    } finally {
+      update();
+    }
+  }
+
+  /// fetch getMyLocations list
+  Future<dynamic> getMyLocations(PagingController pagingController) async {
+    try {
+      final response = await MyLocationService.getMyLocations();
+      if (response['statusCode'] == 200) {
+        final data = response['data'] as List;
+        final list =
+            List<Location>.from(data.map((item) => Location.fromJson(item)));
+        pagingController.appendLastPage(list);
+        update();
+      } else {
+        throw Exception('Failed to FETCH myLocations');
       }
     } catch (error) {
       update();

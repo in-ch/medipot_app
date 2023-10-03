@@ -18,12 +18,16 @@ class _MyLocationsState extends State<MyLocations> {
   final PagingController<int, Location> _pagingController =
       PagingController(firstPageKey: 0);
 
-  final MyLocationController myLocationController =
-      Get.put(MyLocationController());
+  final LikeLocationController myLocationController =
+      Get.put(LikeLocationController());
 
   /// [변수]
   /// myLocations 전용 paging 변수
   int page = 1;
+
+  /// [변수]
+  /// 좋아요한 입지들
+  List<Location> likeLocations = [];
 
   /// [Method]
   /// page 숫자 더하기
@@ -32,11 +36,30 @@ class _MyLocationsState extends State<MyLocations> {
     setState(() {});
   }
 
+  /// [Method]
+  /// 입지 좋아요
+  void handleLike(Location location) async {
+    await myLocationController.likeLocation(context, location);
+    likeLocations.add(location);
+    setState(() {});
+  }
+
+  /// [Method]
+  /// 입지 좋아요 취소
+  void handleUnLike(Location location) async {
+    await myLocationController.unlikeLocation(context, location);
+    likeLocations.remove(location);
+    setState(() {});
+  }
+
   @override
   void initState() {
+    likeLocations = myLocationController.likeLocations;
+
     _pagingController.addPageRequestListener((pageKey) {
-      myLocationController.getLikeLocations(_pagingController);
+      myLocationController.getMyLocations(_pagingController);
     });
+    setState(() {});
     super.initState();
   }
 
@@ -84,6 +107,9 @@ class _MyLocationsState extends State<MyLocations> {
                   itemBuilder: (context, item, index) {
                     return MyLocationItem(
                       location: item,
+                      likes: likeLocations,
+                      like: (location) => handleLike(location),
+                      unlike: (location) => handleUnLike(location),
                     );
                   },
                 ),
