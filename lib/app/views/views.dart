@@ -24,3 +24,5 @@ export './favorites/my_locations.dart';
 export './favorites/my_location_item.dart';
 export './favorites/my_consults.dart';
 export './favorites/my_consult_item.dart';
+
+export './setting/setting_box.dart';
