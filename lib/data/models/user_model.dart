@@ -29,3 +29,26 @@ class User {
     );
   }
 }
+
+class MeUser {
+  final int no;
+  final String nickname;
+  final String profile;
+  final String phone;
+
+  MeUser({
+    required this.no,
+    required this.nickname,
+    required this.profile,
+    required this.phone,
+  });
+
+  factory MeUser.fromJson(Map<String, dynamic> json) {
+    return MeUser(
+      no: json['no'],
+      nickname: json['nickname'],
+      profile: json['profile'],
+      phone: json['phone'],
+    );
+  }
+}

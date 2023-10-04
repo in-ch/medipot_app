@@ -18,6 +18,22 @@ class UserService {
     }
   }
 
+  static Future<ApiResponse<MeUser>> getMe() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String accessToken = prefs.getString("accessToken").toString();
+    final url = Uri.parse('http://localhost:4000/user/me');
+    final headers = {'Authorization': 'Bearer $accessToken'};
+    final response = await http.post(url, headers: headers);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return ApiResponse.fromJson(
+        jsonDecode(response.body),
+        (data) => MeUser.fromJson(data),
+      );
+    } else {
+      throw Exception('Failed to user get me');
+    }
+  }
+
   static Future<void> refresh() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String refreshToken = prefs.getString("refreshToken").toString();
