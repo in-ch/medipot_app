@@ -16,35 +16,48 @@ export './nestedReply/nested_reply_page.dart';
 export './login/login_page.dart';
 export './locationDetail/location_detail_page.dart';
 export './setting/profile_setting.dart';
+export './setting/delete_account.dart';
 
 abstract class AppPages {
   static final pages = [
     GetPage(
       name: Routes.login,
       page: () => LoginPage(),
+      transition: Transition.cupertino,
       bindings: [LoginBinding()],
     ),
     GetPage(
       name: Routes.home,
       page: () => const HomePage(),
+      transition: Transition.cupertino,
     ),
     GetPage(
       name: Routes.detail,
       page: () => const DetailPage(),
+      transition: Transition.cupertino,
       bindings: [DetailBinding()],
     ),
     GetPage(
       name: Routes.nestedReply,
       page: () => const NestedReplyPage(),
+      transition: Transition.cupertino,
       bindings: [NestedReplyBinding()],
     ),
     GetPage(
       name: Routes.locationDetail,
       page: () => const LocationDetailPage(),
+      transition: Transition.cupertino,
     ),
     GetPage(
-        name: Routes.profile,
-        page: () => const ProfileSettingPage(),
-        bindings: [SettingBinding()])
+      name: Routes.profileUpdate,
+      page: () => ProfileSettingPage(),
+      transition: Transition.cupertino,
+      bindings: [SettingBinding()],
+    ),
+    GetPage(
+      name: Routes.deleteAccount,
+      page: () => const DeleteAccountPage(),
+      transition: Transition.cupertino,
+    ),
   ];
 }

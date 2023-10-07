@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:medipot_app/app/pages/pages.dart';
+import 'package:medipot_app/app/routes/routes.dart';
 import 'package:medipot_app/app/style/theme.dart';
 import 'package:medipot_app/app/views/views.dart';
 
@@ -30,7 +31,7 @@ class _SettingSubPageState extends State<SettingSubPage> {
                     description: '닉네임 및 프로필 사진을 변경할 수 있습니다.',
                     backgroundColor: const Color.fromARGB(255, 226, 226, 226),
                     event: () {
-                      Get.to(() => ProfileSettingPage());
+                      Get.toNamed(Routes.profileUpdate);
                     }),
                 SettingBoxItem(
                     title: '이벤트 확인하기',
@@ -65,7 +66,7 @@ class _SettingSubPageState extends State<SettingSubPage> {
                     description: '탈퇴 시 기능이 제한될 수 있습니다.',
                     backgroundColor: const Color.fromARGB(255, 226, 226, 226),
                     event: () {
-                      print('클릭');
+                      Get.toNamed(Routes.deleteAccount);
                     }),
                 SettingBoxItem(
                     title: '앱 버전',
