@@ -31,13 +31,13 @@ class NestedReplyPage extends GetView<NestedReplyController> {
             title: Obx(
               () => controller.isLoading.value
                   ? Text("로딩 중...",
-                      style: Theme.of(context).textTheme.headlineSmall)
+                      style: Theme.of(context).textTheme.headlineMedium)
                   : SizedBox(
                       width: 200,
                       child: Text('${controller.userName.value}님의 댓글',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.headlineSmall),
+                          style: Theme.of(context).textTheme.headlineMedium),
                     ),
             ),
           ),

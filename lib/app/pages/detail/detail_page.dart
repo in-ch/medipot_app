@@ -32,9 +32,9 @@ class DetailPage extends GetView<DetailController> {
           title: Obx(
             () => controller.isLoading.value
                 ? Text("로딩 중...",
-                    style: Theme.of(context).textTheme.headlineSmall)
+                    style: Theme.of(context).textTheme.headlineMedium)
                 : Text(controller.writing.title,
-                    style: Theme.of(context).textTheme.headlineSmall),
+                    style: Theme.of(context).textTheme.headlineMedium),
           ),
           actions: [
             Padding(

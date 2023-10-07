@@ -56,4 +56,19 @@ class UserService {
       throw Exception('Failed to user refresh');
     }
   }
+
+  static Future<bool> deleteAccount() async {
+    String apiServer = dotenv.get("API_SERVER");
+    final url = Uri.parse('$apiServer/user/delete');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString('accessToken');
+    final headers = {'Authorization': 'Bearer $accessToken'};
+    final response = await http.delete(url, headers: headers);
+    final responseData = jsonDecode(response.body);
+    final apiResponse = ApiResponse.fromJson(
+      responseData,
+      (data) => User.fromJson(data),
+    );
+    return apiResponse.statusCode == 200;
+  }
 }

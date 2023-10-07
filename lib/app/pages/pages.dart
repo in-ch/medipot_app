@@ -56,7 +56,7 @@ abstract class AppPages {
     ),
     GetPage(
       name: Routes.deleteAccount,
-      page: () => const DeleteAccountPage(),
+      page: () => DeleteAccountPage(),
       transition: Transition.cupertino,
     ),
   ];

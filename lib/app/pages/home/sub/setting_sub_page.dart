@@ -26,6 +26,7 @@ class _SettingSubPageState extends State<SettingSubPage> {
           children: [
             Column(
               children: [
+                const SizedBox(height: 25),
                 SettingBoxItem(
                     title: '프로필 수정',
                     description: '닉네임 및 프로필 사진을 변경할 수 있습니다.',
