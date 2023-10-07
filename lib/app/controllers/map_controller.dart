@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+
 import 'package:medipot_app/services/services.dart';
 
 class MapController extends GetxController {
