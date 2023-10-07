@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -8,7 +9,8 @@ class UserService {
   static Future<Map<String, dynamic>> me() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String accessToken = prefs.getString("accessToken").toString();
-    final url = Uri.parse('http://localhost:4000/user/me');
+    String apiServer = dotenv.get("API_SERVER");
+    final url = Uri.parse('$apiServer/user/me');
     final headers = {'Authorization': 'Bearer $accessToken'};
     final response = await http.post(url, headers: headers);
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -21,7 +23,8 @@ class UserService {
   static Future<ApiResponse<MeUser>> getMe() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String accessToken = prefs.getString("accessToken").toString();
-    final url = Uri.parse('http://localhost:4000/user/me');
+    String apiServer = dotenv.get("API_SERVER");
+    final url = Uri.parse('$apiServer/user/me');
     final headers = {'Authorization': 'Bearer $accessToken'};
     final response = await http.post(url, headers: headers);
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -38,8 +41,9 @@ class UserService {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String refreshToken = prefs.getString("refreshToken").toString();
     String userNo = prefs.getString("userNo").toString();
+    String apiServer = dotenv.get("API_SERVER");
 
-    final url = Uri.parse('http://localhost:4000/user/refresh');
+    final url = Uri.parse('$apiServer/user/refresh');
     final body = {"no": int.parse(userNo), "refresh_token": refreshToken};
     final response = await http.post(url,
         headers: {'Content-Type': 'application/json'}, body: jsonEncode(body));

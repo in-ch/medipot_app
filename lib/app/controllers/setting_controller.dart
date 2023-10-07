@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:medipot_app/data/models/models.dart';
 import 'package:medipot_app/services/services.dart';
-
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:medipot_app/app/pages/pages.dart';
 
 class SettingController extends GetxController {

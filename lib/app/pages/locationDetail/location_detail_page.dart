@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'package:medipot_app/app/style/theme.dart';
@@ -15,6 +16,7 @@ class LocationDetailPageState extends State<LocationDetailPage> {
   late final WebViewController controller;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   bool isLoading = true;
+  String webviewLink = dotenv.get("WEBVIEW_SERVER");
 
   @override
   void initState() {
@@ -39,7 +41,7 @@ class LocationDetailPageState extends State<LocationDetailPage> {
             onWebResourceError: (WebResourceError error) {},
           ),
         )
-        ..loadRequest(Uri.parse('http://localhost:3000/webview/map/18'));
+        ..loadRequest(Uri.parse('$webviewLink/webview/map/18'));
     });
   }
 
