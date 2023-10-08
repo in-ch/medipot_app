@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:medipot_app/data/models/models.dart';
@@ -11,6 +12,9 @@ class SettingController extends GetxController {
   RxBool isLoading = false.obs;
   RxString selectedReason = '탈퇴 후 재가입을 위해서'.obs; // RxString으로 변경
   RxBool isAgreeDeleteAccount = false.obs;
+  XFile? image;
+  final picker = ImagePicker();
+  String profileNickname = '';
 
   late MeUser user;
 
@@ -25,8 +29,10 @@ class SettingController extends GetxController {
   ];
 
   @override
-  void onInit() {
-    getMyData();
+  void onInit() async {
+    await getMyData();
+    profileNickname = user.nickname;
+    image = null;
     super.onInit();
   }
 
@@ -79,8 +85,8 @@ class SettingController extends GetxController {
     );
   }
 
-  // /// [비즈니스 로직]
-  // /// 유저 정보를 조회한다.
+  /// [비즈니스 로직]
+  /// 유저 정보를 조회한다.
   Future<void> getMyData() async {
     try {
       isLoading.value = true;
@@ -93,5 +99,65 @@ class SettingController extends GetxController {
       isLoading.value = false;
       update();
     }
+  }
+
+  /// [비즈니스 로직]
+  /// 닉네임 update
+  void handleChangeNickname(String text) {
+    profileNickname = text;
+    update();
+  }
+
+  /// [비즈니스 로직]
+  /// 프로필 수정하기
+  Future<bool> updateProfile() async {
+    try {
+      if (image == null && profileNickname == user.nickname) {
+        Get.snackbar("변경 사항이 없습니다.", "이미지 혹은 닉네임을 변경해주세요.");
+        return false;
+      }
+      if (profileNickname != user.nickname) {
+        final isNicknameValid =
+            await UserService.checkDuplicationNickname(profileNickname);
+
+        if (!isNicknameValid) {
+          Get.snackbar("닉네임이 중복되었습니다.", "닉네임을 변경해주세요.");
+          return false;
+        }
+      }
+      String imgSrc = '';
+      if (image != null) {
+        imgSrc = await CommonService.uploadImg(image!);
+      }
+      final isDone = await UserService.updateProfile(profileNickname, imgSrc);
+      if (isDone) {
+        Get.snackbar("프로필", "프로필 수정이 완료되었습니다.");
+        await getMyData();
+        image = null;
+      }
+      return isDone;
+    } catch (error) {
+      Get.snackbar("서버 오류가 발생하였습니다.", "지속 발생 시 관리자에게 문의해주세요.");
+      return false;
+    } finally {
+      isLoading.value = false;
+      update();
+    }
+  }
+
+  /// [비즈니스 로직]
+  /// 프로필 이미지를 수정한다.
+  void updateProfileImg() async {
+    isLoading.value = true;
+    image = await picker.pickImage(source: ImageSource.gallery);
+    isLoading.value = false;
+    update();
+  }
+
+  /// [비즈니스 로직]
+  /// image 객체 초기화
+  void resetPreviewImage() {
+    image = null;
+    update();
   }
 }

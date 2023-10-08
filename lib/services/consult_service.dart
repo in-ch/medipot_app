@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ConsultService {
   static Future<Map<String, dynamic>> getMyConsults() async {
     String apiServer = dotenv.get("API_SERVER");
     final url = Uri.parse('$apiServer/consult/list');
-    final headers = {
-      'Authorization':
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJubyI6MSwiZW1haWwiOiJzeGluMjk0OUBuYXZlci5jb20iLCJuaWNrbmFtZSI6InVua25vd24uM2Q3M2c1M2h6IiwicGhvbmUiOiIwMTA1NjkyMjk0OSIsInByb2ZpbGUiOiJodHRwczovL2sua2FrYW9jZG4ubmV0L2RuL2RwazlsMS9idHFtR2hBMmxLTC9PejB3RHVKbjFZVjJESW45MmY2RFZLL2ltZ18xMTB4MTEwLmpwZyIsInRva2VuIjoiIiwicmVmcmVzaF90b2tlbiI6IiIsInBhc3N3b3JkIjoiMTEiLCJpYXQiOjE2OTQ4NTYzOTUsImV4cCI6MTgwMjg1NjM5NX0.NQHiedKEbjGYy2Vxt0czaACWtpXpshPfzrWn0bm2qME'
-    };
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString('accessToken');
+    final headers = {'Authorization': 'Bearer $accessToken'};
 
     final response = await http.get(url, headers: headers);
     if (response.statusCode == 200) {

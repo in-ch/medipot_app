@@ -71,4 +71,34 @@ class UserService {
     );
     return apiResponse.statusCode == 200;
   }
+
+  static Future<bool> checkDuplicationNickname(String nickname) async {
+    String apiServer = dotenv.get("API_SERVER");
+    final url = Uri.parse('$apiServer/auth/nickname/validation');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString('accessToken');
+    final headers = {'Authorization': 'Bearer $accessToken'};
+    final response =
+        await http.post(url, headers: headers, body: ({"nickname": nickname}));
+    final responseData = jsonDecode(response.body);
+
+    return responseData["statusCode"] == 200;
+  }
+
+  static Future<bool> updateProfile(String nickname, String img) async {
+    String apiServer = dotenv.get("API_SERVER");
+    final url = Uri.parse('$apiServer/user/profile/update');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString('accessToken');
+    final headers = {'Authorization': 'Bearer $accessToken'};
+    final body = {"nickname": nickname};
+    if (img != "") {
+      body["profile"] = img;
+    }
+
+    final response = await http.post(url, headers: headers, body: body);
+    final responseData = jsonDecode(response.body);
+
+    return responseData["statusCode"] == 200;
+  }
 }

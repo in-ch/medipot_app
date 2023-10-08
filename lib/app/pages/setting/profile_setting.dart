@@ -1,3 +1,7 @@
+// ignore_for_file: must_be_immutable, use_build_context_synchronously
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -24,13 +28,14 @@ class ProfileSettingPage extends GetView<SettingController> {
               child: GestureDetector(
                   child: const Icon(CupertinoIcons.back),
                   onTap: () {
+                    controller.resetPreviewImage();
                     Navigator.of(context).pop();
                   }),
             ),
             title: Obx(
               () => controller.isLoading.value
                   ? Text("로딩 중...",
-                      style: Theme.of(context).textTheme.headlineSmall)
+                      style: Theme.of(context).textTheme.headlineMedium)
                   : SizedBox(
                       width: 200,
                       child: Text(
@@ -39,7 +44,7 @@ class ProfileSettingPage extends GetView<SettingController> {
                               : controller.user.nickname,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.headlineSmall),
+                          style: Theme.of(context).textTheme.headlineMedium),
                     ),
             ),
           ),
@@ -57,19 +62,30 @@ class ProfileSettingPage extends GetView<SettingController> {
                             Container(
                               width: 80,
                               height: 80,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                    controller.user.profile,
-                                  ),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
+                              decoration: controller.image != null
+                                  ? BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: FileImage(
+                                            File(controller.image!.path)),
+                                      ),
+                                    )
+                                  : BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: NetworkImage(
+                                          controller.user.profile,
+                                        ),
+                                      ),
+                                    ),
                             ),
                             const SizedBox(height: 10),
                             GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  controller.updateProfileImg();
+                                },
                                 child: Text("변경",
                                     style: appTheme.textTheme.titleSmall)),
                             Padding(
@@ -103,6 +119,10 @@ class ProfileSettingPage extends GetView<SettingController> {
                                                 width: 1.0), // border 스타일 설정
                                           ),
                                         ),
+                                        onChanged: (value) {
+                                          controller
+                                              .handleChangeNickname(value);
+                                        },
                                       ),
                                     ),
                                     const SizedBox(height: 20),
@@ -110,8 +130,10 @@ class ProfileSettingPage extends GetView<SettingController> {
                                       width: double.infinity,
                                       height: 40,
                                       child: ElevatedButton(
-                                        onPressed: () {
-                                          // 버튼 클릭 시 수행할 작업
+                                        onPressed: () async {
+                                          bool isDone =
+                                              await controller.updateProfile();
+                                          if (isDone) Navigator.pop(context);
                                         },
                                         style: ButtonStyle(
                                           backgroundColor:

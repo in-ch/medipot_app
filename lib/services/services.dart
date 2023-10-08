@@ -6,3 +6,4 @@ export './like_location_service.dart';
 export './my_location_service.dart';
 export './consult_service.dart';
 export './user_service.dart';
+export './common_service.dart';
