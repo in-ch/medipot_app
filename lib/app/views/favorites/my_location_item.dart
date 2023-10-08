@@ -105,7 +105,7 @@ class _MyLocationItemState extends State<MyLocationItem> {
             GestureDetector(
               onTap: () {
                 Get.toNamed(Routes.locationDetail,
-                    arguments: widget.location.no);
+                    arguments: {'locationNo': widget.location.no});
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 12.0, top: 3.0),

@@ -48,6 +48,7 @@ abstract class AppPages {
       name: Routes.locationDetail,
       page: () => const LocationDetailPage(),
       transition: Transition.cupertino,
+      bindings: [LocationDetailBinding()],
     ),
     GetPage(
       name: Routes.profileUpdate,

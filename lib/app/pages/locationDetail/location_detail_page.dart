@@ -1,63 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get.dart';
+import 'package:medipot_app/app/controllers/controllers.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'package:medipot_app/app/style/theme.dart';
 
-class LocationDetailPage extends StatefulWidget {
+class LocationDetailPage extends GetView<LocationDetailController> {
   const LocationDetailPage({Key? key}) : super(key: key);
-
-  @override
-  State<LocationDetailPage> createState() => LocationDetailPageState();
-}
-
-class LocationDetailPageState extends State<LocationDetailPage> {
-  late final WebViewController controller;
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool isLoading = true;
-  String webviewLink = dotenv.get("WEBVIEW_SERVER");
-
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(Duration.zero, () async {
-      controller = WebViewController()
-        ..setJavaScriptMode(JavaScriptMode.unrestricted)
-        ..setBackgroundColor(const Color(0x00000000))
-        ..setNavigationDelegate(
-          NavigationDelegate(
-            onProgress: (int progress) {},
-            onPageStarted: (String url) {
-              setState(() {
-                isLoading = true;
-              });
-            },
-            onPageFinished: (String url) {
-              setState(() {
-                isLoading = false;
-              });
-            },
-            onWebResourceError: (WebResourceError error) {},
-          ),
-        )
-        ..loadRequest(Uri.parse('$webviewLink/webview/map/18'));
-    });
-  }
-
-  Future<bool> _onWillPop() async {
-    if (await controller.canGoBack()) {
-      controller.goBack();
-      return false;
-    } else {
-      return true;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(40),
         child: AppBar(
@@ -74,29 +28,26 @@ class LocationDetailPageState extends State<LocationDetailPage> {
           ),
         ),
       ),
-      body: WillPopScope(
-        onWillPop: _onWillPop,
-        child: Column(
-          children: [
-            Expanded(
-              child: SizedBox(
-                  child: isLoading
-                      ? SizedBox(
-                          width: double.infinity,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              CircularProgressIndicator(
-                                color: colorScheme.primary,
-                              ),
-                            ],
-                          ),
-                        )
-                      : WebViewWidget(controller: controller)),
-            ),
-          ],
-        ),
+      body: Column(
+        children: [
+          Expanded(child: Obx(() {
+            return SizedBox(
+                child: controller.isLoading.value
+                    ? SizedBox(
+                        width: double.infinity,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            CircularProgressIndicator(
+                              color: colorScheme.primary,
+                            ),
+                          ],
+                        ),
+                      )
+                    : WebViewWidget(controller: controller.webviewController));
+          })),
+        ],
       ),
     );
   }

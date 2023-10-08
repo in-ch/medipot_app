@@ -74,30 +74,30 @@ class _LikeLocationItemState extends State<LikeLocationItem> {
                           ),
                         ),
                       )),
-                  Positioned(
-                    bottom: 0,
-                    child: Container(
-                      width: 150,
-                      height: 26,
-                      color: const Color.fromARGB(200, 50, 50, 50),
-                      child: const Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("비공개",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 12)),
-                        ],
-                      ),
-                    ),
-                  ),
+                  // Positioned(
+                  //   bottom: 0,
+                  //   child: Container(
+                  //     width: 150,
+                  //     height: 26,
+                  //     color: const Color.fromARGB(200, 50, 50, 50),
+                  //     child: const Column(
+                  //       crossAxisAlignment: CrossAxisAlignment.center,
+                  //       mainAxisAlignment: MainAxisAlignment.center,
+                  //       children: [
+                  //         Text("비공개",
+                  //             style:
+                  //                 TextStyle(color: Colors.white, fontSize: 12)),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
             GestureDetector(
               onTap: () {
                 Get.toNamed(Routes.locationDetail,
-                    arguments: widget.likeLocation.location.no);
+                    arguments: {'locationNo': widget.likeLocation.location.no});
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 12.0, top: 3.0),
