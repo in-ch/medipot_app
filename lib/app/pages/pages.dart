@@ -17,6 +17,7 @@ export './login/login_page.dart';
 export './locationDetail/location_detail_page.dart';
 export './setting/profile_setting.dart';
 export './setting/delete_account.dart';
+export './event/events_page.dart';
 
 abstract class AppPages {
   static final pages = [
@@ -50,7 +51,7 @@ abstract class AppPages {
     ),
     GetPage(
       name: Routes.profileUpdate,
-      page: () => ProfileSettingPage(),
+      page: () => const ProfileSettingPage(),
       transition: Transition.cupertino,
       bindings: [SettingBinding()],
     ),
@@ -58,6 +59,12 @@ abstract class AppPages {
       name: Routes.deleteAccount,
       page: () => DeleteAccountPage(),
       transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: Routes.events,
+      page: () => const EventsPage(),
+      transition: Transition.cupertino,
+      bindings: [EventsBinding()],
     ),
   ];
 }

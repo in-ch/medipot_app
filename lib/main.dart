@@ -8,7 +8,6 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
 import 'package:medipot_app/app/routes/routes.dart';
-import 'package:medipot_app/app/controllers/controllers.dart';
 import 'package:medipot_app/app/pages/pages.dart';
 import 'package:medipot_app/app/style/theme.dart';
 import 'package:medipot_app/data/models/models.dart';

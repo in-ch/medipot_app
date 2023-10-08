@@ -39,7 +39,7 @@ class _SettingSubPageState extends State<SettingSubPage> {
                     description: '진행 중인 다양한 이벤트를 확인해보세요.',
                     backgroundColor: const Color.fromARGB(255, 226, 226, 226),
                     event: () {
-                      print('클릭');
+                      Get.toNamed(Routes.events);
                     }),
                 SettingBoxItem(
                     title: '개인정보처리방침',

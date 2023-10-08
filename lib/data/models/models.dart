@@ -13,3 +13,4 @@ export 'like_location_model.dart';
 export './consult_model.dart';
 export './refresh_model.dart';
 export './image_upload_model.dart';
+export './event_model.dart';
