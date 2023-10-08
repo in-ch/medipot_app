@@ -118,9 +118,9 @@ class _LikeLocationItemState extends State<LikeLocationItem> {
                       "${widget.likeLocation.location.dedicatedArea}㎡ / ${widget.likeLocation.location.supplyArea}㎡",
                       style: appTheme.textTheme.titleSmall,
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 15),
                     SizedBox(
-                      width: 250,
+                      width: MediaQuery.of(context).size.width * 0.5,
                       child: Wrap(
                         children: widget.likeLocation.location.keywords
                             .map((keyword) {

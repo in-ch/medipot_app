@@ -32,23 +32,26 @@ class _MyConsultItemState extends State<MyConsultItem> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      BigTag(text: widget.consult.type),
-                      const SizedBox(height: 5),
-                      Text(
-                          widget.consult.detail
-                              .replaceAll("<p>", "")
-                              .replaceAll("</p>", ""),
-                          style: appTheme.textTheme.bodyLarge),
-                      const SizedBox(height: 2),
-                      Text(widget.consult.name,
-                          style: appTheme.textTheme.bodyMedium),
-                      const SizedBox(height: 20),
-                      Text(widget.consult.createdAt.split("T")[0],
-                          style: appTheme.textTheme.titleSmall),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        BigTag(text: widget.consult.type),
+                        const SizedBox(height: 5),
+                        Text(
+                            widget.consult.detail
+                                .replaceAll("<p>", "")
+                                .replaceAll("</p>", ""),
+                            style: appTheme.textTheme.bodyLarge),
+                        const SizedBox(height: 2),
+                        Text(widget.consult.name,
+                            style: appTheme.textTheme.bodyMedium),
+                        const SizedBox(height: 20),
+                        Text(widget.consult.createdAt.split("T")[0],
+                            style: appTheme.textTheme.titleSmall),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     width: 100,
@@ -70,7 +73,7 @@ class _MyConsultItemState extends State<MyConsultItem> {
           ),
           Container(
               width: double.infinity,
-              height: 3,
+              height: 1,
               color: const Color.fromARGB(255, 217, 217, 217))
         ],
       ),
