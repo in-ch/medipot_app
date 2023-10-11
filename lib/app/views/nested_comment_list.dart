@@ -115,7 +115,7 @@ class _CommentData extends StatelessWidget {
                                         nestedReply.user.nickname,
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodySmall,
+                                            .bodyMedium,
                                       ),
                                       const SizedBox(width: 10),
                                       const Text(

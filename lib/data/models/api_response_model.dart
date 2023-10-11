@@ -1,11 +1,11 @@
 class ApiResponse<T> {
   final int statusCode;
-  final String type;
+  final String? type;
   final T data;
 
   ApiResponse({
     required this.statusCode,
-    required this.type,
+    this.type,
     required this.data,
   });
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:medipot_app/app/pages/pages.dart';
+import 'package:medipot_app/app/routes/routes.dart';
 import 'package:medipot_app/app/style/theme.dart';
 import 'package:medipot_app/app/views/views.dart';
 import 'package:medipot_app/data/models/models.dart';
@@ -74,30 +74,30 @@ class _LikeLocationItemState extends State<LikeLocationItem> {
                           ),
                         ),
                       )),
-                  Positioned(
-                    bottom: 0,
-                    child: Container(
-                      width: 150,
-                      height: 26,
-                      color: const Color.fromARGB(200, 50, 50, 50),
-                      child: const Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("비공개",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 12)),
-                        ],
-                      ),
-                    ),
-                  ),
+                  // Positioned(
+                  //   bottom: 0,
+                  //   child: Container(
+                  //     width: 150,
+                  //     height: 26,
+                  //     color: const Color.fromARGB(200, 50, 50, 50),
+                  //     child: const Column(
+                  //       crossAxisAlignment: CrossAxisAlignment.center,
+                  //       mainAxisAlignment: MainAxisAlignment.center,
+                  //       children: [
+                  //         Text("비공개",
+                  //             style:
+                  //                 TextStyle(color: Colors.white, fontSize: 12)),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
             GestureDetector(
               onTap: () {
-                Get.to(() => const LocationDetailPage(),
-                    arguments: widget.likeLocation.location.no);
+                Get.toNamed(Routes.locationDetail,
+                    arguments: {'locationNo': widget.likeLocation.location.no});
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 12.0, top: 3.0),
@@ -118,9 +118,9 @@ class _LikeLocationItemState extends State<LikeLocationItem> {
                       "${widget.likeLocation.location.dedicatedArea}㎡ / ${widget.likeLocation.location.supplyArea}㎡",
                       style: appTheme.textTheme.titleSmall,
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 15),
                     SizedBox(
-                      width: 250,
+                      width: MediaQuery.of(context).size.width * 0.5,
                       child: Wrap(
                         children: widget.likeLocation.location.keywords
                             .map((keyword) {

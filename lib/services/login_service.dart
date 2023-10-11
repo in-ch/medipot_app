@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:medipot_app/data/models/models.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,8 +13,8 @@ class LoginService {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $accessToken',
     };
-
-    final url = Uri.parse('http://localhost:4000/kakao/login');
+    String apiServer = dotenv.get("API_SERVER");
+    final url = Uri.parse('$apiServer/kakao/login');
 
     final response =
         await http.post(url, headers: headers, body: jsonEncode(payload));

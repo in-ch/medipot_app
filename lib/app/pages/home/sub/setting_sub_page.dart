@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
-import 'package:medipot_app/app/controllers/controllers.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import 'package:medipot_app/app/pages/pages.dart';
+import 'package:medipot_app/app/routes/routes.dart';
 import 'package:medipot_app/app/style/theme.dart';
+import 'package:medipot_app/app/views/views.dart';
 
 class SettingSubPage extends StatefulWidget {
   const SettingSubPage({Key? key}) : super(key: key);
@@ -18,24 +22,75 @@ class _SettingSubPageState extends State<SettingSubPage> {
   Widget build(BuildContext context) {
     return Theme(
       data: appTheme,
-      child: Scaffold(
-          appBar: AppBar(
-            title: Container(),
-          ),
-          body: Column(
-            children: [
-              Column(
-                children: [
-                  GestureDetector(
-                    onTap: () {
+      child: SafeArea(
+        child: Scaffold(
+            body: Column(
+          children: [
+            Column(
+              children: [
+                const SizedBox(height: 25),
+                SettingBoxItem(
+                    title: '프로필 수정',
+                    description: '닉네임 및 프로필 사진을 변경할 수 있습니다.',
+                    backgroundColor: const Color.fromARGB(255, 226, 226, 226),
+                    event: () {
+                      Get.toNamed(Routes.profileUpdate);
+                    }),
+                SettingBoxItem(
+                    title: '이벤트 확인하기',
+                    description: '진행 중인 다양한 이벤트를 확인해보세요.',
+                    backgroundColor: const Color.fromARGB(255, 226, 226, 226),
+                    event: () {
+                      Get.toNamed(Routes.events);
+                    }),
+                SettingBoxItem(
+                    title: '개인정보처리방침',
+                    description: '개인정보처리방침을 확인할 수 있습니다.',
+                    backgroundColor: const Color.fromARGB(255, 226, 226, 226),
+                    event: () async {
+                      String webviewLink = dotenv.get("WEBVIEW_SERVER");
+                      final Uri url = Uri.parse('$webviewLink/privacyPolicy');
+                      if (!await launchUrl(url)) {
+                        throw Exception('Could not launch $url');
+                      }
+                    }),
+                SettingBoxItem(
+                    title: '서비스 이용약관',
+                    description: '이용약관을 확인할 수 있습니다.',
+                    backgroundColor: const Color.fromARGB(255, 226, 226, 226),
+                    event: () async {
+                      String webviewLink = dotenv.get("WEBVIEW_SERVER");
+                      final Uri url = Uri.parse('$webviewLink/termsOfUse');
+                      if (!await launchUrl(url)) {
+                        throw Exception('Could not launch $url');
+                      }
+                    }),
+                SettingBoxItem(
+                    title: '로그아웃',
+                    description: '로그인 시 더 다양한 기능을 확인할 수 있습니다.',
+                    backgroundColor: const Color.fromARGB(255, 226, 226, 226),
+                    event: () {
                       settingController.logout(context);
-                    },
-                    child: const Text("로그아웃"),
-                  ),
-                ],
-              )
-            ],
-          )),
+                    }),
+                SettingBoxItem(
+                    title: '탈퇴하기',
+                    description: '탈퇴 시 기능이 제한될 수 있습니다.',
+                    backgroundColor: const Color.fromARGB(255, 226, 226, 226),
+                    event: () {
+                      Get.toNamed(Routes.deleteAccount);
+                    }),
+                SettingBoxItem(
+                    title: '앱 버전',
+                    description: 'v1.0.1',
+                    backgroundColor: const Color.fromARGB(255, 226, 226, 226),
+                    event: () {
+                      print('클릭');
+                    }),
+              ],
+            )
+          ],
+        )),
+      ),
     );
   }
 }

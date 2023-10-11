@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:medipot_app/app/controllers/controllers.dart';
 import 'package:medipot_app/app/style/theme.dart';
-import 'package:medipot_app/app/views/views.dart';
 import 'package:medipot_app/data/models/models.dart';
 
-class DetailPage extends GetView<DetailController> {
-  const DetailPage({Key? key}) : super(key: key);
+class EventsPage extends GetView<EventsController> {
+  const EventsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +30,10 @@ class DetailPage extends GetView<DetailController> {
                   Navigator.of(context).pop();
                 }),
           ),
-          title: Obx(
-            () => controller.isLoading.value
-                ? Text("로딩 중...",
-                    style: Theme.of(context).textTheme.headlineMedium)
-                : Text(controller.writing.title,
-                    style: Theme.of(context).textTheme.headlineMedium),
-          ),
+          title: Text("이벤트들",
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.headlineMedium),
           actions: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -59,7 +57,7 @@ class DetailPage extends GetView<DetailController> {
             ? const Center(child: CircularProgressIndicator())
             : Column(
                 children: [
-                  Expanded(child: _DetailBody(writing: controller.writing)),
+                  Expanded(child: _EventBody(events: controller.events)),
                 ],
               )),
       ),
@@ -67,16 +65,44 @@ class DetailPage extends GetView<DetailController> {
   }
 }
 
-class _DetailBody extends StatelessWidget {
-  final Writing writing;
-  const _DetailBody({required this.writing});
+class _EventBody extends StatelessWidget {
+  final List<Event> events;
+  const _EventBody({required this.events});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
       child: ListView(
-        children: [FeedWidget(isDetail: true, writing: writing)],
+        children: events
+            .map(
+              (event) => Padding(
+                padding: const EdgeInsets.only(bottom: 10.0),
+                child: GestureDetector(
+                  onTap: () async {
+                    String webviewLink = dotenv.get("WEBVIEW_SERVER");
+                    int eventNo = event.no;
+                    final Uri url = Uri.parse('$webviewLink/event/$eventNo');
+                    if (!await launchUrl(url)) {
+                      throw Exception('Could not launch $url');
+                    }
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 140,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(
+                          event.img,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            )
+            .toList(),
       ),
     );
   }

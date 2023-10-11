@@ -20,17 +20,17 @@ final appTheme = ThemeData(
   colorScheme: colorScheme,
   textTheme: const TextTheme(
     headlineLarge: TextStyle(
-      fontSize: 26,
-      fontWeight: FontWeight.bold,
-      color: Colors.black87,
-    ),
-    headlineMedium: TextStyle(
       fontSize: 24,
       fontWeight: FontWeight.bold,
       color: Colors.black87,
     ),
-    headlineSmall: TextStyle(
+    headlineMedium: TextStyle(
       fontSize: 20,
+      fontWeight: FontWeight.bold,
+      color: Colors.black87,
+    ),
+    headlineSmall: TextStyle(
+      fontSize: 16,
       fontWeight: FontWeight.bold,
       color: Colors.black87,
     ),
@@ -46,9 +46,9 @@ final appTheme = ThemeData(
         fontSize: 14,
         fontWeight: FontWeight.w300,
         color: Color.fromARGB(255, 100, 100, 100)),
-    bodyLarge: TextStyle(fontSize: 19, color: Colors.black87),
-    bodyMedium: TextStyle(fontSize: 17, color: Colors.black87),
-    bodySmall: TextStyle(fontSize: 14, color: Colors.black87),
+    bodyLarge: TextStyle(fontSize: 17, color: Colors.black87),
+    bodyMedium: TextStyle(fontSize: 14, color: Colors.black87),
+    bodySmall: TextStyle(fontSize: 12, color: Colors.black87, height: 1.5),
     displayMedium:
         TextStyle(fontSize: 14, color: Color.fromARGB(221, 56, 56, 56)),
     displaySmall:

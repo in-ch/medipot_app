@@ -4,4 +4,7 @@ abstract class Routes {
   static const detail = '/detail';
   static const nestedReply = '/nestedReply';
   static const locationDetail = '/locationDetail';
+  static const profileUpdate = '/profileUpdate';
+  static const deleteAccount = '/deleteAccount';
+  static const events = '/events';
 }

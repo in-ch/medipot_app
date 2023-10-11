@@ -8,3 +8,5 @@ export './setting_controller.dart';
 export './like_location_controller.dart';
 export './consult_controller.dart';
 export './map_controller.dart';
+export './events_controller.dart';
+export './location_detail_controller.dart';

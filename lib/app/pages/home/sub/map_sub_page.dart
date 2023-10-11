@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'package:medipot_app/app/style/theme.dart';
-import 'package:medipot_app/app/controllers/controllers.dart';
+import 'package:medipot_app/app/pages/pages.dart';
 
 class MapSubPage extends StatefulWidget {
   const MapSubPage({Key? key}) : super(key: key);
@@ -18,6 +19,7 @@ class MapSubPageState extends State<MapSubPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final MapController mapController = Get.put(MapController());
   bool isLoading = true;
+  String webviewLink = dotenv.get("WEBVIEW_SERVER");
 
   @override
   void initState() {
@@ -49,10 +51,11 @@ class MapSubPageState extends State<MapSubPage> {
             ),
           )
           ..loadRequest(Uri.parse(
-              'http://localhost:3000/webview/map?user_token_refresh_token=$accessToken///$refreshToken'));
+              '$webviewLink/webview/map?user_token_refresh_token=$accessToken///$refreshToken'));
       } else {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setBool('isLogin', false);
+        Get.offAll(const HomePage());
         setState(() {}); // 화면 갱신
       }
     });

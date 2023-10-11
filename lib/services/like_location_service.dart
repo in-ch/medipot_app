@@ -1,10 +1,12 @@
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LikeLocationService {
   static Future<Map<String, dynamic>> getLikeLocations() async {
-    final url = Uri.parse('http://localhost:4000/likeLocation');
+    String apiServer = dotenv.get("API_SERVER");
+    final url = Uri.parse('$apiServer/likeLocation');
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? accessToken = prefs.getString('accessToken');
     final headers = {'Authorization': 'Bearer $accessToken'};
@@ -18,7 +20,8 @@ class LikeLocationService {
   }
 
   static Future<Map<String, dynamic>> likeLocation(dynamic locationNo) async {
-    final url = Uri.parse('http://localhost:4000/likeLocation');
+    String apiServer = dotenv.get("API_SERVER");
+    final url = Uri.parse('$apiServer/likeLocation');
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? accessToken = prefs.getString('accessToken');
     final headers = {'Authorization': 'Bearer $accessToken'};
@@ -29,7 +32,8 @@ class LikeLocationService {
   }
 
   static Future<Map<String, dynamic>> unlikeLocation(dynamic locationNo) async {
-    final url = Uri.parse('http://localhost:4000/likeLocation');
+    String apiServer = dotenv.get("API_SERVER");
+    final url = Uri.parse('$apiServer/likeLocation');
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? accessToken = prefs.getString('accessToken');
     final headers = {'Authorization': 'Bearer $accessToken'};

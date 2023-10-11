@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:medipot_app/app/pages/pages.dart';
+import 'package:medipot_app/app/routes/routes.dart';
 import 'package:medipot_app/app/style/theme.dart';
 import 'package:medipot_app/app/views/views.dart';
 import 'package:medipot_app/data/models/models.dart';
@@ -104,8 +104,8 @@ class _MyLocationItemState extends State<MyLocationItem> {
             ),
             GestureDetector(
               onTap: () {
-                Get.to(() => const LocationDetailPage(),
-                    arguments: widget.location.no);
+                Get.toNamed(Routes.locationDetail,
+                    arguments: {'locationNo': widget.location.no});
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 12.0, top: 3.0),
