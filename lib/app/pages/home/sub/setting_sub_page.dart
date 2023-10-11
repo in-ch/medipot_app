@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:medipot_app/app/pages/pages.dart';
 import 'package:medipot_app/app/routes/routes.dart';
@@ -45,15 +47,23 @@ class _SettingSubPageState extends State<SettingSubPage> {
                     title: '개인정보처리방침',
                     description: '개인정보처리방침을 확인할 수 있습니다.',
                     backgroundColor: const Color.fromARGB(255, 226, 226, 226),
-                    event: () {
-                      print('클릭');
+                    event: () async {
+                      String webviewLink = dotenv.get("WEBVIEW_SERVER");
+                      final Uri url = Uri.parse('$webviewLink/privacyPolicy');
+                      if (!await launchUrl(url)) {
+                        throw Exception('Could not launch $url');
+                      }
                     }),
                 SettingBoxItem(
-                    title: '이용약관',
+                    title: '서비스 이용약관',
                     description: '이용약관을 확인할 수 있습니다.',
                     backgroundColor: const Color.fromARGB(255, 226, 226, 226),
-                    event: () {
-                      print('클릭');
+                    event: () async {
+                      String webviewLink = dotenv.get("WEBVIEW_SERVER");
+                      final Uri url = Uri.parse('$webviewLink/termsOfUse');
+                      if (!await launchUrl(url)) {
+                        throw Exception('Could not launch $url');
+                      }
                     }),
                 SettingBoxItem(
                     title: '로그아웃',
