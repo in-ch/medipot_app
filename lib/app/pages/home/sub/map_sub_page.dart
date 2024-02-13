@@ -20,17 +20,16 @@ class MapSubPageState extends State<MapSubPage> {
   final MapController mapController = Get.put(MapController());
   bool isLoading = true;
   String webviewLink = dotenv.get("WEBVIEW_SERVER");
-
   @override
   void initState() {
     super.initState();
+
     Future.delayed(Duration.zero, () async {
       bool isTokenValid = await mapController.tokenCheck();
       if (isTokenValid) {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         String? accessToken = prefs.getString('accessToken');
         String? refreshToken = prefs.getString('refreshToken');
-
         controller = WebViewController()
           ..setJavaScriptMode(JavaScriptMode.unrestricted)
           ..setBackgroundColor(const Color(0x00000000))
@@ -51,7 +50,7 @@ class MapSubPageState extends State<MapSubPage> {
             ),
           )
           ..loadRequest(Uri.parse(
-              '$webviewLink/webview/map?user_token_refresh_token=$accessToken///$refreshToken'));
+              '$webviewLink/webview?user_token_refresh_token=$accessToken///$refreshToken'));
       } else {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setBool('isLogin', false);
@@ -78,6 +77,7 @@ class MapSubPageState extends State<MapSubPage> {
         onWillPop: _onWillPop,
         child: Column(
           children: [
+            const SizedBox(height: 40),
             Expanded(
               child: SizedBox(
                   child: isLoading
