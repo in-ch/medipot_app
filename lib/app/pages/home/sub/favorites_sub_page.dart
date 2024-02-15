@@ -47,7 +47,7 @@ class _FavoritesBodyState extends State<_FavoritesBody>
   @override
   void initState() {
     _tabController = TabController(
-      length: 3,
+      length: 2,
       vsync: this, //vsync에 this 형태로 전달해야 애니메이션이 정상 처리됨
     );
     super.initState();
@@ -77,13 +77,6 @@ class _FavoritesBodyState extends State<_FavoritesBody>
                   "올린 매물",
                 ),
               ),
-              Container(
-                height: 40,
-                alignment: Alignment.center,
-                child: const Text(
-                  "문의 내역",
-                ),
-              ),
             ],
             indicatorColor: colorScheme.primary,
             labelColor: colorScheme.primary,
@@ -103,11 +96,6 @@ class _FavoritesBodyState extends State<_FavoritesBody>
                   width: double.infinity,
                   height: double.infinity,
                   child: MyLocations(),
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: MyConsults(),
                 ),
               ],
             ),
