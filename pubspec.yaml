@@ -45,6 +45,12 @@ flutter:
     - assets/image/heart.png
     - assets/image/heart_fill.png
     - assets/image/logo_text.png
+    - assets/image/hours.png
+    - assets/image/search.png
+    - assets/image/sns/instagram.png
+    - assets/image/sns/blog-text.png
+    - assets/image/sns/blog-pencil.png
+
   fonts:
     - family: PretendardBold
       fonts:

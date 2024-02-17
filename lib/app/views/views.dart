@@ -6,6 +6,7 @@ export './comment_list.dart';
 export './common/tags.dart';
 export './common/tag.dart';
 export './common/big_tag.dart';
+export './common/simple_button.dart';
 
 export './feed/feed.dart';
 export './feed/feeds.dart';
@@ -26,3 +27,5 @@ export './favorites/my_consults.dart';
 export './favorites/my_consult_item.dart';
 
 export './setting/setting_box.dart';
+export './setting/setting_sns_box.dart';
+export './setting/setting_button_boxs.dart';
