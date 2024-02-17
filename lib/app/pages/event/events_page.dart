@@ -16,6 +16,7 @@ class EventsPage extends GetView<EventsController> {
     return Theme(
       data: appTheme,
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           iconTheme: Theme.of(context).iconTheme,
           centerTitle: false,
