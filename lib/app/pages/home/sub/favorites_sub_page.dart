@@ -14,9 +14,9 @@ class FavoritesSubPage extends GetView<FavoritesController> {
       data: appTheme,
       child: Scaffold(
           appBar: AppBar(
-              title: const Text(
+              title: Text(
                 "관심 목록",
-                style: TextStyle(color: Colors.black),
+                style: Theme.of(context).textTheme.titleMedium,
               ),
               centerTitle: true,
               backgroundColor: Colors.white,
