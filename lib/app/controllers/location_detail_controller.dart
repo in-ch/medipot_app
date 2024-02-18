@@ -29,7 +29,7 @@ class LocationDetailController extends GetxController {
             onWebResourceError: (WebResourceError error) {},
           ),
         )
-        ..loadRequest(Uri.parse('$webviewLink/webview/map/$locationNo'));
+        ..loadRequest(Uri.parse('$webviewLink/location/detail/$locationNo'));
     });
     // update();
     super.onInit();
