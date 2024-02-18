@@ -19,6 +19,7 @@ export './setting/profile_setting.dart';
 export './setting/delete_account.dart';
 export './event/events_page.dart';
 import './consultList/consult_list_page.dart';
+import 'csCenter/cs_center_page.dart';
 
 abstract class AppPages {
   static final pages = [
@@ -72,6 +73,11 @@ abstract class AppPages {
         name: Routes.consultList,
         page: () => const ConsultListPage(),
         transition: Transition.cupertino,
-        bindings: [ConsultListBinding()])
+        bindings: [ConsultListBinding()]),
+    GetPage(
+        name: Routes.csCenter,
+        page: () => const CsCenterPage(),
+        transition: Transition.cupertino,
+        bindings: [CsCenterBinding()])
   ];
 }

@@ -6,3 +6,4 @@ export './setting_binding.dart';
 export './events_binding.dart';
 export './location_detail_binding.dart';
 export './consult_list_binding.dart';
+export './cs_center_binding.dart';

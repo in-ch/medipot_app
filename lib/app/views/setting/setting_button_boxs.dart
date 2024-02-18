@@ -36,20 +36,25 @@ class SettingButtonBoxs extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 30),
-            Column(
-              children: [
-                const SizedBox(
-                  width: 50,
-                  height: 50,
-                  child: Image(
-                    image: AssetImage('assets/image/hours.png'),
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(Routes.csCenter);
+              },
+              child: Column(
+                children: [
+                  const SizedBox(
                     width: 50,
                     height: 50,
-                    fit: BoxFit.fill,
+                    child: Image(
+                      image: AssetImage('assets/image/hours.png'),
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.fill,
+                    ),
                   ),
-                ),
-                Text("고객센터", style: Theme.of(context).textTheme.titleSmall)
-              ],
+                  Text("고객센터", style: Theme.of(context).textTheme.titleSmall)
+                ],
+              ),
             ),
           ],
         ),

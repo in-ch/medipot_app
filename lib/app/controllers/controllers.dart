@@ -10,3 +10,4 @@ export './map_controller.dart';
 export './events_controller.dart';
 export './location_detail_controller.dart';
 export './consult_list_controller.dart';
+export './cs_center_controller.dart';
