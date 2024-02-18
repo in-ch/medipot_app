@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:medipot_app/app/routes/routes.dart';
 
 class SettingButtonBoxs extends StatelessWidget {
   const SettingButtonBoxs({super.key});
@@ -12,20 +15,25 @@ class SettingButtonBoxs extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Column(
-              children: [
-                const SizedBox(height: 7),
-                const SizedBox(
-                  width: 36,
-                  height: 36,
-                  child: Image(
-                    image: AssetImage('assets/image/search.png'),
-                    fit: BoxFit.fitWidth,
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(Routes.consultList);
+              },
+              child: Column(
+                children: [
+                  const SizedBox(height: 7),
+                  const SizedBox(
+                    width: 36,
+                    height: 36,
+                    child: Image(
+                      image: AssetImage('assets/image/search.png'),
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 7),
-                Text("문의한 방", style: Theme.of(context).textTheme.titleSmall)
-              ],
+                  const SizedBox(height: 7),
+                  Text("상담 목록", style: Theme.of(context).textTheme.titleSmall)
+                ],
+              ),
             ),
             const SizedBox(width: 30),
             Column(

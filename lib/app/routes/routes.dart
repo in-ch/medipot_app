@@ -7,4 +7,5 @@ abstract class Routes {
   static const profileUpdate = '/profileUpdate';
   static const deleteAccount = '/deleteAccount';
   static const events = '/events';
+  static const consultList = '/consultList';
 }

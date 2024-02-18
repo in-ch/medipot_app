@@ -47,7 +47,7 @@ class _MyConsultItemState extends State<MyConsultItem> {
                         const SizedBox(height: 2),
                         Text(widget.consult.name,
                             style: appTheme.textTheme.bodyMedium),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 10),
                         Text(widget.consult.createdAt.split("T")[0],
                             style: appTheme.textTheme.titleSmall),
                       ],
@@ -71,10 +71,10 @@ class _MyConsultItemState extends State<MyConsultItem> {
               ),
             ),
           ),
-          Container(
-              width: double.infinity,
-              height: 1,
-              color: const Color.fromARGB(255, 217, 217, 217))
+          const Divider(
+            height: 1,
+            color: Colors.black12,
+          ),
         ],
       ),
     );
