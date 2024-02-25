@@ -15,19 +15,33 @@ class LoginPage extends StatelessWidget {
         body: Column(
           children: [
             Expanded(
-              flex: 4,
-              child: Center(
+              flex: 5,
+              child: SizedBox(
+                width: 0.8 * MediaQuery.of(context).size.width,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Image.asset(
-                      'assets/image/logo.png',
-                      width: 200,
-                      height: 200,
+                      'assets/image/logo_text.png',
+                      width: 150,
                     ),
-                    const SizedBox(height: 40),
-                    const Text("손쉽게 마음에 드는 병원 입지를 찾아보세요.",
-                        style: TextStyle(color: Colors.black, fontSize: 16)),
+                    const SizedBox(height: 20),
+                    const Text("성공적인 개원의 필수적인 첫걸음",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "PretendardBold")),
+                    const SizedBox(height: 20),
+                    const Text('''다양한 지역별 개원 입지부터
+꼭 필요한 정보를 한 번에''',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            height: 1.5,
+                            fontFamily: "PretendardRegular")),
+                    const SizedBox(height: 220),
                   ],
                 ),
               ),
@@ -44,6 +58,7 @@ class LoginPage extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
+                      elevation: 0,
                     ),
                     onPressed: () async {
                       controller.kakaoLogin(context);
@@ -57,8 +72,10 @@ class LoginPage extends StatelessWidget {
                           height: 40,
                         ),
                         const SizedBox(width: 10),
-                        const Text("카카오 로그인",
-                            style: TextStyle(color: Colors.black)),
+                        const Text("카카오로 시작하기",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'PretendardRegular')),
                       ],
                     ),
                   ),

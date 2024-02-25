@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
@@ -24,71 +25,167 @@ class _SettingSubPageState extends State<SettingSubPage> {
       data: appTheme,
       child: SafeArea(
         child: Scaffold(
-            body: Column(
-          children: [
-            Column(
+            body: SingleChildScrollView(
+          child: Container(
+            color: Colors.white,
+            child: Column(
               children: [
-                const SizedBox(height: 25),
-                SettingBoxItem(
-                    title: '프로필 수정',
-                    description: '닉네임 및 프로필 사진을 변경할 수 있습니다.',
-                    backgroundColor: const Color.fromARGB(255, 226, 226, 226),
-                    event: () {
-                      Get.toNamed(Routes.profileUpdate);
-                    }),
-                SettingBoxItem(
-                    title: '이벤트 확인하기',
-                    description: '진행 중인 다양한 이벤트를 확인해보세요.',
-                    backgroundColor: const Color.fromARGB(255, 226, 226, 226),
-                    event: () {
-                      Get.toNamed(Routes.events);
-                    }),
-                SettingBoxItem(
-                    title: '개인정보처리방침',
-                    description: '개인정보처리방침을 확인할 수 있습니다.',
-                    backgroundColor: const Color.fromARGB(255, 226, 226, 226),
-                    event: () async {
-                      String webviewLink = dotenv.get("WEBVIEW_SERVER");
-                      final Uri url = Uri.parse('$webviewLink/privacyPolicy');
-                      if (!await launchUrl(url)) {
-                        throw Exception('Could not launch $url');
-                      }
-                    }),
-                SettingBoxItem(
-                    title: '서비스 이용약관',
-                    description: '이용약관을 확인할 수 있습니다.',
-                    backgroundColor: const Color.fromARGB(255, 226, 226, 226),
-                    event: () async {
-                      String webviewLink = dotenv.get("WEBVIEW_SERVER");
-                      final Uri url = Uri.parse('$webviewLink/termsOfUse');
-                      if (!await launchUrl(url)) {
-                        throw Exception('Could not launch $url');
-                      }
-                    }),
-                SettingBoxItem(
-                    title: '로그아웃',
-                    description: '로그인 시 더 다양한 기능을 확인할 수 있습니다.',
-                    backgroundColor: const Color.fromARGB(255, 226, 226, 226),
-                    event: () {
-                      settingController.logout(context);
-                    }),
-                SettingBoxItem(
-                    title: '탈퇴하기',
-                    description: '탈퇴 시 기능이 제한될 수 있습니다.',
-                    backgroundColor: const Color.fromARGB(255, 226, 226, 226),
-                    event: () {
-                      Get.toNamed(Routes.deleteAccount);
-                    }),
-                SettingBoxItem(
-                    title: '앱 버전',
-                    description: 'v1.0.1',
-                    backgroundColor: const Color.fromARGB(255, 226, 226, 226),
-                    event: () {
-                      print('클릭');
-                    }),
+                Column(
+                  children: [
+                    const SizedBox(height: 30),
+                    GestureDetector(
+                      onTap: () => Get.toNamed(Routes.profileUpdate),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                                width: 50,
+                                height: 50,
+                                child: Obx(() {
+                                  return settingController.isLoading.value
+                                      ? ClipOval(
+                                          child: Container(
+                                              width: 50,
+                                              height: 50,
+                                              color: Colors.black38))
+                                      : ClipOval(
+                                          child: Image.network(
+                                          settingController.user.profile,
+                                          width: 50,
+                                          height: 50,
+                                          fit: BoxFit.cover,
+                                        ));
+                                })),
+                            const SizedBox(width: 10),
+                            Obx(() => Text(
+                                settingController.isLoading.value
+                                    ? '로딩'
+                                    : settingController.user.nickname,
+                                style:
+                                    Theme.of(context).textTheme.titleMedium)),
+                            const SizedBox(width: 10),
+                            const Icon(
+                              CupertinoIcons.chevron_right,
+                              color: Colors.black,
+                              size: 16,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 25),
+                    const Divider(
+                      height: 1,
+                      color: Colors.black12,
+                    ),
+                    const SettingButtonBoxs(),
+                    const Divider(
+                      height: 1,
+                      color: Colors.black12,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        children: [
+                          SettingSnsBoxItem(
+                              text: "인스타그램",
+                              onTap: () {},
+                              img: "assets/image/sns/instagram.png"),
+                          SettingSnsBoxItem(
+                              text: "네이버 블로그",
+                              onTap: () async {
+                                String link = dotenv.get("NAVER_BLOG");
+                                final Uri url = Uri.parse(link);
+                                if (!await launchUrl(url)) {
+                                  throw Exception('Could not launch $url');
+                                }
+                              },
+                              img: "assets/image/sns/blog-pencil.png"),
+                          SettingSnsBoxItem(
+                              text: "티스토리 블로그",
+                              onTap: () async {
+                                String link = dotenv.get("TISTORY");
+                                final Uri url = Uri.parse(link);
+                                if (!await launchUrl(url)) {
+                                  throw Exception('Could not launch $url');
+                                }
+                              },
+                              img: "assets/image/sns/blog-text.png")
+                        ],
+                      ),
+                    ),
+                    const Divider(
+                      height: 1,
+                      color: Colors.black12,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("현재 앱 버전",
+                                  style: appTheme.textTheme.bodyLarge),
+                              const SizedBox(height: 5),
+                              Text("v0.0.1",
+                                  style: appTheme.textTheme.bodyMedium),
+                            ],
+                          ),
+                          SimpleButton(text: "업데이트", event: () {})
+                        ],
+                      ),
+                    ),
+                    const Divider(
+                      height: 1,
+                      color: Colors.black12,
+                    ),
+                    SettingBoxItem(
+                        title: '이벤트 확인하기',
+                        description: '진행 중인 다양한 이벤트를 확인해보세요.',
+                        event: () {
+                          Get.toNamed(Routes.events);
+                        }),
+                    SettingBoxItem(
+                        title: '개인정보처리방침',
+                        description: '개인정보처리방침을 확인할 수 있습니다.',
+                        event: () async {
+                          String webviewLink = dotenv.get("WEBVIEW_SERVER");
+                          final Uri url =
+                              Uri.parse('$webviewLink/privacyPolicy');
+                          if (!await launchUrl(url)) {
+                            throw Exception('Could not launch $url');
+                          }
+                        }),
+                    SettingBoxItem(
+                        title: '서비스 이용약관',
+                        description: '이용약관을 확인할 수 있습니다.',
+                        event: () async {
+                          String webviewLink = dotenv.get("WEBVIEW_SERVER");
+                          final Uri url = Uri.parse('$webviewLink/termsOfUse');
+                          if (!await launchUrl(url)) {
+                            throw Exception('Could not launch $url');
+                          }
+                        }),
+                    SettingBoxItem(
+                        title: '로그아웃',
+                        description: '로그인 시 더 다양한 기능을 확인할 수 있습니다.',
+                        event: () {
+                          settingController.logout(context);
+                        }),
+                    SettingBoxItem(
+                        title: '탈퇴하기',
+                        description: '탈퇴 시 기능이 제한될 수 있습니다.',
+                        event: () {
+                          Get.toNamed(Routes.deleteAccount);
+                        }),
+                  ],
+                )
               ],
-            )
-          ],
+            ),
+          ),
         )),
       ),
     );

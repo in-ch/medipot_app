@@ -31,6 +31,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Navigator.of(context).popUntil((route) => route.isFirst);
+
     return MaterialApp(
       home: Scaffold(
         body: isAuth ? _buildPage(_currentIndex) : LoginPage(),

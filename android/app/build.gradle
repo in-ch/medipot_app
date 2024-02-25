@@ -32,7 +32,7 @@ apply plugin: 'com.google.firebase.crashlytics'
 
 android {
     namespace "com.inch.medipot_app"
-    compileSdkVersion 33
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
