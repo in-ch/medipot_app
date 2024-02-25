@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:medipot_app/app/views/views.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'package:medipot_app/app/style/theme.dart';
 import 'package:medipot_app/app/pages/pages.dart';
 
 class MapSubPage extends StatefulWidget {
@@ -81,16 +81,12 @@ class MapSubPageState extends State<MapSubPage> {
             Expanded(
               child: SizedBox(
                   child: isLoading
-                      ? SizedBox(
+                      ? const SizedBox(
                           width: double.infinity,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              CircularProgressIndicator(
-                                color: colorScheme.primary,
-                              ),
-                            ],
+                            children: [AnimatedCrossFadeScreen()],
                           ),
                         )
                       : WebViewWidget(controller: controller)),
