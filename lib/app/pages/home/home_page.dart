@@ -31,7 +31,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Navigator.of(context).popUntil((route) => route.isFirst);
+    if (Theme.of(context).platform == TargetPlatform.android) {
+      Navigator.of(context).popUntil((route) => route.isFirst);
+    }
 
     return MaterialApp(
       home: Scaffold(

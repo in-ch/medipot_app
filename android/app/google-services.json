@@ -1,40 +1,40 @@
 {
   "project_info": {
-    "project_number": "660208338749",
-    "project_id": "medipot-app-d950d",
-    "storage_bucket": "medipot-app-d950d.appspot.com"
+    "project_number": "865112705620",
+    "project_id": "medipot-app-ee177",
+    "storage_bucket": "medipot-app-ee177.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:660208338749:android:7ebae2df5d132339962754",
+        "mobilesdk_app_id": "1:865112705620:android:33374255052949e7abfbc1",
         "android_client_info": {
           "package_name": "com.inch.medipot_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "660208338749-tskdbnlts9smr8eqtgs5o74d40kkg6q8.apps.googleusercontent.com",
+          "client_id": "865112705620-vvjivlboc8doulh18sbt85qggdpm30n2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAi-f52_vKDRhe6_ZLMcuwZ3zoEI3_WH8I"
+          "current_key": "AIzaSyA6e-eL0gFQLww2F0TfIEQVtFkvDsvCYL0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "660208338749-tskdbnlts9smr8eqtgs5o74d40kkg6q8.apps.googleusercontent.com",
+              "client_id": "865112705620-vvjivlboc8doulh18sbt85qggdpm30n2.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "660208338749-8sarce80ga0f5jcv7830i6tni9n5q4ck.apps.googleusercontent.com",
+              "client_id": "865112705620-8a6n90iosas2ghobo30va9i3huskv25i.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.inch.medipotApp"
+                "bundle_id": "com.example.medipotApp"
               }
             }
           ]
