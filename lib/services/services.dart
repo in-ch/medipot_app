@@ -8,3 +8,4 @@ export './consult_service.dart';
 export './user_service.dart';
 export './common_service.dart';
 export './event_service.dart';
+export './phone_service.dart';

@@ -3,6 +3,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:medipot_app/app/routes/routes.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -60,7 +61,7 @@ class LocationDetailController extends GetxController {
       final response = await UserService.getMe();
       final data = response.data;
       if (data.phone != "") {
-        print(data.phone);
+        Get.toNamed(Routes.phone);
         // showDialog(
         //   context: context,
         //   builder: (BuildContext context) {
