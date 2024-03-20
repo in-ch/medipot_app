@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+
 import 'package:medipot_app/app/bindings/bindings.dart';
 import 'package:medipot_app/app/pages/pages.dart';
 import 'package:medipot_app/app/routes/routes.dart';
@@ -19,7 +20,7 @@ export './setting/profile_setting.dart';
 export './setting/delete_account.dart';
 export './event/events_page.dart';
 import './consultList/consult_list_page.dart';
-import 'csCenter/cs_center_page.dart';
+import './csCenter/cs_center_page.dart';
 
 abstract class AppPages {
   static final pages = [

@@ -1,7 +1,13 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import 'package:medipot_app/services/services.dart';
+import 'package:medipot_app/app/views/views.dart';
 
 class LocationDetailController extends GetxController {
   RxBool isLoading = true.obs;
@@ -31,7 +37,47 @@ class LocationDetailController extends GetxController {
         )
         ..loadRequest(Uri.parse('$webviewLink/location/detail/$locationNo'));
     });
-    // update();
     super.onInit();
+  }
+
+  /// [Method]
+  /// [description] 전화 문의하기
+  void makePhoneCall(
+    String phoneNumber,
+  ) async {
+    String url = 'tel:$phoneNumber';
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      Get.snackbar("전화 걸기에 실패하였습니다.", "지속 발생 시 관리자에게 문의해주세요.");
+    }
+  }
+
+  /// [Method]
+  /// [description] 프리미엄 리포트 신청하기
+  void requestPremiumReport(BuildContext context) async {
+    try {
+      final response = await UserService.getMe();
+      final data = response.data;
+      if (data.phone != "") {
+        print(data.phone);
+        // showDialog(
+        //   context: context,
+        //   builder: (BuildContext context) {
+        //     return const PhoneValidationModal();
+        //   },
+        // );
+      } else {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return const PhoneValidationModal();
+          },
+        );
+      }
+    } catch (error) {
+      Get.snackbar("서버 문제가 발생하였습니다.", "지속 발생 시 관리자에게 문의해주세요.");
+      rethrow;
+    }
   }
 }

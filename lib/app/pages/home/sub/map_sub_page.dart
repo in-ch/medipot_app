@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
-import 'package:medipot_app/app/views/views.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'package:medipot_app/app/pages/pages.dart';
+import 'package:medipot_app/app/routes/routes.dart';
+import 'package:medipot_app/app/views/views.dart';
 
 class MapSubPage extends StatefulWidget {
   const MapSubPage({Key? key}) : super(key: key);
@@ -51,6 +52,11 @@ class MapSubPageState extends State<MapSubPage> {
           )
           ..loadRequest(Uri.parse(
               '$webviewLink/webview?user_token_refresh_token=$accessToken///$refreshToken'));
+        controller.addJavaScriptChannel("medipot",
+            onMessageReceived: (JavaScriptMessage message) {
+          Get.toNamed(Routes.locationDetail,
+              arguments: {'locationNo': int.parse(message.message)});
+        });
       } else {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setBool('isLogin', false);

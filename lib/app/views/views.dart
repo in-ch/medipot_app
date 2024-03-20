@@ -15,8 +15,10 @@ export './feed/feeds.dart';
 export './feed/feed_buttons.dart';
 export './feed/feed_image.dart';
 
-export './small_circle.dart';
 export './modals/follow_modal.dart';
+export './modals/phone_validation_modal.dart';
+
+export './small_circle.dart';
 export './avatar.dart';
 export './department_card.dart';
 export './nested_comment_list.dart';
