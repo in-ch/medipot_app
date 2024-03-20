@@ -49,6 +49,7 @@ flutter:
     - assets/image/sns/instagram.png
     - assets/image/sns/blog-text.png
     - assets/image/sns/blog-pencil.png
+    - assets/image/phoneValidation.png
 
   fonts:
     - family: PretendardBold
