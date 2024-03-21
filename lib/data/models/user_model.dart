@@ -48,7 +48,7 @@ class MeUser {
       no: json['no'],
       nickname: json['nickname'],
       profile: json['profile'],
-      phone: json['phone'],
+      phone: json['phone'] ?? '',
     );
   }
 }

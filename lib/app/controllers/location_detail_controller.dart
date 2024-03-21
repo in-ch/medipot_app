@@ -59,7 +59,7 @@ class LocationDetailController extends GetxController {
     try {
       final response = await UserService.getMe();
       final data = response.data;
-      if (data.phone != "") {
+      if (data.phone == '') {
         showModalBottomSheet<void>(
           context: context,
           builder: (BuildContext context) {
@@ -67,12 +67,7 @@ class LocationDetailController extends GetxController {
           },
         );
       } else {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return const PhoneValidationModal();
-          },
-        );
+        print('프리미엄 리포트 보내기');
       }
     } catch (error) {
       Get.snackbar("서버 문제가 발생하였습니다.", "지속 발생 시 관리자에게 문의해주세요.");

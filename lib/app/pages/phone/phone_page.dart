@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'package:medipot_app/app/controllers/controllers.dart';
-import 'package:medipot_app/app/routes/routes.dart';
 import 'package:medipot_app/app/style/theme.dart';
 
 class PhonePage extends GetView<PhoneController> {
@@ -81,14 +81,23 @@ class PhonePage extends GetView<PhoneController> {
                                   .displayMedium!
                                   .copyWith(color: Colors.black38),
                             ),
-                            const Expanded(
+                            Expanded(
                               child: Padding(
-                                padding: EdgeInsets.only(bottom: 2.0),
+                                padding: const EdgeInsets.only(bottom: 2.0),
                                 child: TextField(
-                                  style: TextStyle(fontSize: 14),
-                                  decoration: InputDecoration(
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'[0-9]')),
+                                  ],
+                                  maxLength: 8,
+                                  controller: controller.textEditingController,
+                                  focusNode: controller.focusNode,
+                                  style: const TextStyle(fontSize: 14),
+                                  decoration: const InputDecoration(
                                     border: InputBorder.none,
                                     hintText: '12345678',
+                                    counterText: "",
                                     hintStyle: TextStyle(color: Colors.black38),
                                     fillColor: Colors.transparent,
                                     filled: true,
@@ -102,37 +111,40 @@ class PhonePage extends GetView<PhoneController> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsets.only(top: 30, left: 30.0, right: 30.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Get.toNamed(Routes.phonePin,
-                            arguments: {'phone': '01012345678'});
-                      },
-                      child: Container(
-                          decoration: BoxDecoration(
-                            color: colorScheme.primary,
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                          ),
-                          width: double.infinity,
-                          height: 45,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                "인증번호 보내기",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleSmall!
-                                    .copyWith(color: Colors.white),
-                              ),
-                            ],
-                          )),
-                    ),
-                  ),
+                      padding: const EdgeInsets.only(
+                          top: 30, left: 30.0, right: 30.0),
+                      child: Obx(() {
+                        return AbsorbPointer(
+                          absorbing: !controller.isValid.value,
+                          child: GestureDetector(
+                              onTap: () => controller.sendValidationCode(),
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                    color: controller.isValid.value
+                                        ? colorScheme.primary
+                                        : Colors.black38,
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
+                                  ),
+                                  width: double.infinity,
+                                  height: 45,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "인증번호 보내기",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall!
+                                            .copyWith(color: Colors.white),
+                                      ),
+                                    ],
+                                  ))),
+                        );
+                      })),
                 ],
               ))),
     );
