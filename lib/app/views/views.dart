@@ -8,7 +8,7 @@ export './common/tag.dart';
 export './common/big_tag.dart';
 export './common/simple_button.dart';
 export './common/accordion.dart';
-export 'common/animated_cross_fade_screen.dart';
+export './common/animated_cross_fade_screen.dart';
 
 export './feed/feed.dart';
 export './feed/feeds.dart';
@@ -22,6 +22,7 @@ export './small_circle.dart';
 export './avatar.dart';
 export './department_card.dart';
 export './nested_comment_list.dart';
+export './pin_code_input.dart';
 
 export './favorites/like_locations.dart';
 export './favorites/like_location_item.dart';

@@ -100,7 +100,7 @@ class _PhoneValidationModalState extends State<PhoneValidationModal> {
                           .copyWith(color: colorScheme.primary)),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

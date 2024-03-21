@@ -10,4 +10,5 @@ abstract class Routes {
   static const consultList = '/consultList';
   static const csCenter = '/csCenter';
   static const phone = '/phone';
+  static const phonePin = '/phonePin';
 }
