@@ -26,7 +26,7 @@ class LoginUserData {
       no: json['no'],
       email: json['email'],
       nickname: json['nickname'],
-      phone: json['phone'],
+      phone: json['phone'] ?? '',
       profile: json['profile'],
       token: json['token'],
       refreshToken: json['refresh_token'],

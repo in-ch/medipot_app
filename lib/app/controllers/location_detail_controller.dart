@@ -35,7 +35,8 @@ class LocationDetailController extends GetxController {
             onWebResourceError: (WebResourceError error) {},
           ),
         )
-        ..loadRequest(Uri.parse('$webviewLink/location/detail/$locationNo'));
+        ..loadRequest(Uri.parse(
+            '$webviewLink/location/detail/$locationNo?isWebview=true'));
     });
     super.onInit();
   }
@@ -67,7 +68,14 @@ class LocationDetailController extends GetxController {
           },
         );
       } else {
-        print('프리미엄 리포트 보내기');
+        final locationNo = Get.arguments['locationNo'];
+        final response = await LocationService.requestPremiumReport(locationNo);
+        final statusCode = response;
+        if (statusCode == 200) {
+          Get.snackbar("프리미엄 리포트 신청이 완료되었습니다.", "영업일 기준 1~2일 내로 리포트가 도착합니다.");
+        } else {
+          Get.snackbar("서버 문제가 발생하였습니다.", "지속 발생 시 관리자에게 문의해주세요.");
+        }
       }
     } catch (error) {
       Get.snackbar("서버 문제가 발생하였습니다.", "지속 발생 시 관리자에게 문의해주세요.");
