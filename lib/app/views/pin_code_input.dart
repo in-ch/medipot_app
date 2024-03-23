@@ -1,36 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
-class PinCodeInput extends StatefulWidget {
-  const PinCodeInput({super.key});
+import 'package:medipot_app/app/controllers/controllers.dart';
 
-  @override
-  PinCodeInputState createState() => PinCodeInputState();
-}
-
-class PinCodeInputState extends State<PinCodeInput> {
-  late List<FocusNode> _focusNodes;
-  late List<TextEditingController> _controllers;
-
-  @override
-  void initState() {
-    super.initState();
-    _focusNodes = List.generate(6, (index) => FocusNode());
-    _controllers = List.generate(6, (index) => TextEditingController());
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _focusNodes[0].requestFocus();
-    });
-  }
-
-  @override
-  void dispose() {
-    for (var controller in _controllers) {
-      controller.dispose();
-    }
-    for (var focusNode in _focusNodes) {
-      focusNode.dispose();
-    }
-    super.dispose();
-  }
+class PinCodeInput extends GetView<PhoneController> {
+  const PinCodeInput({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +27,14 @@ class PinCodeInputState extends State<PinCodeInput> {
               style: const TextStyle(
                 fontSize: 12,
               ),
-              controller: _controllers[index],
-              focusNode: _focusNodes[index],
+              controller: controller.pinControllers[index],
+              focusNode: controller.focusPinNodes[index],
               textAlign: TextAlign.center,
               maxLength: 1,
               keyboardType: TextInputType.number,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+              ],
               decoration: const InputDecoration(
                 counterText: '',
                 border: InputBorder.none,
@@ -64,11 +42,13 @@ class PinCodeInputState extends State<PinCodeInput> {
               onChanged: (String value) {
                 if (value.isNotEmpty) {
                   if (index < 5) {
-                    FocusScope.of(context).requestFocus(_focusNodes[index + 1]);
+                    FocusScope.of(context)
+                        .requestFocus(controller.focusPinNodes[index + 1]);
                   }
                 } else {
                   if (index > 0) {
-                    FocusScope.of(context).requestFocus(_focusNodes[index - 1]);
+                    FocusScope.of(context)
+                        .requestFocus(controller.focusPinNodes[index - 1]);
                   }
                 }
               },
