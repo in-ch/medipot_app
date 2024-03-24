@@ -15,6 +15,7 @@ class _PhoneValidationModalState extends State<PhoneValidationModal> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 320,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
@@ -27,7 +28,7 @@ class _PhoneValidationModalState extends State<PhoneValidationModal> {
           children: <Widget>[
             SizedBox(
               width: double.infinity,
-              height: 20,
+              height: 40,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,12 +44,6 @@ class _PhoneValidationModalState extends State<PhoneValidationModal> {
                 ],
               ),
             ),
-            const Image(
-              image: AssetImage('assets/image/phoneValidation.png'),
-              width: 230,
-              height: 230,
-              fit: BoxFit.fill,
-            ),
             const SizedBox(height: 20),
             Text(
               "휴대전화 인증이 필요합니다.",
@@ -59,7 +54,7 @@ class _PhoneValidationModalState extends State<PhoneValidationModal> {
               "인증을 진행하시겠습니까?",
               style: Theme.of(context).textTheme.titleSmall,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20, top: 5),
               child: SizedBox(
