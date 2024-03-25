@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>865112705620-fnhl6s78is1b0ur06b1vkidjo2hous4c.apps.googleusercontent.com</string>
+	<string>660208338749-8sarce80ga0f5jcv7830i6tni9n5q4ck.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.865112705620-fnhl6s78is1b0ur06b1vkidjo2hous4c</string>
+	<string>com.googleusercontent.apps.660208338749-8sarce80ga0f5jcv7830i6tni9n5q4ck</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBp2y2VRRFx5w0f2Zn5i5po46je4kAtsHU</string>
+	<string>AIzaSyBgjx8H_boLaL26HO6XOXg41Wo7yZ0J2uE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>865112705620</string>
+	<string>660208338749</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.inch.medipotApp</string>
 	<key>PROJECT_ID</key>
-	<string>medipot-app-ee177</string>
+	<string>medipot-app-d950d</string>
 	<key>STORAGE_BUCKET</key>
-	<string>medipot-app-ee177.appspot.com</string>
+	<string>medipot-app-d950d.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:865112705620:ios:633c418734f0958cabfbc1</string>
+	<string>1:660208338749:ios:9763ad39761c6a1d962754</string>
 </dict>
 </plist>

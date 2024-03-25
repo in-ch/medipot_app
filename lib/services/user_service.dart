@@ -101,4 +101,31 @@ class UserService {
 
     return responseData["statusCode"] == 200;
   }
+
+  static Future<bool> sendValidationCode(String phone) async {
+    String apiServer = dotenv.get("API_SERVER");
+    final url = Uri.parse('$apiServer/auth/phone/validation/send');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString('accessToken');
+    final headers = {'Authorization': 'Bearer $accessToken'};
+    final body = {"phone": "01056922949"};
+
+    final response = await http.post(url, headers: headers, body: body);
+    final responseData = jsonDecode(response.body);
+
+    return responseData["statusCode"] == 200;
+  }
+
+  static Future<bool> validationCode(String code, String phone) async {
+    String apiServer = dotenv.get("API_SERVER");
+    final url = Uri.parse('$apiServer/auth/phone/validation');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString('accessToken');
+    final headers = {'Authorization': 'Bearer $accessToken'};
+    final body = {"code": code, "phone": phone};
+    final response = await http.post(url, headers: headers, body: body);
+    final responseData = jsonDecode(response.body);
+
+    return responseData["statusCode"] == 200;
+  }
 }
