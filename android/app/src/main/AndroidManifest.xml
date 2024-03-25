@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="medipot_app"
+        android:label="닥스팟"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
@@ -8,7 +8,6 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="high_importance_channel" />
-                
         <activity android:name=".DeepLinkActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
