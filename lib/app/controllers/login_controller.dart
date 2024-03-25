@@ -6,14 +6,12 @@ import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:get/get.dart';
 
 import 'package:medipot_app/app/pages/pages.dart';
-import 'package:medipot_app/app/utils/utils.dart';
 import 'package:medipot_app/services/services.dart';
 
 class LoginController extends GetxController {
   /// [Method]
   /// [description] 카카오 로그인
   Future<void> kakaoLogin(BuildContext context) async {
-    final scaffold = ScaffoldMessenger.of(context);
     if (await isKakaoTalkInstalled()) {
       try {
         OAuthToken token = await UserApi.instance.loginWithKakaoTalk();
@@ -37,7 +35,7 @@ class LoginController extends GetxController {
             ),
           );
         } catch (error) {
-          showToast(scaffold, '카카오톡 로그인에 실패하였습니다.');
+          Get.snackbar("로그인 실패", "카카오톡 로그인에 실패하였습니다.");
         }
       }
     } else {
@@ -50,7 +48,7 @@ class LoginController extends GetxController {
           ),
         );
       } catch (error) {
-        showToast(scaffold, '카카오톡 로그인에 실패하였습니다.');
+        Get.snackbar("로그인 실패", "카카오톡 로그인에 실패하였습니다.");
       }
     }
   }

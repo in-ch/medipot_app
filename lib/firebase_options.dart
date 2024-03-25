@@ -50,21 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA6e-eL0gFQLww2F0TfIEQVtFkvDsvCYL0',
-    appId: '1:865112705620:android:33374255052949e7abfbc1',
-    messagingSenderId: '865112705620',
-    projectId: 'medipot-app-ee177',
-    storageBucket: 'medipot-app-ee177.appspot.com',
+    apiKey: 'AIzaSyAi-f52_vKDRhe6_ZLMcuwZ3zoEI3_WH8I',
+    appId: '1:660208338749:android:7ebae2df5d132339962754',
+    messagingSenderId: '660208338749',
+    projectId: 'medipot-app-d950d',
+    storageBucket: 'medipot-app-d950d.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBp2y2VRRFx5w0f2Zn5i5po46je4kAtsHU',
-    appId: '1:865112705620:ios:633c418734f0958cabfbc1',
-    messagingSenderId: '865112705620',
-    projectId: 'medipot-app-ee177',
-    storageBucket: 'medipot-app-ee177.appspot.com',
-    iosClientId:
-        '865112705620-fnhl6s78is1b0ur06b1vkidjo2hous4c.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBgjx8H_boLaL26HO6XOXg41Wo7yZ0J2uE',
+    appId: '1:660208338749:ios:9763ad39761c6a1d962754',
+    messagingSenderId: '660208338749',
+    projectId: 'medipot-app-d950d',
+    storageBucket: 'medipot-app-d950d.appspot.com',
+    iosClientId: '660208338749-8sarce80ga0f5jcv7830i6tni9n5q4ck.apps.googleusercontent.com',
     iosBundleId: 'com.inch.medipotApp',
   );
 }

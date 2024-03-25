@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+
 import 'package:medipot_app/app/bindings/bindings.dart';
 import 'package:medipot_app/app/pages/pages.dart';
 import 'package:medipot_app/app/routes/routes.dart';
@@ -19,7 +20,9 @@ export './setting/profile_setting.dart';
 export './setting/delete_account.dart';
 export './event/events_page.dart';
 import './consultList/consult_list_page.dart';
-import 'csCenter/cs_center_page.dart';
+import './csCenter/cs_center_page.dart';
+import './phone/phone_page.dart';
+import './phone/phone_pin_page.dart';
 
 abstract class AppPages {
   static final pages = [
@@ -78,6 +81,16 @@ abstract class AppPages {
         name: Routes.csCenter,
         page: () => const CsCenterPage(),
         transition: Transition.cupertino,
-        bindings: [CsCenterBinding()])
+        bindings: [CsCenterBinding()]),
+    GetPage(
+        name: Routes.phone,
+        page: () => const PhonePage(),
+        transition: Transition.cupertino,
+        bindings: [PhoneBinding()]),
+    GetPage(
+        name: Routes.phonePin,
+        page: () => const PhonePinPage(),
+        transition: Transition.cupertino,
+        bindings: [PhoneBinding()]),
   ];
 }
