@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'package:medipot_app/app/style/theme.dart';
-import 'package:medipot_app/app/controllers/controllers.dart';
+import 'package:docspot_app/app/style/theme.dart';
+import 'package:docspot_app/app/controllers/controllers.dart';
 
 class LocationDetailPage extends GetView<LocationDetailController> {
   const LocationDetailPage({Key? key}) : super(key: key);

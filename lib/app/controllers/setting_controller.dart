@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:medipot_app/data/models/models.dart';
-import 'package:medipot_app/services/services.dart';
-import 'package:medipot_app/app/pages/pages.dart';
-import 'package:medipot_app/app/utils/utils.dart';
+import 'package:docspot_app/data/models/models.dart';
+import 'package:docspot_app/services/services.dart';
+import 'package:docspot_app/app/pages/pages.dart';
+import 'package:docspot_app/app/utils/utils.dart';
 
 class SettingController extends GetxController {
   RxBool isLoading = false.obs;

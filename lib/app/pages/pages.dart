@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
-import 'package:medipot_app/app/bindings/bindings.dart';
-import 'package:medipot_app/app/pages/pages.dart';
-import 'package:medipot_app/app/routes/routes.dart';
+import 'package:docspot_app/app/bindings/bindings.dart';
+import 'package:docspot_app/app/pages/pages.dart';
+import 'package:docspot_app/app/routes/routes.dart';
 
 export '../controllers/controllers.dart';
 

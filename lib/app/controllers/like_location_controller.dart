@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-import 'package:medipot_app/app/utils/utils.dart';
-import 'package:medipot_app/data/models/models.dart';
-import 'package:medipot_app/services/services.dart';
+import 'package:docspot_app/app/utils/utils.dart';
+import 'package:docspot_app/data/models/models.dart';
+import 'package:docspot_app/services/services.dart';
 
 class LikeLocationController extends GetxController {
   RxInt page = 0.obs;

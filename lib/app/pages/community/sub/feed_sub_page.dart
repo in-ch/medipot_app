@@ -1,10 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api
 import 'package:flutter/material.dart';
 
-import 'package:medipot_app/app/constants/constants.dart';
-import 'package:medipot_app/app/style/theme.dart';
-import 'package:medipot_app/app/views/views.dart';
-import 'package:medipot_app/data/models/models.dart';
+import 'package:docspot_app/app/constants/constants.dart';
+import 'package:docspot_app/app/style/theme.dart';
+import 'package:docspot_app/app/views/views.dart';
+import 'package:docspot_app/data/models/models.dart';
 
 class FeedSubPage extends StatefulWidget {
   const FeedSubPage({super.key});

@@ -1,4 +1,4 @@
-import 'package:medipot_app/data/models/models.dart';
+import 'package:docspot_app/data/models/models.dart';
 
 class NestedReply {
   final int no;

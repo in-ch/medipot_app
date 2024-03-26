@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:uni_links/uni_links.dart';
 import 'package:get/get.dart';
 
-import 'package:medipot_app/app/pages/pages.dart';
+import 'package:docspot_app/app/pages/pages.dart';
 
 class DynamicLink {
   Future<bool> setup() async {

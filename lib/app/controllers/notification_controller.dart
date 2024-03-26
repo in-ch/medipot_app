@@ -1,6 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
-import 'package:medipot_app/data/models/models.dart';
+
+import 'package:docspot_app/data/models/models.dart';
 
 class NotificationController extends GetxController {
   FirebaseMessaging messaging = FirebaseMessaging.instance;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:medipot_app/app/controllers/controllers.dart';
-import 'package:medipot_app/app/style/theme.dart';
-import 'package:medipot_app/app/views/views.dart';
+import 'package:docspot_app/app/controllers/controllers.dart';
+import 'package:docspot_app/app/style/theme.dart';
+import 'package:docspot_app/app/views/views.dart';
 
 class FavoritesSubPage extends GetView<FavoritesController> {
   const FavoritesSubPage({Key? key}) : super(key: key);

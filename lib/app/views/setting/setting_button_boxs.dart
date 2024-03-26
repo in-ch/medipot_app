@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:medipot_app/app/routes/routes.dart';
+import 'package:docspot_app/app/routes/routes.dart';
 
 class SettingButtonBoxs extends StatelessWidget {
   const SettingButtonBoxs({super.key});

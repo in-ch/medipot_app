@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:medipot_app/data/models/models.dart';
-import 'package:medipot_app/services/services.dart';
+import 'package:docspot_app/data/models/models.dart';
+import 'package:docspot_app/services/services.dart';
 
 class NestedReplyController extends GetxController {
   RxBool isLoading = false.obs;
