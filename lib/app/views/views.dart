@@ -23,6 +23,7 @@ export './avatar.dart';
 export './department_card.dart';
 export './nested_comment_list.dart';
 export './pin_code_input.dart';
+export './terms_and_privacy.dart';
 
 export './favorites/like_locations.dart';
 export './favorites/like_location_item.dart';
