@@ -130,11 +130,15 @@ class _SettingSubPageState extends State<SettingSubPage> {
                               Text("현재 앱 버전",
                                   style: appTheme.textTheme.bodyLarge),
                               const SizedBox(height: 5),
-                              Text("v0.0.1",
+                              Text("v1.0.0",
                                   style: appTheme.textTheme.bodyMedium),
                             ],
                           ),
-                          SimpleButton(text: "업데이트", event: () {})
+                          SimpleButton(
+                              text: "업데이트",
+                              event: () {
+                                Get.snackbar("최신 버전의 앱입니다,", "현재 버전: 1.0.0");
+                              })
                         ],
                       ),
                     ),
