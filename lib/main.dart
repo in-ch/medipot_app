@@ -9,11 +9,11 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
-import 'package:medipot_app/app/routes/routes.dart';
-import 'package:medipot_app/app/pages/pages.dart';
-import 'package:medipot_app/app/style/theme.dart';
-import 'package:medipot_app/data/models/models.dart';
-import 'package:medipot_app/firebase_options.dart';
+import 'package:docspot_app/app/routes/routes.dart';
+import 'package:docspot_app/app/pages/pages.dart';
+import 'package:docspot_app/app/style/theme.dart';
+import 'package:docspot_app/data/models/models.dart';
+import 'package:docspot_app/firebase_options.dart';
 
 void main() async {
   await dotenv.load(fileName: '.env');

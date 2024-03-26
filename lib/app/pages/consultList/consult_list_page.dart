@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-import 'package:medipot_app/app/controllers/controllers.dart';
-import 'package:medipot_app/app/style/theme.dart';
-import 'package:medipot_app/app/views/views.dart';
+import 'package:docspot_app/app/controllers/controllers.dart';
+import 'package:docspot_app/app/style/theme.dart';
+import 'package:docspot_app/app/views/views.dart';
 
 class ConsultListPage extends GetView<ConsultListController> {
   const ConsultListPage({super.key});

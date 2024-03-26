@@ -4,10 +4,10 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:medipot_app/app/pages/pages.dart';
-import 'package:medipot_app/app/routes/routes.dart';
-import 'package:medipot_app/app/style/theme.dart';
-import 'package:medipot_app/app/views/views.dart';
+import 'package:docspot_app/app/pages/pages.dart';
+import 'package:docspot_app/app/routes/routes.dart';
+import 'package:docspot_app/app/style/theme.dart';
+import 'package:docspot_app/app/views/views.dart';
 
 class SettingSubPage extends StatefulWidget {
   const SettingSubPage({Key? key}) : super(key: key);
@@ -88,10 +88,10 @@ class _SettingSubPageState extends State<SettingSubPage> {
                       padding: const EdgeInsets.all(20),
                       child: Column(
                         children: [
-                          SettingSnsBoxItem(
-                              text: "인스타그램",
-                              onTap: () {},
-                              img: "assets/image/sns/instagram.png"),
+                          // SettingSnsBoxItem(
+                          //     text: "인스타그램",
+                          //     onTap: () {},
+                          //     img: "assets/image/sns/instagram.png"),
                           SettingSnsBoxItem(
                               text: "네이버 블로그",
                               onTap: () async {
@@ -130,11 +130,15 @@ class _SettingSubPageState extends State<SettingSubPage> {
                               Text("현재 앱 버전",
                                   style: appTheme.textTheme.bodyLarge),
                               const SizedBox(height: 5),
-                              Text("v0.0.1",
+                              Text("v1.0.1",
                                   style: appTheme.textTheme.bodyMedium),
                             ],
                           ),
-                          SimpleButton(text: "업데이트", event: () {})
+                          SimpleButton(
+                              text: "업데이트",
+                              event: () {
+                                Get.snackbar("최신 버전의 앱입니다,", "현재 버전: 1.0.0");
+                              })
                         ],
                       ),
                     ),

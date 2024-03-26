@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import 'package:medipot_app/app/controllers/controllers.dart';
+import 'package:docspot_app/app/controllers/controllers.dart';
 
 class PinCodeInput extends GetView<PhoneController> {
   const PinCodeInput({Key? key}) : super(key: key);

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:medipot_app/app/controllers/controllers.dart';
+import 'package:docspot_app/app/controllers/controllers.dart';
+import 'package:docspot_app/app/views/terms_and_privacy.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -48,38 +49,43 @@ class LoginPage extends StatelessWidget {
             ),
             Expanded(
               flex: 1,
-              child: Center(
-                child: SizedBox(
-                  width: 0.8 * MediaQuery.of(context).size.width,
-                  height: 50,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFf6e10c),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      elevation: 0,
-                    ),
-                    onPressed: () async {
-                      controller.kakaoLogin(context);
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/image/kakao_logo.png',
-                          width: 40,
-                          height: 40,
+              child: Column(
+                children: [
+                  Center(
+                    child: SizedBox(
+                      width: 0.8 * MediaQuery.of(context).size.width,
+                      height: 50,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFf6e10c),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          elevation: 0,
                         ),
-                        const SizedBox(width: 10),
-                        const Text("카카오로 시작하기",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'PretendardRegular')),
-                      ],
+                        onPressed: () async {
+                          controller.kakaoLogin(context);
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/image/kakao_logo.png',
+                              width: 40,
+                              height: 40,
+                            ),
+                            const SizedBox(width: 10),
+                            const Text("카카오로 계속하기",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: 'PretendardRegular')),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                  const TermsAndPrivacyPolicy(),
+                ],
               ),
             ),
           ],

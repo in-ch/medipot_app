@@ -3,11 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
-import 'package:medipot_app/app/routes/routes.dart';
-import 'package:medipot_app/app/style/theme.dart';
-import 'package:medipot_app/app/utils/utils.dart';
-import 'package:medipot_app/app/views/views.dart';
-import 'package:medipot_app/data/models/models.dart';
+import 'package:docspot_app/app/routes/routes.dart';
+import 'package:docspot_app/app/style/theme.dart';
+import 'package:docspot_app/app/utils/utils.dart';
+import 'package:docspot_app/app/views/views.dart';
+import 'package:docspot_app/data/models/models.dart';
 
 class FeedWidget extends StatelessWidget {
   FeedWidget(

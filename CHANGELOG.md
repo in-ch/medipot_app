@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.0.1 (2024-03-26)
+
+### Bug Fixes
+
+- ([fix: 로그인 시 개인정보처리 방침, 이용약관 추가 (#11)](dc6d210bbbe1609716f4680c6fd355aaf8e45a07))
+- ([fix: 앱 업데이트 이벤트 연결 (#11)](6d3be18947b6a98e4bccbc3cc603e28682029e1e))
+- ([fix: 인스타링크 비활성화 (#11)](785cc8573affeb5fe8994636158a2965c3988cdb))
+- ([fix: 패키지명 변경 적용 (#11)](c22cb6fc904003cc4135cd739351ff50451abc67))
+
 ### 1.0.0 (2024-03-25)
 
 ### Features

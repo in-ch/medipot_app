@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:medipot_app/app/style/theme.dart';
+
+import 'package:docspot_app/app/style/theme.dart';
 
 class SimpleButton extends StatelessWidget {
   const SimpleButton({super.key, required this.text, required this.event});

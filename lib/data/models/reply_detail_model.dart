@@ -1,5 +1,5 @@
 // ignore_for_file: file_names
-import 'package:medipot_app/data/models/models.dart';
+import 'package:docspot_app/data/models/models.dart';
 
 class ReplyDetail {
   final int no;

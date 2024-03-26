@@ -6,8 +6,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:medipot_app/services/services.dart';
-import 'package:medipot_app/app/views/views.dart';
+import 'package:docspot_app/services/services.dart';
+import 'package:docspot_app/app/views/views.dart';
 
 class LocationDetailController extends GetxController {
   RxBool isLoading = true.obs;

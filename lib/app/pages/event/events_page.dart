@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import 'package:medipot_app/app/controllers/controllers.dart';
-import 'package:medipot_app/app/style/theme.dart';
-import 'package:medipot_app/data/models/models.dart';
+import 'package:docspot_app/app/controllers/controllers.dart';
+import 'package:docspot_app/app/style/theme.dart';
+import 'package:docspot_app/data/models/models.dart';
 
 class EventsPage extends GetView<EventsController> {
   const EventsPage({Key? key}) : super(key: key);

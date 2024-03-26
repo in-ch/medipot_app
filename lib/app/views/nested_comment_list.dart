@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:medipot_app/app/style/theme.dart';
-import 'package:medipot_app/app/views/views.dart';
-import 'package:medipot_app/data/models/models.dart';
+import 'package:docspot_app/app/style/theme.dart';
+import 'package:docspot_app/app/views/views.dart';
+import 'package:docspot_app/data/models/models.dart';
 
 class NestedCommentList extends StatelessWidget {
   const NestedCommentList({

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:medipot_app/app/views/views.dart';
+
+import 'package:docspot_app/app/views/views.dart';
 
 class Tags extends StatelessWidget {
   const Tags({super.key, required this.tags, required this.isDetail});

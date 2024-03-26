@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-import 'package:medipot_app/app/views/views.dart';
-import 'package:medipot_app/data/models/models.dart';
-import 'package:medipot_app/services/services.dart';
+import 'package:docspot_app/app/views/views.dart';
+import 'package:docspot_app/data/models/models.dart';
+import 'package:docspot_app/services/services.dart';
 
 class Feeds extends StatefulWidget {
   const Feeds({
