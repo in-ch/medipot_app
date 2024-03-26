@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'package:medipot_app/app/pages/pages.dart';
-import 'package:medipot_app/app/routes/routes.dart';
-import 'package:medipot_app/app/views/views.dart';
+import 'package:docspot_app/app/pages/pages.dart';
+import 'package:docspot_app/app/routes/routes.dart';
+import 'package:docspot_app/app/views/views.dart';
 
 class MapSubPage extends StatefulWidget {
   const MapSubPage({Key? key}) : super(key: key);

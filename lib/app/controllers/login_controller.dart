@@ -5,8 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:get/get.dart';
 
-import 'package:medipot_app/app/pages/pages.dart';
-import 'package:medipot_app/services/services.dart';
+import 'package:docspot_app/app/pages/pages.dart';
+import 'package:docspot_app/services/services.dart';
 
 class LoginController extends GetxController {
   /// [Method]

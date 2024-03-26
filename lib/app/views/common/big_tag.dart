@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:medipot_app/app/style/theme.dart';
+import 'package:docspot_app/app/style/theme.dart';
 
 class BigTag extends StatelessWidget {
   const BigTag({super.key, required this.text, this.disabled = false});

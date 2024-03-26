@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import 'package:medipot_app/app/controllers/controllers.dart';
+import 'package:docspot_app/app/controllers/controllers.dart';
 
 class ConsultListBinding implements Bindings {
   @override

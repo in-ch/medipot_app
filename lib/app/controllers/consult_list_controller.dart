@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-import 'package:medipot_app/data/models/models.dart';
-import 'package:medipot_app/services/services.dart';
+import 'package:docspot_app/data/models/models.dart';
+import 'package:docspot_app/services/services.dart';
 
 class ConsultListController extends GetxController {
   RxBool isLoading = false.obs;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:medipot_app/app/style/theme.dart';
+import 'package:docspot_app/app/style/theme.dart';
 
 class Tag extends StatelessWidget {
   const Tag({super.key, required this.text});

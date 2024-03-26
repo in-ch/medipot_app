@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import 'package:medipot_app/services/services.dart';
+import 'package:docspot_app/services/services.dart';
 
 class MapController extends GetxController {
   RxBool isLoading = false.obs;

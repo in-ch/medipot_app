@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:medipot_app/app/controllers/controllers.dart';
-import 'package:medipot_app/app/style/theme.dart';
-import 'package:medipot_app/app/views/views.dart';
-import 'package:medipot_app/data/models/models.dart';
+import 'package:docspot_app/app/controllers/controllers.dart';
+import 'package:docspot_app/app/style/theme.dart';
+import 'package:docspot_app/app/views/views.dart';
+import 'package:docspot_app/data/models/models.dart';
 
 class DetailPage extends GetView<DetailController> {
   const DetailPage({Key? key}) : super(key: key);

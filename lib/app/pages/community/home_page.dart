@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:medipot_app/app/pages/pages.dart';
-import 'package:medipot_app/app/views/views.dart';
+
+import 'package:docspot_app/app/pages/pages.dart';
+import 'package:docspot_app/app/views/views.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

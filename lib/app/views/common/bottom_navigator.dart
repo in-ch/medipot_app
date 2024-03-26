@@ -1,7 +1,8 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:medipot_app/app/style/theme.dart';
+
+import 'package:docspot_app/app/style/theme.dart';
 
 class BottomNavigation extends StatefulWidget {
   final int currentIndex;

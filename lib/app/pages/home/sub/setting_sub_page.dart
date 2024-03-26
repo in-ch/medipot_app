@@ -4,10 +4,10 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:medipot_app/app/pages/pages.dart';
-import 'package:medipot_app/app/routes/routes.dart';
-import 'package:medipot_app/app/style/theme.dart';
-import 'package:medipot_app/app/views/views.dart';
+import 'package:docspot_app/app/pages/pages.dart';
+import 'package:docspot_app/app/routes/routes.dart';
+import 'package:docspot_app/app/style/theme.dart';
+import 'package:docspot_app/app/views/views.dart';
 
 class SettingSubPage extends StatefulWidget {
   const SettingSubPage({Key? key}) : super(key: key);

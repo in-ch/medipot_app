@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import 'package:medipot_app/app/controllers/controllers.dart';
-import 'package:medipot_app/app/style/theme.dart';
+import 'package:docspot_app/app/controllers/controllers.dart';
+import 'package:docspot_app/app/style/theme.dart';
 
 class PhonePage extends GetView<PhoneController> {
   const PhonePage({Key? key}) : super(key: key);

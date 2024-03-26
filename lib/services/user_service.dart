@@ -3,7 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:medipot_app/data/models/models.dart';
+import 'package:docspot_app/data/models/models.dart';
 
 class UserService {
   static Future<Map<String, dynamic>> me() async {
