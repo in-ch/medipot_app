@@ -130,7 +130,7 @@ class _SettingSubPageState extends State<SettingSubPage> {
                               Text("현재 앱 버전",
                                   style: appTheme.textTheme.bodyLarge),
                               const SizedBox(height: 5),
-                              Text("v1.0.0",
+                              Text("v1.0.1",
                                   style: appTheme.textTheme.bodyMedium),
                             ],
                           ),
