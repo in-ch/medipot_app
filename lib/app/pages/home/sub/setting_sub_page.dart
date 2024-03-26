@@ -88,10 +88,10 @@ class _SettingSubPageState extends State<SettingSubPage> {
                       padding: const EdgeInsets.all(20),
                       child: Column(
                         children: [
-                          SettingSnsBoxItem(
-                              text: "인스타그램",
-                              onTap: () {},
-                              img: "assets/image/sns/instagram.png"),
+                          // SettingSnsBoxItem(
+                          //     text: "인스타그램",
+                          //     onTap: () {},
+                          //     img: "assets/image/sns/instagram.png"),
                           SettingSnsBoxItem(
                               text: "네이버 블로그",
                               onTap: () async {
