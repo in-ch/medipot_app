@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.0.2 (2024-03-28)
+
+### Bug Fixes
+
+- [fix: 메디팟 -> 닥스팟 문구 수정](52ffdc0b805c95d1b1b503d0848dd51ce07def6b)
+
 ### 1.0.1 (2024-03-26)
 
 ### Bug Fixes
