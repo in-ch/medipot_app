@@ -41,6 +41,7 @@ flutter:
   assets:
     - .env
     - assets/image/logo.png
+    - assets/image/logo_apple.png
     - assets/image/kakao_logo.png
     - assets/image/heart.png
     - assets/image/heart_fill.png
