@@ -2,7 +2,7 @@ name: docspot_app
 description: 닥스팟 앱 프로젝트
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.2
+version: 1.1.0
 
 environment:
   sdk: ">=2.18.0 <4.0.0"
@@ -29,6 +29,7 @@ dependencies:
   image_picker: ^1.0.4
   dio: ^5.3.3
   url_launcher: ^6.1.14
+  sign_in_with_apple: ^6.0.0
 
 dev_dependencies:
   flutter_test:
@@ -40,6 +41,7 @@ flutter:
   assets:
     - .env
     - assets/image/logo.png
+    - assets/image/logo_apple.png
     - assets/image/kakao_logo.png
     - assets/image/heart.png
     - assets/image/heart_fill.png

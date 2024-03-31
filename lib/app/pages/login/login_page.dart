@@ -16,7 +16,7 @@ class LoginPage extends StatelessWidget {
         body: Column(
           children: [
             Expanded(
-              flex: 5,
+              flex: 3,
               child: SizedBox(
                 width: 0.8 * MediaQuery.of(context).size.width,
                 child: Column(
@@ -69,16 +69,63 @@ class LoginPage extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset(
-                              'assets/image/kakao_logo.png',
-                              width: 40,
-                              height: 40,
+                            SizedBox(
+                              width: 50,
+                              child: Image.asset(
+                                'assets/image/kakao_logo.png',
+                                width: 25,
+                                height: 25,
+                              ),
                             ),
                             const SizedBox(width: 10),
-                            const Text("카카오로 계속하기",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontFamily: 'PretendardRegular')),
+                            const SizedBox(
+                              width: 120,
+                              child: Text("카카오로 계속하기",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontFamily: 'PretendardRegular')),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Center(
+                    child: SizedBox(
+                      width: 0.8 * MediaQuery.of(context).size.width,
+                      height: 50,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF000000),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          elevation: 0,
+                        ),
+                        onPressed: () async {
+                          controller.appleLogin(context);
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 50,
+                              child: Image.asset(
+                                'assets/image/logo_apple.png',
+                                width: 30,
+                                height: 30,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            const SizedBox(
+                              width: 120,
+                              child: Text("애플로 계속하기",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'PretendardRegular')),
+                            ),
                           ],
                         ),
                       ),
