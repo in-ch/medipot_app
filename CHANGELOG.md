@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.1.0 (2024-04-01)
+
+### Features
+
+- [애플 로그인 추가](24c8aaabd6527f18bbdbfddd80bf5c162f1eb00e)
+
 ### 1.0.2 (2024-03-28)
 
 ### Bug Fixes
