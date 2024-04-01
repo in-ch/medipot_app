@@ -16,7 +16,7 @@ class LoginPage extends StatelessWidget {
         body: Column(
           children: [
             Expanded(
-              flex: 3,
+              flex: GetPlatform.isIOS ? 3 : 4,
               child: SizedBox(
                 width: 0.8 * MediaQuery.of(context).size.width,
                 child: Column(
@@ -90,47 +90,49 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Center(
-                    child: SizedBox(
-                      width: 0.8 * MediaQuery.of(context).size.width,
-                      height: 50,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF000000),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          elevation: 0,
-                        ),
-                        onPressed: () async {
-                          controller.appleLogin(context);
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              width: 50,
-                              child: Image.asset(
-                                'assets/image/logo_apple.png',
-                                width: 30,
-                                height: 30,
-                                color: Colors.white,
+                  SizedBox(height: GetPlatform.isIOS ? 10 : 0),
+                  GetPlatform.isIOS
+                      ? Center(
+                          child: SizedBox(
+                            width: 0.8 * MediaQuery.of(context).size.width,
+                            height: 50,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFF000000),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                elevation: 0,
+                              ),
+                              onPressed: () async {
+                                controller.appleLogin(context);
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: 50,
+                                    child: Image.asset(
+                                      'assets/image/logo_apple.png',
+                                      width: 30,
+                                      height: 30,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  const SizedBox(
+                                    width: 120,
+                                    child: Text("애플로 계속하기",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'PretendardRegular')),
+                                  ),
+                                ],
                               ),
                             ),
-                            const SizedBox(width: 10),
-                            const SizedBox(
-                              width: 120,
-                              child: Text("애플로 계속하기",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: 'PretendardRegular')),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                          ),
+                        )
+                      : const SizedBox(),
                   const TermsAndPrivacyPolicy(),
                 ],
               ),
