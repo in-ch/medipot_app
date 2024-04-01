@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.1.1 (2024-04-01)
+
+### Bug Fixes
+
+- [fix: 애플 로그인을 ios에서만 보이도록 수정 (#11)](4fb490aba49b0499752d1749f3d76347f3c17db1)
+
 ### 1.1.0 (2024-04-01)
 
 ### Features
