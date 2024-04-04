@@ -23,7 +23,7 @@ void main() async {
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  KakaoSdk.init(nativeAppKey: '10c1f46910f538e0b63ddedfdfb952bc');
+  KakaoSdk.init(nativeAppKey: dotenv.get("KAKAO_SDK_KEY"));
 
   runZonedGuarded(
     () {
@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       theme: appTheme,
+      debugShowCheckedModeBanner: false,
       home: const HomePage(),
       initialRoute: Routes.home,
       initialBinding:
@@ -53,7 +54,6 @@ class MyApp extends StatelessWidget {
       unknownRoute: GetPage(
           name: '/not-found',
           page: () => const NotFoundPage()), // 알 수 없는 경로 설정 (옵션)
-      debugShowCheckedModeBanner: false,
       navigatorObservers: [
         FirebaseAnalyticsObserver(analytics: analytics),
       ],
