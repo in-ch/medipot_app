@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.1.2 (2024-04-06)
+
+- [style: 아이폰 SE3 해상도 대응 (#13)](a867491fc125059f6ea6dc4a01bf4840ac06cd68)
+- [improvement: remove debug banner](6240df55ac68c129f558322e9158ca7e91eebbeb)
+- [feat: KAKAO_SDK_KEY env로 이동 (#13)](0eb01e3f0ea53eebc45b97422260caa80cf6436c)
+- [feat: 설정 페이지에 앱 버전 자동 적용 (#13)](aaa5938aaff900b0535b8f83f555ba0469bfaba6)
+
 ### 1.1.1 (2024-04-01)
 
 ### Bug Fixes

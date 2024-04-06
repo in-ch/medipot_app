@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:docspot_app/data/models/models.dart';
 import 'package:docspot_app/services/services.dart';
@@ -12,6 +13,7 @@ class SettingController extends GetxController {
   RxBool isLoading = false.obs;
   RxString selectedReason = '탈퇴 후 재가입을 위해서'.obs; // RxString으로 변경
   RxBool isAgreeDeleteAccount = false.obs;
+  RxString appVersion = 'v1.0.0'.obs;
   XFile? image;
   final picker = ImagePicker();
   String profileNickname = '';
@@ -31,6 +33,7 @@ class SettingController extends GetxController {
   @override
   void onInit() async {
     await getMyData();
+    appVersion.value = await getAppVersion();
     profileNickname = user.nickname;
     image = null;
     super.onInit();
@@ -159,5 +162,13 @@ class SettingController extends GetxController {
   void resetPreviewImage() {
     image = null;
     update();
+  }
+
+  /// [비즈니스 로직]
+  /// app version을 가져온다.
+  Future<String> getAppVersion() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    String version = packageInfo.version;
+    return "v$version";
   }
 }
