@@ -28,11 +28,15 @@ class LoginPage extends StatelessWidget {
                       'assets/image/logo_text.png',
                       width: 150,
                     ),
-                    const SizedBox(height: 20),
-                    const Text("성공적인 개원의 필수적인 첫걸음",
+                    SizedBox(
+                        height:
+                            MediaQuery.of(context).size.height < 700 ? 10 : 20),
+                    Text("성공적인 개원의 필수적인 첫걸음",
                         style: TextStyle(
                             color: Colors.black,
-                            fontSize: 24,
+                            fontSize: MediaQuery.of(context).size.height < 700
+                                ? 20
+                                : 24,
                             fontWeight: FontWeight.bold,
                             fontFamily: "PretendardBold")),
                     const SizedBox(height: 20),
@@ -55,7 +59,8 @@ class LoginPage extends StatelessWidget {
                   Center(
                     child: SizedBox(
                       width: 0.8 * MediaQuery.of(context).size.width,
-                      height: 50,
+                      height:
+                          MediaQuery.of(context).size.height < 700 ? 40 : 50,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFFf6e10c),
@@ -91,12 +96,19 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: GetPlatform.isIOS ? 10 : 0),
+                  SizedBox(
+                      height: GetPlatform.isIOS
+                          ? MediaQuery.of(context).size.height < 700
+                              ? 5
+                              : 10
+                          : 0),
                   GetPlatform.isIOS
                       ? Center(
                           child: SizedBox(
                             width: 0.8 * MediaQuery.of(context).size.width,
-                            height: 50,
+                            height: MediaQuery.of(context).size.height < 700
+                                ? 40
+                                : 50,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFF000000),
@@ -115,8 +127,16 @@ class LoginPage extends StatelessWidget {
                                     width: 50,
                                     child: Image.asset(
                                       'assets/image/logo_apple.png',
-                                      width: 30,
-                                      height: 30,
+                                      width:
+                                          MediaQuery.of(context).size.height <
+                                                  700
+                                              ? 20
+                                              : 30,
+                                      height:
+                                          MediaQuery.of(context).size.height <
+                                                  700
+                                              ? 20
+                                              : 30,
                                       color: Colors.white,
                                     ),
                                   ),
