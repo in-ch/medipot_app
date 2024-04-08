@@ -1,4 +1,4 @@
-package com.inch.medipot_app
+package com.inch.docspot_app
 
 import io.flutter.embedding.android.FlutterActivity
 

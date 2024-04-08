@@ -34,7 +34,9 @@ class _SettingSubPageState extends State<SettingSubPage> {
                   children: [
                     const SizedBox(height: 30),
                     GestureDetector(
-                      onTap: () => Get.toNamed(Routes.profileUpdate),
+                      onTap: () => settingController.isLoading.value
+                          ? Get.snackbar('잠시만 기다려주세요.', '로딩 중입니다.')
+                          : Get.toNamed(Routes.profileUpdate),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                         child: Row(
