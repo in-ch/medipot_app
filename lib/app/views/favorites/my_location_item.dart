@@ -128,7 +128,7 @@ class _MyLocationItemState extends State<MyLocationItem> {
                     ),
                     const SizedBox(height: 10),
                     SizedBox(
-                      width: 250,
+                      width: MediaQuery.of(context).size.width * 0.5,
                       child: Wrap(
                         children: widget.location.keywords.map((keyword) {
                           return Tag(text: keyword);
