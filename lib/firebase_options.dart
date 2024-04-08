@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAi-f52_vKDRhe6_ZLMcuwZ3zoEI3_WH8I',
-    appId: '1:660208338749:android:7ebae2df5d132339962754',
+    appId: '1:660208338749:android:a415d871411d9f44962754',
     messagingSenderId: '660208338749',
     projectId: 'medipot-app-d950d',
     storageBucket: 'medipot-app-d950d.appspot.com',
