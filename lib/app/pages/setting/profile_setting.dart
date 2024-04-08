@@ -83,12 +83,12 @@ class ProfileSettingPage extends GetView<SettingController> {
                                     ),
                             ),
                             const SizedBox(height: 10),
-                            GestureDetector(
-                                onTap: () {
-                                  controller.updateProfileImg();
-                                },
-                                child: Text("변경",
-                                    style: appTheme.textTheme.titleSmall)),
+                            // GestureDetector(
+                            //     onTap: () {
+                            //       controller.updateProfileImg();
+                            //     },
+                            //     child: Text("변경",
+                            //         style: appTheme.textTheme.titleSmall)),
                             Padding(
                               padding: const EdgeInsets.only(
                                   left: 50.0,
