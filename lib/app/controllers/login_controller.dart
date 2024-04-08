@@ -37,7 +37,7 @@ class LoginController extends GetxController {
             ),
           );
         } catch (error) {
-          Get.snackbar("로그인 실패", "카카오톡 로그인에 실패하였습니다.");
+          // Get.snackbar("로그인 실패", "카카오톡 로그인에 실패하였습니다.");
         }
       }
     } else {
@@ -50,7 +50,7 @@ class LoginController extends GetxController {
           ),
         );
       } catch (error) {
-        Get.snackbar("로그인 실패", "카카오톡 로그인에 실패하였습니다.");
+        // Get.snackbar("로그인 실패", "카카오톡 로그인에 실패하였습니다.");
       }
     }
   }
@@ -66,7 +66,7 @@ class LoginController extends GetxController {
         ],
       );
       if (credential.authorizationCode == '') {
-        Get.snackbar("로그인 실패", "애플 로그인에 실패하였습니다.");
+        // Get.snackbar("로그인 실패", "애플 로그인에 실패하였습니다.");
       } else {
         String identityToken = credential.identityToken as String;
         Map<String, dynamic> decodedToken = decodeJwt(identityToken);
@@ -79,7 +79,7 @@ class LoginController extends GetxController {
         );
       }
     } catch (e) {
-      Get.snackbar("로그인 실패", "애플 로그인에 실패하였습니다.");
+      // Get.snackbar("로그인 실패", "애플 로그인에 실패하였습니다.");
     }
   }
 }
