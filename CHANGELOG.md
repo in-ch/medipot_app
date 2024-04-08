@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.1.3 (2024-04-08)
+
+- [refactor: 로그인 실패 스낵바 비활성화 (#14)](e62ef9679cb96caaf648a0694665d7c64b359245)
+- [style: 올린 매물 태그로 인해 깨짐 현상 수정 (#14)](b1c15c8b7f9d3af510f67faa3e9a02af378a9817)
+- [improvement: 로딩 시 프로필 편집 미이동하게 수정 (#14)](9e487b1ef2613aeb52f53995f1a4828b25d6753b)
+- [chore: 안드로이드 앱 번들 id 변경 (#14)](ab3b79206b177282258b900e48a08d1c6441ba67)
+- [revert: 프로필 변경 기능 비활성화 (#14)](0eff6e33523b5dcb74a3a9f2fbca0602d1f4fdd4)
+
 ### 1.1.2 (2024-04-06)
 
 - [style: 아이폰 SE3 해상도 대응 (#13)](a867491fc125059f6ea6dc4a01bf4840ac06cd68)
