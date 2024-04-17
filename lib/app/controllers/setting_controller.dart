@@ -17,6 +17,7 @@ class SettingController extends GetxController {
   XFile? image;
   final picker = ImagePicker();
   String profileNickname = '';
+  RxBool isLogin = false.obs;
 
   late MeUser user;
 
@@ -92,6 +93,9 @@ class SettingController extends GetxController {
   /// 유저 정보를 조회한다.
   Future<void> getMyData() async {
     try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      bool login = prefs.getBool('isLogin') ?? false;
+      isLogin = login.obs;
       isLoading.value = true;
       final response = await UserService.getMe();
       final data = response.data;

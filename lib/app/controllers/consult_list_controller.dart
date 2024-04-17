@@ -6,6 +6,7 @@ import 'package:docspot_app/services/services.dart';
 
 class ConsultListController extends GetxController {
   RxBool isLoading = false.obs;
+  RxBool isLogin = false.obs;
   RxInt page = 0.obs;
   List<Consult> myConsults = [];
 
@@ -39,11 +40,14 @@ class ConsultListController extends GetxController {
             List<Consult>.from(data.map((item) => Consult.fromJson(item)));
         myConsults.addAll(list);
         pagingController.appendLastPage(list);
+        isLogin = true.obs;
         update();
       } else {
+        isLogin = false.obs;
         throw Exception('Failed to FETCH get my Consults');
       }
     } catch (error) {
+      isLogin = false.obs;
       update();
       throw Exception(error);
     } finally {

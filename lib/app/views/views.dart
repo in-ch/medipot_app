@@ -2,6 +2,7 @@ export './common/bottom_navigator.dart';
 export './common/hr.dart';
 export './common/icon_buttons.dart';
 export './common/no_datas.dart';
+export './common/not_login.dart';
 export './comment_list.dart';
 export './common/tags.dart';
 export './common/tag.dart';

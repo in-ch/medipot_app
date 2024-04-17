@@ -36,36 +36,45 @@ class _SettingSubPageState extends State<SettingSubPage> {
                     GestureDetector(
                       onTap: () => settingController.isLoading.value
                           ? Get.snackbar('잠시만 기다려주세요.', '로딩 중입니다.')
-                          : Get.toNamed(Routes.profileUpdate),
+                          : !settingController.isLogin.value
+                              ? Get.toNamed(Routes.login)
+                              : Get.toNamed(Routes.profileUpdate),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                         child: Row(
                           children: [
                             SizedBox(
-                                width: 50,
-                                height: 50,
+                                width:
+                                    !settingController.isLogin.value ? 120 : 50,
+                                height:
+                                    !settingController.isLogin.value ? 20 : 50,
                                 child: Obx(() {
-                                  return settingController.isLoading.value
-                                      ? ClipOval(
-                                          child: Container(
+                                  return !settingController.isLogin.value
+                                      ? const Text("로그인이 필요합니다.")
+                                      : settingController.isLoading.value
+                                          ? ClipOval(
+                                              child: Container(
+                                                  width: 50,
+                                                  height: 50,
+                                                  color: Colors.black38))
+                                          : ClipOval(
+                                              child: Image.network(
+                                              settingController.user.profile,
                                               width: 50,
                                               height: 50,
-                                              color: Colors.black38))
-                                      : ClipOval(
-                                          child: Image.network(
-                                          settingController.user.profile,
-                                          width: 50,
-                                          height: 50,
-                                          fit: BoxFit.cover,
-                                        ));
+                                              fit: BoxFit.cover,
+                                            ));
                                 })),
                             const SizedBox(width: 10),
-                            Obx(() => Text(
-                                settingController.isLoading.value
-                                    ? '로딩'
-                                    : settingController.user.nickname,
-                                style:
-                                    Theme.of(context).textTheme.titleMedium)),
+                            !settingController.isLogin.value
+                                ? Container()
+                                : Obx(() => Text(
+                                    settingController.isLoading.value
+                                        ? '로딩'
+                                        : settingController.user.nickname,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium)),
                             const SizedBox(width: 10),
                             const Icon(
                               CupertinoIcons.chevron_right,
@@ -178,18 +187,22 @@ class _SettingSubPageState extends State<SettingSubPage> {
                             throw Exception('Could not launch $url');
                           }
                         }),
-                    SettingBoxItem(
-                        title: '로그아웃',
-                        description: '로그인 시 더 다양한 기능을 확인할 수 있습니다.',
-                        event: () {
-                          settingController.logout(context);
-                        }),
-                    SettingBoxItem(
-                        title: '탈퇴하기',
-                        description: '탈퇴 시 기능이 제한될 수 있습니다.',
-                        event: () {
-                          Get.toNamed(Routes.deleteAccount);
-                        }),
+                    settingController.isLogin.value
+                        ? SettingBoxItem(
+                            title: '로그아웃',
+                            description: '로그인 시 더 다양한 기능을 확인할 수 있습니다.',
+                            event: () {
+                              settingController.logout(context);
+                            })
+                        : Container(),
+                    settingController.isLogin.value
+                        ? SettingBoxItem(
+                            title: '탈퇴하기',
+                            description: '탈퇴 시 기능이 제한될 수 있습니다.',
+                            event: () {
+                              Get.toNamed(Routes.deleteAccount);
+                            })
+                        : Container(),
                   ],
                 )
               ],
