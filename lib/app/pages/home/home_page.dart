@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:docspot_app/app/pages/pages.dart';
 import 'package:docspot_app/app/views/views.dart';
@@ -16,14 +15,6 @@ class _HomePageState extends State<HomePage> {
 
   bool isAuth = false;
 
-  @override
-  void didChangeDependencies() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    isAuth = prefs.getBool('isLogin') ?? false;
-    setState(() {});
-    super.didChangeDependencies();
-  }
-
   void _onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
@@ -35,17 +26,14 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: isAuth ? _buildPage(_currentIndex) : LoginPage(),
-        bottomNavigationBar: isAuth
-            ? Material(
-                elevation: 8,
-                child: BottomNavigation(
-                  currentIndex: _currentIndex,
-                  onTabTapped: _onTabTapped,
-                ),
-              )
-            : Container(height: 0),
-      ),
+          body: _buildPage(_currentIndex),
+          bottomNavigationBar: Material(
+            elevation: 8,
+            child: BottomNavigation(
+              currentIndex: _currentIndex,
+              onTabTapped: _onTabTapped,
+            ),
+          )),
     );
   }
 
