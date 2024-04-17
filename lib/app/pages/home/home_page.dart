@@ -13,8 +13,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
-  bool isAuth = false;
-
   void _onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
