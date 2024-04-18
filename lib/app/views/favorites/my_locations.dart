@@ -78,46 +78,44 @@ class _MyLocationsState extends State<MyLocations> {
         children: [
           Expanded(
             child: Container(
-              color: colorScheme.background,
-              height: double.infinity,
-              child: Obx(() => myLocationController.isLogin.value
-                  ? PagedListView<int, dynamic>(
-                      padding: const EdgeInsets.all(8.0),
-                      pagingController: _pagingController,
-                      builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                        firstPageProgressIndicatorBuilder: (context) =>
-                            Container(
-                          alignment: Alignment.center,
-                          width: 50,
-                          height: 50,
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                                colorScheme.primary),
-                          ),
-                        ),
-                        noItemsFoundIndicatorBuilder: (context) =>
-                            NoDatas(text: '올린 매물이 없습니다.'),
-                        newPageProgressIndicatorBuilder: (context) => Container(
-                          alignment: Alignment.center,
-                          width: 50,
-                          height: 50,
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                                colorScheme.primary),
-                          ),
-                        ),
-                        itemBuilder: (context, item, index) {
-                          return MyLocationItem(
-                            location: item,
-                            likes: likeLocations,
-                            like: (location) => handleLike(location),
-                            unlike: (location) => handleUnLike(location),
-                          );
-                        },
+                color: colorScheme.background,
+                height: double.infinity,
+                child: PagedListView<int, dynamic>(
+                  padding: const EdgeInsets.all(8.0),
+                  pagingController: _pagingController,
+                  builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                    firstPageProgressIndicatorBuilder: (context) => Container(
+                      alignment: Alignment.center,
+                      width: 50,
+                      height: 50,
+                      child: CircularProgressIndicator(
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(colorScheme.primary),
                       ),
-                    )
-                  : NotLogin(text: "로그인이 필요합니다.")),
-            ),
+                    ),
+                    noItemsFoundIndicatorBuilder: (context) =>
+                        NoDatas(text: '올린 매물이 없습니다.'),
+                    firstPageErrorIndicatorBuilder: (context) =>
+                        NoDatas(text: '올린 매물이 없습니다.'),
+                    newPageProgressIndicatorBuilder: (context) => Container(
+                      alignment: Alignment.center,
+                      width: 50,
+                      height: 50,
+                      child: CircularProgressIndicator(
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(colorScheme.primary),
+                      ),
+                    ),
+                    itemBuilder: (context, item, index) {
+                      return MyLocationItem(
+                        location: item,
+                        likes: likeLocations,
+                        like: (location) => handleLike(location),
+                        unlike: (location) => handleUnLike(location),
+                      );
+                    },
+                  ),
+                )),
           ),
         ],
       ),

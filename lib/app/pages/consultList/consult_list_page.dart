@@ -43,44 +43,40 @@ class ConsultListPage extends GetView<ConsultListController> {
                 Expanded(
                   child: SizedBox(
                     height: double.infinity,
-                    child: Obx(() => !controller.isLogin.value
-                        ? NotLogin(
-                            text: "로그인이 필요합니다.",
-                            onlyText: true,
-                          )
-                        : PagedListView<int, dynamic>(
-                            padding: const EdgeInsets.all(8.0),
-                            pagingController: controller.pagingController,
-                            builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                              firstPageProgressIndicatorBuilder: (context) =>
-                                  Container(
-                                alignment: Alignment.center,
-                                width: 50,
-                                height: 50,
-                                child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      colorScheme.primary),
-                                ),
-                              ),
-                              noItemsFoundIndicatorBuilder: (context) =>
-                                  NoDatas(text: '상담 목록이 없습니다.'),
-                              newPageProgressIndicatorBuilder: (context) =>
-                                  Container(
-                                alignment: Alignment.center,
-                                width: 50,
-                                height: 50,
-                                child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      colorScheme.primary),
-                                ),
-                              ),
-                              itemBuilder: (context, item, index) {
-                                return MyConsultItem(
-                                  consult: item,
-                                );
-                              },
-                            ),
-                          )),
+                    child: PagedListView<int, dynamic>(
+                      padding: const EdgeInsets.all(8.0),
+                      pagingController: controller.pagingController,
+                      builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                        firstPageProgressIndicatorBuilder: (context) =>
+                            Container(
+                          alignment: Alignment.center,
+                          width: 50,
+                          height: 50,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                colorScheme.primary),
+                          ),
+                        ),
+                        noItemsFoundIndicatorBuilder: (context) =>
+                            NoDatas(text: '상담 목록이 없습니다.'),
+                        firstPageErrorIndicatorBuilder: (context) =>
+                            NoDatas(text: '상담 목록이 없습니다.'),
+                        newPageProgressIndicatorBuilder: (context) => Container(
+                          alignment: Alignment.center,
+                          width: 50,
+                          height: 50,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                colorScheme.primary),
+                          ),
+                        ),
+                        itemBuilder: (context, item, index) {
+                          return MyConsultItem(
+                            consult: item,
+                          );
+                        },
+                      ),
+                    ),
                   ),
                 )
               ],

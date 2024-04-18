@@ -10,7 +10,6 @@ import 'package:docspot_app/services/services.dart';
 
 class LikeLocationController extends GetxController {
   RxInt page = 0.obs;
-  RxBool isLogin = false.obs;
   List<Location> likeLocations = [];
 
   /// [비즈니스 로직]
@@ -49,15 +48,13 @@ class LikeLocationController extends GetxController {
           likeLocations.add(_location.location);
         }
         pagingController.appendLastPage(list);
-        isLogin = true.obs;
         update();
       } else {
-        isLogin = false.obs;
+        pagingController.error = true;
         update();
-        throw Exception('Failed to FETCH LikeLocations');
+        print('Failed to FETCH LikeLocations');
       }
     } catch (error) {
-      isLogin = false.obs;
       update();
       throw Exception(error);
     } finally {
@@ -74,14 +71,13 @@ class LikeLocationController extends GetxController {
         final list =
             List<Location>.from(data.map((item) => Location.fromJson(item)));
         pagingController.appendLastPage(list);
-        isLogin = true.obs;
         update();
       } else {
-        isLogin = false.obs;
+        pagingController.error = true;
+        update();
         throw Exception('Failed to FETCH myLocations');
       }
     } catch (error) {
-      isLogin = false.obs;
       update();
       throw Exception(error);
     } finally {
