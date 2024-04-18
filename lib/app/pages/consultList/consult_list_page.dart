@@ -59,6 +59,8 @@ class ConsultListPage extends GetView<ConsultListController> {
                         ),
                         noItemsFoundIndicatorBuilder: (context) =>
                             NoDatas(text: '상담 목록이 없습니다.'),
+                        firstPageErrorIndicatorBuilder: (context) =>
+                            NoDatas(text: '상담 목록이 없습니다.'),
                         newPageProgressIndicatorBuilder: (context) => Container(
                           alignment: Alignment.center,
                           width: 50,

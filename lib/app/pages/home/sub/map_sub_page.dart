@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'package:docspot_app/app/pages/pages.dart';
@@ -26,43 +25,32 @@ class MapSubPageState extends State<MapSubPage> {
     super.initState();
 
     Future.delayed(Duration.zero, () async {
-      bool isTokenValid = await mapController.tokenCheck();
-      if (isTokenValid) {
-        final SharedPreferences prefs = await SharedPreferences.getInstance();
-        String? accessToken = prefs.getString('accessToken');
-        String? refreshToken = prefs.getString('refreshToken');
-        controller = WebViewController()
-          ..setJavaScriptMode(JavaScriptMode.unrestricted)
-          ..setBackgroundColor(const Color(0x00000000))
-          ..setNavigationDelegate(
-            NavigationDelegate(
-              onProgress: (int progress) {},
-              onPageStarted: (String url) {
-                setState(() {
-                  isLoading = true;
-                });
-              },
-              onPageFinished: (String url) {
-                setState(() {
-                  isLoading = false;
-                });
-              },
-              onWebResourceError: (WebResourceError error) {},
-            ),
-          )
-          ..loadRequest(Uri.parse(
-              '$webviewLink/webview?user_token_refresh_token=$accessToken///$refreshToken'));
-        controller.addJavaScriptChannel("medipot",
-            onMessageReceived: (JavaScriptMessage message) {
-          Get.toNamed(Routes.locationDetail,
-              arguments: {'locationNo': int.parse(message.message)});
-        });
-      } else {
-        final SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setBool('isLogin', false);
-        Get.offAll(const HomePage());
-        setState(() {}); // 화면 갱신
-      }
+      await mapController.tokenCheck();
+      controller = WebViewController()
+        ..setJavaScriptMode(JavaScriptMode.unrestricted)
+        ..setBackgroundColor(const Color(0x00000000))
+        ..setNavigationDelegate(
+          NavigationDelegate(
+            onProgress: (int progress) {},
+            onPageStarted: (String url) {
+              setState(() {
+                isLoading = true;
+              });
+            },
+            onPageFinished: (String url) {
+              setState(() {
+                isLoading = false;
+              });
+            },
+            onWebResourceError: (WebResourceError error) {},
+          ),
+        )
+        ..loadRequest(Uri.parse('$webviewLink/webview'));
+      controller.addJavaScriptChannel("medipot",
+          onMessageReceived: (JavaScriptMessage message) {
+        Get.toNamed(Routes.locationDetail,
+            arguments: {'locationNo': int.parse(message.message)});
+      });
     });
   }
 

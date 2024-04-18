@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.3.0 (2024-04-18)
+
+- [feat: 비로그인으로 리포트 요청 시 로그인 요청 로직 추가 (#14)](0442763358924b0f09678d80248e6307871b98e2)
+- [feat: no datas의 sub 문구 추가 (#14)](c87960576969b3f83f8f018b214a4aa7776812ae)
+- [style: setting 페이지 CLS 현상 수정 (#14)](48bb28eca902a8d0c5fb5e1cce1068d67bb48254)
+- [fix: 로그아웃 pref 초기화 로직 수정 (#14)](246ada60300431f86c9d2a728bda4d5d2a7cbeb0)
+- [fix: 비로그인 상태에서 좋아요한 입지 & 상담 목록 & 내 매물 무한 로딩 현상 수정 (#14)](45264eb478eddd01b09421a09f4fe571771fcbb2)
+- [feat: 비로그인 상태에서 ui 분기 처리 (#14)](b0ca8451f5c7432318f2865a0bcbd2a953728f6b)
+- [fix: 메인 페이지 무한 로딩 수정 (#14)](e5a35d7ea595cc01265a96b2a4f00c53ca08deda)
+- [feat: remove isAuth variable at homePage (#14)](80e54dc5d2ad79e7b4f3c7f26b8a259e90aaafeb)
+
 ### 1.1.3 (2024-04-08)
 
 - [refactor: 로그인 실패 스낵바 비활성화 (#14)](e62ef9679cb96caaf648a0694665d7c64b359245)

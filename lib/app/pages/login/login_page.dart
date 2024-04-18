@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,10 +15,25 @@ class LoginPage extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        appBar: AppBar(
+          iconTheme: Theme.of(context).iconTheme,
+          centerTitle: false,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leadingWidth: 54,
+          leading: Align(
+            alignment: Alignment.centerRight,
+            child: GestureDetector(
+                child: const Icon(CupertinoIcons.back),
+                onTap: () {
+                  Navigator.of(context).pop();
+                }),
+          ),
+        ),
         body: Column(
           children: [
             Expanded(
-              flex: GetPlatform.isIOS ? 3 : 4,
+              flex: GetPlatform.isIOS ? 2 : 3,
               child: SizedBox(
                 width: 0.8 * MediaQuery.of(context).size.width,
                 child: Column(

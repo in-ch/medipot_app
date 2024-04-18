@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class NoDatas extends StatelessWidget {
-  NoDatas({Key? key, required this.text}) : super(key: key);
+  NoDatas({Key? key, required this.text, this.sub = ""}) : super(key: key);
   String text;
+  String? sub;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,19 @@ class NoDatas extends StatelessWidget {
             children: [
               Text(text,
                   style: const TextStyle(
-                      color: Color.fromARGB(255, 154, 154, 154)))
+                      fontSize: 18,
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      fontWeight: FontWeight.w600)),
+              sub != ""
+                  ? Column(
+                      children: [
+                        const SizedBox(height: 5),
+                        Text(sub!,
+                            style: const TextStyle(
+                                color: Color.fromARGB(255, 154, 154, 154)))
+                      ],
+                    )
+                  : const SizedBox(),
             ],
           )
         ],

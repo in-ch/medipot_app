@@ -41,6 +41,8 @@ class ConsultListController extends GetxController {
         pagingController.appendLastPage(list);
         update();
       } else {
+        pagingController.error = true;
+        update();
         throw Exception('Failed to FETCH get my Consults');
       }
     } catch (error) {

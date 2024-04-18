@@ -13,11 +13,7 @@ class UserService {
     final url = Uri.parse('$apiServer/user/me');
     final headers = {'Authorization': 'Bearer $accessToken'};
     final response = await http.post(url, headers: headers);
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      return jsonDecode(response.body);
-    } else {
-      throw Exception('Failed to user me');
-    }
+    return jsonDecode(response.body);
   }
 
   static Future<ApiResponse<MeUser>> getMe() async {
@@ -53,6 +49,13 @@ class UserService {
           Refresh.fromJson(dataRefresh["data"]).authorization;
       prefs.setString("accessToken", authorization);
     } else {
+      prefs.setString('nickname', "");
+      prefs.setString('userNo', "");
+      prefs.setString('phone', "");
+      prefs.setString('accessToken', "");
+      prefs.setString('refreshToken', "");
+      prefs.setBool('isLogin', false);
+
       throw Exception('Failed to user refresh');
     }
   }

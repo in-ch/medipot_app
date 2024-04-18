@@ -17,6 +17,7 @@ class SettingController extends GetxController {
   XFile? image;
   final picker = ImagePicker();
   String profileNickname = '';
+  RxBool isLogin = false.obs;
 
   late MeUser user;
 
@@ -65,6 +66,13 @@ class SettingController extends GetxController {
       } else {
         bool response = await UserService.deleteAccount();
         if (response) {
+          final SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setBool('isLogin', false);
+          prefs.setString('nickname', "");
+          prefs.setString('userNo', "");
+          prefs.setString('phone', "");
+          prefs.setString('accessToken', "");
+          prefs.setString('refreshToken', "");
           Get.offAll(const HomePage());
           Get.snackbar("삭제 완료", "계정의 삭제가 완료되었습니다.");
         } else {
@@ -81,6 +89,11 @@ class SettingController extends GetxController {
   Future<void> logout(context) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('isLogin', false);
+    prefs.setString('nickname', "");
+    prefs.setString('userNo', "");
+    prefs.setString('phone', "");
+    prefs.setString('accessToken', "");
+    prefs.setString('refreshToken', "");
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder: (BuildContext context) => const HomePage(),
@@ -92,6 +105,9 @@ class SettingController extends GetxController {
   /// 유저 정보를 조회한다.
   Future<void> getMyData() async {
     try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      bool login = prefs.getBool('isLogin') ?? false;
+      isLogin = login.obs;
       isLoading.value = true;
       final response = await UserService.getMe();
       final data = response.data;

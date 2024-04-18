@@ -78,43 +78,44 @@ class _MyLocationsState extends State<MyLocations> {
         children: [
           Expanded(
             child: Container(
-              color: colorScheme.background,
-              height: double.infinity,
-              child: PagedListView<int, dynamic>(
-                padding: const EdgeInsets.all(8.0),
-                pagingController: _pagingController,
-                builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                  firstPageProgressIndicatorBuilder: (context) => Container(
-                    alignment: Alignment.center,
-                    width: 50,
-                    height: 50,
-                    child: CircularProgressIndicator(
-                      valueColor:
-                          AlwaysStoppedAnimation<Color>(colorScheme.primary),
+                color: colorScheme.background,
+                height: double.infinity,
+                child: PagedListView<int, dynamic>(
+                  padding: const EdgeInsets.all(8.0),
+                  pagingController: _pagingController,
+                  builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                    firstPageProgressIndicatorBuilder: (context) => Container(
+                      alignment: Alignment.center,
+                      width: 50,
+                      height: 50,
+                      child: CircularProgressIndicator(
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(colorScheme.primary),
+                      ),
                     ),
-                  ),
-                  noItemsFoundIndicatorBuilder: (context) =>
-                      NoDatas(text: '올린 매물이 없습니다.'),
-                  newPageProgressIndicatorBuilder: (context) => Container(
-                    alignment: Alignment.center,
-                    width: 50,
-                    height: 50,
-                    child: CircularProgressIndicator(
-                      valueColor:
-                          AlwaysStoppedAnimation<Color>(colorScheme.primary),
+                    noItemsFoundIndicatorBuilder: (context) =>
+                        NoDatas(text: '올린 매물이 없습니다.', sub: '닥스팟에서 매물을 올려보세요.'),
+                    firstPageErrorIndicatorBuilder: (context) =>
+                        NoDatas(text: '올린 매물이 없습니다.', sub: '닥스팟에서 매물을 올려보세요.'),
+                    newPageProgressIndicatorBuilder: (context) => Container(
+                      alignment: Alignment.center,
+                      width: 50,
+                      height: 50,
+                      child: CircularProgressIndicator(
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(colorScheme.primary),
+                      ),
                     ),
+                    itemBuilder: (context, item, index) {
+                      return MyLocationItem(
+                        location: item,
+                        likes: likeLocations,
+                        like: (location) => handleLike(location),
+                        unlike: (location) => handleUnLike(location),
+                      );
+                    },
                   ),
-                  itemBuilder: (context, item, index) {
-                    return MyLocationItem(
-                      location: item,
-                      likes: likeLocations,
-                      like: (location) => handleLike(location),
-                      unlike: (location) => handleUnLike(location),
-                    );
-                  },
-                ),
-              ),
-            ),
+                )),
           ),
         ],
       ),

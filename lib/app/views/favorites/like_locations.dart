@@ -55,44 +55,45 @@ class _LikeLocationsState extends State<LikeLocations> {
         children: [
           Expanded(
             child: Container(
-              color: colorScheme.background,
-              height: double.infinity,
-              child: PagedListView<int, dynamic>(
-                padding: const EdgeInsets.all(8.0),
-                pagingController: _pagingController,
-                builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                  firstPageProgressIndicatorBuilder: (context) => Container(
-                    alignment: Alignment.center,
-                    width: 50,
-                    height: 50,
-                    child: CircularProgressIndicator(
-                      valueColor:
-                          AlwaysStoppedAnimation<Color>(colorScheme.primary),
+                color: colorScheme.background,
+                height: double.infinity,
+                child: PagedListView<int, dynamic>(
+                  padding: const EdgeInsets.all(8.0),
+                  pagingController: _pagingController,
+                  builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                    firstPageProgressIndicatorBuilder: (context) => Container(
+                      alignment: Alignment.center,
+                      width: 50,
+                      height: 50,
+                      child: CircularProgressIndicator(
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(colorScheme.primary),
+                      ),
                     ),
-                  ),
-                  noItemsFoundIndicatorBuilder: (context) =>
-                      NoDatas(text: '찜한 목록이 없습니다.'),
-                  newPageProgressIndicatorBuilder: (context) => Container(
-                    alignment: Alignment.center,
-                    width: 50,
-                    height: 50,
-                    child: CircularProgressIndicator(
-                      valueColor:
-                          AlwaysStoppedAnimation<Color>(colorScheme.primary),
+                    noItemsFoundIndicatorBuilder: (context) => NoDatas(
+                        text: '찜한 목록이 없습니다.', sub: "닥스팟에서 마음에 드는 매물에 찜해보세요."),
+                    firstPageErrorIndicatorBuilder: (context) => NoDatas(
+                        text: '찜한 목록이 없습니다.', sub: "닥스팟에서 마음에 드는 매물에 찜해보세요."),
+                    newPageProgressIndicatorBuilder: (context) => Container(
+                      alignment: Alignment.center,
+                      width: 50,
+                      height: 50,
+                      child: CircularProgressIndicator(
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(colorScheme.primary),
+                      ),
                     ),
+                    itemBuilder: (context, item, index) {
+                      return LikeLocationItem(
+                        likeLocation: item,
+                        like: (location) => likeLocationController.likeLocation(
+                            context, location),
+                        unlike: (location) => likeLocationController
+                            .unlikeLocation(context, location),
+                      );
+                    },
                   ),
-                  itemBuilder: (context, item, index) {
-                    return LikeLocationItem(
-                      likeLocation: item,
-                      like: (location) => likeLocationController.likeLocation(
-                          context, location),
-                      unlike: (location) => likeLocationController
-                          .unlikeLocation(context, location),
-                    );
-                  },
-                ),
-              ),
-            ),
+                )),
           ),
         ],
       ),
