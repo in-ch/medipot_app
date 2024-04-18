@@ -94,9 +94,9 @@ class _MyLocationsState extends State<MyLocations> {
                       ),
                     ),
                     noItemsFoundIndicatorBuilder: (context) =>
-                        NoDatas(text: '올린 매물이 없습니다.'),
+                        NoDatas(text: '올린 매물이 없습니다.', sub: '닥스팟에서 매물을 올려보세요.'),
                     firstPageErrorIndicatorBuilder: (context) =>
-                        NoDatas(text: '올린 매물이 없습니다.'),
+                        NoDatas(text: '올린 매물이 없습니다.', sub: '닥스팟에서 매물을 올려보세요.'),
                     newPageProgressIndicatorBuilder: (context) => Container(
                       alignment: Alignment.center,
                       width: 50,
