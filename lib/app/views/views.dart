@@ -18,6 +18,7 @@ export './feed/feed_image.dart';
 
 export './modals/follow_modal.dart';
 export './modals/phone_validation_modal.dart';
+export './modals/please_login_modal.dart';
 
 export './small_circle.dart';
 export './avatar.dart';

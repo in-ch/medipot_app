@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:docspot_app/services/services.dart';
 import 'package:docspot_app/app/views/views.dart';
@@ -58,23 +59,36 @@ class LocationDetailController extends GetxController {
   /// [description] 프리미엄 리포트 신청하기
   void requestPremiumReport(BuildContext context) async {
     try {
-      final response = await UserService.getMe();
-      final data = response.data;
-      if (data.phone == '') {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      bool isLogin = prefs.getBool("isLogin") ?? false;
+
+      if (!isLogin) {
         showModalBottomSheet<void>(
           context: context,
           builder: (BuildContext context) {
-            return const PhoneValidationModal();
+            return const PleaseLogin();
           },
         );
       } else {
-        final locationNo = Get.arguments['locationNo'];
-        final response = await LocationService.requestPremiumReport(locationNo);
-        final statusCode = response;
-        if (statusCode == 200) {
-          Get.snackbar("프리미엄 리포트 신청이 완료되었습니다.", "영업일 기준 1~2일 내로 리포트가 도착합니다.");
+        final response = await UserService.getMe();
+        final data = response.data;
+        if (data.phone == '') {
+          showModalBottomSheet<void>(
+            context: context,
+            builder: (BuildContext context) {
+              return const PhoneValidationModal();
+            },
+          );
         } else {
-          Get.snackbar("서버 문제가 발생하였습니다.", "지속 발생 시 관리자에게 문의해주세요.");
+          final locationNo = Get.arguments['locationNo'];
+          final response =
+              await LocationService.requestPremiumReport(locationNo);
+          final statusCode = response;
+          if (statusCode == 200) {
+            Get.snackbar("프리미엄 리포트 신청이 완료되었습니다.", "영업일 기준 1~2일 내로 리포트가 도착합니다.");
+          } else {
+            Get.snackbar("서버 문제가 발생하였습니다.", "지속 발생 시 관리자에게 문의해주세요.");
+          }
         }
       }
     } catch (error) {
