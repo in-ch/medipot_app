@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:docspot_app/services/services.dart';
 
@@ -12,7 +13,18 @@ class MapController extends GetxController {
       final response = await UserService.me();
       final data = response['data'];
       if (data == null) {
-        await UserService.refresh();
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        bool isLogin = prefs.getBool('isLogin') ?? false;
+        if (isLogin) {
+          await UserService.refresh();
+        } else {
+          prefs.setString('nickname', "");
+          prefs.setString('userNo', "");
+          prefs.setString('phone', "");
+          prefs.setString('accessToken', "");
+          prefs.setString('refreshToken', "");
+          prefs.setBool('isLogin', false);
+        }
       }
       return true;
     } catch (error) {

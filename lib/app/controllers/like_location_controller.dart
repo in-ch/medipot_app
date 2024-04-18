@@ -50,7 +50,9 @@ class LikeLocationController extends GetxController {
         pagingController.appendLastPage(list);
         update();
       } else {
-        throw Exception('Failed to FETCH LikeLocations');
+        pagingController.error = true;
+        update();
+        print('Failed to FETCH LikeLocations');
       }
     } catch (error) {
       update();
@@ -71,6 +73,8 @@ class LikeLocationController extends GetxController {
         pagingController.appendLastPage(list);
         update();
       } else {
+        pagingController.error = true;
+        update();
         throw Exception('Failed to FETCH myLocations');
       }
     } catch (error) {

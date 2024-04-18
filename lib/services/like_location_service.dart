@@ -15,7 +15,7 @@ class LikeLocationService {
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {
-      throw Exception('Failed to likeLocations fetch list');
+      return {'statusCode': response.statusCode, 'data': []};
     }
   }
 

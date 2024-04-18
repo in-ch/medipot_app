@@ -1,4 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:docspot_app/data/models/models.dart';
@@ -31,13 +32,18 @@ class NotificationController extends GetxController {
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((event) {
-      print(event.notification!.title);
-      print(event.notification!.body);
+      debugPrint(event.notification!.title);
+      debugPrint(event.notification!.body);
     });
   }
 
   void _getToken() async {
     String? token = await messaging.getToken();
-    try {} catch (e) {}
+    try {
+      debugPrint("firebase token--------------------");
+      debugPrint(token);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 }
