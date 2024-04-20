@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.4.1 (2024-04-19)
+
+- [fix: 로그인 시 로그아웃, 탈퇴 렌더링 버그 수정 (#13)](27184c7af0ca94bba0f6736215997558cd88fb5d)
+
 ### 1.3.0 (2024-04-18)
 
 - [feat: 비로그인으로 리포트 요청 시 로그인 요청 로직 추가 (#14)](0442763358924b0f09678d80248e6307871b98e2)

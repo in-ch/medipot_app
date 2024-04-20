@@ -209,22 +209,29 @@ class _SettingSubPageState extends State<SettingSubPage> {
                                 throw Exception('Could not launch $url');
                               }
                             }),
-                        settingController.isLogin.value
-                            ? SettingBoxItem(
-                                title: '로그아웃',
-                                description: '로그인 시 더 다양한 기능을 확인할 수 있습니다.',
-                                event: () {
-                                  settingController.logout(context);
-                                })
-                            : Container(),
-                        settingController.isLogin.value
-                            ? SettingBoxItem(
-                                title: '탈퇴하기',
-                                description: '탈퇴 시 기능이 제한될 수 있습니다.',
-                                event: () {
-                                  Get.toNamed(Routes.deleteAccount);
-                                })
-                            : Container(),
+                        Obx(() => settingController.isLoading.value
+                            ? const SizedBox(height: 1)
+                            : Column(
+                                children: [
+                                  settingController.isLogin.value
+                                      ? SettingBoxItem(
+                                          title: '로그아웃',
+                                          description:
+                                              '로그인 시 더 다양한 기능을 확인할 수 있습니다.',
+                                          event: () {
+                                            settingController.logout(context);
+                                          })
+                                      : Container(),
+                                  settingController.isLogin.value
+                                      ? SettingBoxItem(
+                                          title: '탈퇴하기',
+                                          description: '탈퇴 시 기능이 제한될 수 있습니다.',
+                                          event: () {
+                                            Get.toNamed(Routes.deleteAccount);
+                                          })
+                                      : Container()
+                                ],
+                              )),
                       ],
                     )
                   ],
