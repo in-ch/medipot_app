@@ -36,7 +36,7 @@ class _SettingBoxState extends State<SettingBoxItem> {
         GestureDetector(
           onTap: widget.event,
           child: Container(
-              height: 60,
+              height: 65,
               padding: const EdgeInsets.only(
                   left: 16, right: 16, top: 10, bottom: 10),
               decoration: BoxDecoration(
@@ -44,28 +44,18 @@ class _SettingBoxState extends State<SettingBoxItem> {
                 borderRadius: const BorderRadius.all(Radius.circular(4)),
               ),
               width: double.maxFinite,
-              child: Stack(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: SizedBox(
-                      height: 24,
-                      child: Text(
-                        widget.title,
-                        style: appTheme.textTheme.titleMedium,
-                      ),
-                    ),
+                  Text(
+                    widget.title,
+                    style: appTheme.textTheme.headlineSmall,
                   ),
-                  Positioned(
-                    right: 34,
-                    bottom: 0,
-                    left: 0,
-                    child: Text(
-                      widget.description,
-                      style: appTheme.textTheme.titleSmall,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                  const SizedBox(height: 4),
+                  Text(
+                    widget.title,
+                    style: appTheme.textTheme.bodySmall,
                   ),
                 ],
               )),
