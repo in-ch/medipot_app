@@ -111,7 +111,7 @@ class UserService {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? accessToken = prefs.getString('accessToken');
     final headers = {'Authorization': 'Bearer $accessToken'};
-    final body = {"phone": "01056922949"};
+    final body = {"phone": phone};
 
     final response = await http.post(url, headers: headers, body: body);
     final responseData = jsonDecode(response.body);

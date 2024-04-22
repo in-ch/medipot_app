@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.5.0 (2024-04-23)
+
+- [feat: 프로필 수정 페이지 이동 기능 삭제 (#16)](61154711d2d9e0f2e0e483acabe6a2f82dbea646)
+- [fix: 프리미엄 리포트 전화번호 내 번호로 고정된 거 수정 (#16)](ac4537f4080a91bf14b902075d4438961975eff5)
+- [style: 프리미엄 리포트 신청하기 버튼 폰트 크기 조절 (#16)](3fbd4761b37785046c8c3b8ae55426a2163affd4)
+- [style: 설정 페이지 pixel overflow 현상 수정 (#16)](dab3ec3d316cc206ddb613ee1dd61c8367435af8)
+
 ### 1.4.1 (2024-04-19)
 
 - [fix: 로그인 시 로그아웃, 탈퇴 렌더링 버그 수정 (#13)](27184c7af0ca94bba0f6736215997558cd88fb5d)
