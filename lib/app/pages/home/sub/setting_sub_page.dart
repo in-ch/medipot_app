@@ -41,7 +41,7 @@ class _SettingSubPageState extends State<SettingSubPage> {
                                 ? Get.snackbar('잠시만 기다려주세요.', '로딩 중입니다.')
                                 : !settingController.isLogin.value
                                     ? Get.toNamed(Routes.login)
-                                    : Get.toNamed(Routes.profileUpdate),
+                                    : debugPrint('Go To Profile'),
                             child: Padding(
                               padding: const EdgeInsets.only(
                                   left: 20.0, right: 20.0),
@@ -96,11 +96,16 @@ class _SettingSubPageState extends State<SettingSubPage> {
                                                     .textTheme
                                                     .titleMedium)),
                                         const SizedBox(width: 10),
-                                        const Icon(
-                                          CupertinoIcons.chevron_right,
-                                          color: Colors.black,
-                                          size: 16,
-                                        )
+                                        Obx(() {
+                                          return !settingController
+                                                  .isLogin.value
+                                              ? const Icon(
+                                                  CupertinoIcons.chevron_right,
+                                                  color: Colors.black,
+                                                  size: 16,
+                                                )
+                                              : const SizedBox();
+                                        })
                                       ],
                                     )),
                             ),

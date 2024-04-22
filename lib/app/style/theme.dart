@@ -45,7 +45,7 @@ final appTheme = ThemeData(
         color: Color.fromARGB(255, 50, 50, 50),
         fontFamily: 'PretendardSemiBold'),
     titleSmall: TextStyle(
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: FontWeight.w300,
         color: Color.fromARGB(255, 100, 100, 100),
         fontFamily: 'PretendardSemiBold'),
