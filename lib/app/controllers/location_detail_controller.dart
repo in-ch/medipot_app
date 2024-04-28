@@ -56,7 +56,7 @@ class LocationDetailController extends GetxController {
   }
 
   /// [Method]
-  /// [description] 프리미엄 리포트 신청하기
+  /// [description] 무료 입지 리포트 신청하기
   void requestPremiumReport(BuildContext context) async {
     try {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
