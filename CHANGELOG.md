@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.5.1 (2024-04-28)
+
+- [chore: 프리미엄 매물 리포트 -> 무료 매물 리포트로 변경 (#14)](1ad17761a4a28756b31606c44bcdb04492dc74ba)
+
 ### 1.5.0 (2024-04-23)
 
 - [feat: 프로필 수정 페이지 이동 기능 삭제 (#16)](61154711d2d9e0f2e0e483acabe6a2f82dbea646)
