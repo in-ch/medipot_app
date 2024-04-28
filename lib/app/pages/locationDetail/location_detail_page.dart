@@ -81,7 +81,7 @@ class LocationDetailPage extends GetView<LocationDetailController> {
                                             controller
                                                 .requestPremiumReport(context);
                                           },
-                                          child: Text('프리미엄 리포트 신청',
+                                          child: Text('무료 입지 리포트 신청',
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .titleSmall!
