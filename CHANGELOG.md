@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.5.2 (2024-05-02)
+
+- [fix: 애플 로그인 key 릴리즈로 변경 (#14)](a82cf515764dd0eee059f4ebeb5c8713c88a6377)
+
 ### 1.5.1 (2024-04-28)
 
 - [chore: 프리미엄 매물 리포트 -> 무료 매물 리포트로 변경 (#14)](1ad17761a4a28756b31606c44bcdb04492dc74ba)
