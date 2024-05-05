@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.5.3 (2024-05-05)
+
+- [fix: 애플 로그인에 릴리즈 서명 추가](4374f08f37ebb52fb309a3a70aa04b6a4e61f9ac)
+
 ### 1.5.2 (2024-05-02)
 
 - [fix: 애플 로그인 key 릴리즈로 변경 (#14)](a82cf515764dd0eee059f4ebeb5c8713c88a6377)

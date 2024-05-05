@@ -66,7 +66,7 @@ class LoginController extends GetxController {
         ],
       );
       if (credential.authorizationCode == '') {
-        // Get.snackbar("로그인 실패", "애플 로그인에 실패하였습니다.");
+        Get.snackbar("애플 로그인 실패", "인증 정보를 확인할 수가 없습니다.");
       } else {
         String identityToken = credential.identityToken as String;
         Map<String, dynamic> decodedToken = decodeJwt(identityToken);
@@ -79,7 +79,7 @@ class LoginController extends GetxController {
         );
       }
     } catch (e) {
-      // Get.snackbar("로그인 실패", "애플 로그인에 실패하였습니다.");
+      Get.snackbar("로그인 실패", "애플 로그인에 실패하였습니다.");
     }
   }
 }
