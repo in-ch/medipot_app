@@ -12,3 +12,4 @@ export './location_detail_controller.dart';
 export './consult_list_controller.dart';
 export './cs_center_controller.dart';
 export './phone_controller.dart';
+export './career_controller.dart';

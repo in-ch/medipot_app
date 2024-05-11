@@ -26,8 +26,12 @@ class _BottomNavigationWidgetState extends State<BottomNavigation> {
       onTap: widget.onTabTapped,
       items: const [
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: '홈',
+          icon: Icon(Icons.card_travel),
+          label: '초빙 정보',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.map),
+          label: '개원 입지',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.favorite),
