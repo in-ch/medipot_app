@@ -23,7 +23,7 @@ class MapSubPageState extends State<MapSubPage> {
   @override
   void initState() {
     super.initState();
-
+    mapController.verifyVersion(context);
     Future.delayed(Duration.zero, () async {
       await mapController.tokenCheck();
       controller = WebViewController()
