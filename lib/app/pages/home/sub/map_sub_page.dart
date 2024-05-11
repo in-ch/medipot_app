@@ -54,21 +54,16 @@ class MapSubPageState extends State<MapSubPage> {
     });
   }
 
-  Future<bool> _onWillPop() async {
-    if (await controller.canGoBack()) {
-      controller.goBack();
-      return false;
-    } else {
-      return true;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      body: WillPopScope(
-        onWillPop: _onWillPop,
+      body: PopScope(
+        onPopInvoked: (bool didPop) {
+          if (didPop) {
+            controller.goBack();
+          }
+        },
         child: Column(
           children: [
             const SizedBox(height: 40),
