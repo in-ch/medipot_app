@@ -23,6 +23,7 @@ import './consultList/consult_list_page.dart';
 import './csCenter/cs_center_page.dart';
 import './phone/phone_page.dart';
 import './phone/phone_pin_page.dart';
+import './careerList/career_list_page.dart';
 
 abstract class AppPages {
   static final pages = [
@@ -92,5 +93,10 @@ abstract class AppPages {
         page: () => const PhonePinPage(),
         transition: Transition.cupertino,
         bindings: [PhoneBinding()]),
+    GetPage(
+        name: Routes.careerList,
+        page: () => const CareerListPage(),
+        transition: Transition.cupertino,
+        bindings: [CareerListBinding()]),
   ];
 }

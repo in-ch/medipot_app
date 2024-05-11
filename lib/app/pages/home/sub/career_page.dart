@@ -42,10 +42,11 @@ class CareerPage extends GetView<CareerController> {
               ),
             ],
           ),
-          body: const SizedBox(
+          body: Container(
             width: double.infinity,
             height: double.infinity,
-            child: SingleChildScrollView(
+            color: Colors.white,
+            child: const SingleChildScrollView(
               child: Column(
                 children: [
                   ViewByDepartment(),

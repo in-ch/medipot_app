@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:docspot_app/app/routes/routes.dart';
 
 class ViewByDepartment extends StatelessWidget {
   const ViewByDepartment({super.key});
@@ -18,10 +21,15 @@ class ViewByDepartment extends StatelessWidget {
                   style: Theme.of(context).textTheme.headlineSmall,
                   textAlign: TextAlign.start,
                 ),
-                Text(
-                  "전체보기",
-                  style: Theme.of(context).textTheme.titleSmall,
-                  textAlign: TextAlign.start,
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.careerList);
+                  },
+                  child: Text(
+                    "전체보기",
+                    style: Theme.of(context).textTheme.titleSmall,
+                    textAlign: TextAlign.start,
+                  ),
                 ),
               ],
             ),
