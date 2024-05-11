@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/style/theme.dart';
+import 'package:docspot_app/app/views/views.dart';
 
 class CareerPage extends GetView<CareerController> {
   const CareerPage({Key? key}) : super(key: key);
@@ -11,12 +12,12 @@ class CareerPage extends GetView<CareerController> {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: appTheme,
-      child: Scaffold(
+        data: appTheme,
+        child: Scaffold(
           appBar: AppBar(
             iconTheme: Theme.of(context).iconTheme,
             centerTitle: false,
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.white,
             elevation: 0,
             leadingWidth: 54,
             title: Image.asset(
@@ -41,11 +42,25 @@ class CareerPage extends GetView<CareerController> {
               ),
             ],
           ),
-          body: const Column(
-            children: [
-              Expanded(child: Text("유계")),
-            ],
-          )),
-    );
+          body: const SizedBox(
+            width: double.infinity,
+            height: double.infinity,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  ViewByDepartment(),
+                  ShowRecent(),
+                  CareerSlider(imageUrls: [
+                    'https://cdn.pixabay.com/photo/2024/04/13/18/22/barberry-8694277_1280.jpg',
+                    'https://cdn.pixabay.com/photo/2024/03/30/04/56/tea-8664063_1280.jpg',
+                    'https://cdn.pixabay.com/photo/2024/04/20/11/47/ai-generated-8708404_1280.jpg',
+                    'https://cdn.pixabay.com/photo/2023/06/22/07/13/soil-8080788_1280.jpg'
+                  ]),
+                  CareerLocations(),
+                ],
+              ),
+            ),
+          ),
+        ));
   }
 }

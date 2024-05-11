@@ -36,3 +36,9 @@ export './favorites/my_consult_item.dart';
 export './setting/setting_box.dart';
 export './setting/setting_sns_box.dart';
 export './setting/setting_button_boxs.dart';
+
+export './career/view_by_department.dart';
+export './career/show_recent.dart';
+export './career/career_slider.dart';
+export './career/career_location.dart';
+export './career/career_location_card.dart';

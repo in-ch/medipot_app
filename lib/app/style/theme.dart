@@ -19,54 +19,58 @@ final appTheme = ThemeData(
   // 텍스트 스타일 설정
   colorScheme: colorScheme,
   textTheme: const TextTheme(
-    headlineLarge: TextStyle(
-        fontSize: 24,
-        fontWeight: FontWeight.bold,
-        color: Colors.black87,
-        fontFamily: 'PretendardSemiBold'),
-    headlineMedium: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-        color: Colors.black87,
-        fontFamily: 'PretendardSemiBold'),
-    headlineSmall: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
-        color: Colors.black87,
-        fontFamily: 'PretendardSemiBold'),
-    titleLarge: TextStyle(
-        fontSize: 19,
-        fontWeight: FontWeight.w900,
-        color: Color.fromARGB(255, 10, 10, 10),
-        fontFamily: 'PretendardBold'),
-    titleMedium: TextStyle(
-        fontSize: 17,
-        fontWeight: FontWeight.w300,
-        color: Color.fromARGB(255, 50, 50, 50),
-        fontFamily: 'PretendardSemiBold'),
-    titleSmall: TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w300,
-        color: Color.fromARGB(255, 100, 100, 100),
-        fontFamily: 'PretendardSemiBold'),
-    bodyLarge: TextStyle(
-        fontSize: 17, color: Colors.black87, fontFamily: 'PretendardRegular'),
-    bodyMedium: TextStyle(
-        fontSize: 14, color: Colors.black87, fontFamily: 'PretendardRegular'),
-    bodySmall: TextStyle(
-        fontSize: 12,
-        color: Colors.black87,
-        height: 1.5,
-        fontFamily: 'PretendardRegular'),
-    displayMedium: TextStyle(
-        fontSize: 14,
-        color: Color.fromARGB(221, 56, 56, 56),
-        fontFamily: 'PretendardRegular'),
-    displaySmall: TextStyle(
-        fontSize: 11,
-        color: Color.fromARGB(221, 56, 56, 56),
-        fontFamily: 'PretendardRegular'),
-  ),
+      headlineLarge: TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          color: Colors.black87,
+          fontFamily: 'PretendardSemiBold'),
+      headlineMedium: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.black87,
+          fontFamily: 'PretendardSemiBold'),
+      headlineSmall: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: Colors.black87,
+          fontFamily: 'PretendardSemiBold'),
+      titleLarge: TextStyle(
+          fontSize: 19,
+          fontWeight: FontWeight.w900,
+          color: Color.fromARGB(255, 10, 10, 10),
+          fontFamily: 'PretendardBold'),
+      titleMedium: TextStyle(
+          fontSize: 17,
+          fontWeight: FontWeight.w300,
+          color: Color.fromARGB(255, 50, 50, 50),
+          fontFamily: 'PretendardSemiBold'),
+      titleSmall: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w300,
+          color: Color.fromARGB(255, 100, 100, 100),
+          fontFamily: 'PretendardSemiBold'),
+      bodyLarge: TextStyle(
+          fontSize: 17, color: Colors.black87, fontFamily: 'PretendardRegular'),
+      bodyMedium: TextStyle(
+          fontSize: 14, color: Colors.black87, fontFamily: 'PretendardRegular'),
+      bodySmall: TextStyle(
+          fontSize: 12,
+          color: Colors.black87,
+          height: 1.5,
+          fontFamily: 'PretendardRegular'),
+      displayMedium: TextStyle(
+          fontSize: 14,
+          color: Color.fromARGB(221, 56, 56, 56),
+          fontFamily: 'PretendardRegular'),
+      displaySmall: TextStyle(
+          fontSize: 11,
+          color: Color.fromARGB(221, 56, 56, 56),
+          fontFamily: 'PretendardRegular'),
+      labelMedium: TextStyle(
+          fontSize: 14,
+          color: Color.fromARGB(221, 56, 56, 56),
+          fontWeight: FontWeight.w600,
+          fontFamily: 'PretendardRegular')),
   // 버튼 테마 스타일 설정
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: ButtonStyle(
