@@ -38,7 +38,7 @@ class CareerLocations extends StatelessWidget {
           ),
           SizedBox(
             width: double.infinity,
-            height: 500,
+            height: 600,
             child: GridView(
               padding: const EdgeInsets.symmetric(vertical: 15),
               shrinkWrap: true,
@@ -49,53 +49,78 @@ class CareerLocations extends StatelessWidget {
                 childAspectRatio: 2.58,
                 mainAxisSpacing: 15,
               ),
-              children: const [
+              children: [
                 CareerLocationCard(
-                  title: '서울특별시',
-                  color: Color.fromARGB(255, 0, 192, 173),
-                  // onPressed: () => context.router.push(const PokedexRoute()),
+                  title: '서울',
+                  img:
+                      'https://medipot-uploads.s3.ap-northeast-2.amazonaws.com/app/seoul.jpg',
+                  onPressed: () => Get.toNamed(Routes.careerList),
                 ),
                 CareerLocationCard(
                   title: '경기도',
-                  color: Color.fromARGB(255, 254, 118, 108),
-                  // onPressed: () => context.router.push(const PokedexRoute()),
+                  img:
+                      'https://medipot-uploads.s3.ap-northeast-2.amazonaws.com/app/gyeonggido.jpg',
+                  onPressed: () => Get.toNamed(Routes.careerList),
                 ),
                 CareerLocationCard(
-                  title: '인천광역시',
-                  color: Color.fromARGB(255, 54, 60, 244),
-                  // onPressed: () => context.router.push(const PokedexRoute()),
+                  title: '인천',
+                  img:
+                      'https://medipot-uploads.s3.ap-northeast-2.amazonaws.com/app/incheon.jpg',
+                  onPressed: () => Get.toNamed(Routes.careerList),
                 ),
                 CareerLocationCard(
-                  title: '부산광역시',
-                  color: Color.fromARGB(255, 54, 177, 244),
-                  // onPressed: () => context.router.push(const PokedexRoute()),
+                  title: '부산',
+                  img:
+                      'https://medipot-uploads.s3.ap-northeast-2.amazonaws.com/app/busan.jpg',
+                  onPressed: () => Get.toNamed(Routes.careerList),
                 ),
                 CareerLocationCard(
-                  title: '대전특별자치도',
-                  color: Color.fromARGB(255, 0, 188, 6),
-                  // onPressed: () => context.router.push(const PokedexRoute()),
+                  title: '대전',
+                  img:
+                      'https://medipot-uploads.s3.ap-northeast-2.amazonaws.com/app/daejeon.jpg',
+                  onPressed: () => Get.toNamed(Routes.careerList),
                 ),
                 CareerLocationCard(
-                  title: '제주도',
-                  color: Color.fromARGB(255, 255, 198, 55),
-                  // onPressed: () => context.router.push(const PokedexRoute()),
+                  title: '제주',
+                  img:
+                      'https://medipot-uploads.s3.ap-northeast-2.amazonaws.com/app/jeju.jpg',
+                  onPressed: () => Get.toNamed(Routes.careerList),
                 ),
                 CareerLocationCard(
                   title: '강원도',
-                  color: Color.fromARGB(255, 0, 161, 124),
-                  // onPressed: () => context.router.push(const PokedexRoute()),
+                  img:
+                      'https://medipot-uploads.s3.ap-northeast-2.amazonaws.com/app/gangwon.jpg',
+                  onPressed: () => Get.toNamed(Routes.careerList),
                 ),
                 CareerLocationCard(
-                  title: '광주광역시',
-                  color: Color.fromARGB(255, 183, 116, 255),
+                  title: '광주',
+                  img:
+                      'https://medipot-uploads.s3.ap-northeast-2.amazonaws.com/app/gwangju.jpg',
+                  onPressed: () => Get.toNamed(Routes.careerList),
                 ),
                 CareerLocationCard(
                   title: '충청북도',
-                  color: Color.fromARGB(255, 189, 146, 110),
+                  img:
+                      'https://medipot-uploads.s3.ap-northeast-2.amazonaws.com/app/chungcheongbukdo.jpg',
+                  onPressed: () => Get.toNamed(Routes.careerList),
                 ),
                 CareerLocationCard(
                   title: '충청남도',
-                  color: Color.fromARGB(255, 116, 197, 255),
+                  img:
+                      'https://medipot-uploads.s3.ap-northeast-2.amazonaws.com/app/chungcheongnamdo.jpg',
+                  onPressed: () => Get.toNamed(Routes.careerList),
+                ),
+                CareerLocationCard(
+                  title: '전라북도',
+                  img:
+                      'https://medipot-uploads.s3.ap-northeast-2.amazonaws.com/app/jeollabukdo.jpg',
+                  onPressed: () => Get.toNamed(Routes.careerList),
+                ),
+                CareerLocationCard(
+                  title: '전라남도',
+                  img:
+                      'https://medipot-uploads.s3.ap-northeast-2.amazonaws.com/app/jeollanamdo.jpg',
+                  onPressed: () => Get.toNamed(Routes.careerList),
                 ),
               ],
             ),
