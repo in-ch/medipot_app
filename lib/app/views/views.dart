@@ -42,3 +42,4 @@ export './career/show_recent.dart';
 export './career/career_slider.dart';
 export './career/career_location.dart';
 export './career/career_location_card.dart';
+export './career/career_item.dart';
