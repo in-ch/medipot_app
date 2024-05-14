@@ -174,7 +174,7 @@ class _SettingSubPageState extends State<SettingSubPage> {
                                       style: appTheme.textTheme.bodyMedium)),
                                 ],
                               ),
-                              SimpleButton(
+                              SimpleTextButton(
                                   text: "업데이트",
                                   event: () {
                                     Get.snackbar("최신 버전의 앱입니다.", "닥스팟");

@@ -4,6 +4,9 @@ class CareerController extends GetxController {
   RxBool isLoading = false.obs;
   RxString locationValue = '전체보기'.obs;
   RxString departmentValue = '전체보기'.obs;
+  RxBool hideBottomButton = false.obs;
+
+  RxDouble bodyHeight = 0.0.obs;
 
   List<String> locationList = [
     '전체보기',

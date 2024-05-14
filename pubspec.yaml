@@ -32,6 +32,7 @@ dependencies:
   sign_in_with_apple: ^6.0.0
   package_info_plus: ^8.0.0
   app_version_update: ^3.1.0
+  sliding_up_panel: ^2.0.0+1
 
 dev_dependencies:
   flutter_test:

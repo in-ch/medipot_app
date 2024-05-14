@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:docspot_app/app/routes/routes.dart';
 
 class ShowRecent extends StatelessWidget {
   const ShowRecent({
@@ -74,23 +77,26 @@ class PositionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 10.0),
-      child: SizedBox(
-        width: 150,
-        child: Column(children: [
-          Image.network(img, width: 60, height: 60),
-          Text(
-            company,
-            style: Theme.of(context).textTheme.labelMedium,
-            overflow: TextOverflow.ellipsis,
-          ),
-          Text(
-            position,
-            style: Theme.of(context).textTheme.labelSmall,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ]),
+    return GestureDetector(
+      onTap: () => Get.toNamed(Routes.careerDetail),
+      child: Padding(
+        padding: const EdgeInsets.only(right: 10.0),
+        child: SizedBox(
+          width: 150,
+          child: Column(children: [
+            Image.network(img, width: 60, height: 60),
+            Text(
+              company,
+              style: Theme.of(context).textTheme.labelMedium,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Text(
+              position,
+              style: Theme.of(context).textTheme.labelSmall,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ]),
+        ),
       ),
     );
   }
