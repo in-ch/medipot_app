@@ -22,11 +22,20 @@ class CareerItem extends StatelessWidget {
           width: double.infinity,
           child: Stack(
             children: [
-              Image.network(
-                img,
-                width: double.infinity,
-                height: 100,
-                fit: BoxFit.fitWidth,
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                  color: const Color.fromARGB(255, 243, 243, 243),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.network(
+                    img,
+                    width: double.infinity,
+                    height: 110,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
               Positioned(
                 top: 10,
@@ -51,8 +60,9 @@ class CareerItem extends StatelessWidget {
               Text(company,
                   style: const TextStyle(
                       fontSize: 15.0, fontWeight: FontWeight.w600)),
-              const SizedBox(height: 5),
               Text(position,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                       fontSize: 12.0, fontWeight: FontWeight.w300))
             ],

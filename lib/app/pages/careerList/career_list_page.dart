@@ -114,33 +114,33 @@ class CareerListPage extends GetView<CareerController> {
                             children: const [
                               CareerItem(
                                   img:
-                                      "https://attach.medijob.cc/file/company/heal-teun/20220808170159842172E801FA4902A4F8F7B6B532461D.png",
+                                      "https://cdn.pixabay.com/photo/2015/07/10/20/54/stethoscope-840125_1280.jpg",
                                   company: "본탑재활의학과의원",
                                   position:
                                       "[분당 서현] 외래 진료 보조 업무 도와주실 선생님 모십니다."),
                               CareerItem(
                                   img:
-                                      "https://attach.medijob.cc/file/Legacy/logo/medijob_ssylim.gif",
+                                      "https://cdn.pixabay.com/photo/2015/07/10/20/54/stethoscope-840125_1280.jpg",
                                   company: "삼성열린내과",
                                   position: "7호선 신대방삼거리역 삼성열린내과 정규직(주5일)"),
                               CareerItem(
                                   img:
-                                      "https://attach.medijob.cc/file/company/chambaro/20201007152249AEA2C457113B4ABB84B80DC4FAFD5FAA.jpg",
+                                      "https://cdn.pixabay.com/photo/2015/07/10/20/54/stethoscope-840125_1280.jpg",
                                   company: "참바로병원",
                                   position: "정형외과 외과 전문의"),
                               CareerItem(
                                   img:
-                                      "https://attach.medijob.cc/file/company/entsandp/20190224085837FC2A50DFA2EA4CE494F70E786C4EF4B3.png",
+                                      "https://cdn.pixabay.com/photo/2015/07/10/20/54/stethoscope-840125_1280.jpg",
                                   company: "삼성 손앤박 이비인후과의원",
                                   position: "이비인후과 전문의 초빙합니다."),
                               CareerItem(
                                   img:
-                                      "https://attach.medijob.cc/file/company/entsandp/20190224085837FC2A50DFA2EA4CE494F70E786C4EF4B3.png",
+                                      "https://cdn.pixabay.com/photo/2015/07/10/20/54/stethoscope-840125_1280.jpg",
                                   company: "삼성 손앤박 이비인후과의원",
                                   position: "이비인후과 전문의 초빙합니다."),
                               CareerItem(
                                   img:
-                                      "https://attach.medijob.cc/file/company/entsandp/20190224085837FC2A50DFA2EA4CE494F70E786C4EF4B3.png",
+                                      "https://cdn.pixabay.com/photo/2015/07/10/20/54/stethoscope-840125_1280.jpg",
                                   company: "삼성 손앤박 이비인후과의원",
                                   position: "이비인후과 전문의 초빙합니다."),
                             ],

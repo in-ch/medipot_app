@@ -56,13 +56,19 @@ class CareerSliderState extends State<CareerSlider> {
                   itemBuilder: (context, index) {
                     return Stack(
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(15.0),
-                          child: SizedBox(
-                            width: double.infinity,
-                            child: Image.network(
-                              widget.imageUrls[index],
-                              fit: BoxFit.cover,
+                        Container(
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 243, 243, 243),
+                            borderRadius: BorderRadius.circular(14.0),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15.0),
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: Image.network(
+                                widget.imageUrls[index],
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),
