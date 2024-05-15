@@ -14,4 +14,5 @@ abstract class Routes {
   static const careerList = '/careerList';
   static const careerDetail = '/careerDetail';
   static const search = '/search';
+  static const alarm = '/alarm';
 }

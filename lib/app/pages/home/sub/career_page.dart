@@ -37,10 +37,14 @@ class CareerPage extends GetView<CareerController> {
                 ),
               ),
               const SizedBox(width: 10),
-              const Padding(
-                padding: EdgeInsets.only(right: 20),
+              Padding(
+                padding: const EdgeInsets.only(right: 20),
                 child: Center(
-                  child: Icon(CupertinoIcons.bell, size: 24.0),
+                  child: GestureDetector(
+                      onTap: () {
+                        Get.toNamed(Routes.alarm);
+                      },
+                      child: const Icon(CupertinoIcons.bell, size: 24.0)),
                 ),
               ),
             ],

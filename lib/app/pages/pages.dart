@@ -26,6 +26,7 @@ import './phone/phone_pin_page.dart';
 import './careerList/career_list_page.dart';
 import './careerDetail/career_detail_page.dart';
 import './search/search.dart';
+import './alarm/alarm_page.dart';
 
 abstract class AppPages {
   static final pages = [
@@ -110,5 +111,10 @@ abstract class AppPages {
         page: () => const SearchPage(),
         transition: Transition.cupertino,
         bindings: [SearchBinding()]),
+    GetPage(
+        name: Routes.alarm,
+        page: () => const AlarmPage(),
+        transition: Transition.cupertino,
+        bindings: [AlarmBinding()]),
   ];
 }
