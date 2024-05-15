@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/style/theme.dart';
+import 'package:docspot_app/app/routes/routes.dart';
 import 'package:docspot_app/app/views/views.dart';
 
 class CareerPage extends GetView<CareerController> {
@@ -30,7 +31,9 @@ class CareerPage extends GetView<CareerController> {
                 child: Center(
                   child: GestureDetector(
                       child: const Icon(CupertinoIcons.search, size: 24.0),
-                      onTap: () {}),
+                      onTap: () {
+                        Get.toNamed(Routes.search);
+                      }),
                 ),
               ),
               const SizedBox(width: 10),

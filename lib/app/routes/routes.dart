@@ -13,4 +13,5 @@ abstract class Routes {
   static const phonePin = '/phonePin';
   static const careerList = '/careerList';
   static const careerDetail = '/careerDetail';
+  static const search = '/search';
 }

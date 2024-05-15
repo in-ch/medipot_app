@@ -9,3 +9,4 @@ export './consult_list_binding.dart';
 export './cs_center_binding.dart';
 export './phone_binding.dart';
 export './career_binding.dart';
+export './search_binding.dart';
