@@ -48,4 +48,28 @@ class CareerController extends GetxController {
     '한의원',
     '종합 병원',
   ];
+
+  /// [비즈니스 로직]
+  /// 지원하기
+  Future<dynamic> handleJoin() async {
+    try {
+      Get.snackbar("문의가 완료되었습니다.", "담당자가 연락올 때까지 잠시만 기다려주세요.");
+    } catch (error) {
+      throw Exception(error);
+    } finally {
+      update();
+    }
+  }
+
+  /// [비즈니스 로직]
+  /// 초빙 공고 북마크
+  Future<dynamic> handleBookmark() async {
+    try {
+      Get.snackbar("초빙공고 북마크", "해당 공고를 관심 목록에 저장하였습니다.");
+    } catch (error) {
+      throw Exception(error);
+    } finally {
+      update();
+    }
+  }
 }

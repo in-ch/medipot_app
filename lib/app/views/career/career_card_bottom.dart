@@ -36,7 +36,9 @@ class CareerCardBottom extends GetView<CareerController> {
                             isBookmark: true,
                             color: Colors.white,
                             textColor: Colors.white,
-                            event: () {}),
+                            event: () {
+                              controller.handleBookmark();
+                            }),
                       ),
                       const SizedBox(width: 20),
                       Expanded(
@@ -44,7 +46,9 @@ class CareerCardBottom extends GetView<CareerController> {
                             text: "지원하기",
                             color: colorScheme.primary,
                             textColor: Colors.white,
-                            event: () {}),
+                            event: () {
+                              controller.handleJoin();
+                            }),
                       ),
                       const SizedBox(width: 20),
                     ],

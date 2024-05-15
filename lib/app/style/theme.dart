@@ -52,7 +52,7 @@ final appTheme = ThemeData(
       bodyLarge: TextStyle(
           fontSize: 17, color: Colors.black87, fontFamily: 'PretendardRegular'),
       bodyMedium: TextStyle(
-          fontSize: 14, color: Colors.black87, fontFamily: 'PretendardRegular'),
+          fontSize: 15, color: Colors.black87, fontFamily: 'PretendardRegular'),
       bodySmall: TextStyle(
           fontSize: 12,
           color: Colors.black87,
