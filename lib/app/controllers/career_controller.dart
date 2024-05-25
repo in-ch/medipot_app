@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
 
+import 'package:docspot_app/data/models/models.dart';
+import 'package:docspot_app/services/services.dart';
+
 class CareerController extends GetxController {
   RxBool isLoading = false.obs;
   RxString locationValue = '전체보기'.obs;
@@ -7,6 +10,8 @@ class CareerController extends GetxController {
   RxBool hideBottomButton = false.obs;
 
   RxDouble bodyHeight = 0.0.obs;
+
+  List<Career> careers = [];
 
   List<String> locationList = [
     '전체보기',
@@ -69,6 +74,26 @@ class CareerController extends GetxController {
     } catch (error) {
       throw Exception(error);
     } finally {
+      update();
+    }
+  }
+
+  /// [비즈니스 로직]
+  /// 커리어 리스트를 조회한다.
+  Future<dynamic> getCareers() async {
+    try {
+      isLoading.value = true;
+      final response = await CareerService.getCareers();
+      if (response['statusCode'] == 200) {
+        final data = response['data'];
+        careers = List<Career>.from(data.map((item) => Career.fromJson(item)));
+      }
+    } catch (error) {
+      print(error);
+      isLoading.value = false;
+      update();
+    } finally {
+      isLoading.value = false;
       update();
     }
   }

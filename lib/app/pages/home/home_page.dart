@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
   Widget _buildPage(int index) {
     switch (index) {
       case 0:
-        return const CareerPage();
+        return const CareerSubPage();
       case 1:
         return const MapSubPage();
       case 2:

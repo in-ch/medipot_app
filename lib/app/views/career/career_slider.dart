@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:docspot_app/data/models/models.dart';
+import 'package:docspot_app/app/routes/routes.dart';
 
 class CareerSlider extends StatefulWidget {
-  final List<String> imageUrls;
+  final List<Career> careers;
 
-  const CareerSlider({Key? key, required this.imageUrls}) : super(key: key);
+  const CareerSlider({Key? key, required this.careers}) : super(key: key);
 
   @override
   CareerSliderState createState() => CareerSliderState();
@@ -52,47 +56,53 @@ class CareerSliderState extends State<CareerSlider> {
                 height: 150.0,
                 child: PageView.builder(
                   controller: _pageController,
-                  itemCount: widget.imageUrls.length,
+                  itemCount: widget.careers.length,
                   itemBuilder: (context, index) {
-                    return Stack(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 243, 243, 243),
-                            borderRadius: BorderRadius.circular(14.0),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15.0),
-                            child: SizedBox(
-                              width: double.infinity,
-                              child: Image.network(
-                                widget.imageUrls[index],
-                                fit: BoxFit.cover,
+                    return GestureDetector(
+                      onTap: () {
+                        Get.toNamed(Routes.careerDetail,
+                            arguments: {'careerNo': widget.careers[index].no});
+                      },
+                      child: Stack(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 243, 243, 243),
+                              borderRadius: BorderRadius.circular(14.0),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15.0),
+                              child: SizedBox(
+                                width: double.infinity,
+                                child: Image.network(
+                                  widget.careers[index].imgs[0],
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.all(14.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("본탑재활의학과의원",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 17.0,
-                                      fontWeight: FontWeight.w600)),
-                              SizedBox(height: 5),
-                              Text("[분당 서현] 외래 진료 보조 업무 도와주실 선생님 모십니다.",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.w300))
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.all(14.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(widget.careers[index].hospital.name,
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 17.0,
+                                        fontWeight: FontWeight.w600)),
+                                const SizedBox(height: 5),
+                                Text(widget.careers[index].title,
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w300))
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     );
                   },
                 ),
@@ -101,7 +111,7 @@ class CareerSliderState extends State<CareerSlider> {
                 bottom: 10.0,
                 right: 20.0,
                 child: Text(
-                  "${_currentPage + 1} / ${widget.imageUrls.length}",
+                  "${_currentPage + 1} / ${widget.careers.length}",
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 14.0,

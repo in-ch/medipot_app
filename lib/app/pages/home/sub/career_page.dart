@@ -2,13 +2,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/routes/routes.dart';
 import 'package:docspot_app/app/views/views.dart';
+import 'package:docspot_app/app/controllers/controllers.dart';
 
-class CareerPage extends GetView<CareerController> {
-  const CareerPage({Key? key}) : super(key: key);
+class CareerSubPage extends StatefulWidget {
+  const CareerSubPage({super.key});
+
+  @override
+  State<CareerSubPage> createState() => _CareerSubPageState();
+}
+
+class _CareerSubPageState extends State<CareerSubPage> {
+  final CareerController controller = Get.put(CareerController());
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.getCareers();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,18 +68,17 @@ class CareerPage extends GetView<CareerController> {
             width: double.infinity,
             height: double.infinity,
             color: Colors.white,
-            child: const SingleChildScrollView(
+            child: SingleChildScrollView(
               child: Column(
                 children: [
-                  ViewByDepartment(),
-                  ShowRecent(),
-                  CareerSlider(imageUrls: [
-                    'https://cdn.pixabay.com/photo/2024/04/13/18/22/barberry-8694277_1280.jpg',
-                    'https://cdn.pixabay.com/photo/2024/03/30/04/56/tea-8664063_1280.jpg',
-                    'https://cdn.pixabay.com/photo/2024/04/20/11/47/ai-generated-8708404_1280.jpg',
-                    'https://cdn.pixabay.com/photo/2023/06/22/07/13/soil-8080788_1280.jpg'
-                  ]),
-                  CareerLocations(),
+                  const ViewByDepartment(),
+                  const ShowRecent(),
+                  Obx(() => controller.isLoading.value
+                      ? const SizedBox(
+                          height: 212,
+                          child: Center(child: CircularProgressIndicator()))
+                      : CareerSlider(careers: controller.careers)),
+                  const CareerLocations(),
                 ],
               ),
             ),
