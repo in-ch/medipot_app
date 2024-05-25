@@ -34,6 +34,7 @@ dependencies:
   app_version_update: ^3.1.0
   sliding_up_panel: ^2.0.0+1
   google_maps_flutter: ^2.2.8
+  flutter_html: ^3.0.0-beta.2
 
 dev_dependencies:
   flutter_test:

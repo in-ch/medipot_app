@@ -43,10 +43,15 @@ class CareerDetailSliderState extends State<CareerDetailSlider> {
                 SizedBox(
                   width: double.infinity,
                   height: 350.0,
-                  child: Image.network(
-                    widget.imageUrls[index],
-                    fit: BoxFit.fitHeight,
-                  ),
+                  child: widget.imageUrls[index] == ""
+                      ? Container(
+                          height: 350,
+                          width: double.infinity,
+                          color: Colors.black45)
+                      : Image.network(
+                          widget.imageUrls[index],
+                          fit: BoxFit.fitHeight,
+                        ),
                 ),
                 Positioned(
                   top: 220,

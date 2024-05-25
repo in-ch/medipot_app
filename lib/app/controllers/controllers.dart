@@ -13,5 +13,6 @@ export './consult_list_controller.dart';
 export './cs_center_controller.dart';
 export './phone_controller.dart';
 export './career_controller.dart';
+export './career_detail_controller.dart';
 export './search_controller.dart';
 export './alarm_controller.dart';

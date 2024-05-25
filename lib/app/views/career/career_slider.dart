@@ -61,7 +61,7 @@ class CareerSliderState extends State<CareerSlider> {
                     return GestureDetector(
                       onTap: () {
                         Get.toNamed(Routes.careerDetail,
-                            arguments: {'careerNo': widget.careers[index].no});
+                            arguments: {'no': widget.careers[index].no});
                       },
                       child: Stack(
                         children: [

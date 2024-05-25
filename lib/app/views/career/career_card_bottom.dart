@@ -6,7 +6,9 @@ import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/views/views.dart';
 
 class CareerCardBottom extends GetView<CareerController> {
-  const CareerCardBottom({super.key});
+  const CareerCardBottom({super.key, required this.careerNo});
+
+  final int careerNo;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class CareerCardBottom extends GetView<CareerController> {
                             color: Colors.white,
                             textColor: Colors.white,
                             event: () {
-                              controller.handleBookmark();
+                              controller.handleBookmark(careerNo);
                             }),
                       ),
                       const SizedBox(width: 20),
@@ -47,7 +49,7 @@ class CareerCardBottom extends GetView<CareerController> {
                             color: colorScheme.primary,
                             textColor: Colors.white,
                             event: () {
-                              controller.handleJoin();
+                              controller.handleJoin(careerNo);
                             }),
                       ),
                       const SizedBox(width: 20),

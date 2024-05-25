@@ -105,7 +105,7 @@ abstract class AppPages {
         name: Routes.careerDetail,
         page: () => const CareerDetailPage(),
         transition: Transition.cupertino,
-        bindings: [CareerListBinding()]),
+        bindings: [CareerDetailBinding()]),
     GetPage(
         name: Routes.search,
         page: () => const SearchPage(),

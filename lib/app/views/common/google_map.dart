@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GoogleMapWidget extends StatelessWidget {
-  const GoogleMapWidget({super.key});
+  const GoogleMapWidget(
+      {super.key, required this.address, required this.lat, required this.lng});
+
+  final String address;
+  final double lat;
+  final double lng;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(
+        SizedBox(
           width: double.infinity,
           height: 200,
           child: GoogleMap(
@@ -18,16 +23,14 @@ class GoogleMapWidget extends StatelessWidget {
             scrollGesturesEnabled: false,
             zoomControlsEnabled: false,
             zoomGesturesEnabled: false,
-            initialCameraPosition: CameraPosition(
-                zoom: 11,
-                target: LatLng(37.43296265331129, -122.08832357078792)),
+            initialCameraPosition:
+                CameraPosition(zoom: 14, target: LatLng(lat, lng)),
           ),
         ),
         const SizedBox(
           height: 10,
         ),
-        Text("서울특별시 성동구 능동 102-31, 201",
-            style: Theme.of(context).textTheme.displayMedium),
+        Text(address, style: Theme.of(context).textTheme.displayMedium),
       ],
     );
   }

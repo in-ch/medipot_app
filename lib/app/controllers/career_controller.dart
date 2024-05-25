@@ -56,7 +56,7 @@ class CareerController extends GetxController {
 
   /// [비즈니스 로직]
   /// 지원하기
-  Future<dynamic> handleJoin() async {
+  Future<dynamic> handleJoin(int careerNo) async {
     try {
       Get.snackbar("문의가 완료되었습니다.", "담당자가 연락올 때까지 잠시만 기다려주세요.");
     } catch (error) {
@@ -68,7 +68,7 @@ class CareerController extends GetxController {
 
   /// [비즈니스 로직]
   /// 초빙 공고 북마크
-  Future<dynamic> handleBookmark() async {
+  Future<dynamic> handleBookmark(int careerNo) async {
     try {
       Get.snackbar("초빙공고 북마크", "해당 공고를 관심 목록에 저장하였습니다.");
     } catch (error) {
@@ -84,6 +84,26 @@ class CareerController extends GetxController {
     try {
       isLoading.value = true;
       final response = await CareerService.getCareers();
+      if (response['statusCode'] == 200) {
+        final data = response['data'];
+        careers = List<Career>.from(data.map((item) => Career.fromJson(item)));
+      }
+    } catch (error) {
+      print(error);
+      isLoading.value = false;
+      update();
+    } finally {
+      isLoading.value = false;
+      update();
+    }
+  }
+
+  /// [비즈니스 로직]
+  /// 커리어 상세 내용을 가져온다.
+  Future<dynamic> getCareer(int no) async {
+    try {
+      isLoading.value = true;
+      final response = await CareerService.getCareer(no);
       if (response['statusCode'] == 200) {
         final data = response['data'];
         careers = List<Career>.from(data.map((item) => Career.fromJson(item)));

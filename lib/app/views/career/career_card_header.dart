@@ -5,7 +5,9 @@ import 'package:get/get.dart';
 import 'package:docspot_app/app/controllers/controllers.dart';
 
 class CareerCardHeader extends GetView<CareerController> {
-  const CareerCardHeader({super.key});
+  const CareerCardHeader({super.key, required this.hospitalName});
+
+  final String hospitalName;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,7 @@ class CareerCardHeader extends GetView<CareerController> {
                               const EdgeInsets.only(left: 18.0, bottom: 2.0),
                           child: Opacity(
                             opacity: controller.bodyHeight.value,
-                            child: Text("분당서울대병원",
+                            child: Text(hospitalName,
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineMedium!

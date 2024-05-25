@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 
-import 'package:docspot_app/app/views/views.dart';
 import 'package:docspot_app/app/controllers/controllers.dart';
+import 'package:docspot_app/app/views/views.dart';
+import 'package:docspot_app/data/models/models.dart';
 
 class CareerInfoCard extends StatefulWidget {
-  const CareerInfoCard({super.key});
+  const CareerInfoCard({super.key, required this.career});
+
+  final Career career;
 
   @override
   State<CareerInfoCard> createState() => _CareerInfoCardState();
@@ -82,20 +86,17 @@ class _CareerInfoCardState extends State<CareerInfoCard> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("[분당 서현] 외래 진료 보조 업무 모집합니다.",
+                        Text(widget.career.title,
                             style: Theme.of(context).textTheme.headlineMedium),
                         const SizedBox(height: 5),
-                        Text("분당서울대병원",
+                        Text(widget.career.hospital.name,
                             style: Theme.of(context).textTheme.bodyMedium),
                         const SizedBox(height: 10),
-                        const Wrap(
-                          children: [
-                            Keyword(text: "🔥 화이팅"),
-                            Keyword(text: "❄️ 추워요잉"),
-                            Keyword(text: "🕰️ 시간은 째각째각"),
-                            Keyword(text: "💰 행복과 돈"),
-                            Keyword(text: "🌹 이건 장미"),
-                          ],
+                        Wrap(
+                          children: List.generate(
+                              widget.career.keywords.length,
+                              (index) =>
+                                  Keyword(text: widget.career.keywords[index])),
                         ),
                         const SizedBox(
                           height: 40,
@@ -103,58 +104,45 @@ class _CareerInfoCardState extends State<CareerInfoCard> {
                         Text("상세 내용",
                             style: Theme.of(context).textTheme.titleMedium),
                         const SizedBox(height: 5),
-                        Text('''
-안녕하십니까, 근로복지공단 **병원은 산재보험자병원으로 공공병원입니다.
-응시원서 접수 마감일 2024년 5월 24일(금) 17시 30분 까지로 결원 인원에 대한 채용입니다.
-채용일정 등 상세한 정보는 첨부파일의 채용공고문 참조 부탁드립니다.
-관심이 있으신 분은  경영기획차장(055-280-****)에게 연락 부탁드립니다.
-
-우편 또는 방문 접수도 가능하나 자사양식 접수로 첨부파일 참조 후 이메일 접수 부탁드립니다.
-
-
-□ 재활의학과 전문의(별정직 의사)
-
-- (채용인원) 재활의학과 전문의 1명
-- (위치) 경남 창원시 성산구 창원대로 ***
-- (근무조건) 주 5일 (평일 08:30~17:30), 주말 및 공휴일 휴진
-- (급여) 세전 *** 수준 / 기본연봉, 진료성과급 포함 / 퇴직금, 연차수당, 기타 포상비(협진, 특진, 호출 등) 별도
- * 근무조건(주 32시간~40시간) 및 급여 추가 협의 가능
-- (학회) 규정에 의거 일부 공가 부여
-- (문의) 경영기획차장 055-280-****
-''', style: Theme.of(context).textTheme.bodyMedium!.copyWith(height: 1.8)),
+                        Html(data: widget.career.detail),
                         const SizedBox(
                           height: 20,
                         ),
                         Text("모집 개요",
                             style: Theme.of(context).textTheme.titleMedium),
                         const SizedBox(height: 5),
-                        const Section(title: "초빙과목", value: "재활의학과"),
-                        const Section(title: "초빙유형", value: "봉직의(1명, 정규직"),
-                        const Section(title: "경력", value: "무관"),
-                        const Section(title: "구인사유", value: "결원"),
-                        const Section(
-                            title: "급여",
-                            value: "Gross(세전) 연봉 111,111 ~ 222,222(만원)"),
-                        const Section(
-                            title: "근무시간",
-                            value: '''평일 08시 30분 ~ 17시 30분 (주말 근무 x)'''),
-                        const Section(
-                            title: "당직", value: "야간 당직 없음 / 주말 당직 없음"),
-                        const Section(title: "학회 출석", value: "가능"),
-                        const Section(title: "기타", value: '''연차 15일'''),
+                        Section(
+                            title: "초빙과목", value: widget.career.invitedSubject),
+                        Section(
+                            title: "초빙유형", value: widget.career.invitationType),
+                        Section(title: "경력", value: widget.career.experience),
+                        Section(
+                            title: "구인사유",
+                            value: widget.career.reasonForHiring),
+                        Section(title: "급여", value: widget.career.salary),
+                        Section(
+                            title: "근무시간", value: widget.career.workingHours),
+                        Section(title: "당직", value: widget.career.onCallDuty),
+                        Section(
+                            title: "학회 출석",
+                            value: widget.career.conferenceAttendance
+                                ? "가능"
+                                : "불가"),
+                        Section(title: "기타", value: widget.career.otherDetails),
                         const SizedBox(
                           height: 40,
                         ),
                         Text("지원 기간 / 방법",
                             style: Theme.of(context).textTheme.titleMedium),
                         const SizedBox(height: 5),
-                        const Section(title: "마감일", value: "2024. 05. 24 (마감)"),
-                        const Section(title: "담당자", value: "김미영 팀장 (경영기획부)"),
-                        const Section(
+                        Section(title: "마감일", value: widget.career.deadline),
+                        Section(
+                            title: "담당자", value: widget.career.contactPerson),
+                        Section(
                           title: "이메일",
-                          value: "sample@gmail.com",
+                          value: widget.career.contactEmail,
                         ),
-                        const Section(title: "전화", value: "053-1234-xxxx"),
+                        Section(title: "전화", value: widget.career.contactPhone),
                         const SizedBox(
                           height: 20,
                         ),
@@ -163,11 +151,13 @@ class _CareerInfoCardState extends State<CareerInfoCard> {
                         const SizedBox(
                           height: 20,
                         ),
-                        const CareerCompanyInfo(
-                            title: "본탑메디본재활의학과",
-                            href: "https://naver.com",
-                            img:
-                                "https://attach.medijob.cc/file/company/heal-teun/20220808170159842172E801FA4902A4F8F7B6B532461D.png"),
+                        CareerCompanyInfo(
+                            title: widget.career.hospital.name,
+                            href: widget.career.hospital.homepage,
+                            img: widget.career.hospital.logo,
+                            address: widget.career.hospital.locationDetail,
+                            lat: widget.career.hospital.lat,
+                            lng: widget.career.hospital.lng),
                         const SizedBox(
                           height: 50,
                         ),

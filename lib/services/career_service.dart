@@ -15,4 +15,17 @@ class CareerService {
       return {'statusCode': response.statusCode, 'data': []};
     }
   }
+
+  static Future<Map<String, dynamic>> getCareer(int no) async {
+    String apiServer = dotenv.get("API_SERVER");
+
+    final url = Uri.parse('$apiServer/career?no=$no');
+
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      return {'statusCode': response.statusCode, 'data': {}};
+    }
+  }
 }

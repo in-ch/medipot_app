@@ -5,17 +5,30 @@ import 'package:docspot_app/app/views/views.dart';
 
 class CareerCompanyInfo extends StatelessWidget {
   const CareerCompanyInfo(
-      {super.key, required this.title, required this.href, required this.img});
+      {super.key,
+      required this.title,
+      required this.href,
+      required this.img,
+      required this.address,
+      required this.lat,
+      required this.lng});
 
   final String title;
   final String href;
   final String img;
+  final String address;
+  final double lat;
+  final double lng;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const GoogleMapWidget(),
+        GoogleMapWidget(
+          address: address,
+          lat: lat,
+          lng: lng,
+        ),
         const SizedBox(height: 20),
         Container(
             decoration: BoxDecoration(
@@ -36,7 +49,10 @@ class CareerCompanyInfo extends StatelessWidget {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Image.network(img, width: 40, height: 40),
+                      child: img == ""
+                          ? Container(
+                              width: 40, height: 40, color: Colors.black54)
+                          : Image.network(img, width: 40, height: 40),
                     ),
                   ),
                   const SizedBox(width: 20),

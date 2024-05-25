@@ -70,6 +70,43 @@ class Career {
       hospital: Hospital.fromJson(json['hospital']),
     );
   }
+
+  factory Career.defaultCareer() {
+    return Career(
+      no: 0,
+      createdAt: '',
+      updatedAt: '',
+      title: 'Default Title',
+      imgs: [''],
+      keywords: ['default', 'keyword'],
+      detail: '<p>Default detail with <b>HTML</b> content.</p>',
+      invitedSubject: 'Default Subject',
+      invitationType: 'Default Type',
+      experience: 'No experience required',
+      reasonForHiring: 'Default reason',
+      salary: 'Default salary',
+      workingHours: '9 AM to 5 PM',
+      onCallDuty: 'None',
+      conferenceAttendance: true,
+      otherDetails: 'Default other details',
+      deadline: '2024-12-31',
+      contactPerson: 'Default Contact',
+      contactEmail: 'contact@example.com',
+      contactPhone: '123-456-7890',
+      hospital: Hospital(
+        no: 0,
+        createdAt: '',
+        updatedAt: '',
+        name: 'Default Hospital',
+        logo: '',
+        location: 'Default Location',
+        locationDetail: 'Default Location Detail',
+        lat: 0.0,
+        lng: 0.0,
+        homepage: 'https://example.com',
+      ),
+    );
+  }
 }
 
 class Hospital {
