@@ -26,63 +26,73 @@ class CareerListController extends GetxController {
 
   @override
   void onInit() {
+    locationValue.value = Get.arguments['location'] ?? '전체보기';
+    departmentValue.value = Get.arguments['department'] ?? '전체보기';
+
+    ever(locationValue, (_) => _refreshPage());
+    ever(departmentValue, (_) => _refreshPage());
+
     pagingController.addPageRequestListener((pageKey) {
-      getCareers(pagingController, page.value, addPage);
+      getCareers(pageKey);
     });
 
+    update();
     super.onInit();
   }
 
   @override
-  dispose() {
+  void dispose() {
     pagingController.dispose();
     super.dispose();
   }
 
-  /// [Method]
-  /// page 숫자 더하기
+  /// 페이지 숫자 더하기
   void addPage() {
-    page += 1;
+    page.value += 1;
     update();
   }
 
-  /// [비즈니스 로직]
   /// 커리어 리스트를 조회한다.
-  Future<dynamic> getCareers(
-    PagingController pagingController,
-    int page,
-    dynamic addPage,
-  ) async {
+  Future<void> getCareers(int pageKey) async {
     try {
       final response = await CareerService.getCareers(
-          page,
-          10,
-          title.value,
-          detail.value,
-          Get.arguments['department'] ?? "",
-          hospitalName.value,
-          Get.arguments['location'] ?? "");
+        pageKey,
+        10,
+        title.value,
+        detail.value,
+        departmentValue.value == '전체보기' ? '' : departmentValue.value,
+        hospitalName.value,
+        locationValue.value == '전체보기' ? '' : locationValue.value,
+      );
+
       if (response['statusCode'] == 200) {
         final data = response['data'];
         final totalCount = response['totalCount'];
         final list =
             List<Career>.from(data.map((item) => Career.fromJson(item)));
-
-        final isLastPage = totalCount <= page * 10;
+        final isLastPage = totalCount <= pageKey * 10;
 
         if (isLastPage) {
           pagingController.appendLastPage(list);
         } else {
           addPage();
-          pagingController.appendPage(list, page * 10);
+          pagingController.appendPage(list, pageKey + 1);
         }
         update();
+      } else {
+        pagingController.error = 'Failed to load data';
       }
     } catch (error) {
       debugPrint(error.toString());
-      update();
+      pagingController.error = error;
     } finally {
       update();
     }
+  }
+
+  /// 페이지를 새로 고침한다.
+  void _refreshPage() {
+    page.value = 0;
+    pagingController.refresh();
   }
 }

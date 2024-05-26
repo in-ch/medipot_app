@@ -144,6 +144,7 @@ class CareerListPage extends GetView<CareerListController> {
                               ),
                               itemBuilder: (context, item, index) {
                                 return CareerItem(
+                                  no: item.no,
                                   img: item.imgs[0],
                                   company: item.hospital.name,
                                   position: item.title,
