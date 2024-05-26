@@ -6,6 +6,6 @@ import 'package:docspot_app/app/pages/pages.dart';
 class CareerListBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put(CareerController());
+    Get.put(CareerListController());
   }
 }

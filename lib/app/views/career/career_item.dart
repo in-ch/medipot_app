@@ -41,7 +41,7 @@ class CareerItem extends StatelessWidget {
                 top: 10,
                 right: 10,
                 child: Opacity(
-                  opacity: 0.4,
+                  opacity: 0.7,
                   child: Icon(CupertinoIcons.bookmark_fill,
                       color: colorScheme.primary),
                 ),

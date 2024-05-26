@@ -51,9 +51,13 @@ class CareerSliderState extends State<CareerSlider> {
           const SizedBox(height: 10),
           Stack(
             children: [
-              SizedBox(
+              Container(
                 width: double.infinity,
                 height: 150.0,
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 243, 243, 243),
+                  borderRadius: BorderRadius.circular(14.0),
+                ),
                 child: PageView.builder(
                   controller: _pageController,
                   itemCount: widget.careers.length,

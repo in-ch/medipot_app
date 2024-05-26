@@ -21,7 +21,7 @@ class _CareerSubPageState extends State<CareerSubPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      controller.getCareers();
+      controller.getCareersInit();
     });
   }
 
@@ -77,7 +77,7 @@ class _CareerSubPageState extends State<CareerSubPage> {
                       ? const SizedBox(
                           height: 212,
                           child: Center(child: CircularProgressIndicator()))
-                      : CareerSlider(careers: controller.careers)),
+                      : CareerSlider(careers: controller.careersInit)),
                   const CareerLocations(),
                 ],
               ),

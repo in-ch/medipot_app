@@ -97,15 +97,22 @@ class Department extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12.0),
-            color: const Color.fromARGB(255, 223, 223, 223),
-          ),
-          child: Image.network(img, width: 60, height: 60)),
-      const SizedBox(height: 10),
-      Text(name, style: Theme.of(context).textTheme.titleSmall)
-    ]);
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed(Routes.careerList, arguments: {
+          'department': name,
+        });
+      },
+      child: Column(children: [
+        Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12.0),
+              color: const Color.fromARGB(255, 223, 223, 223),
+            ),
+            child: Image.network(img, width: 60, height: 60)),
+        const SizedBox(height: 10),
+        Text(name, style: Theme.of(context).textTheme.titleSmall)
+      ]),
+    );
   }
 }

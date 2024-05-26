@@ -5,54 +5,10 @@ import 'package:docspot_app/services/services.dart';
 
 class CareerController extends GetxController {
   RxBool isLoading = false.obs;
-  RxString locationValue = '전체보기'.obs;
-  RxString departmentValue = '전체보기'.obs;
   RxBool hideBottomButton = false.obs;
 
   RxDouble bodyHeight = 0.0.obs;
-
-  List<Career> careers = [];
-
-  List<String> locationList = [
-    '전체보기',
-    '서울',
-    '경기도',
-    '인천',
-    '부산',
-    '대구',
-    '광주',
-    '강원도',
-    '대전',
-    '충청북도',
-    '충청남도',
-    '전라북도',
-    '전라남도',
-    '제주도'
-  ];
-
-  List<String> departmentList = [
-    '전체보기',
-    '가정의학과',
-    '내과',
-    '비뇨의학과',
-    '산부인과',
-    '성형외과',
-    '소아청소년과',
-    '신경과',
-    '신경외과',
-    '안과',
-    '영상의학과',
-    '외과',
-    '이비인후과',
-    '재활의학과',
-    '정신과',
-    '정형외과',
-    '마취통증의학과',
-    '피부과',
-    '치과',
-    '한의원',
-    '종합 병원',
-  ];
+  List<Career> careersInit = []; // 초빙 공고.zip
 
   /// [비즈니스 로직]
   /// 지원하기
@@ -79,34 +35,16 @@ class CareerController extends GetxController {
   }
 
   /// [비즈니스 로직]
-  /// 커리어 리스트를 조회한다.
-  Future<dynamic> getCareers() async {
+  /// 초빙공고.zip 커리어 리스트를 조회한다.
+  Future<dynamic> getCareersInit() async {
     try {
       isLoading.value = true;
-      final response = await CareerService.getCareers();
+      final response =
+          await CareerService.getCareers(0, 10, '', '', '', '', '');
       if (response['statusCode'] == 200) {
         final data = response['data'];
-        careers = List<Career>.from(data.map((item) => Career.fromJson(item)));
-      }
-    } catch (error) {
-      print(error);
-      isLoading.value = false;
-      update();
-    } finally {
-      isLoading.value = false;
-      update();
-    }
-  }
-
-  /// [비즈니스 로직]
-  /// 커리어 상세 내용을 가져온다.
-  Future<dynamic> getCareer(int no) async {
-    try {
-      isLoading.value = true;
-      final response = await CareerService.getCareer(no);
-      if (response['statusCode'] == 200) {
-        final data = response['data'];
-        careers = List<Career>.from(data.map((item) => Career.fromJson(item)));
+        careersInit =
+            List<Career>.from(data.map((item) => Career.fromJson(item)));
       }
     } catch (error) {
       print(error);

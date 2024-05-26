@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'package:docspot_app/app/controllers/controllers.dart';
+import 'package:docspot_app/app/constants/constants.dart';
 import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/views/views.dart';
 
-class CareerListPage extends GetView<CareerController> {
+class CareerListPage extends GetView<CareerListController> {
   const CareerListPage({Key? key}) : super(key: key);
 
   @override
@@ -18,7 +20,7 @@ class CareerListPage extends GetView<CareerController> {
           appBar: AppBar(
             iconTheme: Theme.of(context).iconTheme,
             centerTitle: false,
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.white,
             elevation: 0,
             leadingWidth: 54,
             leading: Align(
@@ -56,7 +58,7 @@ class CareerListPage extends GetView<CareerController> {
                           onChanged: (String? newValue) {
                             controller.locationValue.value = newValue!;
                           },
-                          items: controller.locationList
+                          items: locationList
                               .map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
@@ -85,7 +87,7 @@ class CareerListPage extends GetView<CareerController> {
                           onChanged: (String? newValue) {
                             controller.departmentValue.value = newValue!;
                           },
-                          items: controller.departmentList
+                          items: departmentList
                               .map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
@@ -97,55 +99,58 @@ class CareerListPage extends GetView<CareerController> {
                     )
                   ],
                 ),
+                const SizedBox(height: 30),
                 Obx(
                   () => controller.isLoading.value
                       ? const CircularProgressIndicator()
-                      : SizedBox(
-                          width: double.infinity,
-                          child: GridView(
-                            padding: const EdgeInsets.symmetric(vertical: 15),
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
+                      : Expanded(
+                          child: Container(
+                          color: colorScheme.background,
+                          height: double.infinity,
+                          child: PagedGridView<int, dynamic>(
+                            pagingController: controller.pagingController,
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
-                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 8.0,
+                              crossAxisSpacing: 8.0,
+                              childAspectRatio: 1.0,
                             ),
-                            children: const [
-                              CareerItem(
-                                  img:
-                                      "https://cdn.pixabay.com/photo/2015/07/10/20/54/stethoscope-840125_1280.jpg",
-                                  company: "본탑재활의학과의원",
-                                  position:
-                                      "[분당 서현] 외래 진료 보조 업무 도와주실 선생님 모십니다."),
-                              CareerItem(
-                                  img:
-                                      "https://cdn.pixabay.com/photo/2015/07/10/20/54/stethoscope-840125_1280.jpg",
-                                  company: "삼성열린내과",
-                                  position: "7호선 신대방삼거리역 삼성열린내과 정규직(주5일)"),
-                              CareerItem(
-                                  img:
-                                      "https://cdn.pixabay.com/photo/2015/07/10/20/54/stethoscope-840125_1280.jpg",
-                                  company: "참바로병원",
-                                  position: "정형외과 외과 전문의"),
-                              CareerItem(
-                                  img:
-                                      "https://cdn.pixabay.com/photo/2015/07/10/20/54/stethoscope-840125_1280.jpg",
-                                  company: "삼성 손앤박 이비인후과의원",
-                                  position: "이비인후과 전문의 초빙합니다."),
-                              CareerItem(
-                                  img:
-                                      "https://cdn.pixabay.com/photo/2015/07/10/20/54/stethoscope-840125_1280.jpg",
-                                  company: "삼성 손앤박 이비인후과의원",
-                                  position: "이비인후과 전문의 초빙합니다."),
-                              CareerItem(
-                                  img:
-                                      "https://cdn.pixabay.com/photo/2015/07/10/20/54/stethoscope-840125_1280.jpg",
-                                  company: "삼성 손앤박 이비인후과의원",
-                                  position: "이비인후과 전문의 초빙합니다."),
-                            ],
+                            builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                              firstPageProgressIndicatorBuilder: (context) =>
+                                  Container(
+                                alignment: Alignment.center,
+                                width: 50,
+                                height: 50,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      colorScheme.primary),
+                                ),
+                              ),
+                              noItemsFoundIndicatorBuilder: (context) =>
+                                  NoDatas(text: '검색 결과가 없습니다.'),
+                              firstPageErrorIndicatorBuilder: (context) =>
+                                  NoDatas(text: '검색 결과가 없습니다.'),
+                              newPageProgressIndicatorBuilder: (context) =>
+                                  Container(
+                                alignment: Alignment.center,
+                                width: 50,
+                                height: 50,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      colorScheme.primary),
+                                ),
+                              ),
+                              itemBuilder: (context, item, index) {
+                                return CareerItem(
+                                  img: item.imgs[0],
+                                  company: item.hospital.name,
+                                  position: item.title,
+                                );
+                              },
+                            ),
                           ),
-                        ),
+                        )),
                 )
               ],
             ),
