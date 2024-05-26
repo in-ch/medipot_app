@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/routes/routes.dart';
 
-class ShowRecent extends StatelessWidget {
-  const ShowRecent({
-    Key? key,
-  }) : super(key: key);
+class ShowRecent extends StatefulWidget {
+  const ShowRecent({super.key});
+
+  @override
+  State<ShowRecent> createState() => _ShowRecentState();
+}
+
+class _ShowRecentState extends State<ShowRecent> {
+  final CareerController controller = Get.put(CareerController());
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.getRecentItems();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,39 +38,54 @@ class ShowRecent extends StatelessWidget {
                   style: Theme.of(context).textTheme.headlineSmall,
                   textAlign: TextAlign.start,
                 ),
+                Obx(() => !controller.isRecentLoading.value
+                    ? controller.recentCareerItems.isEmpty
+                        ? const SizedBox()
+                        : GestureDetector(
+                            onTap: () {
+                              controller.resetRecentItems(context);
+                            },
+                            child: Text(
+                              "전체 삭제",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .copyWith(color: Colors.black38),
+                              textAlign: TextAlign.end,
+                            ),
+                          )
+                    : const SizedBox())
               ],
             ),
           ),
           const SizedBox(height: 10),
-          SizedBox(
-            width: double.infinity,
-            height: 160.0,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: const [
-                PositionItem(
-                    img:
-                        "https://cdn.pixabay.com/photo/2015/07/10/20/54/stethoscope-840125_1280.jpg",
-                    company: "본탑재활의학과의원",
-                    position: "[분당 서현] 외래 진료 보조 업무 도와주실 선생님 모십니다."),
-                PositionItem(
-                    img:
-                        "https://cdn.pixabay.com/photo/2015/07/10/20/54/stethoscope-840125_1280.jpg",
-                    company: "삼성열린내과",
-                    position: "7호선 신대방삼거리역 삼성열린내과 정규직(주5일)"),
-                PositionItem(
-                    img:
-                        "https://cdn.pixabay.com/photo/2015/07/10/20/54/stethoscope-840125_1280.jpg",
-                    company: "참바로병원",
-                    position: "정형외과 외과 전문의"),
-                PositionItem(
-                    img:
-                        "https://cdn.pixabay.com/photo/2015/07/10/20/54/stethoscope-840125_1280.jpg",
-                    company: "삼성 손앤박 이비인후과의원",
-                    position: "이비인후과 전문의 초빙합니다."),
-              ],
-            ),
-          )
+          Obx(() => !controller.isRecentLoading.value
+              ? controller.recentCareerItems.isEmpty
+                  ? const SizedBox(
+                      height: 160.0,
+                      child: Center(
+                        child: Text("최근 본 포지션이 없습니다."),
+                      ),
+                    )
+                  : SizedBox(
+                      width: double.infinity,
+                      height: 160.0,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: controller.recentCareerItems.length,
+                        itemBuilder: (context, index) {
+                          final item = controller.recentCareerItems[index];
+                          return PositionItem(
+                            img: item['img'],
+                            company: item['hospitalName'],
+                            position: item['title'],
+                          );
+                        },
+                      ),
+                    )
+              : const SizedBox(
+                  height: 160,
+                  child: Center(child: CircularProgressIndicator())))
         ],
       ),
     );
