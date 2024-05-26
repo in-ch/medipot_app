@@ -99,4 +99,34 @@ class CareerController extends GetxController {
       },
     );
   }
+
+  /// [비즈니스 로직]
+  /// 최근에 본 초빙 공고 아이템을 저장한다.
+  Future<void> saveRecentCareerItem(
+      int no, String title, String hospitalName, String img) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> localRecentCareerItems =
+        prefs.getStringList('recentCareerItems') ?? [];
+    // 중복 체크 및 기존 항목 제거
+    localRecentCareerItems.removeWhere((item) {
+      Map<String, dynamic> decodedItem = jsonDecode(item);
+      return decodedItem['no'] == no;
+    });
+    // 새로운 아이템을 맨 앞에 추가
+    String newItem = jsonEncode({
+      'no': no,
+      'title': title,
+      'hospitalName': hospitalName,
+      'img': img,
+    });
+    localRecentCareerItems.insert(0, newItem);
+    // 최대 10개의 아이템만 유지
+    if (localRecentCareerItems.length > 10) {
+      localRecentCareerItems = localRecentCareerItems.sublist(0, 10);
+    }
+    await prefs.setStringList('recentCareerItems', localRecentCareerItems);
+    recentCareerItems.value = localRecentCareerItems
+        .map((item) => jsonDecode(item) as Map<String, dynamic>)
+        .toList();
+  }
 }

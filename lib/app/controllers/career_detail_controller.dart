@@ -1,10 +1,9 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:docspot_app/data/models/models.dart';
 import 'package:docspot_app/services/services.dart';
+import 'package:docspot_app/app/controllers/controllers.dart';
 
 class CareerDetailController extends GetxController {
   RxBool isLoading = false.obs;
@@ -23,6 +22,7 @@ class CareerDetailController extends GetxController {
   );
 
   Career career = Career.defaultCareer();
+  CareerController careerController = Get.find();
 
   @override
   void onInit() {
@@ -42,7 +42,7 @@ class CareerDetailController extends GetxController {
       if (response['statusCode'] == 200) {
         final data = response['data'];
         career = Career.fromJson(data);
-        saveRecentCareerItem(
+        careerController.saveRecentCareerItem(
             career.no, career.title, career.hospital.name, career.imgs[0]);
       }
     } catch (error) {
@@ -53,32 +53,5 @@ class CareerDetailController extends GetxController {
       isLoading.value = false;
       update();
     }
-  }
-
-  /// [비즈니스 로직]
-  /// 최근에 본 초빙 공고 아이템을 저장한다.
-  Future<void> saveRecentCareerItem(
-      int no, String title, String hospitalName, String img) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String> recentCareerItems =
-        prefs.getStringList('recentCareerItems') ?? [];
-    // 중복 체크 및 기존 항목 제거
-    recentCareerItems.removeWhere((item) {
-      Map<String, dynamic> decodedItem = jsonDecode(item);
-      return decodedItem['no'] == no;
-    });
-    // 새로운 아이템을 맨 앞에 추가
-    String newItem = jsonEncode({
-      'no': no,
-      'title': title,
-      'hospitalName': hospitalName,
-      'img': img,
-    });
-    recentCareerItems.insert(0, newItem);
-    // 최대 10개의 아이템만 유지
-    if (recentCareerItems.length > 10) {
-      recentCareerItems = recentCareerItems.sublist(0, 10);
-    }
-    await prefs.setStringList('recentCareerItems', recentCareerItems);
   }
 }

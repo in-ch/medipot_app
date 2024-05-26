@@ -52,7 +52,10 @@ class _ResetRecentCareerListState extends State<ResetRecentCareerList> {
             const SizedBox(height: 5),
             Text(
               "삭제된 내역은 복구되지 않습니다.",
-              style: Theme.of(context).textTheme.titleSmall,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium!
+                  .copyWith(color: Colors.black38, fontSize: 14.0),
             ),
             const SizedBox(height: 40),
             Padding(

@@ -76,6 +76,7 @@ class _ShowRecentState extends State<ShowRecent> {
                         itemBuilder: (context, index) {
                           final item = controller.recentCareerItems[index];
                           return PositionItem(
+                            no: item['no'],
                             img: item['img'],
                             company: item['hospitalName'],
                             position: item['title'],
@@ -95,11 +96,13 @@ class _ShowRecentState extends State<ShowRecent> {
 class PositionItem extends StatelessWidget {
   const PositionItem({
     Key? key,
+    required this.no,
     required this.company,
     required this.position,
     required this.img,
   }) : super(key: key);
 
+  final int no;
   final String company;
   final String position;
   final String img;
@@ -107,7 +110,9 @@ class PositionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.toNamed(Routes.careerDetail),
+      onTap: () {
+        Get.toNamed(Routes.careerDetail, arguments: {'no': no});
+      },
       child: Padding(
         padding: const EdgeInsets.only(right: 10.0),
         child: SizedBox(
