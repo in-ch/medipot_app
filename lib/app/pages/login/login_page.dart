@@ -16,6 +16,7 @@ class LoginPage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
+          scrolledUnderElevation: 0,
           iconTheme: Theme.of(context).iconTheme,
           centerTitle: false,
           backgroundColor: Colors.transparent,

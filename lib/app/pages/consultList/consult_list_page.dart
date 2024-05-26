@@ -17,6 +17,7 @@ class ConsultListPage extends GetView<ConsultListController> {
         child: Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
+                scrolledUnderElevation: 0,
                 iconTheme: Theme.of(context).iconTheme,
                 centerTitle: false,
                 backgroundColor: Colors.transparent,

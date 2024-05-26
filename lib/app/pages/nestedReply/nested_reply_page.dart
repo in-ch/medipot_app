@@ -15,6 +15,7 @@ class NestedReplyPage extends GetView<NestedReplyController> {
         data: appTheme,
         child: Scaffold(
           appBar: AppBar(
+            scrolledUnderElevation: 0,
             iconTheme: Theme.of(context).iconTheme,
             centerTitle: false,
             backgroundColor: Colors.transparent,
