@@ -19,9 +19,7 @@ class CareerListController extends GetxController {
 
   RxDouble bodyHeight = 0.0.obs;
 
-  List<Career> careersInit = []; // 초빙 공고.zip
-
-  final PagingController<int, Career> pagingController =
+  final PagingController<int, CareerListItem> pagingController =
       PagingController(firstPageKey: 0);
 
   @override
@@ -68,8 +66,8 @@ class CareerListController extends GetxController {
       if (response['statusCode'] == 200) {
         final data = response['data'];
         final totalCount = response['totalCount'];
-        final list =
-            List<Career>.from(data.map((item) => Career.fromJson(item)));
+        final list = List<CareerListItem>.from(
+            data.map((item) => CareerListItem.fromJson(item)));
         final isLastPage = totalCount <= pageKey * 10;
 
         if (isLastPage) {

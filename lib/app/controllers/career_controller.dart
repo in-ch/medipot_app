@@ -16,7 +16,7 @@ class CareerController extends GetxController {
   RxBool hideBottomButton = false.obs;
 
   RxDouble bodyHeight = 0.0.obs;
-  List<Career> careersInit = []; // 초빙 공고.zip
+  List<CareerListItem> careersInit = []; // 초빙 공고.zip
 
   RxList<Map<String, dynamic>> recentCareerItems = <Map<String, dynamic>>[].obs;
 
@@ -53,8 +53,8 @@ class CareerController extends GetxController {
           await CareerService.getCareers(0, 10, '', '', '', '', '');
       if (response['statusCode'] == 200) {
         final data = response['data'];
-        careersInit =
-            List<Career>.from(data.map((item) => Career.fromJson(item)));
+        careersInit = List<CareerListItem>.from(
+            data.map((item) => CareerListItem.fromJson(item)));
       }
     } catch (error) {
       debugPrint(error.toString());

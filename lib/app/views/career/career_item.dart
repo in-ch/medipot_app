@@ -22,15 +22,15 @@ class CareerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        GestureDetector(
-          onTap: () {
-            Get.toNamed(Routes.careerDetail, arguments: {'no': no});
-          },
-          child: SizedBox(
-            width: double.infinity,
-            child: Stack(
-              children: [
-                Container(
+        SizedBox(
+          width: double.infinity,
+          child: Stack(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(Routes.careerDetail, arguments: {'no': no});
+                },
+                child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
                     color: const Color.fromARGB(255, 243, 243, 243),
@@ -45,38 +45,52 @@ class CareerItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                Positioned(
-                  top: 10,
-                  right: 10,
-                  child: Opacity(
-                    opacity: 0.7,
-                    child: Icon(CupertinoIcons.bookmark_fill,
-                        color: colorScheme.primary),
+              ),
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Opacity(
+                  opacity: 0.7,
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.snackbar("좋아요를 하였습니다.", "기모리.");
+                    },
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: Icon(CupertinoIcons.bookmark_fill,
+                          color: colorScheme.primary),
+                    ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
-        SizedBox(
-          height: 65,
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 5),
-              Text(company,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                      fontSize: 15.0, fontWeight: FontWeight.w600)),
-              Text(position,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                      fontSize: 12.0, fontWeight: FontWeight.w300))
-            ],
+        GestureDetector(
+          onTap: () {
+            Get.toNamed(Routes.careerDetail, arguments: {'no': no});
+          },
+          child: SizedBox(
+            height: 65,
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 5),
+                Text(company,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                        fontSize: 15.0, fontWeight: FontWeight.w600)),
+                Text(position,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                        fontSize: 12.0, fontWeight: FontWeight.w300))
+              ],
+            ),
           ),
         ),
       ],

@@ -5,7 +5,7 @@ import 'package:docspot_app/data/models/models.dart';
 import 'package:docspot_app/app/routes/routes.dart';
 
 class CareerSlider extends StatefulWidget {
-  final List<Career> careers;
+  final List<CareerListItem> careers;
 
   const CareerSlider({Key? key, required this.careers}) : super(key: key);
 

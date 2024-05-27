@@ -24,7 +24,7 @@ class CareerService {
       queryParams['hospitalLocation'] = hospitalLocation;
     }
 
-    final url = Uri.parse('$apiServer/career/list')
+    final url = Uri.parse('$apiServer/career/list/app')
         .replace(queryParameters: queryParams);
 
     final response = await http.get(url);
