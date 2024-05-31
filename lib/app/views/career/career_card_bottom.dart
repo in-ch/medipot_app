@@ -38,8 +38,11 @@ class CareerCardBottom extends GetView<CareerController> {
                             isBookmark: true,
                             color: Colors.white,
                             textColor: Colors.white,
+                            isActive: controller.likeCareers.contains(careerNo),
                             event: () {
-                              controller.likeCareer(context, careerNo);
+                              controller.likeCareers.contains(careerNo)
+                                  ? controller.unlikeCareer(context, careerNo)
+                                  : controller.likeCareer(context, careerNo);
                             }),
                       ),
                       const SizedBox(width: 20),

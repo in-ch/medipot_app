@@ -1,3 +1,4 @@
+import 'package:docspot_app/app/style/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,12 +9,14 @@ class SimpleButton extends StatelessWidget {
       required this.color,
       required this.textColor,
       required this.event,
-      this.isBookmark = false});
+      this.isBookmark = false,
+      this.isActive = false});
 
   final String text;
   final Color color;
   final Color textColor;
   final bool isBookmark;
+  final bool isActive;
   final void Function() event;
 
   @override
@@ -33,7 +36,13 @@ class SimpleButton extends StatelessWidget {
               ),
             ),
             child: isBookmark
-                ? const Icon(CupertinoIcons.bookmark, color: Colors.black)
+                ? Opacity(
+                    opacity: 1,
+                    child: Icon(
+                        isActive
+                            ? CupertinoIcons.bookmark_fill
+                            : CupertinoIcons.bookmark,
+                        color: colorScheme.primary))
                 : Text(
                     text,
                     style: Theme.of(context)

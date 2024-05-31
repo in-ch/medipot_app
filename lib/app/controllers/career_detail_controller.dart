@@ -30,6 +30,7 @@ class CareerDetailController extends GetxController {
     Future.delayed(Duration.zero, () async {
       getCareer(no);
     });
+    careerController.getLikeCareers();
     super.onInit();
   }
 
