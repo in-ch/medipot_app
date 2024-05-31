@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 
 import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/routes/routes.dart';
+import 'package:docspot_app/app/controllers/controllers.dart';
 
-class CareerItem extends StatelessWidget {
+class CareerItem extends GetView<CareerController> {
   const CareerItem({
     super.key,
     required this.company,
@@ -46,24 +47,26 @@ class CareerItem extends StatelessWidget {
                   ),
                 ),
               ),
-              Positioned(
-                top: 0,
-                right: 0,
-                child: Opacity(
-                  opacity: 0.7,
-                  child: GestureDetector(
-                    onTap: () {
-                      Get.snackbar("좋아요를 하였습니다.", "기모리.");
-                    },
-                    child: SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: Icon(CupertinoIcons.bookmark_fill,
-                          color: colorScheme.primary),
+              Obx(() => Positioned(
+                    top: 0,
+                    right: 0,
+                    child: Opacity(
+                      opacity: controller.likeCareers.contains(no) ? 1 : 0.5,
+                      child: GestureDetector(
+                        onTap: () {
+                          controller.likeCareers.contains(no)
+                              ? controller.unlikeCareer(context, no)
+                              : controller.likeCareer(context, no);
+                        },
+                        child: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: Icon(CupertinoIcons.bookmark_fill,
+                              color: colorScheme.primary),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ),
+                  )),
             ],
           ),
         ),

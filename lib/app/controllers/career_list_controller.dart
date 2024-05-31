@@ -4,6 +4,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'package:docspot_app/data/models/models.dart';
 import 'package:docspot_app/services/services.dart';
+import 'package:docspot_app/app/controllers/career_controller.dart';
 
 class CareerListController extends GetxController {
   RxString locationValue = '전체보기'.obs;
@@ -33,6 +34,9 @@ class CareerListController extends GetxController {
     pagingController.addPageRequestListener((pageKey) {
       getCareers(pageKey);
     });
+
+    CareerController careerController = CareerController();
+    careerController.getLikeCareers();
 
     update();
     super.onInit();

@@ -65,7 +65,9 @@ class _SettingSubPageState extends State<SettingSubPage> {
                                                           .isLoading.value
                                                       ? Container()
                                                       : const Text(
-                                                          "로그인이 필요합니다.")
+                                                          "로그인이 필요합니다.",
+                                                          style: TextStyle(
+                                                              fontSize: 14.0))
                                                   : settingController
                                                           .isLoading.value
                                                       ? ClipOval(

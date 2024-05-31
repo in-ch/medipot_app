@@ -39,7 +39,7 @@ class CareerCardBottom extends GetView<CareerController> {
                             color: Colors.white,
                             textColor: Colors.white,
                             event: () {
-                              controller.handleBookmark(careerNo);
+                              controller.likeCareer(context, careerNo);
                             }),
                       ),
                       const SizedBox(width: 20),

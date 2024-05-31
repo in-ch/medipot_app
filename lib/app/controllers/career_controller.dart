@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:docspot_app/data/models/models.dart';
 import 'package:docspot_app/services/services.dart';
 import 'package:docspot_app/app/views/views.dart';
+import 'package:docspot_app/app/utils/utils.dart';
 
 class CareerController extends GetxController {
   RxBool isLoading = false.obs;
@@ -17,6 +18,7 @@ class CareerController extends GetxController {
 
   RxDouble bodyHeight = 0.0.obs;
   List<CareerListItem> careersInit = []; // 초빙 공고.zip
+  RxList<int> likeCareers = <int>[].obs;
 
   RxList<Map<String, dynamic>> recentCareerItems = <Map<String, dynamic>>[].obs;
 
@@ -33,10 +35,86 @@ class CareerController extends GetxController {
   }
 
   /// [비즈니스 로직]
-  /// 초빙 공고 북마크
-  Future<dynamic> handleBookmark(int careerNo) async {
+  /// 좋아요한 초빙 공고 가져오기
+  Future<void> getLikeCareers() async {
     try {
-      Get.snackbar("초빙공고 북마크", "해당 공고를 관심 목록에 저장하였습니다.");
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      bool isLogin = prefs.getBool("isLogin") ?? false;
+      likeCareers.value = [];
+      if (isLogin) {
+        final response = await CareerService.getCareerLikeList();
+        if (response['statusCode'] == 200) {
+          final data = response['data'] as List;
+          likeCareers.assignAll(data.cast<int>());
+        }
+      }
+    } catch (error) {
+      print(error);
+    } finally {
+      update();
+    }
+  }
+
+  /// [비즈니스 로직]
+  /// 초빙 공고 좋아요
+  Future<dynamic> likeCareer(BuildContext context, int careerNo) async {
+    try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      bool isLogin = prefs.getBool("isLogin") ?? false;
+      if (!isLogin) {
+        showModalBottomSheet<void>(
+          context: context,
+          builder: (BuildContext context) {
+            return const PleaseLogin();
+          },
+        );
+      } else {
+        final response = await CareerService.careerLike(careerNo);
+        final scaffold = ScaffoldMessenger.of(context);
+        if (response['statusCode'] == 200) {
+          likeCareers.add(careerNo);
+          update();
+        } else if (response['statusCode'] == 409) {
+          showToast(scaffold, '이미 좋아요한 초빙 공고입니다.');
+        } else {
+          showToast(scaffold, '서버에 오류가 발생하였습니다. 잠시만 기다려주세요.');
+          throw Exception('Failed to likeCareer');
+        }
+      }
+    } catch (error) {
+      throw Exception(error);
+    } finally {
+      update();
+    }
+  }
+
+  /// [비즈니스 로직]
+  /// 초빙 공고 좋아요 취소
+  Future<dynamic> unlikeCareer(BuildContext context, int careerNo) async {
+    try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      bool isLogin = prefs.getBool("isLogin") ?? false;
+
+      if (!isLogin) {
+        showModalBottomSheet<void>(
+          context: context,
+          builder: (BuildContext context) {
+            return const PleaseLogin();
+          },
+        );
+      } else {
+        final response = await CareerService.careerUnLike(careerNo);
+        final scaffold = ScaffoldMessenger.of(context);
+        if (response['statusCode'] == 200) {
+          likeCareers.remove(careerNo);
+          update();
+        } else if (response['statusCode'] == 409) {
+          showToast(scaffold, '이미 좋아요 취소한 초빙 공고입니다.');
+        } else {
+          showToast(scaffold, '서버에 오류가 발생하였습니다. 잠시만 기다려주세요.');
+          throw Exception('Failed to unlikeCareer');
+        }
+      }
     } catch (error) {
       throw Exception(error);
     } finally {
