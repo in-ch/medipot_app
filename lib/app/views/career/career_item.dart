@@ -41,7 +41,7 @@ class CareerItem extends GetView<CareerController> {
                     child: Image.network(
                       img,
                       width: double.infinity,
-                      height: 110,
+                      height: company != "" ? 110 : 170,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -82,16 +82,20 @@ class CareerItem extends GetView<CareerController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 5),
-                Text(company,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                        fontSize: 15.0, fontWeight: FontWeight.w600)),
+                company != ""
+                    ? Text(company,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            fontSize: 15.0, fontWeight: FontWeight.w600))
+                    : Container(),
+                company != "" ? Container() : const SizedBox(height: 10),
                 Text(position,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                        fontSize: 12.0, fontWeight: FontWeight.w300))
+                    style: TextStyle(
+                        fontSize: company != "" ? 12.0 : 16.0,
+                        fontWeight: FontWeight.w300))
               ],
             ),
           ),

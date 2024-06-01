@@ -39,6 +39,7 @@ export './favorites/like_location_item.dart';
 export './favorites/my_locations.dart';
 export './favorites/my_location_item.dart';
 export './favorites/my_consult_item.dart';
+export './favorites/like_careers.dart';
 
 export './setting/setting_box.dart';
 export './setting/setting_sns_box.dart';

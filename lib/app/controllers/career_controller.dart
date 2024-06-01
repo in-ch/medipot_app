@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:docspot_app/data/models/models.dart';
@@ -46,6 +47,29 @@ class CareerController extends GetxController {
         if (response['statusCode'] == 200) {
           final data = response['data'] as List;
           likeCareers.assignAll(data.cast<int>());
+        }
+      }
+    } catch (error) {
+      print(error);
+    } finally {
+      update();
+    }
+  }
+
+  /// [비즈니스 로직]
+  /// 좋아요한 초빙 공고 가져오기 - 인피니티 스크롤링
+  Future<void> getLikeCareersInfinite(PagingController pagingController) async {
+    try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      bool isLogin = prefs.getBool("isLogin") ?? false;
+      likeCareers.value = [];
+      if (isLogin) {
+        final response = await CareerService.getCareerLikeListInfinite();
+        if (response['statusCode'] == 200) {
+          final data = response['data'] as List;
+          final list = List<CareerListItem>.from(
+              data.map((item) => CareerListItem.fromJson(item)));
+          pagingController.appendLastPage(list);
         }
       }
     } catch (error) {

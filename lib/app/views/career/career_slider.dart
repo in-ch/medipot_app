@@ -91,7 +91,7 @@ class CareerSliderState extends State<CareerSlider> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(widget.careers[index].hospital.name,
+                                Text(widget.careers[index].hospital!.name,
                                     style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 17.0,

@@ -92,4 +92,19 @@ class CareerService {
       return {'statusCode': response.statusCode, 'data': []};
     }
   }
+
+  static Future<Map<String, dynamic>> getCareerLikeListInfinite() async {
+    String apiServer = dotenv.get("API_SERVER");
+    final url = Uri.parse('$apiServer/likeCareer/app');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString('accessToken');
+    final headers = {'Authorization': 'Bearer $accessToken'};
+
+    final response = await http.get(url, headers: headers);
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      return {'statusCode': response.statusCode, 'data': []};
+    }
+  }
 }
