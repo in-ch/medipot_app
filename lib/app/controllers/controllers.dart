@@ -16,4 +16,5 @@ export './career_controller.dart';
 export './career_list_controller.dart';
 export './career_detail_controller.dart';
 export './search_controller.dart';
+export './search_list_controller.dart';
 export './alarm_controller.dart';

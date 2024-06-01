@@ -16,3 +16,4 @@ export './image_upload_model.dart';
 export './event_model.dart';
 export './career_model.dart';
 export './career_list_item_model.dart';
+export './keyword_rank_model.dart';

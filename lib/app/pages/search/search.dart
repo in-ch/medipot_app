@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/views/views.dart';
+import 'package:docspot_app/app/routes/routes.dart';
 
 class SearchPage extends GetView<SearchsController> {
   const SearchPage({Key? key}) : super(key: key);
@@ -42,6 +43,18 @@ class SearchPage extends GetView<SearchsController> {
                           child: TextField(
                             controller: controller.textEditingController,
                             focusNode: controller.focusNode,
+                            onSubmitted: (String text) {
+                              if (text.length > 1) {
+                                Get.toNamed(Routes.searchList,
+                                    arguments: {'keyword': text});
+                                controller.addKeyword(text);
+                                controller.textEditingController.clear();
+                              } else {
+                                Get.snackbar(
+                                    "검색어 길이가 부족합니다.", "2글자 이상을 입력해주세요.");
+                                controller.focusNode.requestFocus();
+                              }
+                            },
                             style: const TextStyle(
                               fontSize: 18.0,
                             ),
@@ -67,19 +80,37 @@ class SearchPage extends GetView<SearchsController> {
                         Text("최근 검색어",
                             style: Theme.of(context).textTheme.titleMedium),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            controller.clearKeywordRanks();
+                          },
                           child: Text("전체 삭제",
                               style: Theme.of(context).textTheme.titleSmall),
                         ),
                       ]),
                 ),
                 const SizedBox(height: 5),
-                const Wrap(
-                  children: [
-                    SearchKeyword(text: "무 빙"),
-                    SearchKeyword(text: "Bomb"),
-                    SearchKeyword(text: "미국의 탄생 역사")
-                  ],
+                SizedBox(
+                  height: 30,
+                  child: Obx(() => controller.recentKeywords.isEmpty
+                      ? const Padding(
+                          padding: EdgeInsets.only(top: 10.0),
+                          child: SizedBox(
+                              width: double.infinity,
+                              height: 25,
+                              child: Text("최근 검색한 내용이 없습니다.",
+                                  style: TextStyle(color: Colors.black38))),
+                        )
+                      : SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Wrap(
+                            children: controller.recentKeywords.map((keyword) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SearchKeyword(text: keyword),
+                              );
+                            }).toList(),
+                          ),
+                        )),
                 ),
                 const SizedBox(height: 40),
                 SizedBox(
@@ -94,7 +125,7 @@ class SearchPage extends GetView<SearchsController> {
                       ]),
                 ),
                 const SizedBox(height: 10),
-                const SearchRank(),
+                SearchRank(),
               ],
             ),
           ),
