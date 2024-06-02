@@ -20,8 +20,8 @@ class NoDatas extends StatelessWidget {
               Text(text,
                   style: const TextStyle(
                       fontSize: 18,
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      fontWeight: FontWeight.w600)),
+                      color: Color.fromARGB(255, 150, 150, 150),
+                      fontWeight: FontWeight.w400)),
               sub != ""
                   ? Column(
                       children: [
@@ -32,6 +32,7 @@ class NoDatas extends StatelessWidget {
                       ],
                     )
                   : const SizedBox(),
+              const SizedBox(height: 50),
             ],
           )
         ],

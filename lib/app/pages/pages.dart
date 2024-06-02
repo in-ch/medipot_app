@@ -23,6 +23,11 @@ import './consultList/consult_list_page.dart';
 import './csCenter/cs_center_page.dart';
 import './phone/phone_page.dart';
 import './phone/phone_pin_page.dart';
+import './careerList/career_list_page.dart';
+import './careerDetail/career_detail_page.dart';
+import './search/search.dart';
+import './search/search_list.dart';
+import './alarm/alarm_page.dart';
 
 abstract class AppPages {
   static final pages = [
@@ -92,5 +97,30 @@ abstract class AppPages {
         page: () => const PhonePinPage(),
         transition: Transition.cupertino,
         bindings: [PhoneBinding()]),
+    GetPage(
+        name: Routes.careerList,
+        page: () => const CareerListPage(),
+        transition: Transition.cupertino,
+        bindings: [CareerListBinding()]),
+    GetPage(
+        name: Routes.careerDetail,
+        page: () => const CareerDetailPage(),
+        transition: Transition.cupertino,
+        bindings: [CareerDetailBinding()]),
+    GetPage(
+        name: Routes.search,
+        page: () => const SearchPage(),
+        transition: Transition.cupertino,
+        bindings: [SearchBinding()]),
+    GetPage(
+        name: Routes.searchList,
+        page: () => const SearchListPage(),
+        transition: Transition.cupertino,
+        bindings: [SearchListBinding()]),
+    GetPage(
+        name: Routes.alarm,
+        page: () => const AlarmPage(),
+        transition: Transition.cupertino,
+        bindings: [AlarmBinding()]),
   ];
 }

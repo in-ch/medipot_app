@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:docspot_app/data/models/models.dart';
@@ -25,7 +26,7 @@ class EventsController extends GetxController {
         events = List<Event>.from(data.map((item) => Event.fromJson(item)));
       }
     } catch (error) {
-      print(error);
+      debugPrint(error.toString());
       isLoading.value = false;
       update();
     } finally {

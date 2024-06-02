@@ -10,3 +10,5 @@ export './common_service.dart';
 export './event_service.dart';
 export './phone_service.dart';
 export './location_service.dart';
+export './career_service.dart';
+export './search_service.dart';

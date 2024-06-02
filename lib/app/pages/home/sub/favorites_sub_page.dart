@@ -47,7 +47,7 @@ class _FavoritesBodyState extends State<_FavoritesBody>
   @override
   void initState() {
     _tabController = TabController(
-      length: 2,
+      length: 3,
       vsync: this, //vsync에 this 형태로 전달해야 애니메이션이 정상 처리됨
     );
     super.initState();
@@ -63,6 +63,13 @@ class _FavoritesBodyState extends State<_FavoritesBody>
         children: [
           TabBar(
             tabs: [
+              Container(
+                height: 40,
+                alignment: Alignment.center,
+                child: const Text(
+                  "찜한 초빙 공고",
+                ),
+              ),
               Container(
                 height: 40,
                 alignment: Alignment.center,
@@ -87,6 +94,11 @@ class _FavoritesBodyState extends State<_FavoritesBody>
             child: TabBarView(
               controller: _tabController,
               children: const [
+                SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: LikeCareers(),
+                ),
                 SizedBox(
                   width: double.infinity,
                   height: double.infinity,

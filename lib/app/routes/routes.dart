@@ -11,4 +11,9 @@ abstract class Routes {
   static const csCenter = '/csCenter';
   static const phone = '/phone';
   static const phonePin = '/phonePin';
+  static const careerList = '/careerList';
+  static const careerDetail = '/careerDetail';
+  static const search = '/search';
+  static const searchList = '/searchList';
+  static const alarm = '/alarm';
 }
