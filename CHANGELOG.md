@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.6.0 (2024-06-02)
+
+- [feat: 초빙공고 기능 추가](ab015e44db030086d7313f89564e5c746138bce7)
+
 ### 1.5.3 (2024-05-05)
 
 - [fix: 애플 로그인에 릴리즈 서명 추가](4374f08f37ebb52fb309a3a70aa04b6a4e61f9ac)
