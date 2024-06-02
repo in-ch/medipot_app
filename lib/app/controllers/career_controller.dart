@@ -50,7 +50,7 @@ class CareerController extends GetxController {
         }
       }
     } catch (error) {
-      print(error);
+      debugPrint(error.toString());
     } finally {
       update();
     }
@@ -73,7 +73,7 @@ class CareerController extends GetxController {
         pagingController.error = true;
       }
     } catch (error) {
-      print(error);
+      debugPrint(error.toString());
     } finally {
       update();
     }
