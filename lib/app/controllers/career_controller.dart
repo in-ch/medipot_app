@@ -35,6 +35,11 @@ class CareerController extends GetxController {
     }
   }
 
+  void clearBodyHeight() {
+    bodyHeight.value = 0;
+    update();
+  }
+
   /// [비즈니스 로직]
   /// 좋아요한 초빙 공고 가져오기
   Future<void> getLikeCareers() async {

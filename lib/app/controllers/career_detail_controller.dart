@@ -31,6 +31,7 @@ class CareerDetailController extends GetxController {
       getCareer(no);
     });
     careerController.getLikeCareers();
+    careerController.clearBodyHeight();
     super.onInit();
   }
 
