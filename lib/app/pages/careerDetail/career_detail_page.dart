@@ -28,7 +28,10 @@ class CareerDetailPage extends GetView<CareerDetailController> {
                   CareerInfoCard(
                     career: controller.career,
                   ),
-                  CareerCardBottom(careerNo: controller.career.no)
+                  CareerCardBottom(
+                    careerNo: controller.career.no,
+                    careerPhone: controller.career.contactPhone,
+                  )
                 ],
               );
             }

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:docspot_app/data/models/models.dart';
 import 'package:docspot_app/services/services.dart';
@@ -25,9 +26,14 @@ class CareerController extends GetxController {
 
   /// [비즈니스 로직]
   /// 지원하기
-  Future<dynamic> handleJoin(int careerNo) async {
+  Future<dynamic> handleJoin(String contactPhone) async {
     try {
-      Get.snackbar("문의가 완료되었습니다.", "담당자가 연락올 때까지 잠시만 기다려주세요.");
+      String url = 'tel:$contactPhone';
+      if (await canLaunchUrl(Uri.parse(url))) {
+        await launchUrl(Uri.parse(url));
+      } else {
+        Get.snackbar("전화 걸기에 실패하였습니다.", "지속 발생 시 관리자에게 문의해주세요.");
+      }
     } catch (error) {
       throw Exception(error);
     } finally {
