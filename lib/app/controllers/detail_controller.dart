@@ -8,10 +8,6 @@ class DetailController extends GetxController {
 
   late Writing writing;
 
-  void someMethod() {
-    print(Get.arguments['no']);
-  }
-
   @override
   void onInit() {
     getWriting();

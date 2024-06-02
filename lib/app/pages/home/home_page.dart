@@ -1,3 +1,4 @@
+import 'package:docspot_app/app/pages/home/sub/career_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:docspot_app/app/pages/pages.dart';
@@ -38,10 +39,12 @@ class _HomePageState extends State<HomePage> {
   Widget _buildPage(int index) {
     switch (index) {
       case 0:
-        return const MapSubPage();
+        return const CareerSubPage();
       case 1:
-        return const FavoritesSubPage();
+        return const MapSubPage();
       case 2:
+        return const FavoritesSubPage();
+      case 3:
         return const SettingSubPage();
       default:
         return Container();

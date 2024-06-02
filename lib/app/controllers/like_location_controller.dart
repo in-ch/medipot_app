@@ -27,7 +27,7 @@ class LikeLocationController extends GetxController {
         }
       }
     } catch (error) {
-      print(error);
+      debugPrint(error.toString());
       update();
     } finally {
       update();
@@ -52,7 +52,7 @@ class LikeLocationController extends GetxController {
       } else {
         pagingController.error = true;
         update();
-        print('Failed to FETCH LikeLocations');
+        debugPrint('Failed to FETCH LikeLocations');
       }
     } catch (error) {
       update();

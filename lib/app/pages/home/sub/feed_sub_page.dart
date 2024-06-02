@@ -26,6 +26,7 @@ class _FeedSubPageState extends State<FeedSubPage> {
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(100),
             child: AppBar(
+              scrolledUnderElevation: 0,
               backgroundColor: Colors.white,
               bottom: TabBar(
                 indicatorWeight: 3,

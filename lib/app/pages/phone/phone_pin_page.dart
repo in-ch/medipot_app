@@ -20,6 +20,7 @@ class PhonePinPage extends GetView<PhoneController> {
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(40),
             child: AppBar(
+              scrolledUnderElevation: 0,
               elevation: 0,
               backgroundColor: Colors.white,
               leading: GestureDetector(

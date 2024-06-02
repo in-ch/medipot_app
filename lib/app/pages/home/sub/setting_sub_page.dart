@@ -65,7 +65,9 @@ class _SettingSubPageState extends State<SettingSubPage> {
                                                           .isLoading.value
                                                       ? Container()
                                                       : const Text(
-                                                          "로그인이 필요합니다.")
+                                                          "로그인이 필요합니다.",
+                                                          style: TextStyle(
+                                                              fontSize: 14.0))
                                                   : settingController
                                                           .isLoading.value
                                                       ? ClipOval(
@@ -174,7 +176,7 @@ class _SettingSubPageState extends State<SettingSubPage> {
                                       style: appTheme.textTheme.bodyMedium)),
                                 ],
                               ),
-                              SimpleButton(
+                              SimpleTextButton(
                                   text: "업데이트",
                                   event: () {
                                     Get.snackbar("최신 버전의 앱입니다.", "닥스팟");

@@ -30,7 +30,11 @@ dependencies:
   dio: ^5.3.3
   url_launcher: ^6.1.14
   sign_in_with_apple: ^6.0.0
-  package_info_plus: ^6.0.0
+  package_info_plus: ^8.0.0
+  app_version_update: ^3.1.0
+  sliding_up_panel: ^2.0.0+1
+  google_maps_flutter: ^2.2.8
+  flutter_html: ^3.0.0-beta.2
 
 dev_dependencies:
   flutter_test:
