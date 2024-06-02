@@ -65,12 +65,12 @@ class CareerController extends GetxController {
       likeCareers.value = [];
       if (isLogin) {
         final response = await CareerService.getCareerLikeListInfinite();
-        if (response['statusCode'] == 200) {
-          final data = response['data'] as List;
-          final list = List<CareerListItem>.from(
-              data.map((item) => CareerListItem.fromJson(item)));
-          pagingController.appendLastPage(list);
-        }
+        final data = response['data'] as List;
+        final list = List<CareerListItem>.from(
+            data.map((item) => CareerListItem.fromJson(item)));
+        pagingController.appendLastPage(list);
+      } else {
+        pagingController.error = true;
       }
     } catch (error) {
       print(error);
