@@ -66,9 +66,7 @@ class _FavoritesBodyState extends State<_FavoritesBody>
               Container(
                 height: 40,
                 alignment: Alignment.center,
-                child: const Text(
-                  "찜한 초빙 공고",
-                ),
+                child: const Text("찜한 초빙"),
               ),
               Container(
                 height: 40,

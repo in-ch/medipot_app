@@ -19,7 +19,7 @@ class NoDatas extends StatelessWidget {
             children: [
               Text(text,
                   style: const TextStyle(
-                      fontSize: 18,
+                      fontSize: 16,
                       color: Color.fromARGB(255, 150, 150, 150),
                       fontWeight: FontWeight.w400)),
               sub != ""
@@ -28,6 +28,7 @@ class NoDatas extends StatelessWidget {
                         const SizedBox(height: 5),
                         Text(sub!,
                             style: const TextStyle(
+                                fontSize: 14,
                                 color: Color.fromARGB(255, 154, 154, 154)))
                       ],
                     )
