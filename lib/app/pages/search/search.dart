@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,15 +26,7 @@ class SearchPage extends GetView<SearchsController> {
                   height: 60,
                   child: Row(
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Icon(
-                          CupertinoIcons.back,
-                          color: Colors.black87,
-                        ),
-                      ),
+                      const CustomBackButton(),
                       const SizedBox(width: 20),
                       Expanded(
                         child: SizedBox(

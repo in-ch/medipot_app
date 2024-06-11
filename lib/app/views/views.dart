@@ -16,6 +16,7 @@ export './common/keyword.dart';
 export './common/label.dart';
 export './common/section.dart';
 export './common/google_map.dart';
+export './common/custom_back_button.dart';
 
 export './feed/feed.dart';
 export './feed/feeds.dart';

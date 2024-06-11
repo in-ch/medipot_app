@@ -3,11 +3,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/style/theme.dart';
+import 'package:docspot_app/app/views/views.dart';
 
 class ProfileSettingPage extends GetView<SettingController> {
   const ProfileSettingPage({Key? key}) : super(key: key);
@@ -25,14 +25,9 @@ class ProfileSettingPage extends GetView<SettingController> {
             backgroundColor: Colors.transparent,
             elevation: 0,
             leadingWidth: 54,
-            leading: Align(
+            leading: const Align(
               alignment: Alignment.centerRight,
-              child: GestureDetector(
-                  child: const Icon(CupertinoIcons.back),
-                  onTap: () {
-                    controller.resetPreviewImage();
-                    Navigator.of(context).pop();
-                  }),
+              child: CustomBackButton(),
             ),
             title: Obx(
               () => controller.isLoading.value
@@ -139,9 +134,9 @@ class ProfileSettingPage extends GetView<SettingController> {
                                         },
                                         style: ButtonStyle(
                                           backgroundColor:
-                                              MaterialStateProperty.all<Color>(
+                                              WidgetStateProperty.all<Color>(
                                                   colorScheme.primary),
-                                          shape: MaterialStateProperty.all<
+                                          shape: WidgetStateProperty.all<
                                               RoundedRectangleBorder>(
                                             RoundedRectangleBorder(
                                               borderRadius:

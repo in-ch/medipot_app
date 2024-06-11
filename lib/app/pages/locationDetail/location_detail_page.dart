@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/controllers/controllers.dart';
+import 'package:docspot_app/app/views/views.dart';
 
 class LocationDetailPage extends GetView<LocationDetailController> {
   const LocationDetailPage({Key? key}) : super(key: key);
@@ -18,15 +18,7 @@ class LocationDetailPage extends GetView<LocationDetailController> {
             scrolledUnderElevation: 0,
             elevation: 0,
             backgroundColor: Colors.white,
-            leading: GestureDetector(
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-              child: const Icon(
-                CupertinoIcons.back,
-                color: Colors.black87,
-              ),
-            ),
+            leading: const CustomBackButton(),
           ),
         ),
         body: Container(

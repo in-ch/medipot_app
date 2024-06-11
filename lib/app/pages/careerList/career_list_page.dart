@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -24,13 +23,9 @@ class CareerListPage extends GetView<CareerListController> {
             backgroundColor: Colors.white,
             elevation: 0,
             leadingWidth: 54,
-            leading: Align(
+            leading: const Align(
               alignment: Alignment.centerRight,
-              child: GestureDetector(
-                  child: const Icon(CupertinoIcons.back),
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  }),
+              child: CustomBackButton(),
             ),
             title: Text("초빙정보 찾기",
                 style: Theme.of(context).textTheme.headlineSmall),
@@ -106,14 +101,14 @@ class CareerListPage extends GetView<CareerListController> {
                       ? const CircularProgressIndicator()
                       : Expanded(
                           child: Container(
-                          color: colorScheme.background,
+                          color: colorScheme.surface,
                           height: double.infinity,
                           child: PagedGridView<int, dynamic>(
                             pagingController: controller.pagingController,
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
-                              mainAxisSpacing: 8.0,
+                              mainAxisSpacing: 15.0,
                               crossAxisSpacing: 8.0,
                               childAspectRatio: 1.0,
                             ),

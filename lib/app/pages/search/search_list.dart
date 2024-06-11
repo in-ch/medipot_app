@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -23,13 +22,9 @@ class SearchListPage extends GetView<SearchListController> {
             backgroundColor: Colors.white,
             elevation: 0,
             leadingWidth: 54,
-            leading: Align(
+            leading: const Align(
               alignment: Alignment.centerRight,
-              child: GestureDetector(
-                  child: const Icon(CupertinoIcons.back),
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  }),
+              child: CustomBackButton(),
             ),
             title: Text(
                 Get.arguments["keyword"].length > 8
@@ -47,7 +42,7 @@ class SearchListPage extends GetView<SearchListController> {
                       ? const CircularProgressIndicator()
                       : Expanded(
                           child: Container(
-                          color: colorScheme.background,
+                          color: colorScheme.surface,
                           height: double.infinity,
                           child: PagedGridView<int, dynamic>(
                             pagingController: controller.pagingController,

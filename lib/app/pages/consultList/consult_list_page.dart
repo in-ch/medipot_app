@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -23,14 +22,9 @@ class ConsultListPage extends GetView<ConsultListController> {
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 leadingWidth: 54,
-                leading: Align(
-                  alignment: Alignment.centerRight,
-                  child: GestureDetector(
-                      child: const Icon(CupertinoIcons.back),
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      }),
-                ),
+                leading: const Align(
+                    alignment: Alignment.centerRight,
+                    child: CustomBackButton()),
                 title: SizedBox(
                   width: 200,
                   child: Text("상담 목록",
