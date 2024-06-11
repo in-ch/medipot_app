@@ -114,12 +114,24 @@ class CareerSliderState extends State<CareerSlider> {
               Positioned(
                 bottom: 10.0,
                 right: 20.0,
-                child: Text(
-                  "${_currentPage + 1} / ${widget.careers.length}",
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.w700,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Color.fromRGBO(0, 0, 0, 0.6),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(6),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 8.0, right: 8.0, top: 4.0, bottom: 4.0),
+                    child: Text(
+                      "${_currentPage + 1} / ${widget.careers.length}",
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                   ),
                 ),
               ),
