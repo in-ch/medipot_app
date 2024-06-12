@@ -1,6 +1,7 @@
 class CareerListItem {
   final int no;
   final String title;
+  final String deadline;
   final List<String> imgs;
   final HospitalListItem? hospital;
 
@@ -8,6 +9,7 @@ class CareerListItem {
     required this.no,
     required this.title,
     required this.imgs,
+    required this.deadline,
     this.hospital,
   });
 
@@ -15,6 +17,7 @@ class CareerListItem {
     return CareerListItem(
       no: json['no'],
       title: json['title'],
+      deadline: json['deadline'] ?? "",
       imgs: List<String>.from(json['imgs']),
       hospital: json['hospital'] != null
           ? HospitalListItem.fromJson(json['hospital'])

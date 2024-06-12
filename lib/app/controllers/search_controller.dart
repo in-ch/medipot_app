@@ -82,7 +82,7 @@ class SearchsController extends GetxController {
           Get.arguments['keyword'],
           '전체보기',
           Get.arguments['keyword'],
-          '전체보기');
+          '전국');
 
       if (response['statusCode'] == 200) {
         final data = response['data'];

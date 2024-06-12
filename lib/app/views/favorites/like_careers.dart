@@ -49,13 +49,13 @@ class _LikeCareersState extends State<LikeCareers> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: colorScheme.background,
+      backgroundColor: colorScheme.surface,
       extendBody: true,
       body: Column(
         children: [
           Expanded(
             child: Container(
-                color: colorScheme.background,
+                color: colorScheme.surface,
                 height: double.infinity,
                 child: PagedListView<int, dynamic>(
                   padding: const EdgeInsets.all(8.0),
@@ -89,6 +89,7 @@ class _LikeCareersState extends State<LikeCareers> {
                         img: item.imgs[0],
                         company: "",
                         position: item.title,
+                        deadline: '2024-12-31 23:59:00',
                       );
                     },
                   ),

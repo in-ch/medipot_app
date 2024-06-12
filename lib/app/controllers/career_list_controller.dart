@@ -7,7 +7,7 @@ import 'package:docspot_app/services/services.dart';
 import 'package:docspot_app/app/controllers/career_controller.dart';
 
 class CareerListController extends GetxController {
-  RxString locationValue = '전체보기'.obs;
+  RxString locationValue = '전국'.obs;
   RxString departmentValue = '전체보기'.obs;
   RxBool isLoading = false.obs;
   RxInt page = 0.obs;
@@ -25,7 +25,7 @@ class CareerListController extends GetxController {
 
   @override
   void onInit() {
-    locationValue.value = Get.arguments['location'] ?? '전체보기';
+    locationValue.value = Get.arguments['location'] ?? '전국';
     departmentValue.value = Get.arguments['department'] ?? '전체보기';
 
     ever(locationValue, (_) => _refreshPage());
@@ -64,7 +64,7 @@ class CareerListController extends GetxController {
         detail.value,
         departmentValue.value == '전체보기' ? '' : departmentValue.value,
         hospitalName.value,
-        locationValue.value == '전체보기' ? '' : locationValue.value,
+        locationValue.value == '전국' ? '' : locationValue.value,
       );
 
       if (response['statusCode'] == 200) {

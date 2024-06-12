@@ -1,26 +1,45 @@
+import 'package:docspot_app/app/routes/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import 'package:docspot_app/app/style/theme.dart';
-import 'package:docspot_app/app/routes/routes.dart';
 import 'package:docspot_app/app/controllers/controllers.dart';
+import 'package:docspot_app/app/style/theme.dart';
 
-class CareerItem extends GetView<CareerController> {
-  const CareerItem({
-    super.key,
+class CareerItem extends StatelessWidget {
+  final String company;
+  final String position;
+  final String img;
+  final String deadline;
+  final int no;
+
+  CareerItem({
+    Key? key,
     required this.company,
     required this.position,
     required this.img,
     required this.no,
-  });
+    required this.deadline,
+  }) : super(key: key) {
+    // 컨트롤러를 초기화합니다.
+    if (!Get.isRegistered<CareerController>()) {
+      Get.put(CareerController());
+    }
+  }
 
-  final String company;
-  final String position;
-  final String img;
-  final int no;
+  String calculateDday(String deadline) {
+    DateTime now = DateTime.now();
+    DateTime dueDate = DateTime.parse(deadline);
+
+    Duration difference = dueDate.difference(now);
+    int days = difference.inDays;
+
+    return "D-$days";
+  }
 
   @override
   Widget build(BuildContext context) {
+    final CareerController controller = Get.find<CareerController>();
+
     return Column(
       children: [
         SizedBox(
@@ -47,26 +66,48 @@ class CareerItem extends GetView<CareerController> {
                   ),
                 ),
               ),
-              Obx(() => Positioned(
-                    top: 0,
-                    right: 0,
-                    child: Opacity(
-                      opacity: controller.likeCareers.contains(no) ? 1 : 0.5,
-                      child: GestureDetector(
-                        onTap: () {
-                          controller.likeCareers.contains(no)
-                              ? controller.unlikeCareer(context, no)
-                              : controller.likeCareer(context, no);
-                        },
-                        child: SizedBox(
-                          width: 50,
-                          height: 50,
-                          child: Icon(CupertinoIcons.bookmark_fill,
-                              color: colorScheme.primary),
-                        ),
-                      ),
-                    ),
-                  )),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8.0, right: 0),
+                  child: Obx(() => Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: const Color.fromRGBO(0, 0, 0, 0.5),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 10, right: 10, top: 2, bottom: 2),
+                              child: Text(calculateDday(deadline),
+                                  style: const TextStyle(
+                                      color: Color.fromRGBO(255, 255, 255, 1))),
+                            ),
+                          ),
+                          Opacity(
+                            opacity:
+                                controller.likeCareers.contains(no) ? 1 : 0.5,
+                            child: GestureDetector(
+                              onTap: () {
+                                controller.likeCareers.contains(no)
+                                    ? controller.unlikeCareer(context, no)
+                                    : controller.likeCareer(context, no);
+                              },
+                              child: SizedBox(
+                                width: 50,
+                                height: 100,
+                                child: Icon(CupertinoIcons.bookmark_fill,
+                                    color: colorScheme.primary),
+                              ),
+                            ),
+                          )
+                        ],
+                      )),
+                ),
+              ),
             ],
           ),
         ),
@@ -95,7 +136,7 @@ class CareerItem extends GetView<CareerController> {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontSize: company != "" ? 12.0 : 16.0,
-                        fontWeight: FontWeight.w300))
+                        fontWeight: FontWeight.w300)),
               ],
             ),
           ),
