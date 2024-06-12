@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -11,10 +9,11 @@ class BannerSlider extends StatefulWidget {
   BannerSliderState createState() => BannerSliderState();
 }
 
-class BannerSliderState extends State<BannerSlider> {
+class BannerSliderState extends State<BannerSlider>
+    with SingleTickerProviderStateMixin {
   final PageController _pageController = PageController();
   int _currentPage = 0;
-  Timer? _timer;
+  late final AnimationController _animationController;
 
   List<Map<String, dynamic>> banners = [
     {'asset': 'assets/image/sample/sample_banner_1.png', 'no': 1},
@@ -26,7 +25,19 @@ class BannerSliderState extends State<BannerSlider> {
   void initState() {
     super.initState();
     _pageController.addListener(_updateCurrentPage);
-    _startAutoPage();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 5),
+    )..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          _animationController.reset();
+          _nextPage();
+        }
+      });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _animationController.forward();
+    });
   }
 
   void _updateCurrentPage() {
@@ -35,20 +46,18 @@ class BannerSliderState extends State<BannerSlider> {
     });
   }
 
-  void _startAutoPage() {
-    const Duration duration = Duration(seconds: 5);
-    _timer = Timer.periodic(duration, (Timer timer) {
-      if (_currentPage < banners.length - 1) {
-        _currentPage++;
-      } else {
-        _currentPage = 0;
-      }
-      _pageController.animateToPage(
-        _currentPage,
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.easeInOut,
-      );
-    });
+  void _nextPage() {
+    if (_currentPage < banners.length - 1) {
+      _currentPage++;
+    } else {
+      _currentPage = 0;
+    }
+    _pageController.animateToPage(
+      _currentPage,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+    _animationController.forward();
   }
 
   @override
@@ -131,7 +140,7 @@ class BannerSliderState extends State<BannerSlider> {
   @override
   void dispose() {
     _pageController.dispose();
-    _timer?.cancel(); // 타이머 중지
+    _animationController.dispose();
     super.dispose();
   }
 }
