@@ -92,6 +92,18 @@ class CareerListController extends GetxController {
     }
   }
 
+  /// 진료과 업데이트
+  void updateDepartment(String value) {
+    departmentValue.value = value;
+    update();
+  }
+
+  /// 지역 선택 업데이트
+  void updateLocation(String value) {
+    locationValue.value = value;
+    update();
+  }
+
   /// 페이지를 새로 고침한다.
   void _refreshPage() {
     page.value = 0;

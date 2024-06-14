@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'package:docspot_app/app/controllers/controllers.dart';
-import 'package:docspot_app/app/constants/constants.dart';
 import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/views/views.dart';
 
@@ -36,63 +35,73 @@ class CareerListPage extends GetView<CareerListController> {
               children: [
                 Row(
                   children: [
-                    Container(
-                      height: 40,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black26),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0, vertical: 0),
-                      child: Obx(
-                        () => DropdownButton<String>(
-                          value: controller.locationValue.value,
-                          style: const TextStyle(color: Colors.black),
-                          iconEnabledColor: Colors.black26,
-                          dropdownColor: Colors.white,
-                          underline: Container(),
-                          onChanged: (String? newValue) {
-                            controller.locationValue.value = newValue!;
-                          },
-                          items: locationList
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
+                    GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet<void>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return const SelectLocationAndDepartmentModal(
+                              initTabIndex: 0,
                             );
-                          }).toList(),
+                          },
+                        );
+                      },
+                      child: Container(
+                        height: 40,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black26),
+                          borderRadius: BorderRadius.circular(20.0),
                         ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12.0, vertical: 0),
+                        child: Obx(() => Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(controller.locationValue.value,
+                                    style:
+                                        const TextStyle(color: Colors.black)),
+                                const SizedBox(width: 5),
+                                const Icon(Icons.arrow_drop_down,
+                                    size: 20, color: Colors.black38)
+                              ],
+                            )),
                       ),
                     ),
                     const SizedBox(width: 15),
-                    Container(
-                      height: 40,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black26),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0, vertical: 0),
-                      child: Obx(
-                        () => DropdownButton<String>(
-                          value: controller.departmentValue.value,
-                          style: const TextStyle(color: Colors.black),
-                          iconEnabledColor: Colors.black26,
-                          dropdownColor: Colors.white,
-                          underline: Container(),
-                          onChanged: (String? newValue) {
-                            controller.departmentValue.value = newValue!;
-                          },
-                          items: departmentList
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
+                    GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet<void>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return const SelectLocationAndDepartmentModal(
+                              initTabIndex: 1,
                             );
-                          }).toList(),
+                          },
+                        );
+                      },
+                      child: Container(
+                        height: 40,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black26),
+                          borderRadius: BorderRadius.circular(20.0),
                         ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12.0, vertical: 0),
+                        child: Obx(() => Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(controller.departmentValue.value,
+                                    style:
+                                        const TextStyle(color: Colors.black)),
+                                const SizedBox(width: 5),
+                                const Icon(Icons.arrow_drop_down,
+                                    size: 20, color: Colors.black38)
+                              ],
+                            )),
                       ),
-                    )
+                    ),
                   ],
                 ),
                 const SizedBox(height: 30),
