@@ -84,7 +84,7 @@ class SearchListPage extends GetView<SearchListController> {
                                   img: item.imgs[0],
                                   company: item.hospital.name,
                                   position: item.title,
-                                  deadline: '2024-12-31 23:59:00',
+                                  deadline: item.deadline,
                                 );
                               },
                             ),

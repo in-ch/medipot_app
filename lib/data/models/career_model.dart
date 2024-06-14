@@ -89,7 +89,7 @@ class Career {
       onCallDuty: 'None',
       conferenceAttendance: true,
       otherDetails: 'Default other details',
-      deadline: '2024-12-31',
+      deadline: '2024-12-31 00:00',
       contactPerson: 'Default Contact',
       contactEmail: 'contact@example.com',
       contactPhone: '123-456-7890',

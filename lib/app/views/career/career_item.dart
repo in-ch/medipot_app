@@ -1,5 +1,6 @@
 import 'package:docspot_app/app/routes/routes.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 
 import 'package:docspot_app/app/controllers/controllers.dart';
@@ -28,12 +29,28 @@ class CareerItem extends StatelessWidget {
 
   String calculateDday(String deadline) {
     DateTime now = DateTime.now();
-    DateTime dueDate = DateTime.parse(deadline);
+    DateTime dueDate;
+
+    try {
+      DateFormat dateFormat1 = DateFormat("yyyy.MM.dd");
+      dueDate = dateFormat1.parse(deadline);
+    } catch (e) {
+      try {
+        DateFormat dateFormat2 = DateFormat("yyyy-MM-dd HH:mm:ss");
+        dueDate = dateFormat2.parse(deadline);
+      } catch (e) {
+        throw const FormatException("Invalid date format");
+      }
+    }
 
     Duration difference = dueDate.difference(now);
     int days = difference.inDays;
 
-    return "D-$days";
+    return days < 0
+        ? '마감'
+        : days == 0
+            ? '오늘 마감'
+            : "D-$days";
   }
 
   @override
@@ -74,19 +91,22 @@ class CareerItem extends StatelessWidget {
                   child: Obx(() => Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: const Color.fromRGBO(0, 0, 0, 0.5),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 10, right: 10, top: 2, bottom: 2),
-                              child: Text(calculateDday(deadline),
-                                  style: const TextStyle(
-                                      color: Color.fromRGBO(255, 255, 255, 1))),
-                            ),
-                          ),
+                          !deadline.contains("마감") && !(deadline.length < 2)
+                              ? Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: const Color.fromRGBO(0, 0, 0, 0.5),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10, right: 10, top: 2, bottom: 2),
+                                    child: Text(calculateDday(deadline),
+                                        style: const TextStyle(
+                                            color: Color.fromRGBO(
+                                                255, 255, 255, 1))),
+                                  ),
+                                )
+                              : const SizedBox(),
                           Opacity(
                             opacity:
                                 controller.likeCareers.contains(no) ? 1 : 0.5,

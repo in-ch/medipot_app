@@ -152,7 +152,7 @@ class CareerListPage extends GetView<CareerListController> {
                                   img: item.imgs[0],
                                   company: item.hospital.name,
                                   position: item.title,
-                                  deadline: '2024-09-31 23:59:00',
+                                  deadline: item.deadline,
                                 );
                               },
                             ),

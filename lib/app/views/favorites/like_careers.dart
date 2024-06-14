@@ -89,7 +89,7 @@ class _LikeCareersState extends State<LikeCareers> {
                         img: item.imgs[0],
                         company: "",
                         position: item.title,
-                        deadline: '2024-12-31 23:59:00',
+                        deadline: item.deadline,
                       );
                     },
                   ),
