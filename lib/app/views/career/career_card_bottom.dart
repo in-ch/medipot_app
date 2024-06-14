@@ -7,10 +7,16 @@ import 'package:docspot_app/app/views/views.dart';
 
 class CareerCardBottom extends GetView<CareerController> {
   const CareerCardBottom(
-      {super.key, required this.careerNo, required this.careerPhone});
+      {super.key,
+      required this.careerNo,
+      required this.careerPhone,
+      required this.isExpired,
+      required this.careerLink});
 
   final int careerNo;
   final String careerPhone;
+  final String careerLink;
+  final bool isExpired;
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +55,27 @@ class CareerCardBottom extends GetView<CareerController> {
                       ),
                       const SizedBox(width: 20),
                       Expanded(
-                        child: SimpleButton(
-                            text: "지원하기",
-                            color: colorScheme.primary,
-                            textColor: Colors.white,
-                            event: () {
-                              controller.handleJoin(careerPhone);
-                            }),
+                        child: isExpired
+                            ? SimpleButton(
+                                text: "마감된 공고입니다.",
+                                color: const Color.fromARGB(115, 59, 59, 59),
+                                textColor: Colors.white,
+                                event: () {})
+                            : careerLink != ""
+                                ? SimpleButton(
+                                    text: "홈페이지 지원",
+                                    color: colorScheme.primary,
+                                    textColor: Colors.white,
+                                    event: () {
+                                      controller.handleHomepageJoin(careerLink);
+                                    })
+                                : SimpleButton(
+                                    text: "지원하기",
+                                    color: colorScheme.primary,
+                                    textColor: Colors.white,
+                                    event: () {
+                                      controller.handleJoin(careerPhone);
+                                    }),
                       ),
                       const SizedBox(width: 20),
                     ],

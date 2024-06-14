@@ -41,6 +41,23 @@ class CareerController extends GetxController {
     }
   }
 
+  /// [비즈니스 로직]
+  /// 홈페이지 지원하기
+  Future<dynamic> handleHomepageJoin(String careerLink) async {
+    try {
+      String url = careerLink;
+      if (await canLaunchUrl(Uri.parse(url))) {
+        await launchUrl(Uri.parse(url));
+      } else {
+        Get.snackbar("홈페이지 열기에 실패하였습니다.", "지속 발생 시 관리자에게 문의해주세요.");
+      }
+    } catch (error) {
+      throw Exception(error);
+    } finally {
+      update();
+    }
+  }
+
   void clearBodyHeight() {
     bodyHeight.value = 0;
     update();

@@ -20,6 +20,7 @@ class Career {
   final String contactEmail;
   final String contactPhone;
   final Hospital hospital;
+  final String link;
 
   Career({
     required this.no,
@@ -43,6 +44,7 @@ class Career {
     required this.contactEmail,
     required this.contactPhone,
     required this.hospital,
+    required this.link,
   });
 
   factory Career.fromJson(Map<String, dynamic> json) {
@@ -67,6 +69,7 @@ class Career {
       contactPerson: json['contactPerson'],
       contactEmail: json['contactEmail'],
       contactPhone: json['contactPhone'],
+      link: json['link'],
       hospital: Hospital.fromJson(json['hospital']),
     );
   }
@@ -93,6 +96,7 @@ class Career {
       contactPerson: 'Default Contact',
       contactEmail: 'contact@example.com',
       contactPhone: '123-456-7890',
+      link: '',
       hospital: Hospital(
         no: 0,
         createdAt: '',

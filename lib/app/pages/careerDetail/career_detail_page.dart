@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/views/views.dart';
+import 'package:docspot_app/app/utils/utils.dart';
 
 class CareerDetailPage extends GetView<CareerDetailController> {
   const CareerDetailPage({Key? key}) : super(key: key);
@@ -29,9 +30,13 @@ class CareerDetailPage extends GetView<CareerDetailController> {
                     career: controller.career,
                   ),
                   CareerCardBottom(
-                    careerNo: controller.career.no,
-                    careerPhone: controller.career.contactPhone,
-                  )
+                      careerNo: controller.career.no,
+                      careerPhone: controller.career.contactPhone,
+                      isExpired:
+                          calculateDday(controller.career.deadline) == '마감'
+                              ? true
+                              : false,
+                      careerLink: controller.career.link)
                 ],
               );
             }

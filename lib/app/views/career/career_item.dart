@@ -1,10 +1,10 @@
 import 'package:docspot_app/app/routes/routes.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 
 import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/style/theme.dart';
+import 'package:docspot_app/app/utils/utils.dart';
 
 class CareerItem extends StatelessWidget {
   final String company;
@@ -25,32 +25,6 @@ class CareerItem extends StatelessWidget {
     if (!Get.isRegistered<CareerController>()) {
       Get.put(CareerController());
     }
-  }
-
-  String calculateDday(String deadline) {
-    DateTime now = DateTime.now();
-    DateTime dueDate;
-
-    try {
-      DateFormat dateFormat1 = DateFormat("yyyy.MM.dd");
-      dueDate = dateFormat1.parse(deadline);
-    } catch (e) {
-      try {
-        DateFormat dateFormat2 = DateFormat("yyyy-MM-dd HH:mm:ss");
-        dueDate = dateFormat2.parse(deadline);
-      } catch (e) {
-        throw const FormatException("Invalid date format");
-      }
-    }
-
-    Duration difference = dueDate.difference(now);
-    int days = difference.inDays;
-
-    return days < 0
-        ? '마감'
-        : days == 0
-            ? '오늘 마감'
-            : "D-$days";
   }
 
   @override
