@@ -9,6 +9,7 @@ import 'package:docspot_app/app/controllers/career_controller.dart';
 class CareerListController extends GetxController {
   RxString locationValue = '전국'.obs;
   RxString departmentValue = '전체보기'.obs;
+  RxString keywordValue = ''.obs;
   RxBool isLoading = false.obs;
   RxInt page = 0.obs;
 
@@ -27,9 +28,11 @@ class CareerListController extends GetxController {
   void onInit() {
     locationValue.value = Get.arguments['location'] ?? '전국';
     departmentValue.value = Get.arguments['department'] ?? '전체보기';
+    keywordValue.value = Get.arguments['keyword'] ?? '';
 
     ever(locationValue, (_) => _refreshPage());
     ever(departmentValue, (_) => _refreshPage());
+    ever(keywordValue, (_) => _refreshPage());
 
     pagingController.addPageRequestListener((pageKey) {
       getCareers(pageKey);
@@ -58,14 +61,14 @@ class CareerListController extends GetxController {
   Future<void> getCareers(int pageKey) async {
     try {
       final response = await CareerService.getCareers(
-        pageKey,
-        10,
-        title.value,
-        detail.value,
-        departmentValue.value == '전체보기' ? '' : departmentValue.value,
-        hospitalName.value,
-        locationValue.value == '전국' ? '' : locationValue.value,
-      );
+          pageKey,
+          10,
+          title.value,
+          detail.value,
+          departmentValue.value == '전체보기' ? '' : departmentValue.value,
+          hospitalName.value,
+          locationValue.value == '전국' ? '' : locationValue.value,
+          keywordValue.value);
 
       if (response['statusCode'] == 200) {
         final data = response['data'];

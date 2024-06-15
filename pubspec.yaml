@@ -60,6 +60,8 @@ flutter:
     - assets/image/sample/sample_banner_1.png
     - assets/image/sample/sample_banner_2.png
     - assets/image/sample/sample_banner_3.png
+    - assets/image/zip/zip-1.png
+    - assets/image/zip/zip-2.png
 
   fonts:
     - family: PretendardBold

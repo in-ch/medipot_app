@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 
 import 'package:docspot_app/data/models/models.dart';
 import 'package:docspot_app/app/routes/routes.dart';
@@ -15,19 +15,11 @@ class CareerSlider extends StatefulWidget {
 
 class CareerSliderState extends State<CareerSlider> {
   final PageController _pageController = PageController();
-  int _currentPage = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    _pageController.addListener(_updateCurrentPage);
-  }
-
-  void _updateCurrentPage() {
-    setState(() {
-      _currentPage = _pageController.page?.round() ?? 0;
-    });
-  }
+  List<Map<String, dynamic>> zips = [
+    {"keyword": "📝 학회 참석 지원", "imgSrc": "assets/image/zip/zip-2.png"},
+    {"keyword": "병원", "imgSrc": "assets/image/zip/zip-1.png"},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -48,95 +40,32 @@ class CareerSliderState extends State<CareerSlider> {
               ],
             ),
           ),
-          const SizedBox(height: 10),
-          Stack(
-            children: [
-              Container(
-                width: double.infinity,
-                height: 150.0,
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 243, 243, 243),
-                  borderRadius: BorderRadius.circular(14.0),
-                ),
-                child: PageView.builder(
-                  controller: _pageController,
-                  itemCount: widget.careers.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Get.toNamed(Routes.careerDetail,
-                            arguments: {'no': widget.careers[index].no});
-                      },
-                      child: Stack(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 243, 243, 243),
-                              borderRadius: BorderRadius.circular(14.0),
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(15.0),
-                              child: SizedBox(
-                                width: double.infinity,
-                                child: Image.network(
-                                  widget.careers[index].imgs[0],
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(14.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(widget.careers[index].hospital!.name,
-                                    style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 17.0,
-                                        fontWeight: FontWeight.w600)),
-                                const SizedBox(height: 5),
-                                Text(widget.careers[index].title,
-                                    style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.w300))
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ),
-              Positioned(
-                bottom: 10.0,
-                right: 20.0,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: Color.fromRGBO(0, 0, 0, 0.6),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(6),
+          const SizedBox(height: 15),
+          SizedBox(
+            width: double.infinity,
+            height: 120.0,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: zips.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: index != 0
+                      ? const EdgeInsets.only(left: 20)
+                      : const EdgeInsets.only(left: 0),
+                  child: GestureDetector(
+                    onTap: () => Get.toNamed(Routes.careerList, arguments: {
+                      'keyword': zips[index]["keyword"],
+                    }),
+                    child: SizedBox(
+                      width: 310,
+                      height: 240,
+                      child: Image.asset(zips[index]["imgSrc"]),
                     ),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 8.0, right: 8.0, top: 4.0, bottom: 4.0),
-                    child: Text(
-                      "${_currentPage + 1} / ${widget.careers.length}",
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+                );
+              },
+            ),
+          )
         ],
       ),
     );

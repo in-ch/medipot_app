@@ -26,8 +26,11 @@ class CareerListPage extends GetView<CareerListController> {
               alignment: Alignment.centerRight,
               child: CustomBackButton(),
             ),
-            title: Text("초빙정보 찾기",
-                style: Theme.of(context).textTheme.headlineSmall),
+            title: Obx(() => Text(
+                controller.keywordValue.value != ""
+                    ? '${controller.keywordValue.value}.zip'
+                    : '초빙정보 찾기',
+                style: Theme.of(context).textTheme.headlineSmall)),
           ),
           body: Padding(
             padding: const EdgeInsets.only(left: 20, right: 20.0),

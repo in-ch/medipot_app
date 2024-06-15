@@ -68,7 +68,7 @@ class BannerSliderState extends State<BannerSlider>
           children: [
             Container(
               width: double.infinity,
-              height: 80.0,
+              height: 75.0,
               decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 243, 243, 243),
               ),
@@ -92,12 +92,9 @@ class BannerSliderState extends State<BannerSlider>
                             color: Color.fromARGB(255, 243, 243, 243),
                           ),
                           child: ClipRRect(
-                            child: SizedBox(
-                              width: double.infinity,
-                              child: Image.asset(
-                                banners[index]['asset'],
-                                fit: BoxFit.cover,
-                              ),
+                            child: Image.asset(
+                              banners[index]['asset'],
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),

@@ -180,7 +180,7 @@ class CareerController extends GetxController {
     try {
       isLoading.value = true;
       final response =
-          await CareerService.getCareers(0, 10, '', '', '', '', '');
+          await CareerService.getCareers(0, 10, '', '', '', '', '', '');
       if (response['statusCode'] == 200) {
         final data = response['data'];
         careersInit = List<CareerListItem>.from(
