@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:docspot_app/app/controllers/controllers.dart';
-import 'package:docspot_app/app/views/terms_and_privacy.dart';
+import 'package:docspot_app/app/views/views.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -22,13 +21,9 @@ class LoginPage extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
           leadingWidth: 54,
-          leading: Align(
+          leading: const Align(
             alignment: Alignment.centerRight,
-            child: GestureDetector(
-                child: const Icon(CupertinoIcons.back),
-                onTap: () {
-                  Navigator.of(context).pop();
-                }),
+            child: CustomBackButton(),
           ),
         ),
         body: Column(

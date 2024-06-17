@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
@@ -25,13 +24,9 @@ class CsCenterPage extends GetView<CsCenterController> {
                 backgroundColor: Colors.white,
                 elevation: 0,
                 leadingWidth: 54,
-                leading: Align(
+                leading: const Align(
                   alignment: Alignment.centerRight,
-                  child: GestureDetector(
-                      child: const Icon(CupertinoIcons.back),
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      }),
+                  child: CustomBackButton(),
                 ),
                 title: SizedBox(
                   width: 200,

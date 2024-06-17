@@ -11,7 +11,8 @@ class CareerService {
       String detail,
       String invitedSubject,
       String hospitalName,
-      String hospitalLocation) async {
+      String hospitalLocation,
+      String keyword) async {
     String apiServer = dotenv.get("API_SERVER");
     Map<String, String> queryParams = {
       'page': page.toString(),
@@ -23,6 +24,9 @@ class CareerService {
     if (hospitalName != '') queryParams['hospitalName'] = hospitalName;
     if (hospitalLocation != '') {
       queryParams['hospitalLocation'] = hospitalLocation;
+    }
+    if (keyword != '') {
+      queryParams['keywords'] = keyword;
     }
 
     final url = Uri.parse('$apiServer/career/list/app')

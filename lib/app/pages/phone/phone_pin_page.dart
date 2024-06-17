@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,15 +22,7 @@ class PhonePinPage extends GetView<PhoneController> {
               scrolledUnderElevation: 0,
               elevation: 0,
               backgroundColor: Colors.white,
-              leading: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Icon(
-                  CupertinoIcons.back,
-                  color: Colors.black87,
-                ),
-              ),
+              leading: const CustomBackButton(),
             ),
           ),
           body: Container(

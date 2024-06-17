@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import 'package:docspot_app/app/controllers/controllers.dart';
@@ -21,13 +20,9 @@ class NestedReplyPage extends GetView<NestedReplyController> {
             backgroundColor: Colors.transparent,
             elevation: 0,
             leadingWidth: 54,
-            leading: Align(
+            leading: const Align(
               alignment: Alignment.centerRight,
-              child: GestureDetector(
-                  child: const Icon(CupertinoIcons.back),
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  }),
+              child: CustomBackButton(),
             ),
             title: Obx(
               () => controller.isLoading.value

@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'package:docspot_app/app/controllers/controllers.dart';
-import 'package:docspot_app/app/constants/constants.dart';
 import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/views/views.dart';
 
@@ -24,16 +22,15 @@ class CareerListPage extends GetView<CareerListController> {
             backgroundColor: Colors.white,
             elevation: 0,
             leadingWidth: 54,
-            leading: Align(
+            leading: const Align(
               alignment: Alignment.centerRight,
-              child: GestureDetector(
-                  child: const Icon(CupertinoIcons.back),
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  }),
+              child: CustomBackButton(),
             ),
-            title: Text("초빙정보 찾기",
-                style: Theme.of(context).textTheme.headlineSmall),
+            title: Obx(() => Text(
+                controller.keywordValue.value != ""
+                    ? '${controller.keywordValue.value}.zip'
+                    : '초빙정보 찾기',
+                style: Theme.of(context).textTheme.headlineSmall)),
           ),
           body: Padding(
             padding: const EdgeInsets.only(left: 20, right: 20.0),
@@ -41,63 +38,73 @@ class CareerListPage extends GetView<CareerListController> {
               children: [
                 Row(
                   children: [
-                    Container(
-                      height: 40,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black26),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0, vertical: 0),
-                      child: Obx(
-                        () => DropdownButton<String>(
-                          value: controller.locationValue.value,
-                          style: const TextStyle(color: Colors.black),
-                          iconEnabledColor: Colors.black26,
-                          dropdownColor: Colors.white,
-                          underline: Container(),
-                          onChanged: (String? newValue) {
-                            controller.locationValue.value = newValue!;
-                          },
-                          items: locationList
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
+                    GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet<void>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return const SelectLocationAndDepartmentModal(
+                              initTabIndex: 0,
                             );
-                          }).toList(),
+                          },
+                        );
+                      },
+                      child: Container(
+                        height: 40,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black26),
+                          borderRadius: BorderRadius.circular(20.0),
                         ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12.0, vertical: 0),
+                        child: Obx(() => Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(controller.locationValue.value,
+                                    style:
+                                        const TextStyle(color: Colors.black)),
+                                const SizedBox(width: 5),
+                                const Icon(Icons.arrow_drop_down,
+                                    size: 20, color: Colors.black38)
+                              ],
+                            )),
                       ),
                     ),
                     const SizedBox(width: 15),
-                    Container(
-                      height: 40,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black26),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0, vertical: 0),
-                      child: Obx(
-                        () => DropdownButton<String>(
-                          value: controller.departmentValue.value,
-                          style: const TextStyle(color: Colors.black),
-                          iconEnabledColor: Colors.black26,
-                          dropdownColor: Colors.white,
-                          underline: Container(),
-                          onChanged: (String? newValue) {
-                            controller.departmentValue.value = newValue!;
-                          },
-                          items: departmentList
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
+                    GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet<void>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return const SelectLocationAndDepartmentModal(
+                              initTabIndex: 1,
                             );
-                          }).toList(),
+                          },
+                        );
+                      },
+                      child: Container(
+                        height: 40,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black26),
+                          borderRadius: BorderRadius.circular(20.0),
                         ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12.0, vertical: 0),
+                        child: Obx(() => Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(controller.departmentValue.value,
+                                    style:
+                                        const TextStyle(color: Colors.black)),
+                                const SizedBox(width: 5),
+                                const Icon(Icons.arrow_drop_down,
+                                    size: 20, color: Colors.black38)
+                              ],
+                            )),
                       ),
-                    )
+                    ),
                   ],
                 ),
                 const SizedBox(height: 30),
@@ -106,14 +113,14 @@ class CareerListPage extends GetView<CareerListController> {
                       ? const CircularProgressIndicator()
                       : Expanded(
                           child: Container(
-                          color: colorScheme.background,
+                          color: colorScheme.surface,
                           height: double.infinity,
                           child: PagedGridView<int, dynamic>(
                             pagingController: controller.pagingController,
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
-                              mainAxisSpacing: 8.0,
+                              mainAxisSpacing: 15.0,
                               crossAxisSpacing: 8.0,
                               childAspectRatio: 1.0,
                             ),
@@ -148,6 +155,7 @@ class CareerListPage extends GetView<CareerListController> {
                                   img: item.imgs[0],
                                   company: item.hospital.name,
                                   position: item.title,
+                                  deadline: item.deadline,
                                 );
                               },
                             ),

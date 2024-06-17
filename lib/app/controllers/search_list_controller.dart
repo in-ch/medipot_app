@@ -42,6 +42,7 @@ class SearchListController extends GetxController {
           Get.arguments['keyword'],
           '',
           Get.arguments['keyword'],
+          '',
           '');
 
       if (response['statusCode'] == 200) {
