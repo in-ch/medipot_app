@@ -7,6 +7,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/data/models/models.dart';
+import 'package:docspot_app/app/views/views.dart';
 
 class EventsPage extends GetView<EventsController> {
   const EventsPage({Key? key}) : super(key: key);
@@ -23,13 +24,9 @@ class EventsPage extends GetView<EventsController> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           leadingWidth: 54,
-          leading: Align(
+          leading: const Align(
             alignment: Alignment.centerRight,
-            child: GestureDetector(
-                child: const Icon(CupertinoIcons.back),
-                onTap: () {
-                  Navigator.of(context).pop();
-                }),
+            child: CustomBackButton(),
           ),
           title: Text("이벤트들",
               maxLines: 1,

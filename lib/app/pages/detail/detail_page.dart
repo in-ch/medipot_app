@@ -22,13 +22,9 @@ class DetailPage extends GetView<DetailController> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           leadingWidth: 54,
-          leading: Align(
+          leading: const Align(
             alignment: Alignment.centerRight,
-            child: GestureDetector(
-                child: const Icon(CupertinoIcons.back),
-                onTap: () {
-                  Navigator.of(context).pop();
-                }),
+            child: CustomBackButton(),
           ),
           title: Obx(
             () => controller.isLoading.value

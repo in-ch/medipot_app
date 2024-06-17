@@ -1,5 +1,5 @@
 List<String> locationList = [
-  '전체보기',
+  '전국',
   '서울',
   '경기도',
   '인천',

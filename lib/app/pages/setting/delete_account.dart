@@ -1,11 +1,11 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/style/theme.dart';
+import 'package:docspot_app/app/views/views.dart';
 
 class DeleteAccountPage extends GetView<SettingController> {
   DeleteAccountPage({Key? key}) : super(key: key);
@@ -25,14 +25,8 @@ class DeleteAccountPage extends GetView<SettingController> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               leadingWidth: 54,
-              leading: Align(
-                alignment: Alignment.centerRight,
-                child: GestureDetector(
-                    child: const Icon(CupertinoIcons.back),
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    }),
-              ),
+              leading: const Align(
+                  alignment: Alignment.centerRight, child: CustomBackButton()),
               title: SizedBox(
                 width: 200,
                 child: Text("탈퇴하기",

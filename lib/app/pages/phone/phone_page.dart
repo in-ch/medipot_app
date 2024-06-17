@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/style/theme.dart';
+import 'package:docspot_app/app/views/views.dart';
 
 class PhonePage extends GetView<PhoneController> {
   const PhonePage({Key? key}) : super(key: key);
@@ -19,15 +19,7 @@ class PhonePage extends GetView<PhoneController> {
             child: AppBar(
               elevation: 0,
               backgroundColor: Colors.white,
-              leading: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Icon(
-                  CupertinoIcons.back,
-                  color: Colors.black87,
-                ),
-              ),
+              leading: const CustomBackButton(),
             ),
           ),
           body: Container(

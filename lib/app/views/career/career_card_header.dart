@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:docspot_app/app/controllers/controllers.dart';
+import 'package:docspot_app/app/views/views.dart';
 
 class CareerCardHeader extends GetView<CareerController> {
   const CareerCardHeader({super.key, required this.hospitalName});
@@ -31,15 +31,7 @@ class CareerCardHeader extends GetView<CareerController> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        GestureDetector(
-                            child: Icon(CupertinoIcons.back,
-                                color: controller.bodyHeight.value > 0.5
-                                    ? Colors.black
-                                    : Colors.white,
-                                size: 30.0),
-                            onTap: () {
-                              Navigator.of(context).pop();
-                            }),
+                        const CustomBackButton(),
                         Padding(
                           padding:
                               const EdgeInsets.only(left: 18.0, bottom: 2.0),

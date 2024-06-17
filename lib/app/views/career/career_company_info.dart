@@ -67,7 +67,7 @@ class CareerCompanyInfo extends StatelessWidget {
                             await launchUrl(Uri.parse(href));
                           }
                         },
-                        child: Text(href,
+                        child: Text(href.length > 20 ? '홈페이지 보기' : href,
                             style:
                                 Theme.of(context).textTheme.bodySmall!.copyWith(
                                       color: Colors.blue[300],

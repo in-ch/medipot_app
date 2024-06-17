@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter/cupertino.dart';
 
 import 'package:docspot_app/app/controllers/controllers.dart';
+import 'package:docspot_app/app/views/views.dart';
 
 class AlarmPage extends GetView<AlarmController> {
   const AlarmPage({Key? key}) : super(key: key);
@@ -18,13 +18,9 @@ class AlarmPage extends GetView<AlarmController> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           leadingWidth: 54,
-          leading: Align(
+          leading: const Align(
             alignment: Alignment.centerRight,
-            child: GestureDetector(
-                child: const Icon(CupertinoIcons.back),
-                onTap: () {
-                  Navigator.of(context).pop();
-                }),
+            child: CustomBackButton(),
           ),
           title:
               Text("알림 정보", style: Theme.of(context).textTheme.headlineSmall),

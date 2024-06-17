@@ -2,7 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### 1.6.0 (2024-06-02)
+### 1.6.1 (2024-06-17)
+
+- [chore: 아이패드 해상도 제외](b8f94c5e5523e0dd7ecea66c27958e6354dfd509)
+- [chore: 앱 배너 링크 변경](8aad97b63af07aa1fc45c1bf406886dc00315d39)
+- [feat: 초빙 공고고.zip 디자인 수정](543defdbfe0bcc54423c394c2488059e5358f9a2)
+- [feat: 초빙 공고 홈페이지 지원 기능 추가](acc47e9441bd451cdce1e0498512fa992ff76c4f)
+- [feat: 초빙공고 목록에 d-day 추가](bfe8ebfd8207afa4cb95a69e3a2b8e5f046834e7)
+- [feat: 초빙 리스트의 필터링을 모달 형식으로 변경](b94fc61e5ba2a15e75e9871c149460a48d83afc7)
+- [fix: CareerDetail init error 수정 및 Item에 deadline 추가 (#21)](a934996c3a4769c1e6f425d14b4fa98d2298ac90)
+- [feat: 이벤트 슬라이더 null check error log 수정](a22ccbd97dcb845b4e2fc53230d4044a4318ab08)
+- [fix: 백그라운드 버튼 크기 확장 (#21)](aa1a16159813efc902a181032d35bbe8a446e4f7)
+- [feat: 초빙 공고 메인 페이지 이벤트 배너 ui 추가 (#21)](d06971dbf50f887f5c0b61c9433a52c547a21845)
+- [style: 초빙 공고 슬라이더의 숫자 색상 강조 (#21)](757622d9caf5385bb5f1f45bbcb283c14e77fe94)
+- [style: 텍스트 깨짐 현상 수정 (#21)](d4d86353503a744614d2fe9445d06fd995fbe88d)
+- [build: flutter 3.22.1 버전 대응 (#21)](7dcd41d1d2ffbea5fb33c02b0eecd4b23b0baf3a)
+
+## 1.6.0 (2024-06-02)
 
 - [feat: 초빙공고 기능 추가](ab015e44db030086d7313f89564e5c746138bce7)
 
