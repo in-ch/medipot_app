@@ -16,9 +16,12 @@ class BannerSliderState extends State<BannerSlider>
   late final AnimationController _animationController;
 
   List<Map<String, dynamic>> banners = [
-    {'asset': 'assets/image/sample/sample_banner_1.png', 'no': 1},
-    {'asset': 'assets/image/sample/sample_banner_2.png', 'no': 2},
-    {'asset': 'assets/image/sample/sample_banner_3.png', 'no': 3}
+    {
+      'asset': 'assets/image/sample/sample_banner_1.png',
+      'no': 1,
+      'link': 'https://forms.gle/58Xs7XtZNeTN5h4EA'
+    },
+    {'asset': 'assets/image/sample/sample_banner_2.png', 'no': 2, 'link': ''},
   ];
 
   @override
@@ -80,7 +83,10 @@ class BannerSliderState extends State<BannerSlider>
                     onTap: () async {
                       String webviewLink = dotenv.get("WEBVIEW_SERVER");
                       int eventNo = banners[index]['no'];
-                      final Uri url = Uri.parse('$webviewLink/event/$eventNo');
+                      String link = banners[index]['link'];
+                      final Uri url = link == ''
+                          ? Uri.parse('$webviewLink/event/$eventNo')
+                          : Uri.parse(link);
                       if (!await launchUrl(url)) {
                         throw Exception('Could not launch $url');
                       }
