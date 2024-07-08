@@ -14,14 +14,14 @@ dependencies:
   http: ^1.0.0
   get: ^4.6.5
   infinite_scroll_pagination: ^4.0.0
-  firebase_core: ^2.14.0
-  firebase_dynamic_links: ^5.3.2
-  share_plus: ^7.0.2
+  firebase_core: ^3.1.1
+  firebase_dynamic_links: ^6.0.2
+  share_plus: ^9.0.0
   uni_links: ^0.5.1
-  firebase_analytics: ^10.8.10
+  firebase_analytics: ^11.1.0
   flutter_dotenv: ^5.1.0
-  firebase_crashlytics: ^3.4.19
-  firebase_messaging: ^14.7.20
+  firebase_crashlytics: ^4.0.2
+  firebase_messaging: ^15.0.2
   flutter_local_notifications: ^17.0.0
   shared_preferences: ^2.2.1
   kakao_flutter_sdk_user: ^1.5.0
@@ -33,14 +33,14 @@ dependencies:
   package_info_plus: ^8.0.0
   app_version_update: ^3.1.0
   sliding_up_panel: ^2.0.0+1
-  google_maps_flutter: ^2.2.8
+  google_maps_flutter: ^2.7.0
   flutter_html: ^3.0.0-beta.2
   intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^4.0.0
 
 flutter:
   uses-material-design: true
