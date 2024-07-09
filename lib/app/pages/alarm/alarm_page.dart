@@ -5,7 +5,7 @@ import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/views/views.dart';
 
 class AlarmPage extends GetView<AlarmController> {
-  const AlarmPage({Key? key}) : super(key: key);
+  const AlarmPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,9 @@ class AlarmPage extends GetView<AlarmController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  // Get.toNamed(Routes.feed);
+                },
                 child: Text("알림 정보가 없습니다.",
                     style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                         color: const Color.fromARGB(255, 126, 126, 126))),

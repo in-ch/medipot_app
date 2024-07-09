@@ -31,9 +31,18 @@ class NotificationController extends GetxController {
           message.notification!.body.toString());
     });
 
-    FirebaseMessaging.onMessageOpenedApp.listen((event) {
-      debugPrint(event.notification!.title);
-      debugPrint(event.notification!.body);
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      if (message.data.containsKey('page') && message.data.containsKey('no')) {
+        Get.toNamed(message.data['page'],
+            arguments: {'no': int.parse(message.data['no'])});
+      } else {
+        debugPrint('Page or No data missing in message');
+      }
+
+      if (message.notification != null) {
+        debugPrint(message.notification!.title);
+        debugPrint(message.notification!.body);
+      }
     });
   }
 

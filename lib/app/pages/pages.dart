@@ -122,5 +122,10 @@ abstract class AppPages {
         page: () => const AlarmPage(),
         transition: Transition.cupertino,
         bindings: [AlarmBinding()]),
+    GetPage(
+      name: Routes.feed,
+      page: () => const FeedSubPage(),
+      transition: Transition.cupertino,
+    )
   ];
 }

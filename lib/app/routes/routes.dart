@@ -16,4 +16,5 @@ abstract class Routes {
   static const search = '/search';
   static const searchList = '/searchList';
   static const alarm = '/alarm';
+  static const feed = '/feed';
 }

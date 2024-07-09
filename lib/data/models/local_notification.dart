@@ -1,4 +1,7 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:get/get.dart';
+
+import 'package:docspot_app/app/routes/routes.dart';
 
 class LocalNotification {
   LocalNotification._();
@@ -24,12 +27,7 @@ class LocalNotification {
 
     await _flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onDidReceiveNotificationResponse: (NotificationResponse details) async {
-      /// local 클릭했을 시 이벤트 실행
-      // final payload = details.payload ?? '';
-      // if (!parsedJson.containsKey('routeTo')) {
-      //   return;
-      // }
-      // Get.toNamed(parsedJson['routeTo']);
+      Get.toNamed(Routes.alarm);
     });
   }
 
