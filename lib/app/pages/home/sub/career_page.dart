@@ -72,7 +72,6 @@ class _CareerSubPageState extends State<CareerSubPage> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const BannerSlider(),
                   const ViewByDepartment(),
                   const ShowRecent(),
                   Obx(() => controller.isLoading.value

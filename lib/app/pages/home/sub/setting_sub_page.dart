@@ -10,7 +10,7 @@ import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/views/views.dart';
 
 class SettingSubPage extends StatefulWidget {
-  const SettingSubPage({Key? key}) : super(key: key);
+  const SettingSubPage({super.key});
 
   @override
   State<SettingSubPage> createState() => _SettingSubPageState();
@@ -86,28 +86,31 @@ class _SettingSubPageState extends State<SettingSubPage> {
                                                         ));
                                             })),
                                         const SizedBox(width: 10),
-                                        !settingController.isLogin.value
-                                            ? Container()
-                                            : Obx(() => Text(
-                                                settingController
-                                                        .isLoading.value
-                                                    ? '로딩'
-                                                    : settingController
-                                                        .user.nickname,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .titleMedium)),
-                                        const SizedBox(width: 10),
-                                        Obx(() {
-                                          return !settingController
-                                                  .isLogin.value
-                                              ? const Icon(
-                                                  CupertinoIcons.chevron_right,
-                                                  color: Colors.black,
-                                                  size: 16,
-                                                )
-                                              : const SizedBox();
-                                        })
+                                        GestureDetector(
+                                          onTap: () =>
+                                              Get.toNamed(Routes.profileUpdate),
+                                          child: Row(
+                                            children: [
+                                              !settingController.isLogin.value
+                                                  ? Container()
+                                                  : Obx(() => Text(
+                                                      settingController
+                                                              .isLoading.value
+                                                          ? '로딩'
+                                                          : settingController
+                                                              .user.nickname,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .titleMedium)),
+                                              const SizedBox(width: 10),
+                                              const Icon(
+                                                CupertinoIcons.chevron_right,
+                                                color: Colors.black,
+                                                size: 16,
+                                              )
+                                            ],
+                                          ),
+                                        )
                                       ],
                                     )),
                             ),

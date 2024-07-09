@@ -37,7 +37,7 @@ class LoginController extends GetxController {
             ),
           );
         } catch (error) {
-          // Get.snackbar("로그인 실패", "카카오톡 로그인에 실패하였습니다.");
+          Get.snackbar("로그인 실패", "카카오톡 로그인에 실패하였습니다.");
         }
       }
     } else {
@@ -50,7 +50,7 @@ class LoginController extends GetxController {
           ),
         );
       } catch (error) {
-        // Get.snackbar("로그인 실패", "카카오톡 로그인에 실패하였습니다.");
+        Get.snackbar("로그인 실패", "카카오톡 로그인에 실패하였습니다.");
       }
     }
   }
