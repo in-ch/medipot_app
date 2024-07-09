@@ -39,7 +39,7 @@ class MapController extends GetxController {
   void verifyVersion(BuildContext context) async {
     await AppVersionUpdate.checkForUpdates(
       appleId: "6480370775",
-      playStoreId: "com.inch.medipot_app",
+      playStoreId: "com.inch.docspot_app",
       country: 'kr',
     ).then((result) async {
       if (result.canUpdate!) {
@@ -55,7 +55,7 @@ class MapController extends GetxController {
               color: Colors.black, fontWeight: FontWeight.w400, fontSize: 16.0),
           updateButtonText: '업데이트하기',
           updateButtonStyle: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(
+              backgroundColor: WidgetStateProperty.all(
                   const Color.fromARGB(255, 59, 71, 167))),
           mandatory: true,
         );

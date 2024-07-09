@@ -32,9 +32,12 @@ class AlarmPage extends GetView<AlarmController> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("알림 정보가 없습니다.",
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      color: const Color.fromARGB(255, 126, 126, 126))),
+              GestureDetector(
+                onTap: () {},
+                child: Text("알림 정보가 없습니다.",
+                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                        color: const Color.fromARGB(255, 126, 126, 126))),
+              ),
               const SizedBox(height: 200),
             ],
           ),
