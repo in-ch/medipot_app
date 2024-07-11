@@ -60,6 +60,18 @@ class UserService {
     }
   }
 
+  static Future<bool> updateFcmToken(String fcmToken) async {
+    String apiServer = dotenv.get("API_SERVER");
+    final url = Uri.parse('$apiServer/user/profile/fcmToken/update');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString('accessToken');
+    final headers = {'Authorization': 'Bearer $accessToken'};
+    final body = {"fcmToken": fcmToken};
+    final response = await http.put(url, headers: headers, body: body);
+    final responseData = jsonDecode(response.body);
+    return responseData["statusCode"] == 200;
+  }
+
   static Future<bool> deleteAccount() async {
     String apiServer = dotenv.get("API_SERVER");
     final url = Uri.parse('$apiServer/user/delete');
