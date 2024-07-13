@@ -35,12 +35,16 @@ class MeUser {
   final String nickname;
   final String profile;
   final String phone;
+  final String email;
+  final String department;
 
   MeUser({
     required this.no,
     required this.nickname,
     required this.profile,
     required this.phone,
+    required this.email,
+    required this.department,
   });
 
   factory MeUser.fromJson(Map<String, dynamic> json) {
@@ -49,6 +53,8 @@ class MeUser {
       nickname: json['nickname'],
       profile: json['profile'],
       phone: json['phone'] ?? '',
+      email: json['email'] ?? '',
+      department: json['department'] ?? '',
     );
   }
 }

@@ -17,26 +17,18 @@ class CareerSubPage extends StatefulWidget {
 class _CareerSubPageState extends State<CareerSubPage> {
   final CareerController controller = Get.put(CareerController());
 
-  bool _isVersionChecked = false;
-
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.requestDepartment();
+      controller.verifyVersion(context);
       controller.getCareersInit();
     });
   }
 
-  void _verifyVersionOnce(BuildContext context) {
-    if (!_isVersionChecked) {
-      _isVersionChecked = true;
-      controller.verifyVersion(context);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    _verifyVersionOnce(context);
     return Theme(
         data: appTheme,
         child: Scaffold(

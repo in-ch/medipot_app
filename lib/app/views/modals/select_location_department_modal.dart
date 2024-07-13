@@ -1,14 +1,14 @@
-import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/constants/constants.dart';
 import 'package:docspot_app/app/views/common/common_button.dart';
+import 'package:docspot_app/app/controllers/controllers.dart';
 
 class SelectLocationAndDepartmentModal extends StatefulWidget {
-  const SelectLocationAndDepartmentModal({Key? key, required this.initTabIndex})
-      : super(key: key);
+  const SelectLocationAndDepartmentModal(
+      {super.key, required this.initTabIndex});
 
   final int initTabIndex;
 
@@ -27,7 +27,8 @@ class _SelectLocationAndDepartmentModalState
 
   late TabController _tabController;
   final RxList<String> locationListValue = RxList<String>(locationList);
-  final RxList<String> departmentListValue = RxList<String>(departmentList);
+  final RxList<String> departmentListValue =
+      RxList<String>(['전체보기', ...departmentList]);
 
   late final CareerListController controller;
 
@@ -69,7 +70,6 @@ class _SelectLocationAndDepartmentModalState
     return PopScope(
       onPopInvoked: (bool didPop) {
         if (didPop) {
-          debugPrint('hello world');
           _onDismiss();
         }
       },
@@ -166,24 +166,26 @@ class _SelectLocationAndDepartmentModalState
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                      child: Wrap(
-                        children: departmentListValue
-                            .map((department) => Opacity(
-                                  opacity: selectedDepartment == department
-                                      ? 1
-                                      : 0.3,
-                                  child: CommonButton(
-                                    onClick: () {
-                                      setState(() {
-                                        selectedDepartment = department;
-                                      });
-                                    },
-                                    text: department,
-                                    isHighlight:
-                                        selectedDepartment == department,
-                                  ),
-                                ))
-                            .toList(),
+                      child: SingleChildScrollView(
+                        child: Wrap(
+                          children: departmentListValue
+                              .map((department) => Opacity(
+                                    opacity: selectedDepartment == department
+                                        ? 1
+                                        : 0.3,
+                                    child: CommonButton(
+                                      onClick: () {
+                                        setState(() {
+                                          selectedDepartment = department;
+                                        });
+                                      },
+                                      text: department,
+                                      isHighlight:
+                                          selectedDepartment == department,
+                                    ),
+                                  ))
+                              .toList(),
+                        ),
                       ),
                     ),
                   ],

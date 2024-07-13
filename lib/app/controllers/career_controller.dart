@@ -25,6 +25,14 @@ class CareerController extends GetxController {
   RxList<int> likeCareers = <int>[].obs;
 
   RxList<Map<String, dynamic>> recentCareerItems = <Map<String, dynamic>>[].obs;
+  bool _isModalOpen = false;
+  bool _isUpdateOpen = false;
+
+  @override
+  void onInit() {
+    update();
+    super.onInit();
+  }
 
   /// [비즈니스 로직]
   /// 지원하기
@@ -270,7 +278,8 @@ class CareerController extends GetxController {
       playStoreId: dotenv.get("ANDROID_APP_ID"),
       country: 'kr',
     ).then((result) async {
-      if (result.canUpdate!) {
+      if (result.canUpdate! && !_isUpdateOpen) {
+        _isUpdateOpen = true;
         await AppVersionUpdate.showAlertUpdate(
           appVersionResult: result,
           context: context,
@@ -288,6 +297,25 @@ class CareerController extends GetxController {
           mandatory: true,
         );
       }
+      _isUpdateOpen = true;
     });
+  }
+
+  /// [비즈니스 로직]
+  /// 과를 확인해서 진료과가 없으면 진료과를 요청한다.
+  Future<void> requestDepartment() async {
+    final response = await UserService.me();
+    if (response['statusCode'] == 200) {
+      final data = response['data'];
+      MeUser user = MeUser.fromJson(data);
+      if (user.department == '진료과 없음') {
+        if (_isModalOpen) return;
+        _isModalOpen = true;
+        await Get.dialog(
+          const PleaseDepartmentModal(),
+        );
+        _isModalOpen = false;
+      }
+    }
   }
 }
