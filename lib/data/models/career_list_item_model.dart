@@ -17,7 +17,7 @@ class CareerListItem {
     return CareerListItem(
       no: json['no'],
       title: json['title'],
-      deadline: json['deadline'] ?? "",
+      deadline: (json['deadline'] ?? "").trim(),
       imgs: List<String>.from(json['imgs']),
       hospital: json['hospital'] != null
           ? HospitalListItem.fromJson(json['hospital'])

@@ -24,6 +24,7 @@ void main() async {
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   KakaoSdk.init(nativeAppKey: dotenv.get("KAKAO_SDK_KEY"));
+  AppInit.tokenCheck();
 
   runZonedGuarded(
     () {

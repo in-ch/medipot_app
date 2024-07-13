@@ -24,7 +24,6 @@ class MapSubPageState extends State<MapSubPage> {
   void initState() {
     super.initState();
     Future.delayed(Duration.zero, () async {
-      await mapController.tokenCheck();
       controller = WebViewController()
         ..setJavaScriptMode(JavaScriptMode.unrestricted)
         ..setBackgroundColor(const Color(0x00000000))
