@@ -27,7 +27,11 @@ class LocalNotification {
 
     await _flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onDidReceiveNotificationResponse: (NotificationResponse details) async {
-      Get.toNamed(Routes.alarm);
+      if (Get.currentRoute == Routes.alarm) {
+        Get.offAllNamed(Routes.alarm);
+      } else {
+        Get.toNamed(Routes.alarm);
+      }
     });
   }
 

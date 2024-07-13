@@ -79,8 +79,8 @@ class AlarmItem extends StatelessWidget {
                 ),
               Text(title,
                   style: const TextStyle(
-                      fontSize: 17.0, fontWeight: FontWeight.w300)),
-              const SizedBox(height: 5),
+                      fontSize: 16.0, fontWeight: FontWeight.w300)),
+              const SizedBox(height: 3),
               Text(body, style: const TextStyle(fontWeight: FontWeight.w600)),
               const SizedBox(height: 5),
               Text(
