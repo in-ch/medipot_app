@@ -8,7 +8,7 @@ import 'package:docspot_app/app/routes/routes.dart';
 import 'package:docspot_app/app/views/views.dart';
 
 class MapSubPage extends StatefulWidget {
-  const MapSubPage({Key? key}) : super(key: key);
+  const MapSubPage({super.key});
 
   @override
   State<MapSubPage> createState() => MapSubPageState();
@@ -23,7 +23,6 @@ class MapSubPageState extends State<MapSubPage> {
   @override
   void initState() {
     super.initState();
-    mapController.verifyVersion(context);
     Future.delayed(Duration.zero, () async {
       await mapController.tokenCheck();
       controller = WebViewController()
