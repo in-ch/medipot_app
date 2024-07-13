@@ -192,6 +192,14 @@ class _SettingSubPageState extends State<SettingSubPage> {
                           color: Colors.black12,
                         ),
                         SettingBoxItem(
+                            title: '진료과 변경하기',
+                            description: '알림 등에 사용되는 진료과를 변경할 수 있습니다.',
+                            event: () async {
+                              await Get.dialog(
+                                const PleaseDepartmentModal(),
+                              );
+                            }),
+                        SettingBoxItem(
                             title: '이벤트 확인하기',
                             description: '진행 중인 다양한 이벤트를 확인해보세요.',
                             event: () {

@@ -1,12 +1,13 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get/route_manager.dart';
 
 import 'package:docspot_app/app/views/views.dart';
 import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/constants/constants.dart';
 import 'package:docspot_app/services/services.dart';
-import 'package:get/route_manager.dart';
 
 class PleaseDepartmentModal extends StatefulWidget {
   const PleaseDepartmentModal({super.key});
@@ -110,6 +111,10 @@ class _PleaseDepartmentModalState extends State<PleaseDepartmentModal> {
                   }
                   await UserService.updateDepartment(
                       selectedDepartment.toString());
+                  final SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  String fcmToken = prefs.getString("fcmToken")!;
+                  await UserService.updateFcmToken(fcmToken);
                   Navigator.pop(context);
                 },
                 child: Text('확인',
