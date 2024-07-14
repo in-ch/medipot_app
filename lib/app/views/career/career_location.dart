@@ -93,7 +93,7 @@ class CareerLocations extends StatelessWidget {
                   img:
                       'https://medipot-uploads.s3.ap-northeast-2.amazonaws.com/app/gangwon.jpg',
                   onPressed: () => Get.toNamed(Routes.careerList, arguments: {
-                    'location': '강원도',
+                    'location': '강원',
                   }),
                 ),
                 CareerLocationCard(
@@ -105,35 +105,35 @@ class CareerLocations extends StatelessWidget {
                   }),
                 ),
                 CareerLocationCard(
-                  title: '충청북도',
-                  img:
-                      'https://medipot-uploads.s3.ap-northeast-2.amazonaws.com/app/chungcheongbukdo.jpg',
-                  onPressed: () => Get.toNamed(Routes.careerList, arguments: {
-                    'location': '충청북도',
-                  }),
-                ),
-                CareerLocationCard(
-                  title: '충청남도',
+                  title: '대구',
                   img:
                       'https://medipot-uploads.s3.ap-northeast-2.amazonaws.com/app/chungcheongnamdo.jpg',
                   onPressed: () => Get.toNamed(Routes.careerList, arguments: {
-                    'location': '충청남도',
+                    'location': '대구',
                   }),
                 ),
                 CareerLocationCard(
-                  title: '전라북도',
+                  title: '충청도',
                   img:
-                      'https://medipot-uploads.s3.ap-northeast-2.amazonaws.com/app/jeollabukdo.jpg',
+                      'https://medipot-uploads.s3.ap-northeast-2.amazonaws.com/app/chungcheongbukdo.jpg',
                   onPressed: () => Get.toNamed(Routes.careerList, arguments: {
-                    'location': '전라북도',
+                    'location': '충청',
                   }),
                 ),
                 CareerLocationCard(
-                  title: '전라남도',
+                  title: '경상도',
                   img:
                       'https://medipot-uploads.s3.ap-northeast-2.amazonaws.com/app/jeollanamdo.jpg',
                   onPressed: () => Get.toNamed(Routes.careerList, arguments: {
-                    'location': '전라남도',
+                    'location': '경상',
+                  }),
+                ),
+                CareerLocationCard(
+                  title: '전라도',
+                  img:
+                      'https://medipot-uploads.s3.ap-northeast-2.amazonaws.com/app/jeollabukdo.jpg',
+                  onPressed: () => Get.toNamed(Routes.careerList, arguments: {
+                    'location': '전라',
                   }),
                 ),
               ],
