@@ -2,10 +2,10 @@
 
 import 'dart:convert';
 
-import 'package:app_version_update/app_version_update.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:app_version_update/app_version_update.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -316,6 +316,19 @@ class CareerController extends GetxController {
         );
         _isModalOpen = false;
       }
+    } else {
+      if (_isModalOpen) return;
+      _isModalOpen = true;
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      DateTime now = DateTime.now();
+      String? savedDate = prefs.getString('hideForDayDate') ?? "2000-01-01";
+      DateTime savedDateTime = DateTime.parse(savedDate);
+      Duration difference = now.difference(savedDateTime);
+      difference.inDays > 0 &&
+          await Get.bottomSheet(
+            const PleaseLoginAtMain(),
+          );
+      _isModalOpen = false;
     }
   }
 }

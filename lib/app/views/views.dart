@@ -30,6 +30,7 @@ export './modals/please_login_modal.dart';
 export './modals/reset_recent_career_list.dart';
 export './modals/select_location_department_modal.dart';
 export './modals/please_department_modal.dart';
+export './modals/please_login_at_main_modal.dart';
 
 export './small_circle.dart';
 export './avatar.dart';
