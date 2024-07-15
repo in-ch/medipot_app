@@ -1,3 +1,4 @@
+import 'package:docspot_app/app/style/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -78,10 +79,12 @@ class AlarmItem extends StatelessWidget {
                   ),
                 ),
               Text(title,
-                  style: const TextStyle(
-                      fontSize: 16.0, fontWeight: FontWeight.w300)),
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w600,
+                      color: colorScheme.primary)),
               const SizedBox(height: 3),
-              Text(body, style: const TextStyle(fontWeight: FontWeight.w600)),
+              Text(body, style: const TextStyle(fontWeight: FontWeight.w300)),
               const SizedBox(height: 5),
               Text(
                 _timeDifference(createdAt),
