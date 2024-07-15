@@ -62,6 +62,30 @@ flutter:
     - assets/image/zip/zip-1.png
     - assets/image/zip/zip-2.png
     - assets/image/doctor.png
+    - assets/image/icons/2.png
+    - assets/image/icons/5.png
+    - assets/image/icons/6.png
+    - assets/image/icons/14.png
+    - assets/image/icons/15.png
+    - assets/image/icons/20.png
+    - assets/image/icons/icon1.png
+    - assets/image/icons/icon4.png
+
+    - assets/image/location/busan.jpg
+    - assets/image/location/chungcheongnamdo.jpg
+    - assets/image/location/daegu.jpg
+    - assets/image/location/daejeon.jpg
+    - assets/image/location/gangwon.jpg
+    - assets/image/location/gyeonggido.jpg
+    - assets/image/location/gyeongsangbuk.jpg
+    - assets/image/location/gyeongsangbukdo.png
+    - assets/image/location/gyeongsangnam.jpg
+    - assets/image/location/incheon.jpg
+    - assets/image/location/jeju.jpg
+    - assets/image/location/jeollabukdo.jpg
+    - assets/image/location/jeollanamdo.jpg
+    - assets/image/location/seoul.jpg
+    - assets/image/location/ulsan.jpg
 
   fonts:
     - family: PretendardBold

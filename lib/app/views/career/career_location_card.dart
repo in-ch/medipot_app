@@ -23,7 +23,7 @@ class CareerLocationCard extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
-                child: Image.network(
+                child: Image.asset(
                   img,
                   width: double.infinity,
                   height: double.infinity,
