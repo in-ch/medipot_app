@@ -34,6 +34,7 @@ class CommonButton extends StatelessWidget {
               children: [
                 Text(text,
                     style: TextStyle(
+                        fontSize: 12,
                         color:
                             isHighlight ? colorScheme.primary : Colors.black)),
               ],

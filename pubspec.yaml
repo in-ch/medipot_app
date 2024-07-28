@@ -2,7 +2,7 @@ name: docspot_app
 description: 닥스팟 앱 프로젝트
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.6.1
+version: 1.7.0
 
 environment:
   sdk: ">=2.18.0 <4.0.0"
@@ -14,14 +14,14 @@ dependencies:
   http: ^1.0.0
   get: ^4.6.5
   infinite_scroll_pagination: ^4.0.0
-  firebase_core: ^2.14.0
-  firebase_dynamic_links: ^5.3.2
-  share_plus: ^7.0.2
+  firebase_core: ^3.1.1
+  firebase_dynamic_links: ^6.0.2
+  share_plus: ^9.0.0
   uni_links: ^0.5.1
-  firebase_analytics: ^10.8.10
+  firebase_analytics: ^11.1.0
   flutter_dotenv: ^5.1.0
-  firebase_crashlytics: ^3.4.19
-  firebase_messaging: ^14.7.20
+  firebase_crashlytics: ^4.0.2
+  firebase_messaging: ^15.0.2
   flutter_local_notifications: ^17.0.0
   shared_preferences: ^2.2.1
   kakao_flutter_sdk_user: ^1.5.0
@@ -33,14 +33,14 @@ dependencies:
   package_info_plus: ^8.0.0
   app_version_update: ^3.1.0
   sliding_up_panel: ^2.0.0+1
-  google_maps_flutter: ^2.2.8
+  google_maps_flutter: ^2.7.0
   flutter_html: ^3.0.0-beta.2
   intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^4.0.0
 
 flutter:
   uses-material-design: true
@@ -61,6 +61,31 @@ flutter:
     - assets/image/sample/sample_banner_2.png
     - assets/image/zip/zip-1.png
     - assets/image/zip/zip-2.png
+    - assets/image/doctor.png
+    - assets/image/icons/2.png
+    - assets/image/icons/5.png
+    - assets/image/icons/6.png
+    - assets/image/icons/14.png
+    - assets/image/icons/15.png
+    - assets/image/icons/20.png
+    - assets/image/icons/icon1.png
+    - assets/image/icons/icon4.png
+
+    - assets/image/location/busan.jpg
+    - assets/image/location/chungcheongnamdo.jpg
+    - assets/image/location/daegu.jpg
+    - assets/image/location/daejeon.jpg
+    - assets/image/location/gangwon.jpg
+    - assets/image/location/gyeonggido.jpg
+    - assets/image/location/gyeongsangbuk.jpg
+    - assets/image/location/gyeongsangbukdo.png
+    - assets/image/location/gyeongsangnam.jpg
+    - assets/image/location/incheon.jpg
+    - assets/image/location/jeju.jpg
+    - assets/image/location/jeollabukdo.jpg
+    - assets/image/location/jeollanamdo.jpg
+    - assets/image/location/seoul.jpg
+    - assets/image/location/ulsan.jpg
 
   fonts:
     - family: PretendardBold

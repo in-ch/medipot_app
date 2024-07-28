@@ -14,14 +14,13 @@ class CareerItem extends StatelessWidget {
   final int no;
 
   CareerItem({
-    Key? key,
+    super.key,
     required this.company,
     required this.position,
     required this.img,
     required this.no,
     required this.deadline,
-  }) : super(key: key) {
-    // 컨트롤러를 초기화합니다.
+  }) {
     if (!Get.isRegistered<CareerController>()) {
       Get.put(CareerController());
     }

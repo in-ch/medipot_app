@@ -21,6 +21,8 @@ class _CareerSubPageState extends State<CareerSubPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.verifyVersion(context);
+      controller.requestDepartmentAndEmail();
       controller.getCareersInit();
     });
   }
@@ -72,7 +74,6 @@ class _CareerSubPageState extends State<CareerSubPage> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const BannerSlider(),
                   const ViewByDepartment(),
                   const ShowRecent(),
                   Obx(() => controller.isLoading.value

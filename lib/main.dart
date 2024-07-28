@@ -19,11 +19,11 @@ void main() async {
   await dotenv.load(fileName: '.env');
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await DynamicLink().setup();
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   KakaoSdk.init(nativeAppKey: dotenv.get("KAKAO_SDK_KEY"));
+  AppInit.tokenCheck();
 
   runZonedGuarded(
     () {

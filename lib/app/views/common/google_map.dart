@@ -23,6 +23,14 @@ class GoogleMapWidget extends StatelessWidget {
             scrollGesturesEnabled: false,
             zoomControlsEnabled: false,
             zoomGesturesEnabled: false,
+            markers: {
+              Marker(
+                markerId: const MarkerId('marker_id'),
+                position: LatLng(lat, lng),
+                icon: BitmapDescriptor.defaultMarkerWithHue(
+                    BitmapDescriptor.hueBlue),
+              )
+            },
             initialCameraPosition:
                 CameraPosition(zoom: 14, target: LatLng(lat, lng)),
           ),
