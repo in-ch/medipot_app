@@ -25,7 +25,8 @@ class CareerController extends GetxController {
   RxList<int> likeCareers = <int>[].obs;
 
   RxList<Map<String, dynamic>> recentCareerItems = <Map<String, dynamic>>[].obs;
-  bool _isModalOpen = false;
+  bool _isModalRequestDepartmentOpen = false;
+  bool _isModalRequestEmailOpen = false;
   bool _isUpdateOpen = false;
 
   @override
@@ -303,23 +304,35 @@ class CareerController extends GetxController {
 
   /// [비즈니스 로직]
   /// 과를 확인해서 진료과가 없으면 진료과를 요청한다.
-  Future<void> requestDepartment() async {
+  /// 이메일도 같이 요청한다.
+  Future<void> requestDepartmentAndEmail() async {
     final response = await UserService.me();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     if (response['statusCode'] == 200) {
       final data = response['data'];
       MeUser user = MeUser.fromJson(data);
       if (user.department == '진료과 없음') {
-        if (_isModalOpen) return;
-        _isModalOpen = true;
+        if (_isModalRequestDepartmentOpen) return;
+        _isModalRequestDepartmentOpen = true;
         await Get.dialog(
           const PleaseDepartmentModal(),
         );
-        _isModalOpen = false;
+        _isModalRequestDepartmentOpen = false;
+      }
+
+      bool hideForDayDate = prefs.getString('hideForEmailRequest') == 'true';
+
+      if (!EmailValidator.isValidEmail(user.email) && !hideForDayDate) {
+        if (_isModalRequestEmailOpen) return;
+        _isModalRequestEmailOpen = true;
+        await Get.dialog(
+          const PleaseInputEmailModal(),
+        );
+        _isModalRequestEmailOpen = false;
       }
     } else {
-      if (_isModalOpen) return;
-      _isModalOpen = true;
-      SharedPreferences prefs = await SharedPreferences.getInstance();
+      if (_isModalRequestDepartmentOpen) return;
+      _isModalRequestDepartmentOpen = true;
       DateTime now = DateTime.now();
       String? savedDate = prefs.getString('hideForDayDate') ?? "2000-01-01";
       DateTime savedDateTime = DateTime.parse(savedDate);
@@ -328,7 +341,7 @@ class CareerController extends GetxController {
           await Get.bottomSheet(
             const PleaseLoginAtMain(),
           );
-      _isModalOpen = false;
+      _isModalRequestDepartmentOpen = false;
     }
   }
 }

@@ -147,7 +147,8 @@ class _PleaseLoginAtMainModalState extends State<PleaseLoginAtMain> {
                 ),
               ),
             ),
-          )
+          ),
+          const SizedBox(height: 10),
         ],
       ),
     );

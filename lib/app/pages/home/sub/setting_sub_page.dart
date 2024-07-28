@@ -200,6 +200,12 @@ class _SettingSubPageState extends State<SettingSubPage> {
                               );
                             }),
                         SettingBoxItem(
+                            title: '이메일 변경하기',
+                            description: '이메일을 변경할 수 있습니다.',
+                            event: () async {
+                              Get.toNamed(Routes.email);
+                            }),
+                        SettingBoxItem(
                             title: '이벤트 확인하기',
                             description: '진행 중인 다양한 이벤트를 확인해보세요.',
                             event: () {

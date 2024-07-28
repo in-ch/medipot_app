@@ -156,4 +156,47 @@ class UserService {
 
     return responseData["statusCode"] == 200;
   }
+
+  static Future<bool> sendVerificationEmailCode(String email) async {
+    String apiServer = dotenv.get("API_SERVER");
+    final url = Uri.parse('$apiServer/auth/email/send');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString('accessToken');
+    final headers = {'Authorization': 'Bearer $accessToken'};
+    final body = {"email": email};
+
+    final response = await http.post(url, headers: headers, body: body);
+    final responseData = jsonDecode(response.body);
+
+    return responseData["statusCode"] == 200;
+  }
+
+  static Future<bool> compareValidateEmailCode(
+      String email, String code) async {
+    String apiServer = dotenv.get("API_SERVER");
+    final url = Uri.parse('$apiServer/auth/email/validation');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString('accessToken');
+    final headers = {'Authorization': 'Bearer $accessToken'};
+    final body = {"email": email, "code": code};
+
+    final response = await http.post(url, headers: headers, body: body);
+    final responseData = jsonDecode(response.body);
+
+    return responseData["statusCode"] == 200;
+  }
+
+  static Future<bool> updateEmail(String email) async {
+    String apiServer = dotenv.get("API_SERVER");
+    final url = Uri.parse('$apiServer/user/profile/update');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString('accessToken');
+    final headers = {'Authorization': 'Bearer $accessToken'};
+    final body = {"email": email};
+
+    final response = await http.post(url, headers: headers, body: body);
+    final responseData = jsonDecode(response.body);
+
+    return responseData["statusCode"] == 200;
+  }
 }

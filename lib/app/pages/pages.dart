@@ -28,6 +28,7 @@ import './careerDetail/career_detail_page.dart';
 import './search/search.dart';
 import './search/search_list.dart';
 import './alarm/alarm_page.dart';
+import './email/email_page.dart';
 
 abstract class AppPages {
   static final pages = [
@@ -126,6 +127,11 @@ abstract class AppPages {
       name: Routes.feed,
       page: () => const FeedSubPage(),
       transition: Transition.cupertino,
-    )
+    ),
+    GetPage(
+        name: Routes.email,
+        page: () => const EmailPage(),
+        transition: Transition.cupertino,
+        bindings: [EmailBinding()])
   ];
 }

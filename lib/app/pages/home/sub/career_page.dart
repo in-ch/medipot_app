@@ -21,8 +21,8 @@ class _CareerSubPageState extends State<CareerSubPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      controller.requestDepartment();
       controller.verifyVersion(context);
+      controller.requestDepartmentAndEmail();
       controller.getCareersInit();
     });
   }
