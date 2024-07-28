@@ -10,7 +10,7 @@ import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/views/views.dart';
 
 class SettingSubPage extends StatefulWidget {
-  const SettingSubPage({Key? key}) : super(key: key);
+  const SettingSubPage({super.key});
 
   @override
   State<SettingSubPage> createState() => _SettingSubPageState();
@@ -86,28 +86,31 @@ class _SettingSubPageState extends State<SettingSubPage> {
                                                         ));
                                             })),
                                         const SizedBox(width: 10),
-                                        !settingController.isLogin.value
-                                            ? Container()
-                                            : Obx(() => Text(
-                                                settingController
-                                                        .isLoading.value
-                                                    ? '로딩'
-                                                    : settingController
-                                                        .user.nickname,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .titleMedium)),
-                                        const SizedBox(width: 10),
-                                        Obx(() {
-                                          return !settingController
-                                                  .isLogin.value
-                                              ? const Icon(
-                                                  CupertinoIcons.chevron_right,
-                                                  color: Colors.black,
-                                                  size: 16,
-                                                )
-                                              : const SizedBox();
-                                        })
+                                        GestureDetector(
+                                          onTap: () =>
+                                              Get.toNamed(Routes.profileUpdate),
+                                          child: Row(
+                                            children: [
+                                              !settingController.isLogin.value
+                                                  ? Container()
+                                                  : Obx(() => Text(
+                                                      settingController
+                                                              .isLoading.value
+                                                          ? '로딩'
+                                                          : settingController
+                                                              .user.nickname,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .titleMedium)),
+                                              const SizedBox(width: 10),
+                                              const Icon(
+                                                CupertinoIcons.chevron_right,
+                                                color: Colors.black,
+                                                size: 16,
+                                              )
+                                            ],
+                                          ),
+                                        )
                                       ],
                                     )),
                             ),
@@ -188,6 +191,20 @@ class _SettingSubPageState extends State<SettingSubPage> {
                           height: 1,
                           color: Colors.black12,
                         ),
+                        SettingBoxItem(
+                            title: '진료과 변경하기',
+                            description: '알림 등에 사용되는 진료과를 변경할 수 있습니다.',
+                            event: () async {
+                              await Get.dialog(
+                                const PleaseDepartmentModal(),
+                              );
+                            }),
+                        SettingBoxItem(
+                            title: '이메일 변경하기',
+                            description: '이메일을 변경할 수 있습니다.',
+                            event: () async {
+                              Get.toNamed(Routes.email);
+                            }),
                         SettingBoxItem(
                             title: '이벤트 확인하기',
                             description: '진행 중인 다양한 이벤트를 확인해보세요.',

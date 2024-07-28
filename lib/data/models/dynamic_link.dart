@@ -64,7 +64,7 @@ class DynamicLink {
       uriPrefix: dynamicLinkPrefix,
       link: Uri.parse('$dynamicLinkPrefix/$screenName?no=$no'),
       androidParameters: const AndroidParameters(
-        packageName: 'com.inch.medipotApp',
+        packageName: 'com.inch.docspot_app',
         minimumVersion: 0,
       ),
       iosParameters: const IOSParameters(

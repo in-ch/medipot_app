@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +19,9 @@ class LoginController extends GetxController {
       try {
         OAuthToken token = await UserApi.instance.loginWithKakaoTalk();
         await LoginService.loginApi(token.accessToken);
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        String fcmToken = prefs.getString("fcmToken")!;
+        await UserService.updateFcmToken(fcmToken);
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (BuildContext context) => const HomePage(),
@@ -37,20 +41,25 @@ class LoginController extends GetxController {
             ),
           );
         } catch (error) {
-          // Get.snackbar("로그인 실패", "카카오톡 로그인에 실패하였습니다.");
+          Get.snackbar("로그인 실패", "카카오톡 로그인에 실패하였습니다.");
         }
       }
     } else {
       try {
         OAuthToken token = await UserApi.instance.loginWithKakaoAccount();
         await LoginService.loginApi(token.accessToken);
+
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        String fcmToken = prefs.getString("fcmToken")!;
+        await UserService.updateFcmToken(fcmToken);
+
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (BuildContext context) => const HomePage(),
           ),
         );
       } catch (error) {
-        // Get.snackbar("로그인 실패", "카카오톡 로그인에 실패하였습니다.");
+        Get.snackbar("로그인 실패", "카카오톡 로그인에 실패하였습니다.");
       }
     }
   }
@@ -72,6 +81,11 @@ class LoginController extends GetxController {
         Map<String, dynamic> decodedToken = decodeJwt(identityToken);
         await LoginService.appleLoginApi(
             identityToken, decodedToken["email"], identityToken);
+
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        String fcmToken = prefs.getString("fcmToken")!;
+        await UserService.updateFcmToken(fcmToken);
+
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (BuildContext context) => const HomePage(),

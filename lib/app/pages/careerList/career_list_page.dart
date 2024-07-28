@@ -7,7 +7,7 @@ import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/views/views.dart';
 
 class CareerListPage extends GetView<CareerListController> {
-  const CareerListPage({Key? key}) : super(key: key);
+  const CareerListPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ import 'package:docspot_app/app/routes/routes.dart';
 import 'package:docspot_app/app/style/theme.dart';
 
 class PleaseLogin extends StatefulWidget {
-  const PleaseLogin({Key? key}) : super(key: key);
+  const PleaseLogin({super.key});
 
   @override
   State<PleaseLogin> createState() => _PleaseLoginModalState();

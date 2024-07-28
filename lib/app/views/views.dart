@@ -29,6 +29,9 @@ export './modals/phone_validation_modal.dart';
 export './modals/please_login_modal.dart';
 export './modals/reset_recent_career_list.dart';
 export './modals/select_location_department_modal.dart';
+export './modals/please_department_modal.dart';
+export './modals/please_login_at_main_modal.dart';
+export './modals/please_input_email_modal.dart';
 
 export './small_circle.dart';
 export './avatar.dart';
@@ -63,3 +66,5 @@ export './career/banner_slider.dart';
 
 export './search/search_keyword.dart';
 export './search/search_rank.dart';
+
+export './alram/alarm_item.dart';

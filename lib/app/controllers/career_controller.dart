@@ -3,7 +3,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:app_version_update/app_version_update.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -23,6 +25,15 @@ class CareerController extends GetxController {
   RxList<int> likeCareers = <int>[].obs;
 
   RxList<Map<String, dynamic>> recentCareerItems = <Map<String, dynamic>>[].obs;
+  bool _isModalRequestDepartmentOpen = false;
+  bool _isModalRequestEmailOpen = false;
+  bool _isUpdateOpen = false;
+
+  @override
+  void onInit() {
+    update();
+    super.onInit();
+  }
 
   /// [비즈니스 로직]
   /// 지원하기
@@ -258,5 +269,79 @@ class CareerController extends GetxController {
     recentCareerItems.value = localRecentCareerItems
         .map((item) => jsonDecode(item) as Map<String, dynamic>)
         .toList();
+  }
+
+  /// [비즈니스 로직]
+  /// 앱 버전을 확인한 후 강제 업데이트를 실시한다.
+  void verifyVersion(BuildContext context) async {
+    await AppVersionUpdate.checkForUpdates(
+      appleId: dotenv.get("APPLE_APP_ID"),
+      playStoreId: dotenv.get("ANDROID_APP_ID"),
+      country: 'kr',
+    ).then((result) async {
+      if (result.canUpdate! && !_isUpdateOpen) {
+        _isUpdateOpen = true;
+        await AppVersionUpdate.showAlertUpdate(
+          appVersionResult: result,
+          context: context,
+          backgroundColor: Colors.grey[200],
+          title: '새로운 업데이트가 발견되었습니다.',
+          titleTextStyle: const TextStyle(
+              color: Colors.black, fontWeight: FontWeight.w600, fontSize: 20.0),
+          content: '앱의 업데이트를 진행하시겠습니까?',
+          contentTextStyle: const TextStyle(
+              color: Colors.black, fontWeight: FontWeight.w400, fontSize: 16.0),
+          updateButtonText: '업데이트하기',
+          updateButtonStyle: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all(
+                  const Color.fromARGB(255, 59, 71, 167))),
+          mandatory: true,
+        );
+      }
+      _isUpdateOpen = true;
+    });
+  }
+
+  /// [비즈니스 로직]
+  /// 과를 확인해서 진료과가 없으면 진료과를 요청한다.
+  /// 이메일도 같이 요청한다.
+  Future<void> requestDepartmentAndEmail() async {
+    final response = await UserService.me();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (response['statusCode'] == 200) {
+      final data = response['data'];
+      MeUser user = MeUser.fromJson(data);
+      if (user.department == '진료과 없음') {
+        if (_isModalRequestDepartmentOpen) return;
+        _isModalRequestDepartmentOpen = true;
+        await Get.dialog(
+          const PleaseDepartmentModal(),
+        );
+        _isModalRequestDepartmentOpen = false;
+      }
+
+      bool hideForDayDate = prefs.getString('hideForEmailRequest') == 'true';
+
+      if (!EmailValidator.isValidEmail(user.email) && !hideForDayDate) {
+        if (_isModalRequestEmailOpen) return;
+        _isModalRequestEmailOpen = true;
+        await Get.dialog(
+          const PleaseInputEmailModal(),
+        );
+        _isModalRequestEmailOpen = false;
+      }
+    } else {
+      if (_isModalRequestDepartmentOpen) return;
+      _isModalRequestDepartmentOpen = true;
+      DateTime now = DateTime.now();
+      String? savedDate = prefs.getString('hideForDayDate') ?? "2000-01-01";
+      DateTime savedDateTime = DateTime.parse(savedDate);
+      Duration difference = now.difference(savedDateTime);
+      difference.inDays > 0 &&
+          await Get.bottomSheet(
+            const PleaseLoginAtMain(),
+          );
+      _isModalRequestDepartmentOpen = false;
+    }
   }
 }

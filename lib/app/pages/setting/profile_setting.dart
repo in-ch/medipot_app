@@ -10,7 +10,7 @@ import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/views/views.dart';
 
 class ProfileSettingPage extends GetView<SettingController> {
-  const ProfileSettingPage({Key? key}) : super(key: key);
+  const ProfileSettingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,113 +50,127 @@ class ProfileSettingPage extends GetView<SettingController> {
             child: Obx(
               () => controller.isLoading.value
                   ? const Center(child: CircularProgressIndicator())
-                  : Expanded(
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 80,
-                              height: 80,
-                              decoration: controller.image != null
-                                  ? BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: FileImage(
-                                            File(controller.image!.path)),
-                                      ),
-                                    )
-                                  : BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: NetworkImage(
-                                          controller.user.profile,
-                                        ),
-                                      ),
-                                    ),
-                            ),
-                            const SizedBox(height: 10),
-                            // GestureDetector(
-                            //     onTap: () {
-                            //       controller.updateProfileImg();
-                            //     },
-                            //     child: Text("변경",
-                            //         style: appTheme.textTheme.titleSmall)),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 50.0,
-                                  right: 50.0,
-                                  top: 10.0,
-                                  bottom: 20.0),
-                              child: SizedBox(
-                                width: double.infinity,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("닉네임",
-                                        style: appTheme.textTheme.titleMedium),
-                                    const SizedBox(height: 10),
-                                    SizedBox(
-                                      height: 70,
-                                      child: TextField(
-                                        maxLength: 20,
-                                        controller: TextEditingController(
-                                            text: controller.user.nickname),
-                                        decoration: InputDecoration(
-                                          contentPadding: const EdgeInsets.all(
-                                              10), // 내부 여백 설정
-                                          border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                4.0), // border-radius 설정
-                                            borderSide: const BorderSide(
-                                                color: Colors.grey,
-                                                width: 1.0), // border 스타일 설정
+                  : Column(
+                      children: [
+                        Expanded(
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 80,
+                                  height: 80,
+                                  decoration: controller.image != null
+                                      ? BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: FileImage(
+                                                File(controller.image!.path)),
                                           ),
-                                        ),
-                                        onChanged: (value) {
-                                          controller
-                                              .handleChangeNickname(value);
-                                        },
-                                      ),
-                                    ),
-                                    const SizedBox(height: 20),
-                                    SizedBox(
-                                      width: double.infinity,
-                                      height: 40,
-                                      child: ElevatedButton(
-                                        onPressed: () async {
-                                          bool isDone =
-                                              await controller.updateProfile();
-                                          if (isDone) Navigator.pop(context);
-                                        },
-                                        style: ButtonStyle(
-                                          backgroundColor:
-                                              WidgetStateProperty.all<Color>(
-                                                  colorScheme.primary),
-                                          shape: WidgetStateProperty.all<
-                                              RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(4.0),
+                                        )
+                                      : BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: NetworkImage(
+                                              controller.user.profile,
                                             ),
                                           ),
                                         ),
-                                        child: const Text(
-                                          '수정하기',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                    )
-                                  ],
                                 ),
-                              ),
-                            )
-                          ],
+                                const SizedBox(height: 10),
+                                // GestureDetector(
+                                //     onTap: () {
+                                //       controller.updateProfileImg();
+                                //     },
+                                //     child: Text("변경",
+                                //         style: appTheme.textTheme.titleSmall)),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 50.0,
+                                      right: 50.0,
+                                      top: 10.0,
+                                      bottom: 20.0),
+                                  child: SizedBox(
+                                    width: double.infinity,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text("닉네임",
+                                            style:
+                                                appTheme.textTheme.titleMedium),
+                                        const SizedBox(height: 10),
+                                        SizedBox(
+                                          height: 70,
+                                          child: TextField(
+                                            maxLength: 20,
+                                            controller: TextEditingController(
+                                                text: controller.user.nickname),
+                                            decoration: InputDecoration(
+                                              contentPadding:
+                                                  const EdgeInsets.all(
+                                                      10), // 내부 여백 설정
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        4.0), // border-radius 설정
+                                                borderSide: const BorderSide(
+                                                    color: Colors.grey,
+                                                    width:
+                                                        1.0), // border 스타일 설정
+                                              ),
+                                            ),
+                                            onChanged: (value) {
+                                              controller
+                                                  .handleChangeNickname(value);
+                                            },
+                                          ),
+                                        ),
+                                        const SizedBox(height: 20),
+                                        SizedBox(
+                                          width: double.infinity,
+                                          height: 40,
+                                          child: ElevatedButton(
+                                            onPressed: () async {
+                                              bool isDone = await controller
+                                                  .updateProfile();
+                                              if (isDone) {
+                                                Navigator.pop(context);
+                                              }
+                                            },
+                                            style: ButtonStyle(
+                                              backgroundColor:
+                                                  WidgetStateProperty.all<
+                                                          Color>(
+                                                      colorScheme.primary),
+                                              shape: WidgetStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                                RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          4.0),
+                                                ),
+                                              ),
+                                            ),
+                                            child: const Text(
+                                              '수정하기',
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
             ),
           ),

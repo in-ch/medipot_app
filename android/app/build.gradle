@@ -13,12 +13,12 @@ if (flutterRoot == null) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '3'
+    flutterVersionCode = '6'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '3.0'
+    flutterVersionName = '6.0'
 }
 
 apply plugin: 'com.android.application'
@@ -64,7 +64,7 @@ android {
         release {
             keyAlias "docspot"
             keyPassword "dlscjf12#"
-            storeFile file("/Users/seong-inchi/Desktop/dashboard/medipot_app/docspot.jks")
+            storeFile file("/Users/seonginch/Desktop/dashboard/medipot_app/docspot.jks")
             storePassword "dlscjf12#"
         }
     }

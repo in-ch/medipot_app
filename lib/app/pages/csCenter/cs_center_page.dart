@@ -35,38 +35,42 @@ class CsCenterPage extends GetView<CsCenterController> {
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.headlineMedium),
                 )),
-            body: Expanded(
-              child: SizedBox(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        ListTile(
-                          tileColor: Colors.white,
-                          title: const Text("전화 문의"),
-                          trailing: const Icon(Icons.chevron_right),
-                          onTap: () async {
-                            String telScheme = dotenv.get("CS_CENTER_CALL");
-                            final Uri url = Uri.parse('tel:$telScheme');
-                            if (!await launchUrl(url)) {
-                              throw Exception('Could not launch $url');
-                            }
-                          },
+            body: Column(
+              children: [
+                Expanded(
+                  child: SizedBox(
+                      width: double.infinity,
+                      height: double.infinity,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            ListTile(
+                              tileColor: Colors.white,
+                              title: const Text("전화 문의"),
+                              trailing: const Icon(Icons.chevron_right),
+                              onTap: () async {
+                                String telScheme = dotenv.get("CS_CENTER_CALL");
+                                final Uri url = Uri.parse('tel:$telScheme');
+                                if (!await launchUrl(url)) {
+                                  throw Exception('Could not launch $url');
+                                }
+                              },
+                            ),
+                            Container(
+                                height: 10,
+                                color: const Color.fromARGB(96, 235, 235, 235)),
+                            Column(
+                              children: faqs.map((faq) {
+                                return AccordionWidget(
+                                    title: faq["title"]!,
+                                    description: faq["description"]!);
+                              }).toList(),
+                            ),
+                          ],
                         ),
-                        Container(
-                            height: 10,
-                            color: const Color.fromARGB(96, 235, 235, 235)),
-                        Column(
-                          children: faqs.map((faq) {
-                            return AccordionWidget(
-                                title: faq["title"]!,
-                                description: faq["description"]!);
-                          }).toList(),
-                        ),
-                      ],
-                    ),
-                  )),
+                      )),
+                ),
+              ],
             )));
   }
 }

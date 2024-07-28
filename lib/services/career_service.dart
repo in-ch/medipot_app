@@ -3,6 +3,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:docspot_app/app/constants/constants.dart';
+
 class CareerService {
   static Future<Map<String, dynamic>> getCareers(
       int page,
@@ -20,7 +22,10 @@ class CareerService {
     };
     if (title != '') queryParams['title'] = title;
     if (detail != '') queryParams['detail'] = detail;
-    if (invitedSubject != '') queryParams['invitedSubject'] = invitedSubject;
+    if (invitedSubject != '') {
+      queryParams['invitedSubject'] =
+          getDepartmentFromString(invitedSubject).searchName;
+    }
     if (hospitalName != '') queryParams['hospitalName'] = hospitalName;
     if (hospitalLocation != '') {
       queryParams['hospitalLocation'] = hospitalLocation;
