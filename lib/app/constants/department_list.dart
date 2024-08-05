@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 List<String> departmentList = [
-  Department.GS.name,
+  Department.INTERN.name,
   Department.OS.name,
   Department.NS.name,
   Department.PS.name,
@@ -83,12 +83,15 @@ enum Department {
   OR,
   ER,
   NONE,
+  INTERN,
   HAN,
 }
 
 extension DepartmentExtension on Department {
   String get searchName {
     switch (this) {
+      case Department.INTERN:
+        return '인턴';
       case Department.GS:
         return '외과';
       case Department.OS:
@@ -176,6 +179,8 @@ extension DepartmentExtension on Department {
 
   String get name {
     switch (this) {
+      case Department.INTERN:
+        return '인턴';
       case Department.GS:
         return '일반외과';
       case Department.OS:
