@@ -14,4 +14,22 @@ class SearchService {
       return {'statusCode': response.statusCode, 'data': []};
     }
   }
+
+  static Future<Map<String, dynamic>> createSearch(String keyword) async {
+    String apiServer = dotenv.get("API_SERVER");
+    final url = Uri.parse('$apiServer/search');
+    final body = {"keyword": keyword};
+
+    final response = await http.post(
+      url,
+      headers: {"Content-Type": "application/json"},
+      body: jsonEncode(body),
+    );
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      return {'statusCode': response.statusCode, 'data': []};
+    }
+  }
 }

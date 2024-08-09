@@ -17,7 +17,7 @@ class SearchListController extends GetxController {
     pagingController.addPageRequestListener((pageKey) {
       getCareersForSearchList(pageKey);
     });
-
+    SearchService.createSearch(Get.arguments["keyword"]);
     super.onInit();
   }
 
