@@ -7,7 +7,7 @@ import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/views/views.dart';
 
 class SearchListPage extends GetView<SearchListController> {
-  const SearchListPage({Key? key}) : super(key: key);
+  const SearchListPage({super.key});
 
   @override
   Widget build(BuildContext context) {

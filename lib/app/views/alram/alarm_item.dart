@@ -1,7 +1,8 @@
-import 'package:docspot_app/app/style/theme.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
+
+import 'package:docspot_app/app/style/theme.dart';
 
 class AlarmItem extends StatelessWidget {
   final String title;
@@ -20,8 +21,10 @@ class AlarmItem extends StatelessWidget {
   });
 
   String _timeDifference(DateTime createdAt) {
-    final now = DateTime.now();
+    final now = DateTime.now().add(const Duration(hours: 9));
+
     final difference = now.difference(createdAt);
+
     if (difference.inDays >= 365) {
       final dateFormat = DateFormat('yyyy-MM-dd HH:mm:ss');
       return dateFormat.format(createdAt);
@@ -40,7 +43,7 @@ class AlarmItem extends StatelessWidget {
   }
 
   bool _isNew(DateTime createdAt) {
-    final now = DateTime.now();
+    final now = DateTime.now().add(const Duration(hours: 9));
     final difference = now.difference(createdAt);
     return difference.inDays < 1;
   }
