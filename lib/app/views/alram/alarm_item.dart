@@ -21,9 +21,10 @@ class AlarmItem extends StatelessWidget {
   });
 
   String _timeDifference(DateTime createdAt) {
-    final now = DateTime.now().add(const Duration(hours: 9));
-
-    final difference = now.difference(createdAt);
+    final now = DateTime.now().toLocal();
+    final createdAtAdd =
+        createdAt.subtract(const Duration(hours: 18)).toLocal();
+    final difference = now.difference(createdAtAdd);
 
     if (difference.inDays >= 365) {
       final dateFormat = DateFormat('yyyy-MM-dd HH:mm:ss');

@@ -1,3 +1,4 @@
+import 'package:docspot_app/app/routes/routes.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,7 @@ class NotificationController extends GetxController {
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       if (message.data.containsKey('page') && message.data.containsKey('no')) {
-        Get.toNamed(message.data['page'],
+        Get.toNamed(Routes.careerDetail,
             arguments: {'no': int.parse(message.data['no'])});
       } else {
         debugPrint('Page or No data missing in message');
