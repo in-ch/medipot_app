@@ -43,7 +43,7 @@ class LoginPage extends StatelessWidget {
                     SizedBox(
                         height:
                             MediaQuery.of(context).size.height < 700 ? 10 : 20),
-                    Text("성공적인 개원의 필수적인 첫걸음",
+                    Text("초빙 정보 및 병의원 매물을 한 눈에",
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: MediaQuery.of(context).size.height < 700
@@ -52,8 +52,7 @@ class LoginPage extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             fontFamily: "PretendardBold")),
                     const SizedBox(height: 20),
-                    const Text('''다양한 지역별 개원 입지부터
-꼭 필요한 정보를 한 번에''',
+                    const Text('''진료과에 맞는 실시간 초빙 정보를 알림으로 받아보세요.''',
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
