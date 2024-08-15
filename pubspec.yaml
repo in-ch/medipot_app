@@ -2,7 +2,7 @@ name: docspot_app
 description: 닥스팟 앱 프로젝트
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.7.0
+version: 1.7.4
 
 environment:
   sdk: ">=2.18.0 <4.0.0"
@@ -33,7 +33,7 @@ dependencies:
   package_info_plus: ^8.0.0
   app_version_update: ^3.1.0
   sliding_up_panel: ^2.0.0+1
-  google_maps_flutter: ^2.7.0
+  google_maps_flutter: ^2.9.0
   flutter_html: ^3.0.0-beta.2
   intl: ^0.19.0
 
@@ -65,6 +65,7 @@ flutter:
     - assets/image/icons/2.png
     - assets/image/icons/5.png
     - assets/image/icons/6.png
+    - assets/image/icons/8.png
     - assets/image/icons/14.png
     - assets/image/icons/15.png
     - assets/image/icons/20.png

@@ -9,10 +9,11 @@ class CustomBackButton extends StatelessWidget {
       onTap: () {
         Navigator.of(context).pop();
       },
-      child: const SizedBox(
-        width: 40,
-        height: 40,
-        child: Icon(CupertinoIcons.back),
+      child: Container(
+        color: const Color.fromRGBO(255, 255, 255, 0),
+        width: 60,
+        height: 60,
+        child: const Icon(CupertinoIcons.back),
       ),
     );
   }

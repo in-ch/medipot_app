@@ -6,7 +6,7 @@ import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/views/views.dart';
 
 class FavoritesSubPage extends GetView<FavoritesController> {
-  const FavoritesSubPage({Key? key}) : super(key: key);
+  const FavoritesSubPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class _FavoritesBodyState extends State<_FavoritesBody>
                 height: 40,
                 alignment: Alignment.center,
                 child: const Text(
-                  "찜한 목록",
+                  "찜한 매물",
                 ),
               ),
               Container(

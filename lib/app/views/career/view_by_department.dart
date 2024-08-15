@@ -28,19 +28,19 @@ class ViewByDepartment extends StatelessWidget {
           const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Department(name: "인턴", img: "assets/image/icons/8.png"),
               Department(name: "정형외과", img: "assets/image/icons/15.png"),
               Department(name: "내과", img: "assets/image/icons/2.png"),
               Department(name: "산부인과", img: "assets/image/icons/icon4.png"),
-              Department(name: "정신과", img: "assets/image/icons/14.png"),
             ],
           ),
           const SizedBox(height: 15.0),
           const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Department(name: "소아청소년과", img: "assets/image/icons/6.png"),
               Department(name: "성형외과", img: "assets/image/icons/5.png"),
-              Department(name: "피부과", img: "assets/image/icons/20.png"),
+              Department(name: "정신과", img: "assets/image/icons/14.png"),
+              Department(name: "소아청소년과", img: "assets/image/icons/6.png"),
               Department(name: "가정의학과", img: "assets/image/icons/icon1.png"),
             ],
           ),
