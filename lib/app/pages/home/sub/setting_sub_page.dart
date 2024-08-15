@@ -191,20 +191,26 @@ class _SettingSubPageState extends State<SettingSubPage> {
                           height: 1,
                           color: Colors.black12,
                         ),
-                        SettingBoxItem(
-                            title: '진료과 변경하기',
-                            description: '알림 등에 사용되는 진료과를 변경할 수 있습니다.',
-                            event: () async {
-                              await Get.dialog(
-                                const PleaseDepartmentModal(),
-                              );
-                            }),
-                        SettingBoxItem(
-                            title: '이메일 변경하기',
-                            description: '이메일을 변경할 수 있습니다.',
-                            event: () async {
-                              Get.toNamed(Routes.email);
-                            }),
+                        Obx(() => (!settingController.isLoading.value &&
+                                settingController.isLogin.value)
+                            ? SettingBoxItem(
+                                title: '진료과 변경하기',
+                                description: '알림 등에 사용되는 진료과를 변경할 수 있습니다.',
+                                event: () async {
+                                  await Get.dialog(
+                                    const PleaseDepartmentModal(),
+                                  );
+                                })
+                            : const SizedBox()),
+                        Obx(() => (!settingController.isLoading.value &&
+                                settingController.isLogin.value)
+                            ? SettingBoxItem(
+                                title: '이메일 변경하기',
+                                description: '이메일을 변경할 수 있습니다.',
+                                event: () async {
+                                  Get.toNamed(Routes.email);
+                                })
+                            : const SizedBox()),
                         SettingBoxItem(
                             title: '이벤트 확인하기',
                             description: '진행 중인 다양한 이벤트를 확인해보세요.',
