@@ -110,7 +110,7 @@ abstract class AppPages {
         bindings: [CareerDetailBinding()]),
     GetPage(
         name: Routes.search,
-        page: () => const SearchPage(),
+        page: () => SearchPage(),
         transition: Transition.cupertino,
         bindings: [SearchBinding()]),
     GetPage(

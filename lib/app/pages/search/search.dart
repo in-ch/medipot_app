@@ -1,3 +1,4 @@
+import 'package:docspot_app/app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -6,8 +7,9 @@ import 'package:docspot_app/app/views/views.dart';
 import 'package:docspot_app/app/routes/routes.dart';
 
 class SearchPage extends GetView<SearchsController> {
-  const SearchPage({Key? key}) : super(key: key);
+  SearchPage({super.key});
 
+  final formattedTime = getFormattedHourTime();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,7 +113,7 @@ class SearchPage extends GetView<SearchsController> {
                       children: [
                         Text("인기 검색어",
                             style: Theme.of(context).textTheme.titleMedium),
-                        Text("21:00 기준",
+                        Text("$formattedTime 기준",
                             style: Theme.of(context).textTheme.titleSmall),
                       ]),
                 ),
