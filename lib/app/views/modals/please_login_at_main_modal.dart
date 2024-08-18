@@ -25,7 +25,7 @@ class _PleaseLoginAtMainModalState extends State<PleaseLoginAtMain> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 430,
+      height: 485,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
@@ -61,7 +61,7 @@ class _PleaseLoginAtMainModalState extends State<PleaseLoginAtMain> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "알림서비스",
+                    "알림 서비스",
                     textAlign: TextAlign.left,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                         color: colorScheme.primary,
@@ -82,7 +82,7 @@ class _PleaseLoginAtMainModalState extends State<PleaseLoginAtMain> {
             padding: const EdgeInsets.only(left: 20, right: 20, top: 5),
             child: SizedBox(
               width: double.infinity,
-              height: 280,
+              height: 295,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     elevation: 0, backgroundColor: colorScheme.primary),
@@ -100,7 +100,7 @@ class _PleaseLoginAtMainModalState extends State<PleaseLoginAtMain> {
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700)),
                     const SizedBox(height: 5),
-                    Text('로그인 후에 진료과에 맞는 초빙 정보 알림을 받아보세요!',
+                    Text('로그인 후 진료과에 맞는 초빙 정보 알림을 받아보세요!',
                         style: Theme.of(context)
                             .textTheme
                             .titleSmall!
@@ -113,7 +113,7 @@ class _PleaseLoginAtMainModalState extends State<PleaseLoginAtMain> {
                     const SizedBox(height: 20),
                     Container(
                       width: double.infinity,
-                      height: 40,
+                      height: 35,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
