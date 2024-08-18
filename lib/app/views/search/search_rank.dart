@@ -66,12 +66,12 @@ class SearchRank extends StatelessWidget {
 
 class RankItem extends StatelessWidget {
   const RankItem({
-    Key? key,
+    super.key,
     required this.rank,
     required this.text,
     this.up = false,
     this.normal = false,
-  }) : super(key: key);
+  });
 
   final int rank;
   final String text;
@@ -107,13 +107,13 @@ class RankItem extends StatelessWidget {
                     ? "up"
                     : normal
                         ? "new"
-                        : "down",
+                        : "-",
                 style: Theme.of(context).textTheme.labelMedium!.copyWith(
                     color: up
                         ? const Color.fromARGB(255, 255, 94, 83)
                         : normal
                             ? const Color.fromARGB(255, 87, 239, 37)
-                            : const Color.fromARGB(255, 83, 143, 255))),
+                            : const Color.fromARGB(255, 215, 215, 215))),
           ),
         ]),
       ),

@@ -125,7 +125,7 @@ class CareerItem extends StatelessWidget {
                     : Container(),
                 company != "" ? Container() : const SizedBox(height: 10),
                 Text(position,
-                    maxLines: 2,
+                    maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontSize: company != "" ? 12.0 : 16.0,
