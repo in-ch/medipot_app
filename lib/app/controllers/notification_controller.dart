@@ -1,4 +1,3 @@
-import 'package:docspot_app/app/routes/routes.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
@@ -24,27 +23,40 @@ class NotificationController extends GetxController {
     _getToken();
     LocalNotification.initialize();
     _configureMessaging();
+    // 앱이 종료된 상태에서 푸시 알림을 통해 실행된 경우 처리
+    _checkInitialMessage();
     super.onInit();
+  }
+
+  void _checkInitialMessage() async {
+    RemoteMessage? initialMessage =
+        await FirebaseMessaging.instance.getInitialMessage();
+    if (initialMessage != null) {
+      _handleMessage(initialMessage);
+    }
+  }
+
+  void _handleMessage(RemoteMessage message) {
+    if (message.data.containsKey('page') && message.data.containsKey('no')) {
+      Get.toNamed(message.data['page'],
+          arguments: {'no': int.parse(message.data['no'])});
+    } else {
+      debugPrint('Page or No data missing in message');
+    }
   }
 
   void _configureMessaging() {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      // 앱이 foreground 상태일 때 메시지를 수신하면 호출됩니다.
       LocalNotification.sendNotification(message.notification!.title.toString(),
           message.notification!.body.toString());
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       if (message.data.containsKey('page') && message.data.containsKey('no')) {
-        Get.toNamed(Routes.careerDetail,
+        Get.toNamed(message.data['page'],
             arguments: {'no': int.parse(message.data['no'])});
       } else {
         debugPrint('Page or No data missing in message');
-      }
-
-      if (message.notification != null) {
-        debugPrint(message.notification!.title);
-        debugPrint(message.notification!.body);
       }
     });
   }
@@ -52,8 +64,6 @@ class NotificationController extends GetxController {
   void _getToken() async {
     String? token = await messaging.getToken();
     try {
-      debugPrint("firebase token--------------------");
-      debugPrint(token);
       final response = await UserService.me();
       final data = response['data'];
       final SharedPreferences prefs = await SharedPreferences.getInstance();
