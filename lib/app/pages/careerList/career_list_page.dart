@@ -123,9 +123,9 @@ class CareerListPage extends GetView<CareerListController> {
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
-                                mainAxisSpacing: 15.0,
+                                mainAxisSpacing: 8.0,
                                 crossAxisSpacing: 8.0,
-                                childAspectRatio: 1.0,
+                                childAspectRatio: 1.15,
                               ),
                               builderDelegate:
                                   PagedChildBuilderDelegate<dynamic>(
