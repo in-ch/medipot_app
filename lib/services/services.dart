@@ -13,3 +13,4 @@ export './location_service.dart';
 export './career_service.dart';
 export './search_service.dart';
 export './alarm_service.dart';
+export './device_info_service.dart';
