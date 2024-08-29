@@ -47,11 +47,13 @@ class CareerItem extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      img,
-                      width: double.infinity,
-                      height: company != "" ? 110 : 170,
-                      fit: BoxFit.cover,
+                    child: AspectRatio(
+                      aspectRatio: 16 / 9,
+                      child: Image.network(
+                        img,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
@@ -109,7 +111,7 @@ class CareerItem extends StatelessWidget {
             Get.toNamed(Routes.careerDetail, arguments: {'no': no});
           },
           child: SizedBox(
-            height: 65,
+            height: 55,
             width: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,

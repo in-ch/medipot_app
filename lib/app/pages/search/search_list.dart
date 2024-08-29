@@ -51,7 +51,7 @@ class SearchListPage extends GetView<SearchListController> {
                               crossAxisCount: 2,
                               mainAxisSpacing: 8.0,
                               crossAxisSpacing: 8.0,
-                              childAspectRatio: 1.0,
+                              childAspectRatio: 1.15,
                             ),
                             builderDelegate: PagedChildBuilderDelegate<dynamic>(
                               firstPageProgressIndicatorBuilder: (context) =>

@@ -28,7 +28,6 @@ class CareerLocations extends StatelessWidget {
           ),
           SizedBox(
             width: double.infinity,
-            height: 600,
             child: GridView(
               padding: const EdgeInsets.symmetric(vertical: 15),
               shrinkWrap: true,

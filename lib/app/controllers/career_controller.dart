@@ -344,4 +344,18 @@ class CareerController extends GetxController {
       _isModalRequestDepartmentOpen = false;
     }
   }
+
+  /// [비즈니스 로직]
+  /// 유저의 fcmToken을 저장한다.
+  Future<void> saveFcmToken() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isLogin = prefs.getBool('isLogin') ?? false;
+    String fcmToken = prefs.getString("fcmToken")!;
+
+    if (isLogin) {
+      await UserService.updateFcmToken(fcmToken);
+    } else {
+      await DeviceInfoService.insertDeviceInfo(fcmToken);
+    }
+  }
 }

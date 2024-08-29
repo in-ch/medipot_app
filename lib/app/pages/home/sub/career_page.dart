@@ -24,6 +24,7 @@ class _CareerSubPageState extends State<CareerSubPage> {
       controller.verifyVersion(context);
       controller.requestDepartmentAndEmail();
       controller.getCareersInit();
+      controller.saveFcmToken();
     });
   }
 
