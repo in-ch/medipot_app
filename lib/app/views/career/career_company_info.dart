@@ -92,7 +92,7 @@ class CareerCompanyInfo extends StatelessWidget {
               padding: const EdgeInsets.only(
                   left: 15.0, right: 15.0, top: 15.0, bottom: 15.0),
               child: Text(
-                  "본 초빙정보는 닥스팟의 동의없이 무단전재, 재배포, 재가공할 수 없으며, 구직활동 이외의 용도로 사용할 수 없습니다.",
+                  "본 초빙정보는 닥터팟의 동의없이 무단전재, 재배포, 재가공할 수 없으며, 구직활동 이외의 용도로 사용할 수 없습니다.",
                   style: Theme.of(context).textTheme.bodySmall),
             )),
       ],

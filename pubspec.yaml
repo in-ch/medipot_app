@@ -1,5 +1,5 @@
 name: docspot_app
-description: 닥스팟 앱 프로젝트
+description: 닥터팟 앱 프로젝트
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.7.8

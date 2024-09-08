@@ -8,7 +8,7 @@ import 'package:docspot_app/data/models/models.dart';
 import 'package:docspot_app/app/controllers/controllers.dart';
 
 class LikeLocations extends StatefulWidget {
-  const LikeLocations({Key? key}) : super(key: key);
+  const LikeLocations({super.key});
 
   @override
   State<LikeLocations> createState() => _LikeLocationsState();
@@ -49,13 +49,13 @@ class _LikeLocationsState extends State<LikeLocations> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: colorScheme.background,
+      backgroundColor: colorScheme.surface,
       extendBody: true,
       body: Column(
         children: [
           Expanded(
             child: Container(
-                color: colorScheme.background,
+                color: colorScheme.surface,
                 height: double.infinity,
                 child: PagedListView<int, dynamic>(
                   padding: const EdgeInsets.all(8.0),
@@ -71,9 +71,9 @@ class _LikeLocationsState extends State<LikeLocations> {
                       ),
                     ),
                     noItemsFoundIndicatorBuilder: (context) => NoDatas(
-                        text: '찜한 목록이 없습니다.', sub: "닥스팟에서 마음에 드는 매물에 찜해보세요."),
+                        text: '찜한 목록이 없습니다.', sub: "닥터팟에서 마음에 드는 매물에 찜해보세요."),
                     firstPageErrorIndicatorBuilder: (context) => NoDatas(
-                        text: '찜한 목록이 없습니다.', sub: "닥스팟에서 마음에 드는 매물에 찜해보세요."),
+                        text: '찜한 목록이 없습니다.', sub: "닥터팟에서 마음에 드는 매물에 찜해보세요."),
                     newPageProgressIndicatorBuilder: (context) => Container(
                       alignment: Alignment.center,
                       width: 50,

@@ -8,7 +8,7 @@ import 'package:docspot_app/data/models/models.dart';
 import 'package:docspot_app/app/controllers/controllers.dart';
 
 class LikeCareers extends StatefulWidget {
-  const LikeCareers({Key? key}) : super(key: key);
+  const LikeCareers({super.key});
 
   @override
   State<LikeCareers> createState() => _LikeCareersState();
@@ -71,9 +71,9 @@ class _LikeCareersState extends State<LikeCareers> {
                       ),
                     ),
                     noItemsFoundIndicatorBuilder: (context) => NoDatas(
-                        text: '찜한 공고가 없습니다.', sub: "닥스팟에서 마음에 드는 초빙공고를 찜해보세요."),
+                        text: '찜한 공고가 없습니다.', sub: "닥터팟에서 마음에 드는 초빙공고를 찜해보세요."),
                     firstPageErrorIndicatorBuilder: (context) => NoDatas(
-                        text: '찜한 공고가 없습니다.', sub: "닥스팟에서 마음에 드는 초빙공고를 찜해보세요."),
+                        text: '찜한 공고가 없습니다.', sub: "닥터팟에서 마음에 드는 초빙공고를 찜해보세요."),
                     newPageProgressIndicatorBuilder: (context) => Container(
                       alignment: Alignment.center,
                       width: 50,
