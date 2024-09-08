@@ -19,3 +19,4 @@ export './search_controller.dart';
 export './search_list_controller.dart';
 export './alarm_controller.dart';
 export './email_controller.dart';
+export './game_controller.dart';
