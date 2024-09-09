@@ -70,3 +70,4 @@ export './search/search_rank.dart';
 export './alram/alarm_item.dart';
 
 export './game/roulette_painter.dart';
+export './game/triangle_painter.dart';

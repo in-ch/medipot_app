@@ -49,37 +49,70 @@ class RouletteGamePage extends GetView<GameController> {
             ),
           ],
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Obx(() {
-              return Transform.rotate(
-                angle: controller.animationValue.value * 2 * pi,
-                child: CustomPaint(
-                  size: const Size(300, 300),
-                  painter: RoulettePainter(
-                    items: controller.items.map((v) => v.toString()).toList(),
-                    colors: controller.colors,
-                  ),
+        body: SizedBox(
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RichText(
+                text: TextSpan(
+                  text: '', // 기본 텍스트
+                  style: Theme.of(context).textTheme.headlineLarge,
+                  children: const [
+                    TextSpan(
+                      text: '룰렛',
+                      style: TextStyle(color: Colors.lightBlue),
+                    ),
+                    TextSpan(text: '을 돌려주세요.'),
+                  ],
                 ),
-              );
-            }),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: controller.spinRoulette,
-              child: const Text('돌리기'),
-            ),
-            const SizedBox(height: 20),
-            Obx(() {
-              return controller.selectedItem.value >= 0
-                  ? Text(
-                      'Selected: ${controller.items[controller.selectedItem.value]}',
-                      style: const TextStyle(
-                          fontSize: 24, fontWeight: FontWeight.bold),
-                    )
-                  : const SizedBox.shrink();
-            }),
-          ],
+              ),
+              const SizedBox(height: 3),
+              RichText(
+                text: TextSpan(
+                  text: '오늘의 ',
+                  style: Theme.of(context).textTheme.titleMedium,
+                  children: const [
+                    TextSpan(
+                      text: '행운의 숫자',
+                      style: TextStyle(color: Colors.lightBlue),
+                    ),
+                    TextSpan(text: '를 알려드릴게요. 🍀'),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+              const TriangleWidget(),
+              const SizedBox(height: 5),
+              Obx(() {
+                return Transform.rotate(
+                  angle: controller.animationValue.value * 2 * pi,
+                  child: CustomPaint(
+                    size: const Size(300, 300),
+                    painter: RoulettePainter(
+                      items: controller.items.map((v) => v.toString()).toList(),
+                      colors: controller.colors,
+                    ),
+                  ),
+                );
+              }),
+              const SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: controller.spinRoulette,
+                child: const Text('돌리기'),
+              ),
+              const SizedBox(height: 20),
+              Obx(() {
+                return controller.selectedItem.value >= 0
+                    ? Text(
+                        '뽑힌 숫자: ${controller.items[controller.selectedItem.value]}',
+                        style: const TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
+                      )
+                    : const SizedBox.shrink();
+              }),
+            ],
+          ),
         ),
       ),
     );
