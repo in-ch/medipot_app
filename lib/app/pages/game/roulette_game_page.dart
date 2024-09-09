@@ -26,25 +26,19 @@ class RouletteGamePage extends GetView<GameController> {
             alignment: Alignment.centerRight,
             child: CustomBackButton(),
           ),
-          title: Text("오늘의 행운의 숫자",
+          title: Text("오늘의 타로카드",
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.headlineMedium),
           actions: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: Center(
                 child: GestureDetector(
                     child: const Icon(CupertinoIcons.share),
                     onTap: () {
                       Navigator.of(context).pop();
                     }),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(right: 20),
-              child: Center(
-                child: Icon(CupertinoIcons.ellipsis_circle),
               ),
             ),
           ],
@@ -74,7 +68,7 @@ class RouletteGamePage extends GetView<GameController> {
                   style: Theme.of(context).textTheme.titleMedium,
                   children: const [
                     TextSpan(
-                      text: '행운의 숫자',
+                      text: '타로 카드',
                       style: TextStyle(color: Colors.lightBlue),
                     ),
                     TextSpan(text: '를 알려드릴게요. 🍀'),
@@ -98,7 +92,7 @@ class RouletteGamePage extends GetView<GameController> {
               }),
               const SizedBox(height: 30),
               ElevatedButton(
-                onPressed: controller.spinRoulette,
+                onPressed: () => controller.spinRoulette(context),
                 child: const Text('돌리기'),
               ),
               const SizedBox(height: 20),

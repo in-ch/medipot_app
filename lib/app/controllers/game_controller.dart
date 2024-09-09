@@ -2,6 +2,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:docspot_app/app/views/modals/taro_result_modal.dart';
+
 class GameController extends GetxController
     with GetSingleTickerProviderStateMixin {
   final items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].obs;
@@ -48,7 +50,7 @@ class GameController extends GetxController
     );
   }
 
-  void spinRoulette() async {
+  void spinRoulette(BuildContext context) async {
     final int random = Random().nextInt(10);
     double randomValue = probabilityValues[random];
     double rotationMultiplier = 5 + randomValue * 3;
@@ -65,7 +67,13 @@ class GameController extends GetxController
 
     animationController.reset();
     animationController.forward().whenComplete(() {
-      selectedItem.value = random;
+      showModalBottomSheet<void>(
+        context: context,
+        isScrollControlled: true,
+        builder: (BuildContext context) {
+          return TaroResultModal(resultNum: random + 1);
+        },
+      );
     });
   }
 
