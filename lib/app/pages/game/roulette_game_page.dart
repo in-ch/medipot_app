@@ -91,9 +91,16 @@ class RouletteGamePage extends GetView<GameController> {
                 );
               }),
               const SizedBox(height: 30),
-              ElevatedButton(
-                onPressed: () => controller.spinRoulette(context),
-                child: const Text('돌리기'),
+              Obx(
+                () => controller.isDone.value
+                    ? ElevatedButton(
+                        onPressed: () => controller.showResult(context),
+                        child: const Text('결과보기'),
+                      )
+                    : ElevatedButton(
+                        onPressed: () => controller.spinRoulette(context),
+                        child: const Text('돌리기'),
+                      ),
               ),
               const SizedBox(height: 20),
               Obx(() {

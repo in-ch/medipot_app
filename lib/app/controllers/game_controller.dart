@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:docspot_app/app/views/modals/taro_result_modal.dart';
 
@@ -40,13 +41,35 @@ class GameController extends GetxController
   late AnimationController animationController;
   late Animation<double> animation;
 
-  @override
-  void onInit() {
-    super.onInit();
+  RxBool isDone = false.obs;
 
+  @override
+  void onInit() async {
+    super.onInit();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String currentDate = getCurrentDate();
+    final data = prefs.get("roulette_$currentDate");
+    if (data != null) {
+      isDone.value = true;
+      update();
+    }
     animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 5),
+    );
+  }
+
+  void showResult(BuildContext context) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String currentDate = getCurrentDate();
+    final result = int.parse(prefs.getString("roulette_$currentDate")!);
+
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return TaroResultModal(resultNum: result);
+      },
     );
   }
 
@@ -66,7 +89,13 @@ class GameController extends GetxController
           });
 
     animationController.reset();
-    animationController.forward().whenComplete(() {
+    animationController.forward().whenComplete(() async {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      final String currentDate = getCurrentDate();
+      prefs.setString("roulette_$currentDate", (random + 1).toString());
+
+      isDone.value = true;
+      update();
       showModalBottomSheet<void>(
         context: context,
         isScrollControlled: true,
@@ -79,6 +108,13 @@ class GameController extends GetxController
 
   Color getColorForItem(int index) {
     return colors[index % colors.length];
+  }
+
+  String getCurrentDate() {
+    DateTime now = DateTime.now();
+    String formattedDate =
+        "${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}";
+    return formattedDate;
   }
 
   @override
