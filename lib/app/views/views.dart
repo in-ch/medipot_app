@@ -71,6 +71,7 @@ export './search/search_rank.dart';
 
 export './alram/alarm_item.dart';
 export './alram/go_to_alarm.dart';
+export './alram/go_to_taro_game.dart';
 
 export './game/roulette_painter.dart';
 export './game/triangle_painter.dart';
