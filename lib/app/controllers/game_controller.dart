@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:docspot_app/app/utils/utils.dart';
 import 'package:docspot_app/app/views/modals/taro_result_modal.dart';
 
 class GameController extends GetxController
@@ -108,13 +109,6 @@ class GameController extends GetxController
 
   Color getColorForItem(int index) {
     return colors[index % colors.length];
-  }
-
-  String getCurrentDate() {
-    DateTime now = DateTime.now();
-    String formattedDate =
-        "${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}";
-    return formattedDate;
   }
 
   @override

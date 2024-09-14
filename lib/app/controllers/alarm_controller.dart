@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:docspot_app/data/models/models.dart';
 import 'package:docspot_app/services/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:docspot_app/app/utils/utils.dart';
 
 class AlarmController extends GetxController {
   RxBool isLoading = false.obs;
@@ -41,11 +42,17 @@ class AlarmController extends GetxController {
   Future<void> checkUnreadAlarms() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     bool isLogin = prefs.getBool('isLogin') ?? false;
-    if (!isLogin) {
+
+    final String currentDate = getCurrentDate();
+    final data = prefs.get("roulette_$currentDate");
+    if (data == null) {
+      hasUnreadAlarm.value = true;
+    } else if (!isLogin) {
       hasUnreadAlarm.value = false;
     } else {
       hasUnreadAlarm.value = await AlarmService.isUnReadAlarm();
     }
+    update();
   }
 
   // hasUnreadAlarm 값을 변경한다.
