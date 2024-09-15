@@ -2,7 +2,7 @@ name: docspot_app
 description: 닥터팟 앱 프로젝트
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.7.8
+version: 1.7.9
 
 environment:
   sdk: ">=2.18.0 <4.0.0"
