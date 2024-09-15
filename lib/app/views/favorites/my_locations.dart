@@ -8,7 +8,7 @@ import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/data/models/models.dart';
 
 class MyLocations extends StatefulWidget {
-  const MyLocations({Key? key}) : super(key: key);
+  const MyLocations({super.key});
 
   @override
   State<MyLocations> createState() => _MyLocationsState();
@@ -72,13 +72,13 @@ class _MyLocationsState extends State<MyLocations> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: colorScheme.background,
+      backgroundColor: colorScheme.surface,
       extendBody: true,
       body: Column(
         children: [
           Expanded(
             child: Container(
-                color: colorScheme.background,
+                color: colorScheme.surface,
                 height: double.infinity,
                 child: PagedListView<int, dynamic>(
                   padding: const EdgeInsets.all(8.0),
@@ -94,9 +94,9 @@ class _MyLocationsState extends State<MyLocations> {
                       ),
                     ),
                     noItemsFoundIndicatorBuilder: (context) =>
-                        NoDatas(text: '올린 매물이 없습니다.', sub: '닥스팟에서 매물을 올려보세요.'),
+                        NoDatas(text: '올린 매물이 없습니다.', sub: '닥터팟에서 매물을 올려보세요.'),
                     firstPageErrorIndicatorBuilder: (context) =>
-                        NoDatas(text: '올린 매물이 없습니다.', sub: '닥스팟에서 매물을 올려보세요.'),
+                        NoDatas(text: '올린 매물이 없습니다.', sub: '닥터팟에서 매물을 올려보세요.'),
                     newPageProgressIndicatorBuilder: (context) => Container(
                       alignment: Alignment.center,
                       width: 50,

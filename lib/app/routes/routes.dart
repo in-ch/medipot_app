@@ -18,4 +18,5 @@ abstract class Routes {
   static const alarm = '/alarm';
   static const feed = '/feed';
   static const email = '/email';
+  static const roulette = '/roulette';
 }

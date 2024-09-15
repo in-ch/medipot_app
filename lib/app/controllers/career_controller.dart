@@ -319,9 +319,8 @@ class CareerController extends GetxController {
         );
         _isModalRequestDepartmentOpen = false;
       }
-
-      bool hideForDayDate = prefs.getString('hideForEmailRequest') == 'true';
-
+      bool hideForDayDate =
+          (prefs.getString('hideForEmailRequest') ?? 'false') == 'true';
       if (!EmailValidator.isValidEmail(user.email) && !hideForDayDate) {
         if (_isModalRequestEmailOpen) return;
         _isModalRequestEmailOpen = true;

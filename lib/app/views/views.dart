@@ -32,6 +32,7 @@ export './modals/select_location_department_modal.dart';
 export './modals/please_department_modal.dart';
 export './modals/please_login_at_main_modal.dart';
 export './modals/please_input_email_modal.dart';
+export './modals/taro_result_modal.dart';
 
 export './small_circle.dart';
 export './avatar.dart';
@@ -63,8 +64,14 @@ export './career/career_card_bottom.dart';
 export './career/career_card_header.dart';
 export './career/career_company_info.dart';
 export './career/banner_slider.dart';
+export 'career/show_new_alarms.dart';
 
 export './search/search_keyword.dart';
 export './search/search_rank.dart';
 
 export './alram/alarm_item.dart';
+export './alram/go_to_alarm.dart';
+export './alram/go_to_taro_game.dart';
+
+export './game/roulette_painter.dart';
+export './game/triangle_painter.dart';

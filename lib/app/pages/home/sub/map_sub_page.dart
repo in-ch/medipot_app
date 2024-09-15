@@ -1,9 +1,9 @@
+import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'package:docspot_app/app/pages/pages.dart';
 import 'package:docspot_app/app/routes/routes.dart';
 import 'package:docspot_app/app/views/views.dart';
 

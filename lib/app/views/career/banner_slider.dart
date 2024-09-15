@@ -3,7 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BannerSlider extends StatefulWidget {
-  const BannerSlider({Key? key}) : super(key: key);
+  const BannerSlider({super.key});
 
   @override
   BannerSliderState createState() => BannerSliderState();
