@@ -9,6 +9,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
+import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/routes/routes.dart';
 import 'package:docspot_app/app/pages/pages.dart';
 import 'package:docspot_app/app/style/theme.dart';

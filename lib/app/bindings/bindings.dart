@@ -14,3 +14,4 @@ export './search_binding.dart';
 export './search_list_binding.dart';
 export './alarm_binding.dart';
 export './email_binding.dart';
+export './game_binding.dart';

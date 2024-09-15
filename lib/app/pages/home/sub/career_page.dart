@@ -37,6 +37,7 @@ class _CareerSubPageState extends State<CareerSubPage> {
             scrolledUnderElevation: 0,
             iconTheme: Theme.of(context).iconTheme,
             centerTitle: false,
+            toolbarHeight: 40,
             backgroundColor: Colors.white,
             elevation: 0,
             leadingWidth: 54,
@@ -56,15 +57,9 @@ class _CareerSubPageState extends State<CareerSubPage> {
                 ),
               ),
               const SizedBox(width: 10),
-              Padding(
-                padding: const EdgeInsets.only(right: 20),
-                child: Center(
-                  child: GestureDetector(
-                      onTap: () {
-                        Get.toNamed(Routes.alarm);
-                      },
-                      child: const Icon(CupertinoIcons.bell, size: 24.0)),
-                ),
+              const Padding(
+                padding: EdgeInsets.only(right: 20),
+                child: GoToAlarm(),
               ),
             ],
           ),
@@ -75,6 +70,7 @@ class _CareerSubPageState extends State<CareerSubPage> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  const ShowNewAlarms(),
                   const ViewByDepartment(),
                   const ShowRecent(),
                   Obx(() => controller.isLoading.value

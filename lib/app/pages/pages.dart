@@ -4,8 +4,6 @@ import 'package:docspot_app/app/bindings/bindings.dart';
 import 'package:docspot_app/app/pages/pages.dart';
 import 'package:docspot_app/app/routes/routes.dart';
 
-export '../controllers/controllers.dart';
-
 export './home/home_page.dart';
 export './NotFound/not_found.dart';
 export './home/sub/feed_sub_page.dart';
@@ -29,6 +27,7 @@ import './search/search.dart';
 import './search/search_list.dart';
 import './alarm/alarm_page.dart';
 import './email/email_page.dart';
+import './game/roulette_game_page.dart';
 
 abstract class AppPages {
   static final pages = [
@@ -128,6 +127,11 @@ abstract class AppPages {
       page: () => const FeedSubPage(),
       transition: Transition.cupertino,
     ),
+    GetPage(
+        name: Routes.roulette,
+        page: () => const RouletteGamePage(),
+        transition: Transition.cupertino,
+        bindings: [GameBinding()]),
     GetPage(
         name: Routes.email,
         page: () => const EmailPage(),

@@ -15,7 +15,7 @@ class Tag extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: Colors.transparent, // 색상 비어있음
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(12),
             border: Border.all(
               color: colorScheme.primary, // border 색상
               width: 1.1,
@@ -28,8 +28,8 @@ class Tag extends StatelessWidget {
               text,
               style: TextStyle(
                   color: colorScheme.primary,
-                  fontSize: 9,
-                  fontWeight: FontWeight.w300),
+                  fontSize: 11,
+                  fontWeight: FontWeight.w600),
             ),
           ),
         ),

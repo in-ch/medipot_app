@@ -8,7 +8,8 @@ class ViewByDepartment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.only(
+          bottom: 15.0, left: 15.0, right: 15.0, top: 5.0),
       child: Column(
         children: [
           SizedBox(
