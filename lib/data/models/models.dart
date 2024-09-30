@@ -3,7 +3,6 @@ export './like_model.dart';
 export './reply_model.dart';
 export './user_model.dart';
 export './login_user_model.dart';
-export './dynamic_link.dart';
 export './local_notification.dart';
 export './reply_detail_model.dart';
 export './nested_reply_model.dart';

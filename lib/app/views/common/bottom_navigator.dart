@@ -34,6 +34,10 @@ class _BottomNavigationWidgetState extends State<BottomNavigation> {
           label: '개원 입지',
         ),
         BottomNavigationBarItem(
+          icon: Icon(Icons.chat),
+          label: '실시간 채팅',
+        ),
+        BottomNavigationBarItem(
           icon: Icon(Icons.favorite),
           label: '관심 목록',
         ),
