@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/style/theme.dart';
@@ -29,15 +32,39 @@ class _ChatSubPageState extends State<ChatSubPage> {
                 .titleMedium!
                 .copyWith(color: Colors.white),
           ),
+          actions: [
+            Container(
+              width: 10,
+              height: 10,
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(5),
+              ),
+            ),
+            const SizedBox(width: 10),
+            const Text("100명", style: TextStyle(color: Colors.white)),
+            const SizedBox(width: 10),
+          ],
           centerTitle: true,
           backgroundColor: const Color.fromARGB(255, 39, 39, 39),
           elevation: 0,
         ),
         backgroundColor: const Color.fromARGB(255, 39, 39, 39),
-        // GestureDetector 추가하여 다른 부분을 클릭할 때 포커스를 해제
         body: Column(
           children: [
-            // 채팅 메시지를 표시하는 부분
+            const SizedBox(height: 10),
+            Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: const Color.fromARGB(255, 55, 55, 55),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.only(
+                      left: 12.0, right: 12.0, top: 4.0, bottom: 4.0),
+                  child: Text("모든 메시지는 00:00시에 초기화됩니다.",
+                      style: TextStyle(color: Colors.white, fontSize: 12.0)),
+                )),
+            const SizedBox(height: 10),
             Expanded(
               child: GestureDetector(
                 onTap: () {
@@ -45,31 +72,126 @@ class _ChatSubPageState extends State<ChatSubPage> {
                 },
                 child: Obx(() {
                   return ListView.builder(
-                    reverse: true, // 최근 메시지를 위쪽에 배치
-                    itemCount: controller.messages.length,
-                    itemBuilder: (context, index) {
-                      final message = controller.messages[index];
-                      final isMyMessage = message.senderId == controller.userId;
-                      return Align(
-                        alignment: isMyMessage
-                            ? Alignment.centerRight
-                            : Alignment.centerLeft,
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(
-                              vertical: 5, horizontal: 10),
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: isMyMessage
-                                ? colorScheme.primary
-                                : const Color.fromARGB(255, 56, 56, 56),
-                            borderRadius: BorderRadius.circular(10),
+                      reverse: true,
+                      itemCount: controller.messages.length,
+                      itemBuilder: (context, index) {
+                        final message = controller.messages[index];
+                        final isMyMessage =
+                            message.senderId == controller.userId;
+                        final formattedTime =
+                            DateFormat('a hh:mm').format(message.timestamp);
+
+                        return GestureDetector(
+                          onLongPress: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Container(
+                                  color: const Color.fromARGB(255, 55, 55, 55),
+                                  child: Wrap(
+                                    children: [
+                                      ListTile(
+                                        leading: const Icon(Icons.copy,
+                                            color: Colors.white),
+                                        title: const Text('복사하기',
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                        onTap: () {
+                                          controller
+                                              .copyMessage(message.content);
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                      const SizedBox(height: 100)
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          child: Align(
+                            alignment: isMyMessage
+                                ? Alignment.centerRight
+                                : Alignment.centerLeft,
+                            child: Column(
+                              crossAxisAlignment: isMyMessage
+                                  ? CrossAxisAlignment.end
+                                  : CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      vertical: 5, horizontal: 10),
+                                  padding: EdgeInsets.all(
+                                      message.imagePath != null ? 0 : 10),
+                                  decoration: BoxDecoration(
+                                    color: isMyMessage
+                                        ? colorScheme.primary
+                                        : const Color.fromARGB(255, 56, 56, 56),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: message.imagePath != null
+                                      ? GestureDetector(
+                                          onTap: () {
+                                            showDialog(
+                                              context: context,
+                                              barrierColor: Colors.black87,
+                                              builder: (BuildContext context) {
+                                                return Dialog(
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  child: Container(
+                                                    margin:
+                                                        const EdgeInsets.all(
+                                                            20),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: Image.file(
+                                                        File(
+                                                            message.imagePath!),
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          },
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: SizedBox(
+                                              width: 180,
+                                              child: Image.file(
+                                                File(message.imagePath!),
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      : Text(
+                                          message.content,
+                                          style: const TextStyle(
+                                              color: Colors.white),
+                                        ),
+                                ),
+                                Padding(
+                                  padding: isMyMessage
+                                      ? const EdgeInsets.only(right: 20.0)
+                                      : const EdgeInsets.only(left: 20.0),
+                                  child: Text(
+                                    formattedTime,
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 10),
+                                  ),
+                                ),
+                                const SizedBox(height: 8)
+                              ],
+                            ),
                           ),
-                          child: Text(message.content,
-                              style: const TextStyle(color: Colors.white)),
-                        ),
-                      );
-                    },
-                  );
+                        );
+                      });
                 }),
               ),
             ),
@@ -81,16 +203,21 @@ class _ChatSubPageState extends State<ChatSubPage> {
                 children: [
                   const SizedBox(width: 10),
                   SizedBox(
-                    width: 20,
-                    child: IconButton(
-                      icon: const Icon(CupertinoIcons.add),
-                      color: const Color.fromARGB(255, 125, 125, 125),
-                      onPressed: () {},
-                    ),
-                  ),
+                      width: 20,
+                      child: InkWell(
+                        onTap: () {
+                          controller.pickImage();
+                        },
+                        highlightColor: Colors.transparent,
+                        splashColor: Colors.transparent,
+                        child: const Icon(
+                          CupertinoIcons.add,
+                          color: Color.fromARGB(255, 125, 125, 125),
+                        ),
+                      )),
                   Expanded(
                     child: TextField(
-                      focusNode: _focusNode, // FocusNode 연결
+                      focusNode: _focusNode,
                       controller: controller.messageController,
                       minLines: 1,
                       maxLines: 3,
@@ -130,7 +257,7 @@ class _ChatSubPageState extends State<ChatSubPage> {
 
   @override
   void dispose() {
-    _focusNode.dispose(); // FocusNode 해제
+    _focusNode.dispose();
     super.dispose();
   }
 }

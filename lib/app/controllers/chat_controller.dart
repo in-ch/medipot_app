@@ -1,14 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'package:docspot_app/data/models/models.dart';
 
 class ChatController extends GetxController {
   final String userId = 'user123';
-
+  final ImagePicker _picker = ImagePicker();
   var messages = <ChatMessage>[].obs;
-
-  // 메시지 입력 필드 제어용 TextEditingController
   final TextEditingController messageController = TextEditingController();
 
   @override
@@ -42,17 +44,31 @@ class ChatController extends GetxController {
     ]);
   }
 
-  void sendMessage(String content) {
+  void sendMessage(String content, {String? imagePath}) {
     final newMessage = ChatMessage(
       senderId: userId,
       content: content,
+      imagePath: imagePath,
       timestamp: DateTime.now(),
     );
 
-    messages.insert(0, newMessage);
-
-    // 서버와 통신하여 메시지를 실제로 전송하는 로직이 들어가야 함
     // 예시: sendMessageToServer(newMessage);
+    messages.insert(0, newMessage);
+  }
+
+  void copyMessage(String messageContent) {
+    Clipboard.setData(ClipboardData(text: messageContent));
+    Get.snackbar("복사 완료", "메시지가 클립보드에 복사되었습니다.",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.black54,
+        colorText: Colors.white);
+  }
+
+  Future<void> pickImage() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      sendMessage('image message', imagePath: image.path);
+    }
   }
 
   void receiveMessage(String senderId, String content) {
@@ -66,7 +82,7 @@ class ChatController extends GetxController {
 
   @override
   void onClose() {
-    messageController.dispose(); // 컨트롤러 해제
+    messageController.dispose();
     super.onClose();
   }
 }
