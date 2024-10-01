@@ -82,33 +82,10 @@ class _ChatSubPageState extends State<ChatSubPage> {
                             DateFormat('a hh:mm').format(message.timestamp);
 
                         return GestureDetector(
-                          onLongPress: () {
-                            showModalBottomSheet(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return Container(
-                                  color: const Color.fromARGB(255, 55, 55, 55),
-                                  child: Wrap(
-                                    children: [
-                                      ListTile(
-                                        leading: const Icon(Icons.copy,
-                                            color: Colors.white),
-                                        title: const Text('복사하기',
-                                            style:
-                                                TextStyle(color: Colors.white)),
-                                        onTap: () {
-                                          controller
-                                              .copyMessage(message.content);
-                                          Navigator.pop(context);
-                                        },
-                                      ),
-                                      const SizedBox(height: 100)
-                                    ],
-                                  ),
-                                );
-                              },
-                            );
-                          },
+                          onLongPress: () => message.imagePath != null
+                              ? debugPrint('image message long pressed!')
+                              : controller.longPressFuc(
+                                  context, message, message.imagePath == null),
                           child: Align(
                             alignment: isMyMessage
                                 ? Alignment.centerRight

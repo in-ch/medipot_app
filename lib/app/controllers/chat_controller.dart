@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 
+import 'package:docspot_app/app/views/views.dart';
 import 'package:docspot_app/data/models/models.dart';
 
 class ChatController extends GetxController {
@@ -78,6 +81,52 @@ class ChatController extends GetxController {
       timestamp: DateTime.now(),
     );
     messages.insert(0, newMessage);
+  }
+
+  void longPressFuc(BuildContext context, ChatMessage message, bool isTextMsg) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        debugPrint(isTextMsg.toString());
+        return MessageClipBoardModal(
+            text: isTextMsg ? '복사하기' : '저장하기',
+            onTap: () {
+              isTextMsg
+                  ? copyMessage(message.content)
+                  : saveImage(message.imagePath);
+              Navigator.pop(context);
+            });
+      },
+    );
+  }
+
+  Future<void> saveImage(String? imagePath) async {
+    try {
+      if (imagePath == null) {
+        Get.snackbar(
+          '오류 발생',
+          '저장할 이미지가 없습니다.',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+        return;
+      }
+      final directory = await getApplicationDocumentsDirectory();
+      final String fileName = "${DateTime.now().millisecondsSinceEpoch}.jpg";
+      final File newImage = File('${directory.path}/$fileName');
+      await File(imagePath).copy(newImage.path);
+
+      Get.snackbar('이미지 저장', '이미지가 저장되었습니다. ${newImage.path}',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green,
+          colorText: Colors.white);
+    } catch (e) {
+      Get.snackbar('이미지 저장이 실패하였습니다.', '잠시 후 다시 시도해주세요.',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+    }
   }
 
   @override
