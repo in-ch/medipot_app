@@ -1,5 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
 
 import 'package:docspot_app/app/style/theme.dart';
@@ -15,44 +13,112 @@ class BottomNavigation extends StatefulWidget {
   });
 
   @override
-  _BottomNavigationWidgetState createState() => _BottomNavigationWidgetState();
+  BottomNavigationWidgetState createState() => BottomNavigationWidgetState();
 }
 
-class _BottomNavigationWidgetState extends State<BottomNavigation> {
+class BottomNavigationWidgetState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      currentIndex: widget.currentIndex,
-      onTap: widget.onTabTapped,
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.card_travel),
-          label: '초빙 정보',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.map),
-          label: '개원 입지',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.chat),
-          label: '실시간 채팅',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.favorite),
-          label: '관심 목록',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: '설정',
-        ),
-      ],
-      selectedItemColor: colorScheme.primary, // 선택된 아이템의 아이콘 색상
-      unselectedItemColor: Colors.black26, // 선택되지 않은 아이템의 아이콘 색상
-      selectedLabelStyle: TextStyle(
-          fontWeight: FontWeight.w200,
-          color: colorScheme.primary), // 선택된 아이템의 레이블 스타일
-      unselectedLabelStyle:
-          const TextStyle(fontWeight: FontWeight.w200, color: Colors.black26),
+    return BottomAppBar(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          _buildNavItem(Icons.card_travel, '초빙 정보', 0),
+          _buildNavItem(Icons.map, '개원 입지', 1),
+          _buildChatNavItem(Icons.chat, '실시간 채팅', 2, '1'),
+          _buildNavItem(Icons.favorite, '관심 목록', 3),
+          _buildNavItem(Icons.settings, '설정', 4),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNavItem(IconData icon, String label, int index) {
+    return GestureDetector(
+      onTap: () => widget.onTabTapped(index),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Icon(
+            icon,
+            color: widget.currentIndex == index
+                ? colorScheme.primary
+                : Colors.black26,
+          ),
+          const SizedBox(height: 6),
+          Text(
+            label,
+            style: TextStyle(
+              color: widget.currentIndex == index
+                  ? colorScheme.primary
+                  : Colors.black26,
+              fontSize: 12,
+              fontWeight: FontWeight.w200,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildChatNavItem(
+      IconData icon, String label, int index, String badgeText) {
+    return GestureDetector(
+      onTap: () => widget.onTabTapped(index),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Positioned(
+                child: SizedBox(
+                  width: 60,
+                  height: 30,
+                  child: Icon(
+                    icon,
+                    color: widget.currentIndex == index
+                        ? colorScheme.primary
+                        : Colors.black26,
+                  ),
+                ),
+              ),
+              badgeText == "0"
+                  ? Container()
+                  : Positioned(
+                      right: badgeText.length > 1 ? 0 : 5,
+                      top: 0,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 7, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Text(
+                          badgeText,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                          ),
+                        ),
+                      ),
+                    ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Text(
+            label,
+            style: TextStyle(
+              color: widget.currentIndex == index
+                  ? colorScheme.primary
+                  : Colors.black26,
+              fontSize: 12,
+              fontWeight: FontWeight.w200,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
