@@ -14,3 +14,4 @@ export './career_service.dart';
 export './search_service.dart';
 export './alarm_service.dart';
 export './device_info_service.dart';
+export './upload_service.dart';

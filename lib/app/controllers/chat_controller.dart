@@ -9,6 +9,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:docspot_app/app/views/views.dart';
+import 'package:docspot_app/services/services.dart';
 import 'package:docspot_app/data/models/models.dart';
 
 class ChatController extends GetxController {
@@ -17,11 +18,15 @@ class ChatController extends GetxController {
   var messages = <ChatMessage>[].obs;
   final TextEditingController messageController = TextEditingController();
   RxBool isLogin = false.obs;
+  RxBool isGranted = false.obs;
+  RxBool isLicenseUploadLoading = false.obs;
 
   @override
   void onInit() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     isLogin.value = prefs.getBool("isLogin") ?? false;
+    isGranted.value = prefs.getBool("grant") ?? false;
+
     super.onInit();
     _addMockMessages();
   }
@@ -141,10 +146,35 @@ class ChatController extends GetxController {
     );
   }
 
+  void goToGrant(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return GrantModal();
+      },
+    );
+  }
+
+  Future<void> uploadLicense(BuildContext context) async {
+    isLicenseUploadLoading.value = true;
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    final UploadService uploadService = UploadService();
+
+    if (image != null) {
+      final file = File(image.path);
+      await uploadService.uploadFile(file);
+      Get.snackbar("인증 신청이 완료되었습니다.", "인증 완료 후 알림을 보내드립니다.");
+    }
+    Navigator.pop(context);
+    isLicenseUploadLoading.value = false;
+    update();
+  }
+
   @override
   void onClose() {
     messageController.dispose();
     isLogin.value = false;
+    isGranted.value = false;
     update();
     super.onClose();
   }

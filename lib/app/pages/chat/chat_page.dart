@@ -176,56 +176,65 @@ class ChatPage extends GetView<ChatController> {
                 ),
 
                 // 메시지 입력 필드 및 전송 버튼
-                Container(
-                  color: const Color.fromARGB(255, 45, 45, 45),
-                  child: Row(
-                    children: [
-                      const SizedBox(width: 10),
-                      SizedBox(
-                          width: 20,
-                          child: InkWell(
-                            onTap: () {
-                              controller.pickImage();
-                            },
-                            highlightColor: Colors.transparent,
-                            splashColor: Colors.transparent,
-                            child: const Icon(
-                              CupertinoIcons.add,
-                              color: Color.fromARGB(255, 125, 125, 125),
-                            ),
-                          )),
-                      Expanded(
-                        child: TextField(
-                          controller: controller.messageController,
-                          minLines: 1,
-                          maxLines: 3,
-                          style: const TextStyle(color: Colors.white),
-                          decoration: const InputDecoration(
-                            hintText: '',
-                            border: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            focusedBorder: InputBorder.none,
-                            contentPadding: EdgeInsets.symmetric(
-                              horizontal: 20,
-                              vertical: 10,
+                Column(
+                  children: [
+                    Container(
+                      color: const Color.fromARGB(255, 45, 45, 45),
+                      child: Row(
+                        children: [
+                          const SizedBox(width: 10),
+                          SizedBox(
+                              width: 20,
+                              child: InkWell(
+                                onTap: () {
+                                  controller.pickImage();
+                                },
+                                highlightColor: Colors.transparent,
+                                splashColor: Colors.transparent,
+                                child: const Icon(
+                                  CupertinoIcons.add,
+                                  color: Color.fromARGB(255, 125, 125, 125),
+                                ),
+                              )),
+                          Expanded(
+                            child: TextField(
+                              controller: controller.messageController,
+                              minLines: 1,
+                              maxLines: 3,
+                              style: const TextStyle(color: Colors.white),
+                              decoration: const InputDecoration(
+                                hintText: '',
+                                border: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                  vertical: 10,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                          const SizedBox(width: 10),
+                          IconButton(
+                            icon: const Icon(Icons.send),
+                            color: colorScheme.primary,
+                            onPressed: () {
+                              if (controller
+                                  .messageController.text.isNotEmpty) {
+                                controller.sendMessage(
+                                    controller.messageController.text);
+                                controller.messageController.clear();
+                              }
+                            },
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 10),
-                      IconButton(
-                        icon: const Icon(Icons.send),
-                        color: colorScheme.primary,
-                        onPressed: () {
-                          if (controller.messageController.text.isNotEmpty) {
-                            controller
-                                .sendMessage(controller.messageController.text);
-                            controller.messageController.clear();
-                          }
-                        },
-                      ),
-                    ],
-                  ),
+                    ),
+                    Container(
+                      height: GetPlatform.isIOS ? 20 : 10,
+                      color: const Color.fromARGB(255, 45, 45, 45),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -247,7 +256,7 @@ class ChatPage extends GetView<ChatController> {
                                 ),
                                 const SizedBox(height: 10),
                                 const Text(
-                                  "로그인 및 인증 후 실시간 채팅 기능을 이용해보세요.",
+                                  "로그인 후 실시간 채팅 기능을 이용해보세요.",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 14),
                                   textAlign: TextAlign.center,
@@ -258,6 +267,45 @@ class ChatPage extends GetView<ChatController> {
                                     controller.goToLogin(context);
                                   },
                                   text: "로그인하러 가기",
+                                  isReverse: true,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  : Container(),
+            ),
+            Obx(
+              () => controller.isLogin.value && !controller.isGranted.value
+                  ? Positioned.fill(
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                        child: Container(
+                          color: Colors.black.withOpacity(0.3),
+                          child: Center(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Text(
+                                  "의사 회원 인증이 필요합니다.",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                                const SizedBox(height: 10),
+                                const Text(
+                                  "간단하게 의사 인증을 해보세요.",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 14),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 10),
+                                CommonButton(
+                                  onClick: () {
+                                    controller.goToGrant(context);
+                                  },
+                                  text: "인증하러 가기",
                                   isReverse: true,
                                 ),
                               ],

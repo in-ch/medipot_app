@@ -8,6 +8,7 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:get/get.dart';
 
 import 'package:docspot_app/app/pages/pages.dart';
+import 'package:docspot_app/app/pages/chat/chat_page.dart';
 import 'package:docspot_app/services/services.dart';
 import 'package:docspot_app/app/utils/utils.dart';
 
@@ -22,6 +23,7 @@ class LoginController extends GetxController {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         String fcmToken = prefs.getString("fcmToken")!;
         await UserService.updateFcmToken(fcmToken);
+        Get.offAll(() => const ChatPage());
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (BuildContext context) => const HomePage(),
@@ -53,6 +55,7 @@ class LoginController extends GetxController {
         String fcmToken = prefs.getString("fcmToken")!;
         await UserService.updateFcmToken(fcmToken);
 
+        Get.offAll(() => const ChatPage());
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (BuildContext context) => const HomePage(),

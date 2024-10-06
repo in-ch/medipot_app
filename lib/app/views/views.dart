@@ -18,6 +18,7 @@ export './common/section.dart';
 export './common/google_map.dart';
 export './common/custom_back_button.dart';
 export './common/common_button.dart';
+export './common/dashed_border_box.dart';
 
 export './feed/feed.dart';
 export './feed/feeds.dart';
@@ -35,6 +36,7 @@ export './modals/please_input_email_modal.dart';
 export './modals/taro_result_modal.dart';
 export './modals/message_clip_board_modal.dart';
 export './modals/login_modal.dart';
+export './modals/grant_modal.dart';
 
 export './small_circle.dart';
 export './avatar.dart';
