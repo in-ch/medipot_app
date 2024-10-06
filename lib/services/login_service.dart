@@ -33,6 +33,7 @@ class LoginService {
       prefs.setString('phone', data.phone);
       prefs.setString('accessToken', data.token);
       prefs.setString('refreshToken', data.refreshToken);
+      prefs.setString('grant', data.grant);
     } else {
       throw Exception('Failed login API');
     }
@@ -67,6 +68,7 @@ class LoginService {
       prefs.setString('phone', data.phone);
       prefs.setString('accessToken', data.token);
       prefs.setString('refreshToken', data.refreshToken);
+      prefs.setString('grant', data.grant);
     } else {
       throw Exception('Failed login API');
     }

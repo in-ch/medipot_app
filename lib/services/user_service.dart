@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:docspot_app/data/models/models.dart';
+import 'package:docspot_app/app/constants/constants.dart';
 
 class UserService {
   static Future<Map<String, dynamic>> me() async {
@@ -55,6 +56,7 @@ class UserService {
       prefs.setString('accessToken', "");
       prefs.setString('refreshToken', "");
       prefs.setBool('isLogin', false);
+      prefs.setString('grant', Grant.NONE.toString());
 
       throw Exception('Failed to user refresh');
     }

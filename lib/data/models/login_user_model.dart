@@ -6,6 +6,7 @@ class LoginUserData {
   final String token;
   final String refreshToken;
   final DateTime? deletedAt;
+  final String grant;
 
   LoginUserData({
     required this.no,
@@ -14,6 +15,7 @@ class LoginUserData {
     required this.phone,
     required this.token,
     required this.refreshToken,
+    required this.grant,
     this.deletedAt,
   });
 
@@ -25,6 +27,7 @@ class LoginUserData {
       phone: json['phone'] ?? '',
       token: json['token'],
       refreshToken: json['refresh_token'],
+      grant: json['grant'],
       deletedAt:
           json['deletedAt'] != null ? DateTime.parse(json['deletedAt']) : null,
     );

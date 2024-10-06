@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import 'package:docspot_app/data/models/models.dart';
 import 'package:docspot_app/services/services.dart';
+import 'package:docspot_app/app/constants/constants.dart';
 
 class NotificationController extends GetxController {
   FirebaseMessaging messaging = FirebaseMessaging.instance;
@@ -81,6 +82,7 @@ class NotificationController extends GetxController {
           prefs.setString('accessToken', "");
           prefs.setString('refreshToken', "");
           prefs.setBool('isLogin', false);
+          prefs.setString('grant', Grant.NONE.toString());
         }
       } else {
         await UserService.updateFcmToken(token);
