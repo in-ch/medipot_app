@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:docspot_app/app/views/views.dart';
 import 'package:docspot_app/data/models/models.dart';
@@ -15,9 +16,12 @@ class ChatController extends GetxController {
   final ImagePicker _picker = ImagePicker();
   var messages = <ChatMessage>[].obs;
   final TextEditingController messageController = TextEditingController();
+  RxBool isLogin = false.obs;
 
   @override
-  void onInit() {
+  void onInit() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    isLogin.value = prefs.getBool("isLogin") ?? false;
     super.onInit();
     _addMockMessages();
   }
@@ -87,7 +91,6 @@ class ChatController extends GetxController {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        debugPrint(isTextMsg.toString());
         return MessageClipBoardModal(
             text: isTextMsg ? '복사하기' : '저장하기',
             onTap: () {
@@ -129,9 +132,20 @@ class ChatController extends GetxController {
     }
   }
 
+  void goToLogin(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return LoginModal();
+      },
+    );
+  }
+
   @override
   void onClose() {
     messageController.dispose();
+    isLogin.value = false;
+    update();
     super.onClose();
   }
 }
