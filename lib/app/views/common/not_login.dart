@@ -6,8 +6,7 @@ import 'package:docspot_app/app/style/theme.dart';
 
 // ignore: must_be_immutable
 class NotLogin extends StatelessWidget {
-  NotLogin({Key? key, required this.text, this.onlyText = false})
-      : super(key: key);
+  NotLogin({super.key, required this.text, this.onlyText = false});
   String text;
   bool onlyText;
 
@@ -33,10 +32,9 @@ class NotLogin extends StatelessWidget {
                         Get.toNamed(Routes.login);
                       },
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            colorScheme.primary),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                        backgroundColor:
+                            WidgetStateProperty.all<Color>(colorScheme.primary),
+                        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4.0),
                           ),

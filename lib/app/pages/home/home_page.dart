@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
       case 1:
         return const MapSubPage();
       case 2:
-        return const ChatSubPage();
+        return const Placeholder();
       case 3:
         return const FavoritesSubPage();
       case 4:

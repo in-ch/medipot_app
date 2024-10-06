@@ -12,7 +12,6 @@ export './home/sub/map_sub_page.dart';
 export './home/sub/setting_sub_page.dart';
 export './home/sub/favorites_sub_page.dart';
 export './home/sub/career_page.dart';
-export './home/sub/chat_page.dart';
 
 export './detail/detail_page.dart';
 export './nestedReply/nested_reply_page.dart';
@@ -32,6 +31,7 @@ import './search/search_list.dart';
 import './alarm/alarm_page.dart';
 import './email/email_page.dart';
 import './game/roulette_game_page.dart';
+import './chat/chat_page.dart';
 
 abstract class AppPages {
   static final pages = [
@@ -140,6 +140,11 @@ abstract class AppPages {
         name: Routes.email,
         page: () => const EmailPage(),
         transition: Transition.cupertino,
-        bindings: [EmailBinding()])
+        bindings: [EmailBinding()]),
+    GetPage(
+        name: Routes.chat,
+        page: () => const ChatPage(),
+        transition: Transition.downToUp,
+        bindings: [ChatBinding()]),
   ];
 }

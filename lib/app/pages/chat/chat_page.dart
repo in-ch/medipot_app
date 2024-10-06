@@ -10,16 +10,8 @@ import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/views/views.dart';
 
-class ChatSubPage extends StatefulWidget {
-  const ChatSubPage({super.key});
-
-  @override
-  State<ChatSubPage> createState() => _ChatSubPageState();
-}
-
-class _ChatSubPageState extends State<ChatSubPage> {
-  final ChatController controller = Get.put(ChatController());
-  final FocusNode _focusNode = FocusNode();
+class ChatPage extends GetView<ChatController> {
+  const ChatPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -204,7 +196,6 @@ class _ChatSubPageState extends State<ChatSubPage> {
                           )),
                       Expanded(
                         child: TextField(
-                          focusNode: _focusNode,
                           controller: controller.messageController,
                           minLines: 1,
                           maxLines: 3,
@@ -281,11 +272,5 @@ class _ChatSubPageState extends State<ChatSubPage> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _focusNode.dispose();
-    super.dispose();
   }
 }

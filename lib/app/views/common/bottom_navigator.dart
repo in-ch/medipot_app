@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:docspot_app/app/style/theme.dart';
+import 'package:docspot_app/app/routes/routes.dart';
 
 class BottomNavigation extends StatefulWidget {
   final int currentIndex;
@@ -25,7 +27,7 @@ class BottomNavigationWidgetState extends State<BottomNavigation> {
         children: [
           _buildNavItem(Icons.card_travel, '초빙 정보', 0),
           _buildNavItem(Icons.map, '개원 입지', 1),
-          _buildChatNavItem(Icons.chat, '실시간 채팅', 2, '1'),
+          _buildChatNavItem(Icons.chat, '실시간 채팅', 2, '1', Routes.chat),
           _buildNavItem(Icons.favorite, '관심 목록', 3),
           _buildNavItem(Icons.settings, '설정', 4),
         ],
@@ -62,9 +64,9 @@ class BottomNavigationWidgetState extends State<BottomNavigation> {
   }
 
   Widget _buildChatNavItem(
-      IconData icon, String label, int index, String badgeText) {
+      IconData icon, String label, int index, String badgeText, String route) {
     return GestureDetector(
-      onTap: () => widget.onTabTapped(index),
+      onTap: () => Get.toNamed(route),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
