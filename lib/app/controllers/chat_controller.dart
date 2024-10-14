@@ -3,10 +3,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:socket_io_client/socket_io_client.dart' as io;
 
 import 'package:docspot_app/app/constants/constants.dart';
 import 'package:docspot_app/data/models/models.dart';
@@ -21,6 +23,7 @@ class ChatController extends GetxController {
   RxBool isLogin = false.obs;
   RxBool isGranted = false.obs;
   RxBool isLicenseUploadLoading = false.obs;
+  late io.Socket socket;
 
   @override
   void onInit() async {
@@ -29,44 +32,66 @@ class ChatController extends GetxController {
     String? grantValue = prefs.getString("grant");
     isGranted.value = grantValue == Grant.DOCTOR.value;
 
+    _connectToWebSocket();
     super.onInit();
     _addMockMessages();
+  }
+
+  void _connectToWebSocket() {
+    socket = io.io(dotenv.get("WEB_SOCKET_SERVICE"), <String, dynamic>{
+      'transports': ['websocket'],
+      'autoConnect': false,
+    });
+    socket.connect();
+    socket.onConnect((_) {
+      debugPrint('WebSocket에 접속하였습니다.');
+      socket.on('chat', (data) {
+        debugPrint('메시지를 받았습니다.: $data');
+        final author = data['author'] ?? 'Unknown 유저';
+        final body = data['body'] ?? '';
+        final img = data['img'];
+
+        receiveMessage(author, body, img);
+      });
+    });
+    socket.onDisconnect((_) {
+      debugPrint('WebSocket와의 연결을 종료하였습니다.');
+    });
   }
 
   void _addMockMessages() {
     messages.addAll([
       ChatMessage(
-          senderId: 'user456',
-          content: '안녕하세요!',
+          author: 'user456',
+          body: '안녕하세요!',
           timestamp: DateTime.now().subtract(const Duration(minutes: 5))),
       ChatMessage(
-          senderId: 'user789',
-          content: '채팅 시작해요!',
+          author: 'user789',
+          body: '채팅 시작해요!',
           timestamp: DateTime.now().subtract(const Duration(minutes: 3))),
       ChatMessage(
-          senderId: 'user456',
-          content: '어떻게 지내세요?',
+          author: 'user456',
+          body: '어떻게 지내세요?',
           timestamp: DateTime.now().subtract(const Duration(minutes: 2))),
       ChatMessage(
-          senderId: 'user123',
-          content: '저는 잘 지내요. 당신은요?',
+          author: 'user123',
+          body: '저는 잘 지내요. 당신은요?',
           timestamp: DateTime.now().subtract(const Duration(minutes: 1))),
       ChatMessage(
-          senderId: 'user789',
-          content: '잘 지내고 있어요. 고마워요!',
+          author: 'user789',
+          body: '잘 지내고 있어요. 고마워요!',
           timestamp: DateTime.now()),
     ]);
   }
 
-  void sendMessage(String content, {String? imagePath}) {
+  void sendMessage(String body, {String? imagePath}) {
     final newMessage = ChatMessage(
-      senderId: userId,
-      content: content,
-      imagePath: imagePath,
+      author: userId,
+      body: body,
+      img: imagePath,
       timestamp: DateTime.now(),
     );
-
-    // 예시: sendMessageToServer(newMessage);
+    socket.emit('chat', newMessage.toJson());
     messages.insert(0, newMessage);
   }
 
@@ -85,10 +110,14 @@ class ChatController extends GetxController {
     }
   }
 
-  void receiveMessage(String senderId, String content) {
+  void receiveMessage(String author, String body, String? img) {
+    if (author == userId) {
+      return;
+    }
     final newMessage = ChatMessage(
-      senderId: senderId,
-      content: content,
+      author: author,
+      body: body,
+      img: img,
       timestamp: DateTime.now(),
     );
     messages.insert(0, newMessage);
@@ -101,9 +130,7 @@ class ChatController extends GetxController {
         return MessageClipBoardModal(
             text: isTextMsg ? '복사하기' : '저장하기',
             onTap: () {
-              isTextMsg
-                  ? copyMessage(message.content)
-                  : saveImage(message.imagePath);
+              isTextMsg ? copyMessage(message.body) : saveImage(message.img);
               Navigator.pop(context);
             });
       },
@@ -177,6 +204,7 @@ class ChatController extends GetxController {
     messageController.dispose();
     isLogin.value = false;
     isGranted.value = false;
+    socket.dispose();
     update();
     super.onClose();
   }

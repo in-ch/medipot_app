@@ -1,13 +1,22 @@
 class ChatMessage {
-  final String senderId;
-  final String content;
-  final String? imagePath;
+  final String author;
+  final String body;
+  final String? img;
   final DateTime timestamp;
 
   ChatMessage({
-    required this.senderId,
-    required this.content,
-    this.imagePath,
+    required this.author,
+    required this.body,
+    this.img,
     required this.timestamp,
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'author': author,
+      'body': body,
+      'img': img,
+      'timestamp': timestamp.toIso8601String(),
+    };
+  }
 }

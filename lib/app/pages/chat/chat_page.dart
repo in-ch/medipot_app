@@ -76,15 +76,15 @@ class ChatPage extends GetView<ChatController> {
                         itemBuilder: (context, index) {
                           final message = controller.messages[index];
                           final isMyMessage =
-                              message.senderId == controller.userId;
+                              message.author == controller.userId;
                           final formattedTime =
                               DateFormat('a hh:mm').format(message.timestamp);
 
                           return GestureDetector(
-                            onLongPress: () => message.imagePath != null
+                            onLongPress: () => message.img != null
                                 ? debugPrint('image message long pressed!')
-                                : controller.longPressFuc(context, message,
-                                    message.imagePath == null),
+                                : controller.longPressFuc(
+                                    context, message, message.img == null),
                             child: Align(
                               alignment: isMyMessage
                                   ? Alignment.centerRight
@@ -98,7 +98,7 @@ class ChatPage extends GetView<ChatController> {
                                     margin: const EdgeInsets.symmetric(
                                         vertical: 5, horizontal: 10),
                                     padding: EdgeInsets.all(
-                                        message.imagePath != null ? 0 : 10),
+                                        message.img != null ? 0 : 10),
                                     decoration: BoxDecoration(
                                       color: isMyMessage
                                           ? colorScheme.primary
@@ -106,7 +106,7 @@ class ChatPage extends GetView<ChatController> {
                                               255, 56, 56, 56),
                                       borderRadius: BorderRadius.circular(10),
                                     ),
-                                    child: message.imagePath != null
+                                    child: message.img != null
                                         ? GestureDetector(
                                             onTap: () {
                                               showDialog(
@@ -126,8 +126,7 @@ class ChatPage extends GetView<ChatController> {
                                                             BorderRadius
                                                                 .circular(10),
                                                         child: Image.file(
-                                                          File(message
-                                                              .imagePath!),
+                                                          File(message.img!),
                                                           fit: BoxFit.cover,
                                                         ),
                                                       ),
@@ -142,14 +141,14 @@ class ChatPage extends GetView<ChatController> {
                                               child: SizedBox(
                                                 width: 180,
                                                 child: Image.file(
-                                                  File(message.imagePath!),
+                                                  File(message.img!),
                                                   fit: BoxFit.cover,
                                                 ),
                                               ),
                                             ),
                                           )
                                         : Text(
-                                            message.content,
+                                            message.body,
                                             style: const TextStyle(
                                                 color: Colors.white),
                                           ),
