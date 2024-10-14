@@ -8,9 +8,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:docspot_app/app/views/views.dart';
-import 'package:docspot_app/services/services.dart';
+import 'package:docspot_app/app/constants/constants.dart';
 import 'package:docspot_app/data/models/models.dart';
+import 'package:docspot_app/services/services.dart';
+import 'package:docspot_app/app/views/views.dart';
 
 class ChatController extends GetxController {
   final String userId = 'user123';
@@ -25,7 +26,8 @@ class ChatController extends GetxController {
   void onInit() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     isLogin.value = prefs.getBool("isLogin") ?? false;
-    isGranted.value = prefs.getBool("grant") ?? false;
+    String? grantValue = prefs.getString("grant");
+    isGranted.value = grantValue == Grant.DOCTOR.value;
 
     super.onInit();
     _addMockMessages();
