@@ -16,7 +16,7 @@ import 'package:docspot_app/services/services.dart';
 import 'package:docspot_app/app/views/views.dart';
 
 class ChatController extends GetxController {
-  final String userId = 'user123';
+  String userId = 'user';
   final ImagePicker _picker = ImagePicker();
   var messages = <ChatMessage>[].obs;
   final TextEditingController messageController = TextEditingController();
@@ -29,9 +29,10 @@ class ChatController extends GetxController {
   void onInit() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     isLogin.value = prefs.getBool("isLogin") ?? false;
+    String userNo = prefs.getString("userNo").toString();
     String? grantValue = prefs.getString("grant");
     isGranted.value = grantValue == Grant.DOCTOR.value;
-
+    userId = userNo;
     _connectToWebSocket();
     super.onInit();
     _getMessages();

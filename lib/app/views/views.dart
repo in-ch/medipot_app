@@ -68,7 +68,12 @@ export './career/career_card_bottom.dart';
 export './career/career_card_header.dart';
 export './career/career_company_info.dart';
 export './career/banner_slider.dart';
-export 'career/show_new_alarms.dart';
+export './career/show_new_alarms.dart';
+
+export './chat/chat_item.dart';
+export './chat/chat_textarea.dart';
+export './chat/chat_please_login_filter.dart';
+export './chat/chat_please_grant_filter.dart';
 
 export './search/search_keyword.dart';
 export './search/search_rank.dart';

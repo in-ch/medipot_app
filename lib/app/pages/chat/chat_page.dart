@@ -1,7 +1,3 @@
-import 'dart:io';
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -80,238 +76,32 @@ class ChatPage extends GetView<ChatController> {
                           final formattedTime =
                               DateFormat('a hh:mm').format(message.timestamp);
 
-                          return GestureDetector(
-                            onLongPress: () => message.img != null
-                                ? debugPrint('image message long pressed!')
-                                : controller.longPressFuc(
-                                    context, message, message.img == null),
-                            child: Align(
-                              alignment: isMyMessage
-                                  ? Alignment.centerRight
-                                  : Alignment.centerLeft,
-                              child: Column(
-                                crossAxisAlignment: isMyMessage
-                                    ? CrossAxisAlignment.end
-                                    : CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    margin: const EdgeInsets.symmetric(
-                                        vertical: 5, horizontal: 10),
-                                    padding: EdgeInsets.all(
-                                        message.img != null ? 0 : 10),
-                                    decoration: BoxDecoration(
-                                      color: isMyMessage
-                                          ? colorScheme.primary
-                                          : const Color.fromARGB(
-                                              255, 56, 56, 56),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: message.img != null
-                                        ? GestureDetector(
-                                            onTap: () {
-                                              showDialog(
-                                                context: context,
-                                                barrierColor: Colors.black87,
-                                                builder:
-                                                    (BuildContext context) {
-                                                  return Dialog(
-                                                    backgroundColor:
-                                                        Colors.transparent,
-                                                    child: Container(
-                                                      margin:
-                                                          const EdgeInsets.all(
-                                                              20),
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                        child: Image.file(
-                                                          File(message.img!),
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                            },
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              child: SizedBox(
-                                                width: 180,
-                                                child: Image.file(
-                                                  File(message.img!),
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ),
-                                          )
-                                        : Text(
-                                            message.body,
-                                            style: const TextStyle(
-                                                color: Colors.white),
-                                          ),
-                                  ),
-                                  Padding(
-                                    padding: isMyMessage
-                                        ? const EdgeInsets.only(right: 20.0)
-                                        : const EdgeInsets.only(left: 20.0),
-                                    child: Text(
-                                      formattedTime,
-                                      style: const TextStyle(
-                                          color: Colors.white, fontSize: 10),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8)
-                                ],
-                              ),
-                            ),
+                          return ChatItem(
+                            message: message,
+                            isMy: isMyMessage,
+                            formattedTime: formattedTime,
+                            longPressFuc: (context) => controller.longPressFuc(
+                                context, message, message.img == null),
                           );
                         },
                       );
                     }),
                   ),
                 ),
-
-                // 메시지 입력 필드 및 전송 버튼
-                Column(
-                  children: [
-                    Container(
-                      color: const Color.fromARGB(255, 45, 45, 45),
-                      child: Row(
-                        children: [
-                          const SizedBox(width: 10),
-                          SizedBox(
-                              width: 20,
-                              child: InkWell(
-                                onTap: () {
-                                  controller.pickImage();
-                                },
-                                highlightColor: Colors.transparent,
-                                splashColor: Colors.transparent,
-                                child: const Icon(
-                                  CupertinoIcons.add,
-                                  color: Color.fromARGB(255, 125, 125, 125),
-                                ),
-                              )),
-                          Expanded(
-                            child: TextField(
-                              controller: controller.messageController,
-                              minLines: 1,
-                              maxLines: 3,
-                              style: const TextStyle(color: Colors.white),
-                              decoration: const InputDecoration(
-                                hintText: '',
-                                border: InputBorder.none,
-                                enabledBorder: InputBorder.none,
-                                focusedBorder: InputBorder.none,
-                                contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                  vertical: 10,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          IconButton(
-                            icon: const Icon(Icons.send),
-                            color: colorScheme.primary,
-                            onPressed: () {
-                              if (controller
-                                  .messageController.text.isNotEmpty) {
-                                controller.sendMessage(
-                                    controller.messageController.text);
-                                controller.messageController.clear();
-                              }
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      height: GetPlatform.isIOS ? 20 : 10,
-                      color: const Color.fromARGB(255, 45, 45, 45),
-                    ),
-                  ],
-                ),
+                ChatTextarea(controller: controller)
               ],
             ),
             Obx(
               () => !controller.isLogin.value
-                  ? Positioned.fill(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                        child: Container(
-                          color: Colors.black.withOpacity(0.3),
-                          child: Center(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Text(
-                                  "로그인이 필요합니다.",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 18),
-                                ),
-                                const SizedBox(height: 10),
-                                const Text(
-                                  "로그인 후 실시간 채팅 기능을 이용해보세요.",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 14),
-                                  textAlign: TextAlign.center,
-                                ),
-                                const SizedBox(height: 10),
-                                CommonButton(
-                                  onClick: () {
-                                    controller.goToLogin(context);
-                                  },
-                                  text: "로그인하러 가기",
-                                  isReverse: true,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+                  ? ChatPleaseLoginFilter(
+                      goToLogin: () => controller.goToLogin(context),
                     )
                   : Container(),
             ),
             Obx(
               () => controller.isLogin.value && !controller.isGranted.value
-                  ? Positioned.fill(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                        child: Container(
-                          color: Colors.black.withOpacity(0.3),
-                          child: Center(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Text(
-                                  "의사 회원 인증이 필요합니다.",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 18),
-                                ),
-                                const SizedBox(height: 10),
-                                const Text(
-                                  "간단하게 의사 인증을 해보세요.",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 14),
-                                  textAlign: TextAlign.center,
-                                ),
-                                const SizedBox(height: 10),
-                                CommonButton(
-                                  onClick: () {
-                                    controller.goToGrant(context);
-                                  },
-                                  text: "인증하러 가기",
-                                  isReverse: true,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+                  ? ChatPleaseGrantFilter(
+                      goToGrant: () => controller.goToGrant(context),
                     )
                   : Container(),
             )
