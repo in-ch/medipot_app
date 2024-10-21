@@ -54,7 +54,7 @@ class ChatPage extends GetView<ChatController> {
                     padding: EdgeInsets.only(
                         left: 12.0, right: 12.0, top: 4.0, bottom: 4.0),
                     child: Text(
-                      "모든 메시지는 00:00시에 초기화됩니다.",
+                      "모든 메시지는 24시간 후에 초기화됩니다.",
                       style: TextStyle(color: Colors.white, fontSize: 12.0),
                     ),
                   ),
@@ -72,7 +72,7 @@ class ChatPage extends GetView<ChatController> {
                         itemBuilder: (context, index) {
                           final message = controller.messages[index];
                           final isMyMessage =
-                              message.author == controller.userId;
+                              message.userNo == int.parse(controller.userId);
                           final formattedTime =
                               DateFormat('a hh:mm').format(message.timestamp);
 

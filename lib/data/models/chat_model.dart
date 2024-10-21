@@ -3,12 +3,16 @@ class ChatMessage {
   final String body;
   final String? img;
   final DateTime timestamp;
+  final String? profile;
+  final int userNo;
 
   ChatMessage({
     required this.author,
     required this.body,
     this.img,
     required this.timestamp,
+    this.profile,
+    required this.userNo,
   });
 
   Map<String, dynamic> toJson() {
@@ -17,15 +21,18 @@ class ChatMessage {
       'body': body,
       'img': img,
       'timestamp': timestamp.toIso8601String(),
+      'profile': profile,
+      'userNo': userNo,
     };
   }
 
   factory ChatMessage.fromJson(Map<String, dynamic> json) {
     return ChatMessage(
-      author: json['author'],
-      body: json['body'],
-      img: json['img'],
-      timestamp: DateTime.parse(json['timestamp']),
-    );
+        author: json['author'],
+        body: json['body'],
+        img: json['img'],
+        timestamp: DateTime.parse(json['timestamp']),
+        profile: json['profile'],
+        userNo: json['userNo']);
   }
 }

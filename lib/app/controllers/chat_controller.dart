@@ -51,8 +51,10 @@ class ChatController extends GetxController {
         final author = data['author'] ?? 'Unknown 유저';
         final body = data['body'] ?? '';
         final img = data['img'];
+        final userNo = data['userNo'];
+        final profile = data['profile'];
 
-        receiveMessage(author, body, img);
+        receiveMessage(author, body, img, userNo, profile);
       });
     });
     socket.onDisconnect((_) {
@@ -67,7 +69,8 @@ class ChatController extends GetxController {
 
   void sendMessage(String body, {String? imagePath}) {
     final newMessage = ChatMessage(
-      author: userId,
+      author: '',
+      userNo: int.parse(userId),
       body: body,
       img: imagePath,
       timestamp: DateTime.now(),
@@ -91,16 +94,18 @@ class ChatController extends GetxController {
     }
   }
 
-  void receiveMessage(String author, String body, String? img) {
-    if (author == userId) {
+  void receiveMessage(
+      String author, String body, String? img, int userNo, String profile) {
+    if (userNo == int.parse(userId)) {
       return;
     }
     final newMessage = ChatMessage(
-      author: author,
-      body: body,
-      img: img,
-      timestamp: DateTime.now(),
-    );
+        author: author,
+        body: body,
+        img: img,
+        userNo: userNo,
+        timestamp: DateTime.now(),
+        profile: profile);
     messages.insert(0, newMessage);
   }
 
