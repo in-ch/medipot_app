@@ -34,7 +34,7 @@ class ChatController extends GetxController {
 
     _connectToWebSocket();
     super.onInit();
-    _addMockMessages();
+    _getMessages();
   }
 
   void _connectToWebSocket() {
@@ -59,29 +59,9 @@ class ChatController extends GetxController {
     });
   }
 
-  void _addMockMessages() {
-    messages.addAll([
-      ChatMessage(
-          author: 'user456',
-          body: '안녕하세요!',
-          timestamp: DateTime.now().subtract(const Duration(minutes: 5))),
-      ChatMessage(
-          author: 'user789',
-          body: '채팅 시작해요!',
-          timestamp: DateTime.now().subtract(const Duration(minutes: 3))),
-      ChatMessage(
-          author: 'user456',
-          body: '어떻게 지내세요?',
-          timestamp: DateTime.now().subtract(const Duration(minutes: 2))),
-      ChatMessage(
-          author: 'user123',
-          body: '저는 잘 지내요. 당신은요?',
-          timestamp: DateTime.now().subtract(const Duration(minutes: 1))),
-      ChatMessage(
-          author: 'user789',
-          body: '잘 지내고 있어요. 고마워요!',
-          timestamp: DateTime.now()),
-    ]);
+  void _getMessages() async {
+    List<ChatMessage> chatMessages = await ChatService.getMessages();
+    messages.addAll(chatMessages);
   }
 
   void sendMessage(String body, {String? imagePath}) {
