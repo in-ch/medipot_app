@@ -67,12 +67,16 @@ class ChatController extends GetxController {
     messages.addAll(chatMessages);
   }
 
-  void sendMessage(String body, {String? imagePath}) {
+  Future<void> sendMessage(String body, {XFile? imagePath}) async {
+    String imgSrc = '';
+    if (imagePath != null) {
+      imgSrc = await CommonService.uploadImg(imagePath);
+    }
     final newMessage = ChatMessage(
       author: '',
       userNo: int.parse(userId),
       body: body,
-      img: imagePath,
+      img: imgSrc,
       timestamp: DateTime.now(),
     );
     socket.emit('chat', newMessage.toJson());
@@ -90,7 +94,7 @@ class ChatController extends GetxController {
   Future<void> pickImage() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
-      sendMessage('image message', imagePath: image.path);
+      sendMessage('image message', imagePath: image);
     }
   }
 
