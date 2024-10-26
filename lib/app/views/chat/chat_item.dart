@@ -62,9 +62,8 @@ class ChatItem extends StatelessWidget {
                       ),
                     ),
               GestureDetector(
-                onLongPress: () => message.img != null
-                    ? debugPrint('image message long pressed!')
-                    : longPressFuc(context, message, message.img == null),
+                onLongPress: () =>
+                    longPressFuc(context, message, message.img == null),
                 child: Align(
                   alignment:
                       isMy ? Alignment.centerRight : Alignment.centerLeft,

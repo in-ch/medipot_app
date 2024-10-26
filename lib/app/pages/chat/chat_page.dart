@@ -80,8 +80,7 @@ class ChatPage extends GetView<ChatController> {
                             message: message,
                             isMy: isMyMessage,
                             formattedTime: formattedTime,
-                            longPressFuc: (context) => controller.longPressFuc(
-                                context, message, message.img == null),
+                            longPressFuc: controller.longPressFuc,
                           );
                         },
                       );

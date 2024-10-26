@@ -4,15 +4,17 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:socket_io_client/socket_io_client.dart' as io;
+import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:socket_io_client/socket_io_client.dart' as io;
 
 import 'package:docspot_app/app/constants/constants.dart';
 import 'package:docspot_app/data/models/models.dart';
 import 'package:docspot_app/services/services.dart';
+import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/views/views.dart';
 
 class ChatController extends GetxController {
@@ -127,9 +129,9 @@ class ChatController extends GetxController {
     );
   }
 
-  Future<void> saveImage(String? imagePath) async {
+  Future<void> saveImage(String? imageUrl) async {
     try {
-      if (imagePath == null) {
+      if (imageUrl == null) {
         Get.snackbar(
           '오류 발생',
           '저장할 이미지가 없습니다.',
@@ -139,15 +141,26 @@ class ChatController extends GetxController {
         );
         return;
       }
-      final directory = await getApplicationDocumentsDirectory();
-      final String fileName = "${DateTime.now().millisecondsSinceEpoch}.jpg";
-      final File newImage = File('${directory.path}/$fileName');
-      await File(imagePath).copy(newImage.path);
 
-      Get.snackbar('이미지 저장', '이미지가 저장되었습니다. ${newImage.path}',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.green,
-          colorText: Colors.white);
+      final response = await http.get(Uri.parse(imageUrl));
+
+      if (response.statusCode == 200) {
+        final directory = await getApplicationDocumentsDirectory();
+        final String fileName = "${DateTime.now().millisecondsSinceEpoch}.jpg";
+        final File newImage = File('${directory.path}/$fileName');
+
+        await newImage.writeAsBytes(response.bodyBytes);
+
+        Get.snackbar('이미지 저장', '이미지가 저장되었습니다.',
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: colorScheme.primary,
+            colorText: Colors.white);
+      } else {
+        Get.snackbar('이미지 다운로드 실패', '이미지를 다운로드할 수 없습니다.',
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+            colorText: Colors.white);
+      }
     } catch (e) {
       Get.snackbar('이미지 저장이 실패하였습니다.', '잠시 후 다시 시도해주세요.',
           snackPosition: SnackPosition.BOTTOM,
