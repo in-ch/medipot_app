@@ -63,7 +63,7 @@ class ChatItem extends StatelessWidget {
                     ),
               GestureDetector(
                 onLongPress: () =>
-                    longPressFuc(context, message, message.img == null),
+                    longPressFuc(context, message, message.img == ""),
                 child: Align(
                   alignment:
                       isMy ? Alignment.centerRight : Alignment.centerLeft,
@@ -75,14 +75,14 @@ class ChatItem extends StatelessWidget {
                       Container(
                         margin: const EdgeInsets.symmetric(
                             vertical: 5, horizontal: 10),
-                        padding: EdgeInsets.all(message.img != null ? 0 : 10),
+                        padding: EdgeInsets.all(message.img != "" ? 0 : 10),
                         decoration: BoxDecoration(
                           color: isMy
                               ? colorScheme.primary
                               : const Color.fromARGB(255, 56, 56, 56),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: message.img != null
+                        child: message.img != ""
                             ? GestureDetector(
                                 onTap: () {
                                   showDialog(
