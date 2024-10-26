@@ -5,6 +5,7 @@ class ChatMessage {
   final DateTime timestamp;
   final String? profile;
   final int userNo;
+  final String uuid;
 
   ChatMessage({
     required this.author,
@@ -13,6 +14,7 @@ class ChatMessage {
     required this.timestamp,
     this.profile,
     required this.userNo,
+    required this.uuid,
   });
 
   Map<String, dynamic> toJson() {
@@ -23,6 +25,7 @@ class ChatMessage {
       'timestamp': timestamp.toIso8601String(),
       'profile': profile,
       'userNo': userNo,
+      'uuid': uuid,
     };
   }
 
@@ -33,6 +36,7 @@ class ChatMessage {
         img: json['img'],
         timestamp: DateTime.parse(json['timestamp']),
         profile: json['profile'],
+        uuid: json['uuid'],
         userNo: json['userNo']);
   }
 }

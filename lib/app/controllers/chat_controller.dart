@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
 
 import 'package:docspot_app/app/constants/constants.dart';
 import 'package:docspot_app/data/models/models.dart';
@@ -58,8 +59,9 @@ class ChatController extends GetxController {
         final img = data['img'];
         final userNo = data['userNo'];
         final profile = data['profile'];
+        final uuid = data['uuid'];
 
-        receiveMessage(author, body, img, userNo, profile);
+        receiveMessage(uuid, author, body, img, userNo, profile);
       });
       socket.on('user-count', (data) {
         userCount.value = '$data명';
@@ -86,6 +88,7 @@ class ChatController extends GetxController {
       body: body,
       img: imgSrc,
       timestamp: DateTime.now(),
+      uuid: const Uuid().v4(),
     );
     socket.emit('chat', newMessage.toJson());
     messages.insert(0, newMessage);
@@ -106,9 +109,10 @@ class ChatController extends GetxController {
     }
   }
 
-  void receiveMessage(
-      String author, String body, String? img, int userNo, String profile) {
-    if (userNo == int.parse(userId)) {
+  void receiveMessage(String uuid, String author, String body, String? img,
+      int userNo, String profile) {
+    bool isDuplicate = messages.any((msg) => msg.uuid == uuid);
+    if (isDuplicate) {
       return;
     }
     final newMessage = ChatMessage(
@@ -117,6 +121,7 @@ class ChatController extends GetxController {
         img: img,
         userNo: userNo,
         timestamp: DateTime.now(),
+        uuid: uuid,
         profile: profile);
     messages.insert(0, newMessage);
   }
