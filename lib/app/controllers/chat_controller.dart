@@ -25,6 +25,8 @@ class ChatController extends GetxController {
   RxBool isLogin = false.obs;
   RxBool isGranted = false.obs;
   RxBool isLicenseUploadLoading = false.obs;
+  RxString userCount = "0명".obs;
+
   late io.Socket socket;
 
   @override
@@ -47,6 +49,7 @@ class ChatController extends GetxController {
     });
     socket.connect();
     socket.onConnect((_) {
+      socket.emit('get-user');
       debugPrint('WebSocket에 접속하였습니다.');
       socket.on('chat', (data) {
         debugPrint('메시지를 받았습니다.: $data');
@@ -57,6 +60,9 @@ class ChatController extends GetxController {
         final profile = data['profile'];
 
         receiveMessage(author, body, img, userNo, profile);
+      });
+      socket.on('user-count', (data) {
+        userCount.value = '$data명';
       });
     });
     socket.onDisconnect((_) {
