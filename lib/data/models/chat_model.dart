@@ -14,8 +14,8 @@ class ChatMessage {
     required this.timestamp,
     this.profile,
     required this.userNo,
-    required this.uuid,
-  });
+    String? uuid,
+  }) : uuid = uuid ?? "";
 
   Map<String, dynamic> toJson() {
     return {
@@ -31,12 +31,13 @@ class ChatMessage {
 
   factory ChatMessage.fromJson(Map<String, dynamic> json) {
     return ChatMessage(
-        author: json['author'],
-        body: json['body'],
-        img: json['img'],
-        timestamp: DateTime.parse(json['timestamp']),
-        profile: json['profile'],
-        uuid: json['uuid'],
-        userNo: json['userNo']);
+      author: json['author'],
+      body: json['body'],
+      img: json['img'],
+      timestamp: DateTime.parse(json['timestamp']),
+      profile: json['profile'],
+      userNo: json['userNo'],
+      uuid: json['uuid'] ?? "",
+    );
   }
 }

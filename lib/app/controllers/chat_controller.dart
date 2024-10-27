@@ -69,6 +69,7 @@ class ChatController extends GetxController {
     });
     socket.onDisconnect((_) {
       debugPrint('WebSocket와의 연결을 종료하였습니다.');
+      ChatService.saveLastChatTimestamp(int.parse(userId));
     });
   }
 
@@ -152,9 +153,7 @@ class ChatController extends GetxController {
         );
         return;
       }
-
       final response = await http.get(Uri.parse(imageUrl));
-
       if (response.statusCode == 200) {
         final directory = await getApplicationDocumentsDirectory();
         final String fileName = "${DateTime.now().millisecondsSinceEpoch}.jpg";
