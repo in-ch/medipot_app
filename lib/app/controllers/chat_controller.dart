@@ -13,10 +13,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
 import 'package:docspot_app/app/constants/constants.dart';
-import 'package:docspot_app/data/models/models.dart';
-import 'package:docspot_app/services/services.dart';
+import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/views/views.dart';
+import 'package:docspot_app/data/models/models.dart';
+import 'package:docspot_app/services/services.dart';
 
 class ChatController extends GetxController {
   String userId = 'user';
@@ -70,6 +71,8 @@ class ChatController extends GetxController {
     socket.onDisconnect((_) {
       debugPrint('WebSocket와의 연결을 종료하였습니다.');
       ChatService.saveLastChatTimestamp(int.parse(userId));
+      final homeController = Get.find<HomeController>();
+      homeController.unReadMsgCount.value = 0;
     });
   }
 
@@ -214,10 +217,10 @@ class ChatController extends GetxController {
 
   @override
   void onClose() {
+    socket.dispose();
     messageController.dispose();
     isLogin.value = false;
     isGranted.value = false;
-    socket.dispose();
     update();
     super.onClose();
   }

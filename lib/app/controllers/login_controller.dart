@@ -7,8 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:get/get.dart';
 
+import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/pages/pages.dart';
-import 'package:docspot_app/app/pages/chat/chat_page.dart';
 import 'package:docspot_app/services/services.dart';
 import 'package:docspot_app/app/utils/utils.dart';
 
@@ -23,12 +23,10 @@ class LoginController extends GetxController {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         String fcmToken = prefs.getString("fcmToken")!;
         await UserService.updateFcmToken(fcmToken);
-        Get.offAll(() => const ChatPage());
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (BuildContext context) => const HomePage(),
-          ),
-        );
+
+        Get.offAll(() => const HomePage(), binding: BindingsBuilder(() {
+          Get.put(HomeController()).getMsgCount();
+        }));
       } catch (error) {
         if (error is PlatformException && error.code == 'CANCELED') {
           return;
@@ -37,11 +35,9 @@ class LoginController extends GetxController {
         try {
           OAuthToken token = await UserApi.instance.loginWithKakaoAccount();
           await LoginService.loginApi(token.accessToken);
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (BuildContext context) => const HomePage(),
-            ),
-          );
+          Get.offAll(() => const HomePage(), binding: BindingsBuilder(() {
+            Get.put(HomeController()).getMsgCount();
+          }));
         } catch (error) {
           Get.snackbar("로그인 실패", "카카오톡 로그인에 실패하였습니다.");
         }
@@ -54,13 +50,9 @@ class LoginController extends GetxController {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         String fcmToken = prefs.getString("fcmToken")!;
         await UserService.updateFcmToken(fcmToken);
-
-        Get.offAll(() => const ChatPage());
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (BuildContext context) => const HomePage(),
-          ),
-        );
+        Get.offAll(() => const HomePage(), binding: BindingsBuilder(() {
+          Get.put(HomeController()).getMsgCount();
+        }));
       } catch (error) {
         Get.snackbar("로그인 실패", "카카오톡 로그인에 실패하였습니다.");
       }
@@ -88,12 +80,9 @@ class LoginController extends GetxController {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         String fcmToken = prefs.getString("fcmToken")!;
         await UserService.updateFcmToken(fcmToken);
-
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (BuildContext context) => const HomePage(),
-          ),
-        );
+        Get.offAll(() => const HomePage(), binding: BindingsBuilder(() {
+          Get.put(HomeController()).getMsgCount();
+        }));
       }
     } catch (e) {
       Get.snackbar("로그인 실패", "애플 로그인에 실패하였습니다.");

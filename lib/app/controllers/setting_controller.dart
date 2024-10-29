@@ -4,10 +4,11 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-import 'package:docspot_app/data/models/models.dart';
-import 'package:docspot_app/services/services.dart';
+import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/pages/pages.dart';
 import 'package:docspot_app/app/utils/utils.dart';
+import 'package:docspot_app/data/models/models.dart';
+import 'package:docspot_app/services/services.dart';
 
 class SettingController extends GetxController {
   RxBool isLoading = false.obs;
@@ -94,11 +95,9 @@ class SettingController extends GetxController {
     prefs.setString('phone', "");
     prefs.setString('accessToken', "");
     prefs.setString('refreshToken', "");
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (BuildContext context) => const HomePage(),
-      ),
-    );
+    Get.offAll(() => const HomePage(), binding: BindingsBuilder(() {
+      Get.put(HomeController()).getMsgCount();
+    }));
   }
 
   /// [비즈니스 로직]

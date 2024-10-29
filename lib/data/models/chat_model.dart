@@ -37,7 +37,7 @@ class ChatMessage {
       timestamp: DateTime.parse(json['timestamp']),
       profile: json['profile'],
       userNo: json['userNo'],
-      uuid: json['uuid'] ?? "",
+      uuid: json.containsKey('uuid') ? json['uuid'] : "",
     );
   }
 }
