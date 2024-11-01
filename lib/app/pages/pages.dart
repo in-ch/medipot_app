@@ -7,7 +7,6 @@ import 'package:docspot_app/app/routes/routes.dart';
 export './NotFound/not_found.dart';
 
 export './home/home_page.dart';
-export './home/sub/feed_sub_page.dart';
 export './home/sub/map_sub_page.dart';
 export './home/sub/setting_sub_page.dart';
 export './home/sub/favorites_sub_page.dart';
@@ -126,11 +125,6 @@ abstract class AppPages {
         page: () => const AlarmPage(),
         transition: Transition.cupertino,
         bindings: [AlarmBinding()]),
-    GetPage(
-      name: Routes.feed,
-      page: () => const FeedSubPage(),
-      transition: Transition.cupertino,
-    ),
     GetPage(
         name: Routes.roulette,
         page: () => const RouletteGamePage(),
