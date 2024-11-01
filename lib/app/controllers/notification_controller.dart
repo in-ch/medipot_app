@@ -42,8 +42,12 @@ class NotificationController extends GetxController {
 
   void _handleMessage(RemoteMessage message) {
     if (message.data.containsKey('page') && message.data.containsKey('no')) {
-      Get.toNamed(message.data['page'],
-          arguments: {'no': int.parse(message.data['no'])});
+      if (message.data['page'] == 'CHAT') {
+        Get.toNamed(Routes.chat);
+      } else {
+        Get.toNamed(message.data['page'],
+            arguments: {'no': int.parse(message.data['no'])});
+      }
     } else {
       debugPrint('Page or No data missing in message');
     }

@@ -71,6 +71,7 @@ export './career/banner_slider.dart';
 export './career/show_new_alarms.dart';
 
 export './chat/chat_item.dart';
+export './chat/chat_image.dart';
 export './chat/chat_textarea.dart';
 export './chat/chat_please_login_filter.dart';
 export './chat/chat_please_grant_filter.dart';

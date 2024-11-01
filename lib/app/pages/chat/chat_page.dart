@@ -100,9 +100,7 @@ class ChatPage extends GetView<ChatController> {
             ),
             Obx(
               () => controller.isLogin.value && !controller.isGranted.value
-                  ? ChatPleaseGrantFilter(
-                      goToGrant: () => controller.goToGrant(context),
-                    )
+                  ? const ChatPleaseGrantFilter()
                   : Container(),
             )
           ],

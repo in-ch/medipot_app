@@ -19,7 +19,7 @@ import 'package:docspot_app/app/views/views.dart';
 import 'package:docspot_app/data/models/models.dart';
 import 'package:docspot_app/services/services.dart';
 
-class ChatController extends GetxController {
+class ChatController extends GetxController with WidgetsBindingObserver {
   String userId = 'user';
   final ImagePicker _picker = ImagePicker();
   var messages = <ChatMessage>[].obs;
@@ -41,7 +41,16 @@ class ChatController extends GetxController {
     userId = userNo;
     _connectToWebSocket();
     super.onInit();
+    WidgetsBinding.instance.addObserver(this);
     _getMessages();
+  }
+
+  // 사용자가 다시 앱을 포그라운드 상태로 돌아오면 메시지를 다시 가져온다.
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      _getMessages();
+    }
   }
 
   void _connectToWebSocket() {
@@ -221,6 +230,7 @@ class ChatController extends GetxController {
     messageController.dispose();
     isLogin.value = false;
     isGranted.value = false;
+    WidgetsBinding.instance.removeObserver(this);
     update();
     super.onClose();
   }

@@ -1,3 +1,4 @@
+import 'package:docspot_app/app/views/views.dart';
 import 'package:flutter/material.dart';
 
 import 'package:docspot_app/app/style/theme.dart';
@@ -94,13 +95,10 @@ class ChatItem extends StatelessWidget {
                                         child: Container(
                                           margin: const EdgeInsets.all(20),
                                           child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            child: Image.network(
-                                              message.img!,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              child:
+                                                  ChatImage(src: message.img!)),
                                         ),
                                       );
                                     },
@@ -109,12 +107,8 @@ class ChatItem extends StatelessWidget {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
                                   child: SizedBox(
-                                    width: 180,
-                                    child: Image.network(
-                                      message.img!,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
+                                      width: 180,
+                                      child: ChatImage(src: message.img!)),
                                 ),
                               )
                             : Text(

@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:docspot_app/app/views/views.dart';
 
 class ChatPleaseGrantFilter extends StatelessWidget {
-  ChatPleaseGrantFilter({super.key, required this.goToGrant});
-
-  Function goToGrant;
+  const ChatPleaseGrantFilter({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +31,12 @@ class ChatPleaseGrantFilter extends StatelessWidget {
                 const SizedBox(height: 10),
                 CommonButton(
                   onClick: () {
-                    goToGrant(context);
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return GrantModal();
+                      },
+                    );
                   },
                   text: "인증하러 가기",
                   isReverse: true,
