@@ -50,8 +50,8 @@ class MyApp extends StatelessWidget {
       home: const HomePage(),
       initialRoute: Routes.home,
       initialBinding: BindingsBuilder(() {
-        Get.put(NotificationController(), permanent: true);
         Get.put(HomeController(), permanent: true);
+        Get.put(NotificationController(), permanent: true);
       }),
       getPages: AppPages.pages,
       unknownRoute:
