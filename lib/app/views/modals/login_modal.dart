@@ -14,7 +14,7 @@ class LoginModal extends StatelessWidget {
       padding: const EdgeInsets.all(20.0),
       child: SizedBox(
         width: double.infinity,
-        height: 130,
+        height: GetPlatform.isIOS ? 130 : 70,
         child: Column(
           children: [
             Expanded(

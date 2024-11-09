@@ -41,7 +41,7 @@ class UploadService {
 
   static Future<String> requestGrant(String licenseUrl) async {
     String apiServer = dotenv.get("API_SERVER");
-    final Uri url = Uri.parse('$apiServer/user/profile/grant'); // 지역 변수 url로 선언
+    final Uri url = Uri.parse('$apiServer/user/profile/grant');
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? accessToken = prefs.getString('accessToken');
     final headers = {'Authorization': 'Bearer $accessToken'};

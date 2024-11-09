@@ -48,7 +48,7 @@ class LoginController extends GetxController {
         await LoginService.loginApi(token.accessToken);
 
         final SharedPreferences prefs = await SharedPreferences.getInstance();
-        String fcmToken = prefs.getString("fcmToken")!;
+        String fcmToken = prefs.getString("fcmToken") ?? "";
         await UserService.updateFcmToken(fcmToken);
         Get.offAll(() => const HomePage(), binding: BindingsBuilder(() {
           Get.put(HomeController()).getMsgCount();
