@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:docspot_app/app/constants/constants.dart';
 import 'package:docspot_app/services/services.dart';
 
 class AppInit {
@@ -23,7 +22,6 @@ class AppInit {
           prefs.setString('accessToken', "");
           prefs.setString('refreshToken', "");
           prefs.setBool('isLogin', false);
-          prefs.setString('grant', Grant.NONE.toString());
         }
       }
     } catch (error) {

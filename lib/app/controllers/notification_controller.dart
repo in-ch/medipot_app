@@ -3,7 +3,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:docspot_app/app/constants/constants.dart';
 import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/routes/routes.dart';
 import 'package:docspot_app/data/models/models.dart';
@@ -98,7 +97,6 @@ class NotificationController extends GetxController {
           prefs.setString('accessToken', "");
           prefs.setString('refreshToken', "");
           prefs.setBool('isLogin', false);
-          prefs.setString('grant', Grant.NONE.toString());
         }
       } else {
         await UserService.updateFcmToken(token);

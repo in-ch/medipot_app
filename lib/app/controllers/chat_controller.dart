@@ -36,7 +36,7 @@ class ChatController extends GetxController with WidgetsBindingObserver {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     isLogin.value = prefs.getBool("isLogin") ?? false;
     String userNo = prefs.getString("userNo").toString();
-    String? grantValue = prefs.getString("grant");
+    String? grantValue = await UserService.getGrant();
     isGranted.value = grantValue == Grant.DOCTOR.value;
     userId = userNo;
     _connectToWebSocket();

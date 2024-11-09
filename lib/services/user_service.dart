@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:docspot_app/data/models/models.dart';
-import 'package:docspot_app/app/constants/constants.dart';
 
 class UserService {
   static Future<Map<String, dynamic>> me() async {
@@ -56,7 +55,6 @@ class UserService {
       prefs.setString('accessToken', "");
       prefs.setString('refreshToken', "");
       prefs.setBool('isLogin', false);
-      prefs.setString('grant', Grant.NONE.toString());
 
       throw Exception('Failed to user refresh');
     }
@@ -200,5 +198,17 @@ class UserService {
     final responseData = jsonDecode(response.body);
 
     return responseData["statusCode"] == 200;
+  }
+
+  static Future<String> getGrant() async {
+    String apiServer = dotenv.get("API_SERVER");
+    final url = Uri.parse('$apiServer/user/grant');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString('accessToken');
+    final headers = {'Authorization': 'Bearer $accessToken'};
+    final response = await http.get(url, headers: headers);
+    final responseData = jsonDecode(response.body);
+
+    return responseData["data"];
   }
 }
