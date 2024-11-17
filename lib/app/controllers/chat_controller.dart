@@ -35,7 +35,7 @@ class ChatController extends GetxController with WidgetsBindingObserver {
   void onInit() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     isLogin.value = prefs.getBool("isLogin") ?? false;
-    bool? isLogined = isLogin.value; // 지우지마라
+    bool? isLogined = isLogin.value; // Don't remove
     String userNo = prefs.getString("userNo").toString();
     String? grantValue = await UserService.getGrant();
     isGranted.value = grantValue == Grant.DOCTOR.value;
@@ -232,6 +232,7 @@ class ChatController extends GetxController with WidgetsBindingObserver {
     isLogin.value = false;
     isGranted.value = false;
     WidgetsBinding.instance.removeObserver(this);
+    Get.delete<ChatController>();
     update();
     super.onClose();
   }
