@@ -15,7 +15,6 @@ class CareerDetailPage extends GetView<CareerDetailController> {
         data: appTheme,
         child: PopScope(
           canPop: true,
-          onPopInvoked: (_) async {},
           child: Scaffold(
             backgroundColor: Colors.white,
             body: Obx(() {

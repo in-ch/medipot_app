@@ -11,8 +11,8 @@ class CareerCardHeader extends GetView<CareerController> {
 
   @override
   Widget build(BuildContext context) {
-    final viewInsets = MediaQuery.viewInsetsOf(context).bottom;
-    final safeAreaBottom = MediaQuery.paddingOf(context).bottom;
+    final viewInsets = MediaQuery.viewInsetsOf(context).bottom - 10;
+    final safeAreaBottom = MediaQuery.paddingOf(context).bottom - 10;
     return Positioned(
         top: 0,
         left: 0,
