@@ -26,6 +26,7 @@ List<String> departmentList = [
   Department.IF.name,
   Department.NR.name,
   Department.PSY.name,
+  Department.PSY2.name,
   Department.CP.name,
   Department.RD.name,
   Department.DR.name,
@@ -69,6 +70,7 @@ enum Department {
   IF,
   NR,
   PSY,
+  PSY2,
   CP,
   RD,
   DR,
@@ -111,7 +113,7 @@ extension DepartmentExtension on Department {
       case Department.DT:
         return '치과';
       case Department.PD:
-        return '소아청소년';
+        return '소아청소년과';
       case Department.DM:
         return '성형';
       case Department.ENT:
@@ -142,6 +144,8 @@ extension DepartmentExtension on Department {
         return '신경';
       case Department.PSY:
         return '정신건강';
+      case Department.PSY2:
+        return '정신';
       case Department.CP:
         return '병리';
       case Department.RD:
@@ -200,7 +204,7 @@ extension DepartmentExtension on Department {
       case Department.DT:
         return '치과';
       case Department.PD:
-        return '소아청소년과과';
+        return '소아청소년과';
       case Department.DM:
         return '피부과';
       case Department.ENT:
@@ -231,6 +235,8 @@ extension DepartmentExtension on Department {
         return '신경과';
       case Department.PSY:
         return '정신건강의학과';
+      case Department.PSY2:
+        return '정신과';
       case Department.CP:
         return '임상병리과';
       case Department.RD:

@@ -15,7 +15,6 @@ class CareerListPage extends GetView<CareerListController> {
         data: appTheme,
         child: PopScope(
           canPop: true,
-          onPopInvoked: (_) async {},
           child: Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
