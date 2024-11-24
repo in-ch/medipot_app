@@ -6,11 +6,13 @@ class CommonButton extends StatelessWidget {
       {super.key,
       required this.text,
       this.isHighlight = false,
+      this.isReverse = false,
       required this.onClick});
 
   final String text;
   final bool isHighlight;
   final Function onClick;
+  final bool isReverse;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +25,13 @@ class CommonButton extends StatelessWidget {
           child: Container(
             height: 40,
             decoration: BoxDecoration(
+              color: isReverse ? colorScheme.primary : Colors.transparent,
               border: Border.all(
-                  color: isHighlight ? colorScheme.primary : Colors.black26),
+                  color: isHighlight
+                      ? colorScheme.primary
+                      : isReverse
+                          ? colorScheme.primary
+                          : Colors.black26),
               borderRadius: BorderRadius.circular(20.0),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 0),
@@ -35,8 +42,11 @@ class CommonButton extends StatelessWidget {
                 Text(text,
                     style: TextStyle(
                         fontSize: 12,
-                        color:
-                            isHighlight ? colorScheme.primary : Colors.black)),
+                        color: isHighlight
+                            ? colorScheme.primary
+                            : isReverse
+                                ? Colors.white
+                                : Colors.black)),
               ],
             ),
           ),

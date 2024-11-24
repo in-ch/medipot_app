@@ -1,6 +1,7 @@
-import 'package:docspot_app/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:docspot_app/services/services.dart';
 
 class AppInit {
   /// [비즈니스 로직]

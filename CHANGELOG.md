@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.8.0 (2024-11-20)
+
+- [feat: 실시간 채팅 기능 추가](7668bb459237671f97955bcb3f0464e8bd9b8fb8)
+
 ### 1.6.1 (2024-06-17)
 
 - [chore: 아이패드 해상도 제외](b8f94c5e5523e0dd7ecea66c27958e6354dfd509)

@@ -19,4 +19,5 @@ abstract class Routes {
   static const feed = '/feed';
   static const email = '/email';
   static const roulette = '/roulette';
+  static const chat = '/chat';
 }

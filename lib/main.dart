@@ -49,12 +49,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const HomePage(),
       initialRoute: Routes.home,
-      initialBinding:
-          BindingsBuilder.put(() => NotificationController(), permanent: true),
-      getPages: AppPages.pages, // 라우트 설정 (옵션)
-      unknownRoute: GetPage(
-          name: '/not-found',
-          page: () => const NotFoundPage()), // 알 수 없는 경로 설정 (옵션)
+      initialBinding: BindingsBuilder(() {
+        Get.put(HomeController(), permanent: true);
+        Get.put(NotificationController(), permanent: true);
+      }),
+      getPages: AppPages.pages,
+      unknownRoute:
+          GetPage(name: '/not-found', page: () => const NotFoundPage()),
       navigatorObservers: [
         FirebaseAnalyticsObserver(analytics: analytics),
       ],
