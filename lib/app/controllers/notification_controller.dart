@@ -1,13 +1,18 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:docspot_app/app/controllers/controllers.dart';
+import 'package:docspot_app/app/routes/routes.dart';
+import 'package:docspot_app/app/utils/utils.dart';
 import 'package:docspot_app/data/models/models.dart';
 import 'package:docspot_app/services/services.dart';
 
 class NotificationController extends GetxController {
   FirebaseMessaging messaging = FirebaseMessaging.instance;
+  final HomeController homeController = Get.find<HomeController>();
 
   @override
   void onInit() async {
@@ -36,10 +41,20 @@ class NotificationController extends GetxController {
     }
   }
 
-  void _handleMessage(RemoteMessage message) {
+  void _handleMessage(RemoteMessage message) async {
     if (message.data.containsKey('page') && message.data.containsKey('no')) {
-      Get.toNamed(message.data['page'],
-          arguments: {'no': int.parse(message.data['no'])});
+      if (message.data['page'] == 'CHAT') {
+        PackageInfo packageInfo = await PackageInfo.fromPlatform();
+        String version = packageInfo.version;
+        if (isVersionLowerThan('1.8.0', version)) {
+          await openStore();
+        } else {
+          Get.toNamed(Routes.chat);
+        }
+      } else {
+        Get.toNamed(message.data['page'],
+            arguments: {'no': int.parse(message.data['no'])});
+      }
     } else {
       debugPrint('Page or No data missing in message');
     }
@@ -47,14 +62,29 @@ class NotificationController extends GetxController {
 
   void _configureMessaging() {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      LocalNotification.sendNotification(message.notification!.title.toString(),
-          message.notification!.body.toString());
+      if (message.data['page'] == 'CHAT') {
+        homeController.unReadMsgCount.value += 1;
+      } else {
+        LocalNotification.sendNotification(
+            message.notification!.title.toString(),
+            message.notification!.body.toString());
+      }
     });
 
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
       if (message.data.containsKey('page') && message.data.containsKey('no')) {
-        Get.toNamed(message.data['page'],
-            arguments: {'no': int.parse(message.data['no'])});
+        if (message.data['page'] == 'CHAT') {
+          PackageInfo packageInfo = await PackageInfo.fromPlatform();
+          String version = packageInfo.version;
+          if (isVersionLowerThan('1.8.0', version)) {
+            await openStore();
+          } else {
+            Get.toNamed(Routes.chat);
+          }
+        } else {
+          Get.toNamed(message.data['page'],
+              arguments: {'no': int.parse(message.data['no'])});
+        }
       } else {
         debugPrint('Page or No data missing in message');
       }

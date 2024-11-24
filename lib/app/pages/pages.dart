@@ -4,12 +4,14 @@ import 'package:docspot_app/app/bindings/bindings.dart';
 import 'package:docspot_app/app/pages/pages.dart';
 import 'package:docspot_app/app/routes/routes.dart';
 
-export './home/home_page.dart';
 export './NotFound/not_found.dart';
-export './home/sub/feed_sub_page.dart';
+
+export './home/home_page.dart';
 export './home/sub/map_sub_page.dart';
 export './home/sub/setting_sub_page.dart';
 export './home/sub/favorites_sub_page.dart';
+export './home/sub/career_page.dart';
+
 export './detail/detail_page.dart';
 export './nestedReply/nested_reply_page.dart';
 export './login/login_page.dart';
@@ -28,6 +30,7 @@ import './search/search_list.dart';
 import './alarm/alarm_page.dart';
 import './email/email_page.dart';
 import './game/roulette_game_page.dart';
+import './chat/chat_page.dart';
 
 abstract class AppPages {
   static final pages = [
@@ -123,11 +126,6 @@ abstract class AppPages {
         transition: Transition.cupertino,
         bindings: [AlarmBinding()]),
     GetPage(
-      name: Routes.feed,
-      page: () => const FeedSubPage(),
-      transition: Transition.cupertino,
-    ),
-    GetPage(
         name: Routes.roulette,
         page: () => const RouletteGamePage(),
         transition: Transition.cupertino,
@@ -136,6 +134,11 @@ abstract class AppPages {
         name: Routes.email,
         page: () => const EmailPage(),
         transition: Transition.cupertino,
-        bindings: [EmailBinding()])
+        bindings: [EmailBinding()]),
+    GetPage(
+        name: Routes.chat,
+        page: () => const ChatPage(),
+        transition: Transition.downToUp,
+        bindings: [ChatBinding()]),
   ];
 }

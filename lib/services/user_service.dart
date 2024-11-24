@@ -199,4 +199,16 @@ class UserService {
 
     return responseData["statusCode"] == 200;
   }
+
+  static Future<String> getGrant() async {
+    String apiServer = dotenv.get("API_SERVER");
+    final url = Uri.parse('$apiServer/user/grant');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString('accessToken');
+    final headers = {'Authorization': 'Bearer $accessToken'};
+    final response = await http.get(url, headers: headers);
+    final responseData = jsonDecode(response.body);
+
+    return responseData["data"];
+  }
 }

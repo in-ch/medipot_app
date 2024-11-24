@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -28,6 +29,8 @@ class CareerController extends GetxController {
   bool _isModalRequestDepartmentOpen = false;
   bool _isModalRequestEmailOpen = false;
   bool _isUpdateOpen = false;
+
+  Timer? _debounceTimer;
 
   @override
   void onInit() {
@@ -347,14 +350,19 @@ class CareerController extends GetxController {
   /// [비즈니스 로직]
   /// 유저의 fcmToken을 저장한다.
   Future<void> saveFcmToken() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool isLogin = prefs.getBool('isLogin') ?? false;
-    String fcmToken = prefs.getString("fcmToken")!;
-
-    if (isLogin) {
-      await UserService.updateFcmToken(fcmToken);
-    } else {
-      await DeviceInfoService.insertDeviceInfo(fcmToken);
+    if (_debounceTimer?.isActive ?? false) {
+      _debounceTimer?.cancel();
     }
+    _debounceTimer = Timer(const Duration(milliseconds: 500), () async {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      bool isLogin = prefs.getBool('isLogin') ?? false;
+      String fcmToken = prefs.getString("fcmToken")!;
+
+      if (isLogin) {
+        await UserService.updateFcmToken(fcmToken);
+      } else {
+        await DeviceInfoService.insertDeviceInfo(fcmToken);
+      }
+    });
   }
 }

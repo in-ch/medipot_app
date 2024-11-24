@@ -30,18 +30,18 @@ class RouletteGamePage extends GetView<GameController> {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.headlineMedium),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30.0),
-              child: Center(
-                child: GestureDetector(
-                    child: const Icon(CupertinoIcons.share),
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    }),
-              ),
-            ),
-          ],
+          // actions: [
+          //   Padding(
+          //     padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          //     child: Center(
+          //       child: GestureDetector(
+          //           child: const Icon(CupertinoIcons.share),
+          //           onTap: () {
+          //             Navigator.of(context).pop();
+          //           }),
+          //     ),
+          //   ),
+          // ],
         ),
         body: SizedBox(
           width: double.infinity,

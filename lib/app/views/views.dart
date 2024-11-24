@@ -18,6 +18,7 @@ export './common/section.dart';
 export './common/google_map.dart';
 export './common/custom_back_button.dart';
 export './common/common_button.dart';
+export './common/dashed_border_box.dart';
 
 export './feed/feed.dart';
 export './feed/feeds.dart';
@@ -33,6 +34,9 @@ export './modals/please_department_modal.dart';
 export './modals/please_login_at_main_modal.dart';
 export './modals/please_input_email_modal.dart';
 export './modals/taro_result_modal.dart';
+export './modals/message_clip_board_modal.dart';
+export './modals/login_modal.dart';
+export './modals/grant_modal.dart';
 
 export './small_circle.dart';
 export './avatar.dart';
@@ -64,7 +68,13 @@ export './career/career_card_bottom.dart';
 export './career/career_card_header.dart';
 export './career/career_company_info.dart';
 export './career/banner_slider.dart';
-export 'career/show_new_alarms.dart';
+export './career/show_new_alarms.dart';
+
+export './chat/chat_item.dart';
+export './chat/chat_image.dart';
+export './chat/chat_textarea.dart';
+export './chat/chat_please_login_filter.dart';
+export './chat/chat_please_grant_filter.dart';
 
 export './search/search_keyword.dart';
 export './search/search_rank.dart';
