@@ -98,11 +98,11 @@ class ChatPage extends GetView<ChatController> {
                     )
                   : Container(),
             ),
-            Obx(
-              () => controller.isLogin.value && !controller.isGranted.value
-                  ? const ChatPleaseGrantFilter()
-                  : Container(),
-            )
+            // Obx(
+            //   () => controller.isLogin.value && !controller.isGranted.value
+            //       ? const ChatPleaseGrantFilter()
+            //       : Container(),
+            // )
           ],
         ),
       ),
