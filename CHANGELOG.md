@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.8.2 (2024-12-03)
+
+- [feat(chat): join & leave api 연동](66ae0ee511e13cafc086285de59d8dbbaaf28a20)
+- [style: 바텀 네비게이션 아이콘 크기 확장](5be700e374648c425a452f34ff3b725ea6ae35b6)
+
 ### 1.8.0 (2024-11-20)
 
 - [feat: 실시간 채팅 기능 추가](7668bb459237671f97955bcb3f0464e8bd9b8fb8)
