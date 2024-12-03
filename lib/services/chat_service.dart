@@ -40,4 +40,12 @@ class ChatService {
       return 0;
     }
   }
+
+  static Future<void> leaveChat(
+      String userNo, String uuid, String timestamp) async {
+    String apiServer = dotenv.get("WEB_SOCKET_SERVICE");
+    final url = Uri.parse('$apiServer/chat/leave');
+    await http.post(url,
+        body: {'userNo': userNo, 'uuid': uuid, 'timestamp': timestamp});
+  }
 }

@@ -35,7 +35,6 @@ class ChatController extends GetxController with WidgetsBindingObserver {
   void onInit() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     isLogin.value = prefs.getBool("isLogin") ?? false;
-    bool? isLogined = isLogin.value; // Don't remove
     String userNo = prefs.getString("userNo").toString();
     String? grantValue = await UserService.getGrant();
     isGranted.value = grantValue == Grant.DOCTOR.value;
@@ -64,21 +63,27 @@ class ChatController extends GetxController with WidgetsBindingObserver {
       socket.emit('get-user');
       debugPrint('WebSocket에 접속하였습니다.');
       socket.on('chat', (data) {
-        debugPrint('메시지를 받았습니다.: $data');
         final author = data['author'] ?? 'Unknown 유저';
         final body = data['body'] ?? '';
         final img = data['img'];
         final userNo = data['userNo'];
         final profile = data['profile'];
         final uuid = data['uuid'];
-
-        receiveMessage(uuid, author, body, img, userNo, profile);
+        final type = data['type'];
+        receiveMessage(uuid, author, body, img, userNo, profile, type);
+      });
+      socket.emit('join', {
+        'userNo': int.parse(userId),
+        'uuid': const Uuid().v4(),
+        'timestamp': DateTime.now().toString()
       });
       socket.on('user-count', (data) {
         userCount.value = '$data명';
       });
     });
     socket.onDisconnect((_) {
+      ChatService.leaveChat(
+          userId, const Uuid().v4(), DateTime.now().toString());
       debugPrint('WebSocket와의 연결을 종료하였습니다.');
       ChatService.saveLastChatTimestamp(int.parse(userId));
       final homeController = Get.find<HomeController>();
@@ -103,6 +108,7 @@ class ChatController extends GetxController with WidgetsBindingObserver {
       img: imgSrc,
       timestamp: DateTime.now(),
       uuid: const Uuid().v4(),
+      type: imgSrc == '' ? 'text' : 'img',
     );
     socket.emit('chat', newMessage.toJson());
     messages.insert(0, newMessage);
@@ -124,7 +130,7 @@ class ChatController extends GetxController with WidgetsBindingObserver {
   }
 
   void receiveMessage(String uuid, String author, String body, String? img,
-      int userNo, String profile) {
+      int userNo, String profile, String type) {
     bool isDuplicate = messages.any((msg) => msg.uuid == uuid);
     if (isDuplicate) {
       return;
@@ -136,7 +142,8 @@ class ChatController extends GetxController with WidgetsBindingObserver {
         userNo: userNo,
         timestamp: DateTime.now(),
         uuid: uuid,
-        profile: profile);
+        profile: profile,
+        type: type);
     messages.insert(0, newMessage);
   }
 
