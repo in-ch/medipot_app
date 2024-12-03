@@ -1,3 +1,5 @@
+enum MessageType { text, image, video, system, join, leave }
+
 class ChatMessage {
   final String author;
   final String body;
@@ -6,6 +8,7 @@ class ChatMessage {
   final String? profile;
   final int userNo;
   final String uuid;
+  final String type;
 
   ChatMessage({
     required this.author,
@@ -15,6 +18,7 @@ class ChatMessage {
     this.profile,
     required this.userNo,
     String? uuid,
+    required this.type,
   }) : uuid = uuid ?? "";
 
   Map<String, dynamic> toJson() {
@@ -26,18 +30,19 @@ class ChatMessage {
       'profile': profile,
       'userNo': userNo,
       'uuid': uuid,
+      'type': type,
     };
   }
 
   factory ChatMessage.fromJson(Map<String, dynamic> json) {
     return ChatMessage(
-      author: json['author'],
-      body: json['body'],
-      img: json['img'],
-      timestamp: DateTime.parse(json['timestamp']),
-      profile: json['profile'],
-      userNo: json['userNo'],
-      uuid: json.containsKey('uuid') ? json['uuid'] : "",
-    );
+        author: json['author'] ?? "",
+        body: json['body'] ?? "",
+        img: json['img'] ?? "",
+        timestamp: DateTime.parse(json['timestamp']),
+        profile: json['profile'] ?? "",
+        userNo: json['userNo'],
+        uuid: json.containsKey('uuid') ? json['uuid'] : "",
+        type: json['type'] ?? "text");
   }
 }
