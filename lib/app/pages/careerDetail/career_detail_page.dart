@@ -26,8 +26,9 @@ class CareerDetailPage extends GetView<CareerDetailController> {
                   children: [
                     CareerDetailSlider(imageUrls: controller.career.imgs),
                     CareerCardHeader(
-                      hospitalName: controller.career.hospital.name,
-                    ),
+                        hospitalName: controller.career.hospital.name,
+                        hospitalNo: controller.career.hospital.no,
+                        text: controller.career.title),
                     CareerInfoCard(
                       career: controller.career,
                     ),
