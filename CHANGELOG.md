@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.8.3 (2024-12-08)
+
+- [feat(career): prefix를 통해 접근시 초빙 페이지로 보내는 로직 추가](4bc1f5abf95a28886676928c48f35b70834ee990)
+- [feat(career): 초빙공고 공유 기능 추가](095d78f919c53cc03cce9daf5762a5705e450d34)
+- [feat:(career)]: 앱 scheme 설정(107b2562700169ae0fb4f1b35d20863f1d7809b5)
+
 ### 1.8.2 (2024-12-03)
 
 - [feat(chat): join & leave api 연동](66ae0ee511e13cafc086285de59d8dbbaaf28a20)
