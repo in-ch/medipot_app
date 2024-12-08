@@ -1,4 +1,6 @@
 PODS:
+  - app_links (0.0.2):
+    - Flutter
   - Firebase/Analytics (11.0.0):
     - Firebase/Core
   - Firebase/Core (11.0.0):
@@ -16,7 +18,7 @@ PODS:
     - Firebase/Analytics (= 11.0.0)
     - firebase_core
     - Flutter
-  - firebase_core (3.4.0):
+  - firebase_core (3.4.1):
     - Firebase/CoreOnly (= 11.0.0)
     - Flutter
   - firebase_crashlytics (4.1.0):
@@ -152,7 +154,7 @@ PODS:
     - GoogleUtilities/Privacy
   - image_picker_ios (0.0.1):
     - Flutter
-  - kakao_flutter_sdk_common (1.9.5):
+  - kakao_flutter_sdk_common (1.9.6):
     - Flutter
   - nanopb (3.30910.0):
     - nanopb/decode (= 3.30910.0)
@@ -178,9 +180,9 @@ PODS:
     - Flutter
   - webview_flutter_wkwebview (0.0.1):
     - Flutter
-    - FlutterMacOS
 
 DEPENDENCIES:
+  - app_links (from `.symlinks/plugins/app_links/ios`)
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
@@ -196,7 +198,7 @@ DEPENDENCIES:
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - sign_in_with_apple (from `.symlinks/plugins/sign_in_with_apple/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
-  - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/darwin`)
+  - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
 
 SPEC REPOS:
   trunk:
@@ -220,6 +222,8 @@ SPEC REPOS:
     - PromisesSwift
 
 EXTERNAL SOURCES:
+  app_links:
+    :path: ".symlinks/plugins/app_links/ios"
   firebase_analytics:
     :path: ".symlinks/plugins/firebase_analytics/ios"
   firebase_core:
@@ -251,12 +255,13 @@ EXTERNAL SOURCES:
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
   webview_flutter_wkwebview:
-    :path: ".symlinks/plugins/webview_flutter_wkwebview/darwin"
+    :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
+  app_links: e7a6750a915a9e161c58d91bc610e8cd1d4d0ad0
   Firebase: 9f574c08c2396885b5e7e100ed4293d956218af9
   firebase_analytics: 1a66fe8d4375eccff44671ea37897683a78b2675
-  firebase_core: ceec591a66629daaee82d3321551692c4a871493
+  firebase_core: ba84e940cf5cbbc601095f86556560937419195c
   firebase_crashlytics: e4f04180f443d5a8b56fbc0685bdbd7d90dd26f0
   firebase_messaging: 15d8b557010f3bb7b98d0302e1c7c8fbcd244425
   FirebaseAnalytics: 27eb78b97880ea4a004839b9bac0b58880f5a92a
@@ -277,17 +282,17 @@ SPEC CHECKSUMS:
   GoogleMaps: 8939898920281c649150e0af74aa291c60f2e77d
   GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
   image_picker_ios: c560581cceedb403a6ff17f2f816d7fea1421fc1
-  kakao_flutter_sdk_common: 985c7085c29a2bd949972cadac8238845dc354db
+  kakao_flutter_sdk_common: 4f10f98226da5d0f7cbdeeaed5cc21f144515209
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   package_info_plus: 58f0028419748fad15bf008b270aaa8e54380b1c
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
-  share_plus: 8875f4f2500512ea181eef553c3e27dba5135aad
+  share_plus: 8b6f8b3447e494cca5317c8c3073de39b3600d1f
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
   sign_in_with_apple: f3bf75217ea4c2c8b91823f225d70230119b8440
   url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
-  webview_flutter_wkwebview: 0982481e3d9c78fd5c6f62a002fcd24fc791f1e4
+  webview_flutter_wkwebview: 2a23822e9039b7b1bc52e5add778e5d89ad488d1
 
 PODFILE CHECKSUM: 9f789abe2615cef5b229dc348cff07a5cadc1b5e
 

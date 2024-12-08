@@ -8,16 +8,6 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="high_importance_channel" />
-        <activity android:name=".DeepLinkActivity" android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data
-                    android:scheme="https"
-                    android:host="medipotapp.page.link" />
-            </intent-filter>
-        </activity>
 
         <activity
             android:name=".MainActivity"
@@ -41,14 +31,11 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data
-                    android:host="medipotapp.page.link"
-                    android:scheme="https"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="doctorpot" />
             </intent-filter>
         </activity>
         <activity android:name="com.kakao.sdk.flutter.AuthCodeCustomTabsActivity">

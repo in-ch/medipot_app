@@ -8,6 +8,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:app_version_update/app_version_update.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -364,5 +365,15 @@ class CareerController extends GetxController {
         await DeviceInfoService.insertDeviceInfo(fcmToken);
       }
     });
+  }
+
+  /// [비즈니스 로직]
+  /// 공유하기
+  void onClickShareCourtUrl(int pageNo, String title) {
+    final shareCourtUrl = 'https://medi-pots.com/career/de/$pageNo';
+    Share.share(
+      shareCourtUrl,
+      subject: title,
+    );
   }
 }

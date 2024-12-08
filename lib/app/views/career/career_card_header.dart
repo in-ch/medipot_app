@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/views/views.dart';
 
 class CareerCardHeader extends GetView<CareerController> {
-  const CareerCardHeader({super.key, required this.hospitalName});
+  const CareerCardHeader(
+      {super.key,
+      required this.hospitalName,
+      required this.hospitalNo,
+      required this.text});
 
   final String hospitalName;
+  final int hospitalNo;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -30,18 +37,32 @@ class CareerCardHeader extends GetView<CareerController> {
                     padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const CustomBackButton(),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(left: 18.0, bottom: 2.0),
-                          child: Opacity(
-                            opacity: controller.bodyHeight.value,
-                            child: Text(hospitalName,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headlineMedium!
-                                    .copyWith(color: Colors.black)),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const CustomBackButton(),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 18.0, bottom: 2.0),
+                              child: Opacity(
+                                opacity: controller.bodyHeight.value,
+                                child: Text(hospitalName,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineMedium!
+                                        .copyWith(color: Colors.black)),
+                              ),
+                            ),
+                          ],
+                        ),
+                        GestureDetector(
+                          onTap: () =>
+                              controller.onClickShareCourtUrl(hospitalNo, text),
+                          child: const Padding(
+                            padding: EdgeInsets.only(right: 12.0, bottom: 4.0),
+                            child: Icon(CupertinoIcons.share),
                           ),
                         ),
                       ],
