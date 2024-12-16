@@ -29,7 +29,7 @@ class BottomNavigationWidgetState extends State<BottomNavigation> {
         children: [
           _buildNavItem(Icons.card_travel, '초빙 정보', 0),
           _buildNavItem(Icons.map, '개원 입지', 1),
-          Obx(() => _buildChatNavItem(Icons.chat, '실시간 채팅', 2,
+          Obx(() => _buildChatNavItem(Icons.chat, '오픈 채팅', 2,
               homeController.unReadMsgCount.value.toString(), Routes.chat)),
           _buildNavItem(Icons.favorite, '관심 목록', 3),
           _buildNavItem(Icons.settings, '설정', 4),
