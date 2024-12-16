@@ -20,6 +20,7 @@ class CareerCardHeader extends GetView<CareerController> {
   Widget build(BuildContext context) {
     final viewInsets = MediaQuery.viewInsetsOf(context).bottom - 10;
     final safeAreaBottom = MediaQuery.paddingOf(context).bottom - 10;
+    final correctionVal = GetPlatform.isIOS ? viewInsets + safeAreaBottom : 0;
     return Positioned(
         top: 0,
         left: 0,
@@ -30,9 +31,7 @@ class CareerCardHeader extends GetView<CareerController> {
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   color: Colors.white.withOpacity(controller.bodyHeight.value),
-                  height: AppBar().preferredSize.height +
-                      viewInsets +
-                      safeAreaBottom,
+                  height: AppBar().preferredSize.height + correctionVal,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                     child: Row(

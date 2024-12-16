@@ -26,7 +26,6 @@ List<String> departmentList = [
   Department.IF.name,
   Department.NR.name,
   Department.PSY.name,
-  Department.PSY2.name,
   Department.CP.name,
   Department.RD.name,
   Department.DR.name,
