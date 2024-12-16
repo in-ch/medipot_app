@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.8.4 (2024-12-16)
+
+- [chore(BottomNavItem): 실시간 채팅 -> 오픈 채팅으로 수정](51266ed5813fc3d5eb1a7911a8a54b1a8cd68590)
+- [style: 안로이드에서 커리어 상세 페이지 헤더 짤림 현상 수정](be8aa984ca65e6f2fc9ff1f419e6ed1e72280ffa)
+- [fix: 진료과 선택 시 오류 나는 버그 수정](e65ecb13afe9664edd3133e3f9da9589377634f1)
+
 ### 1.8.3 (2024-12-08)
 
 - [feat(career): prefix를 통해 접근시 초빙 페이지로 보내는 로직 추가](4bc1f5abf95a28886676928c48f35b70834ee990)
