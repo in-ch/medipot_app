@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
       case 0:
         return const CareerSubPage();
       case 1:
-        return const MapSubPage();
+        return const ArticleSubPage();
       case 2:
         return const Placeholder();
       case 3:

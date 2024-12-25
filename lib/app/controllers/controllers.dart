@@ -21,3 +21,4 @@ export './alarm_controller.dart';
 export './email_controller.dart';
 export './game_controller.dart';
 export './chat_controller.dart';
+export './article_controller.dart';

@@ -7,7 +7,7 @@ import 'package:docspot_app/app/routes/routes.dart';
 export './NotFound/not_found.dart';
 
 export './home/home_page.dart';
-export './home/sub/map_sub_page.dart';
+export './home/sub/article_sub_page.dart';
 export './home/sub/setting_sub_page.dart';
 export './home/sub/favorites_sub_page.dart';
 export './home/sub/career_page.dart';

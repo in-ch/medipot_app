@@ -84,3 +84,5 @@ export './alram/go_to_taro_game.dart';
 
 export './game/roulette_painter.dart';
 export './game/triangle_painter.dart';
+
+export './article/article_item.dart';
