@@ -10,7 +10,6 @@ class Label extends StatelessWidget {
     return Text(text,
         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
             height: 0.8,
-            color:
-                Theme.of(context).colorScheme.onBackground.withOpacity(0.6)));
+            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6)));
   }
 }

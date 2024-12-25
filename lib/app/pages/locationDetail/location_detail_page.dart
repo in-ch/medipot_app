@@ -7,7 +7,7 @@ import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/views/views.dart';
 
 class LocationDetailPage extends GetView<LocationDetailController> {
-  const LocationDetailPage({Key? key}) : super(key: key);
+  const LocationDetailPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -11,11 +11,10 @@ import 'package:docspot_app/data/models/models.dart';
 
 class FeedWidget extends StatelessWidget {
   FeedWidget(
-      {Key? key,
+      {super.key,
       required this.isDetail,
       this.hideFollow = false,
-      required this.writing})
-      : super(key: key);
+      required this.writing});
 
   final bool isDetail;
   final bool hideFollow;

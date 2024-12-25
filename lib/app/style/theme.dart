@@ -75,11 +75,11 @@ final appTheme = ThemeData(
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: ButtonStyle(
       // 버튼 배경색 설정
-      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-        (Set<MaterialState> states) {
-          if (states.contains(MaterialState.pressed)) {
+      backgroundColor: WidgetStateProperty.resolveWith<Color>(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.pressed)) {
             return colorScheme.primary.withOpacity(0.8); // 버튼이 눌렸을 때의 배경색
-          } else if (states.contains(MaterialState.hovered)) {
+          } else if (states.contains(WidgetState.hovered)) {
             return colorScheme.primary.withOpacity(0.8); // 버튼에 마우스가 올려졌을 때의 배경색
           } else {
             return colorScheme.primary; // 기본 배경색 (colorScheme.primary 사용)
@@ -87,24 +87,24 @@ final appTheme = ThemeData(
         },
       ),
       // 버튼 텍스트 색상 설정
-      foregroundColor: MaterialStateProperty.all(Colors.white),
+      foregroundColor: WidgetStateProperty.all(Colors.white),
       // 버튼 모양 설정
-      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0), // 원하는 radius 값을 지정
         ),
       ),
-      elevation: MaterialStateProperty.all(5),
+      elevation: WidgetStateProperty.all(5),
     ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
       // 버튼 배경색 설정
-      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-        (Set<MaterialState> states) {
-          if (states.contains(MaterialState.pressed)) {
+      backgroundColor: WidgetStateProperty.resolveWith<Color>(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.pressed)) {
             return Colors.white70; // 버튼이 눌렸을 때의 배경색
-          } else if (states.contains(MaterialState.hovered)) {
+          } else if (states.contains(WidgetState.hovered)) {
             return Colors.white70; // 버튼에 마우스가 올려졌을 때의 배경색
           } else {
             return Colors.white; // 기본 배경색 (colorScheme.primary 사용)
@@ -112,14 +112,14 @@ final appTheme = ThemeData(
         },
       ),
       // 버튼 텍스트 색상 설정
-      foregroundColor: MaterialStateProperty.all(Colors.black87),
+      foregroundColor: WidgetStateProperty.all(Colors.black87),
       // 버튼 모양 설정
-      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0), // 원하는 radius 값을 지정
         ),
       ),
-      elevation: MaterialStateProperty.all(1.5),
+      elevation: WidgetStateProperty.all(1.5),
     ),
   ),
 
@@ -137,15 +137,15 @@ final appTheme = ThemeData(
   ),
   // Checkbox 테마 스타일 설정
   checkboxTheme: CheckboxThemeData(
-    fillColor: MaterialStateColor.resolveWith((states) {
-      if (states.contains(MaterialState.selected)) {
+    fillColor: WidgetStateColor.resolveWith((states) {
+      if (states.contains(WidgetState.selected)) {
         return colorScheme.primary.withOpacity(0.8); // 선택된 상태의 색상
       } else {
         return colorScheme.primary; // 기본 색상
       }
     }),
-    overlayColor: MaterialStateColor.resolveWith((states) {
-      if (states.contains(MaterialState.selected)) {
+    overlayColor: WidgetStateColor.resolveWith((states) {
+      if (states.contains(WidgetState.selected)) {
         return Colors.transparent; // 선택된 상태일 때 overlay 없음
       } else {
         return colorScheme.primary; // 선택되지 않은 상태일 때 overlay 색상

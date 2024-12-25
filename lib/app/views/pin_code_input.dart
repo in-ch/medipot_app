@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:docspot_app/app/controllers/controllers.dart';
 
 class PinCodeInput extends GetView<PhoneController> {
-  const PinCodeInput({Key? key}) : super(key: key);
+  const PinCodeInput({super.key});
 
   @override
   Widget build(BuildContext context) {

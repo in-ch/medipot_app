@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 class CareerDetailSlider extends StatefulWidget {
   final List<String> imageUrls;
 
-  const CareerDetailSlider({Key? key, required this.imageUrls})
-      : super(key: key);
+  const CareerDetailSlider({super.key, required this.imageUrls});
 
   @override
   CareerDetailSliderState createState() => CareerDetailSliderState();

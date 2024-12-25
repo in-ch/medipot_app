@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class NoDatas extends StatelessWidget {
-  NoDatas({Key? key, required this.text, this.sub = ""}) : super(key: key);
+  NoDatas({super.key, required this.text, this.sub = ""});
   String text;
   String? sub;
 

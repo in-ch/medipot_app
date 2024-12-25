@@ -7,10 +7,10 @@ import 'package:docspot_app/services/services.dart';
 
 class Feeds extends StatefulWidget {
   const Feeds({
-    Key? key,
+    super.key,
     required this.tag,
     this.text = '',
-  }) : super(key: key);
+  });
 
   final String tag;
   final String text;

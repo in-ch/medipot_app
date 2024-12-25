@@ -8,7 +8,7 @@ import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/views/views.dart';
 
 class DeleteAccountPage extends GetView<SettingController> {
-  DeleteAccountPage({Key? key}) : super(key: key);
+  DeleteAccountPage({super.key});
 
   TextEditingController textEditingController = TextEditingController();
 

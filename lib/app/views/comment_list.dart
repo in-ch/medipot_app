@@ -9,7 +9,7 @@ import 'package:docspot_app/data/models/models.dart';
 import 'package:docspot_app/services/services.dart';
 
 class CommentList extends StatefulWidget {
-  const CommentList({Key? key, required this.writingNo}) : super(key: key);
+  const CommentList({super.key, required this.writingNo});
   final int writingNo;
 
   @override
@@ -76,14 +76,13 @@ class _CommentListState extends State<CommentList> {
                 ElevatedButton(
                   onPressed: fetchComments,
                   style: ButtonStyle(
-                    elevation: MaterialStateProperty.all(0), // 그림자 없애기
-                    backgroundColor: MaterialStateProperty.all(
-                        Colors.transparent), // 배경색 투명으로 설정하여 border 없애기
-                    shape: MaterialStateProperty.all(
+                    elevation: WidgetStateProperty.all(0),
+                    backgroundColor:
+                        WidgetStateProperty.all(Colors.transparent),
+                    shape: WidgetStateProperty.all(
                       RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.circular(0), // 버튼의 모서리를 둥글지 않게 설정
-                        side: BorderSide.none, // border 없애기
+                        borderRadius: BorderRadius.circular(0),
+                        side: BorderSide.none,
                       ),
                     ),
                   ),
@@ -101,7 +100,7 @@ class _CommentListState extends State<CommentList> {
 }
 
 class _CommentData extends StatelessWidget {
-  const _CommentData({Key? key, required this.reply}) : super(key: key);
+  const _CommentData({required this.reply});
   final ReplyDetail reply;
 
   @override

@@ -8,9 +8,9 @@ class MyConsultItem extends StatefulWidget {
   final Consult consult;
 
   const MyConsultItem({
-    Key? key,
+    super.key,
     required this.consult,
-  }) : super(key: key);
+  });
 
   @override
   State<MyConsultItem> createState() => _MyConsultItemState();
