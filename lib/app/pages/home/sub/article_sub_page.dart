@@ -34,72 +34,117 @@ class _ArticleSubPageState extends State<ArticleSubPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        scrolledUnderElevation: 0,
-        iconTheme: Theme.of(context).iconTheme,
-        centerTitle: false,
-        toolbarHeight: 40,
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leadingWidth: 54,
-        title: Image.asset(
-          'assets/image/logo_text.png',
-          width: 70,
+        appBar: AppBar(
+          scrolledUnderElevation: 0,
+          iconTheme: Theme.of(context).iconTheme,
+          centerTitle: false,
+          toolbarHeight: 40,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leadingWidth: 54,
+          title: Image.asset(
+            'assets/image/logo_text.png',
+            width: 70,
+          ),
         ),
-      ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: Colors.white,
-        child: Obx(() => controller.isLoading.value
-            ? const CircularProgressIndicator()
-            : Padding(
-                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                child: Container(
-                  color: colorScheme.surface,
-                  child: PagedGridView(
-                    pagingController: controller.pagingController,
-                    gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 300,
-                      mainAxisSpacing: 8.0,
-                      crossAxisSpacing: 8.0,
-                    ),
-                    builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                      firstPageProgressIndicatorBuilder: (context) => Container(
-                        alignment: Alignment.center,
-                        width: 50,
-                        height: 50,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                              colorScheme.primary),
+        body: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10.0, top: 10.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet<void>(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const SelectDepartmentModal();
+                        },
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Container(
+                        height: 30,
+                        width: 110,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black26),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
+                        child: Obx(() => Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(controller.departmentValue.value,
+                                    style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.w600)),
+                                const SizedBox(width: 3),
+                                const Icon(Icons.arrow_drop_down,
+                                    size: 20, color: Colors.black38)
+                              ],
+                            )),
                       ),
-                      noItemsFoundIndicatorBuilder: (context) =>
-                          NoDatas(text: '검색 결과가 없습니다.'),
-                      firstPageErrorIndicatorBuilder: (context) =>
-                          NoDatas(text: '검색 결과가 없습니다.'),
-                      newPageProgressIndicatorBuilder: (context) => Container(
-                        alignment: Alignment.center,
-                        width: 50,
-                        height: 50,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                              colorScheme.primary),
-                        ),
-                      ),
-                      itemBuilder: (context, item, index) {
-                        return ArticleItem(
-                          titleKr: item.titleKr,
-                          contentKr: item.contentKr,
-                          img: item.img,
-                        );
-                      },
                     ),
                   ),
-                ),
-              )),
-      ),
-    );
+                ],
+              ),
+              Obx(() => controller.isLoading.value
+                  ? const CircularProgressIndicator()
+                  : Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: Container(
+                          color: Colors.white,
+                          child: PagedGridView(
+                            pagingController: controller.pagingController,
+                            gridDelegate:
+                                const SliverGridDelegateWithMaxCrossAxisExtent(
+                              maxCrossAxisExtent: 300,
+                              mainAxisSpacing: 8.0,
+                              crossAxisSpacing: 8.0,
+                            ),
+                            builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                              firstPageProgressIndicatorBuilder: (context) =>
+                                  Container(
+                                alignment: Alignment.center,
+                                width: 50,
+                                height: 50,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      colorScheme.primary),
+                                ),
+                              ),
+                              noItemsFoundIndicatorBuilder: (context) =>
+                                  NoDatas(text: '검색 결과가 없습니다.'),
+                              firstPageErrorIndicatorBuilder: (context) =>
+                                  NoDatas(text: '검색 결과가 없습니다.'),
+                              newPageProgressIndicatorBuilder: (context) =>
+                                  Container(
+                                alignment: Alignment.center,
+                                width: 50,
+                                height: 50,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      colorScheme.primary),
+                                ),
+                              ),
+                              itemBuilder: (context, item, index) {
+                                return ArticleItem(
+                                  titleKr: item.titleKr,
+                                  contentKr: item.contentKr,
+                                  img: item.img,
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                    )),
+            ],
+          ),
+        ));
   }
 }

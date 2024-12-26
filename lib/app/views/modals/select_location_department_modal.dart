@@ -68,7 +68,7 @@ class _SelectLocationAndDepartmentModalState
     super.build(context);
 
     return PopScope(
-      onPopInvoked: (bool didPop) {
+      onPopInvokedWithResult: (bool didPop, Object? result) async {
         if (didPop) {
           _onDismiss();
         }

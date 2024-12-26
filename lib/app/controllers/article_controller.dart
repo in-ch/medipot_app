@@ -8,6 +8,7 @@ import 'package:docspot_app/services/services.dart';
 class ArticleController extends GetxController {
   RxBool isLoading = false.obs;
   RxInt page = 0.obs;
+  RxString departmentValue = '전체보기'.obs;
 
   RxString title = ''.obs;
   RxString content = ''.obs;
@@ -18,6 +19,7 @@ class ArticleController extends GetxController {
 
   @override
   void onInit() {
+    ever(departmentValue, (_) => _refreshPage());
     pagingController.addPageRequestListener((pageKey) {
       getArticles(pageKey);
     });
@@ -37,25 +39,34 @@ class ArticleController extends GetxController {
     update();
   }
 
-  /// 커리어 리스트를 조회한다.
+  /// 진료과 업데이트
+  void updateDepartment(String value) {
+    departmentValue.value = value;
+    update();
+  }
+
+  /// 아티클 리스트를 조회한다.
   Future<void> getArticles(int pageKey) async {
     try {
-      isLoading.value = true;
       final response = await ArticleService.getCareers(
-          pageKey, 10, title.value, content.value, invitedSubject.value);
+          pageKey,
+          10,
+          title.value,
+          content.value,
+          departmentValue.value == '전체보기' ? '' : departmentValue.value);
 
       if (response['statusCode'] == 200) {
         final data = response['data'];
         final totalCount = response['totalCount'];
         final list = List<ArticleListItem>.from(
             data.map((item) => ArticleListItem.fromJson(item)));
-        final isLastPage = totalCount <= pageKey * 10;
+        final isLastPage = (pageKey + 1) * 10 >= totalCount;
 
         if (isLastPage) {
           pagingController.appendLastPage(list);
         } else {
-          addPage();
           pagingController.appendPage(list, pageKey + 1);
+          page.value = pageKey + 1;
         }
         update();
       } else {
@@ -63,11 +74,17 @@ class ArticleController extends GetxController {
       }
     } catch (error) {
       debugPrint(error.toString());
-      isLoading.value = false;
       pagingController.error = error;
     } finally {
-      isLoading.value = false;
       update();
+    }
+  }
+
+  /// 페이지를 새로 고침한다.
+  void _refreshPage() {
+    if (departmentValue.value.isNotEmpty) {
+      page.value = 0;
+      pagingController.refresh();
     }
   }
 }
