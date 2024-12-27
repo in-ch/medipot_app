@@ -23,7 +23,6 @@ class _ArticleSubPageState extends State<ArticleSubPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (controller.pagingController.itemList == null ||
           controller.pagingController.itemList!.isEmpty) {
-        debugPrint('Fetching articles...');
         controller.getArticles(0);
       } else {
         debugPrint('Articles already loaded, skipping API call.');
@@ -136,6 +135,8 @@ class _ArticleSubPageState extends State<ArticleSubPage> {
                                   titleKr: item.titleKr,
                                   contentKr: item.contentKr,
                                   img: item.img,
+                                  no: item.no,
+                                  date: item.date,
                                 );
                               },
                             ),

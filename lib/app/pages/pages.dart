@@ -32,6 +32,7 @@ import './email/email_page.dart';
 import './game/roulette_game_page.dart';
 import './chat/chat_page.dart';
 import './map/map_page.dart';
+import './article/article_detail.dart';
 
 abstract class AppPages {
   static final pages = [
@@ -142,9 +143,14 @@ abstract class AppPages {
         transition: Transition.downToUp,
         bindings: [ChatBinding()]),
     GetPage(
-        name: Routes.map,
-        page: () => const MapPage(),
+      name: Routes.map,
+      page: () => const MapPage(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+        name: Routes.articleDetail,
+        page: () => const ArticleDetailPage(),
         transition: Transition.rightToLeft,
-        bindings: []),
+        bindings: [ArticleDetailBinding()]),
   ];
 }

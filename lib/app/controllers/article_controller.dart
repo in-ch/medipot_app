@@ -48,7 +48,7 @@ class ArticleController extends GetxController {
   /// 아티클 리스트를 조회한다.
   Future<void> getArticles(int pageKey) async {
     try {
-      final response = await ArticleService.getCareers(
+      final response = await ArticleService.getArticles(
           pageKey,
           10,
           title.value,

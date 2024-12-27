@@ -22,3 +22,4 @@ export './email_controller.dart';
 export './game_controller.dart';
 export './chat_controller.dart';
 export './article_controller.dart';
+export './article_detail_controller.dart';

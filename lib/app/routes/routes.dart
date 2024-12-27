@@ -21,4 +21,5 @@ abstract class Routes {
   static const roulette = '/roulette';
   static const chat = '/chat';
   static const map = '/map';
+  static const articleDetail = '/articleDetail';
 }

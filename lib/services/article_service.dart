@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:docspot_app/app/constants/constants.dart';
 
 class ArticleService {
-  static Future<Map<String, dynamic>> getCareers(
+  static Future<Map<String, dynamic>> getArticles(
     int page,
     int limit,
     String title,
