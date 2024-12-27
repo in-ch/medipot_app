@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import 'package:docspot_app/app/style/theme.dart';
@@ -29,18 +28,18 @@ class ArticleDetailPage extends GetView<ArticleDetailController> {
             ),
             title: Text("학술지 상세보기",
                 style: Theme.of(context).textTheme.headlineMedium),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Center(
-                  child: GestureDetector(
-                      child: const Icon(CupertinoIcons.share),
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      }),
-                ),
-              ),
-            ],
+            // actions: [
+            //   Padding(
+            //     padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            //     child: Center(
+            //       child: GestureDetector(
+            //           child: const Icon(CupertinoIcons.share),
+            //           onTap: () {
+            //             Navigator.of(context).pop();
+            //           }),
+            //     ),
+            //   ),
+            // ],
           ),
           backgroundColor: Colors.white,
           body: Obx(() => controller.isLoading.value

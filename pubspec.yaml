@@ -71,9 +71,11 @@ flutter:
     - assets/image/icons/8.png
     - assets/image/icons/14.png
     - assets/image/icons/15.png
+    - assets/image/icons/17.png
     - assets/image/icons/20.png
     - assets/image/icons/icon1.png
     - assets/image/icons/icon4.png
+    - assets/image/icons/icon5.png
 
     - assets/image/location/busan.jpg
     - assets/image/location/chungcheongnamdo.jpg
