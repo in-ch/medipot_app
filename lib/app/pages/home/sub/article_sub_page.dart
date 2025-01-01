@@ -38,7 +38,7 @@ class _ArticleSubPageState extends State<ArticleSubPage> {
           iconTheme: Theme.of(context).iconTheme,
           centerTitle: false,
           toolbarHeight: 40,
-          backgroundColor: Colors.white,
+          backgroundColor: colorScheme.surface,
           elevation: 0,
           leadingWidth: 54,
           title: Image.asset(

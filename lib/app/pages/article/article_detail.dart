@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/views/views.dart';
@@ -28,18 +29,6 @@ class ArticleDetailPage extends GetView<ArticleDetailController> {
             ),
             title: Text("학술지 상세보기",
                 style: Theme.of(context).textTheme.headlineMedium),
-            // actions: [
-            //   Padding(
-            //     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            //     child: Center(
-            //       child: GestureDetector(
-            //           child: const Icon(CupertinoIcons.share),
-            //           onTap: () {
-            //             Navigator.of(context).pop();
-            //           }),
-            //     ),
-            //   ),
-            // ],
           ),
           backgroundColor: Colors.white,
           body: Obx(() => controller.isLoading.value
@@ -68,14 +57,10 @@ class ArticleDetailPage extends GetView<ArticleDetailController> {
                       const SizedBox(height: 5),
                       Expanded(
                           child: SingleChildScrollView(
-                        child: Text(
-                          controller.article.contentKr,
-                          textAlign: TextAlign.start,
-                          style: const TextStyle(
-                              letterSpacing: 1.5,
-                              wordSpacing: 2,
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.w500),
+                        child: Html(
+                          data: controller.article.contentKr
+                              .replaceAll('```', '')
+                              .replaceAll('html', ''),
                         ),
                       )),
                       const SizedBox(height: 10),

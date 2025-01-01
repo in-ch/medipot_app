@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:docspot_app/app/routes/routes.dart';
+import 'package:docspot_app/app/utils/utils.dart';
 
 class ArticleItem extends StatelessWidget {
   final String titleKr;
@@ -67,7 +68,8 @@ class ArticleItem extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                contentKr,
+                removeHtmlTags(
+                    contentKr.replaceAll("```", "").replaceAll("html", "")),
                 style: const TextStyle(
                   fontSize: 14,
                   color: Colors.white,
