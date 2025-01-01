@@ -75,14 +75,19 @@ class _ArticleSubPageState extends State<ArticleSubPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(controller.departmentValue.value,
+                                Text(
+                                    controller.isLoading.value
+                                        ? ''
+                                        : controller.departmentValue.value,
                                     style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 12.0,
                                         fontWeight: FontWeight.w600)),
                                 const SizedBox(width: 3),
-                                const Icon(Icons.arrow_drop_down,
-                                    size: 20, color: Colors.black38)
+                                controller.isLoading.value
+                                    ? const SizedBox()
+                                    : const Icon(Icons.arrow_drop_down,
+                                        size: 20, color: Colors.black38)
                               ],
                             )),
                       ),
@@ -96,7 +101,7 @@ class _ArticleSubPageState extends State<ArticleSubPage> {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 8.0),
                         child: Container(
-                          color: Colors.white,
+                          color: colorScheme.surface,
                           child: PagedGridView(
                             pagingController: controller.pagingController,
                             gridDelegate:

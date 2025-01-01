@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:docspot_app/data/models/models.dart';
 import 'package:docspot_app/services/services.dart';
 
 class ArticleController extends GetxController {
-  RxBool isLoading = false.obs;
+  RxBool isLoading = true.obs;
   RxInt page = 0.obs;
   RxString departmentValue = '전체보기'.obs;
 
@@ -18,11 +19,12 @@ class ArticleController extends GetxController {
       PagingController(firstPageKey: 0);
 
   @override
-  void onInit() {
+  void onInit() async {
     ever(departmentValue, (_) => _refreshPage());
     pagingController.addPageRequestListener((pageKey) {
       getArticles(pageKey);
     });
+    changeDeparmtnet();
     update();
     super.onInit();
   }
@@ -37,6 +39,17 @@ class ArticleController extends GetxController {
   void addPage() {
     page.value += 1;
     update();
+  }
+
+  /// 로그인한 유저일 경우 department를 초기화해준다.
+  Future<void> changeDeparmtnet() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isLogin = prefs.getBool("isLogin") ?? false;
+    if (isLogin) {
+      final response = await UserService.me();
+      final data = response['data']['department'];
+      departmentValue.value = data;
+    }
   }
 
   /// 진료과 업데이트
@@ -76,6 +89,7 @@ class ArticleController extends GetxController {
       debugPrint(error.toString());
       pagingController.error = error;
     } finally {
+      isLoading.value = false;
       update();
     }
   }
