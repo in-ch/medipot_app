@@ -23,7 +23,7 @@ dependencies:
   flutter_local_notifications: ^17.0.0
   shared_preferences: ^2.2.1
   kakao_flutter_sdk_user: ^1.5.0
-  webview_flutter: ^4.2.4
+  webview_flutter: ^4.10.0
   image_picker: ^1.0.4
   dio: ^5.3.3
   url_launcher: ^6.1.14
