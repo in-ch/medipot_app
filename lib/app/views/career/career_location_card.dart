@@ -33,7 +33,7 @@ class CareerLocationCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
                 child: Container(
-                  color: Colors.black.withOpacity(0.2),
+                  color: Colors.black.withValues(alpha: 0.2),
                   width: double.infinity,
                   height: double.infinity,
                   child: Column(

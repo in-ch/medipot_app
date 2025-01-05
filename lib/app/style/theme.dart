@@ -78,9 +78,10 @@ final appTheme = ThemeData(
       backgroundColor: WidgetStateProperty.resolveWith<Color>(
         (Set<WidgetState> states) {
           if (states.contains(WidgetState.pressed)) {
-            return colorScheme.primary.withOpacity(0.8); // 버튼이 눌렸을 때의 배경색
+            return colorScheme.primary.withValues(alpha: 0.8); // 버튼이 눌렸을 때의 배경색
           } else if (states.contains(WidgetState.hovered)) {
-            return colorScheme.primary.withOpacity(0.8); // 버튼에 마우스가 올려졌을 때의 배경색
+            return colorScheme.primary
+                .withValues(alpha: 0.8); // 버튼에 마우스가 올려졌을 때의 배경색
           } else {
             return colorScheme.primary; // 기본 배경색 (colorScheme.primary 사용)
           }
@@ -139,7 +140,7 @@ final appTheme = ThemeData(
   checkboxTheme: CheckboxThemeData(
     fillColor: WidgetStateColor.resolveWith((states) {
       if (states.contains(WidgetState.selected)) {
-        return colorScheme.primary.withOpacity(0.8); // 선택된 상태의 색상
+        return colorScheme.primary.withValues(alpha: 0.8); // 선택된 상태의 색상
       } else {
         return colorScheme.primary; // 기본 색상
       }
