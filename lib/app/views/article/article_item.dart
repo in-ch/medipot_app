@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,20 +20,16 @@ class ArticleItem extends StatelessWidget {
     required this.no,
   });
 
-  // 랜덤 색상 생성
-  Color _generateRandomColor() {
-    Random random = Random();
-    return Color.fromRGBO(
-      random.nextInt(156),
-      random.nextInt(156),
-      random.nextInt(156),
-      1.0,
-    );
+  Color _generateRandomColor(int no) {
+    int r = (no * 37) % 156;
+    int g = (no * 59) % 156;
+    int b = (no * 83) % 156;
+    return Color.fromRGBO(r, g, b, 1.0);
   }
 
   @override
   Widget build(BuildContext context) {
-    Color backgroundColor = _generateRandomColor();
+    Color backgroundColor = _generateRandomColor(no);
     return GestureDetector(
       onTap: () => Get.toNamed(Routes.articleDetail, arguments: {'no': no}),
       child: Container(
@@ -44,7 +39,8 @@ class ArticleItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
+              color: const Color.fromARGB(255, 137, 137, 137)
+                ..withValues(alpha: 0.1),
               blurRadius: 8,
               offset: const Offset(0, 8),
             ),
@@ -68,13 +64,15 @@ class ArticleItem extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                removeHtmlTags(
-                    contentKr.replaceAll("```", "").replaceAll("html", "")),
+                removeHtmlTags(contentKr
+                    .replaceAll("```", "")
+                    .replaceAll("html", "")
+                    .replaceAll("  ", "")),
                 style: const TextStyle(
                   fontSize: 14,
                   color: Colors.white,
                 ),
-                maxLines: 2,
+                maxLines: 3,
                 overflow: TextOverflow.ellipsis,
               ),
             ],

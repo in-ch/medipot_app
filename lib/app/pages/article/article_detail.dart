@@ -56,13 +56,21 @@ class ArticleDetailPage extends GetView<ArticleDetailController> {
                       ),
                       const SizedBox(height: 5),
                       Expanded(
-                          child: SingleChildScrollView(
-                        child: Html(
-                          data: controller.article.contentKr
-                              .replaceAll('```', '')
-                              .replaceAll('html', ''),
+                        child: SingleChildScrollView(
+                          child: Html(
+                            data: controller.article.contentKr
+                                .replaceAll('```', '')
+                                .replaceAll('html', ''),
+                            style: {
+                              "p": Style(
+                                lineHeight: const LineHeight(1.8),
+                                letterSpacing: 1.5,
+                                fontSize: FontSize.medium,
+                              ),
+                            },
+                          ),
                         ),
-                      )),
+                      ),
                       const SizedBox(height: 10),
                       SizedBox(
                         width: double.infinity,
