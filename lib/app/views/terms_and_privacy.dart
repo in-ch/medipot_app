@@ -6,10 +6,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 class TermsAndPrivacyPolicy extends StatelessWidget {
   const TermsAndPrivacyPolicy({super.key});
 
-  void _launchURL(Uri url) async {
-    await launchUrl(url);
-  }
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(

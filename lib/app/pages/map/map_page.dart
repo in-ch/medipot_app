@@ -1,20 +1,20 @@
-import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import 'package:docspot_app/app/controllers/controllers.dart';
 import 'package:docspot_app/app/routes/routes.dart';
 import 'package:docspot_app/app/views/views.dart';
 
-class MapSubPage extends StatefulWidget {
-  const MapSubPage({super.key});
+class MapPage extends StatefulWidget {
+  const MapPage({super.key});
 
   @override
-  State<MapSubPage> createState() => MapSubPageState();
+  State<MapPage> createState() => MapSubPageState();
 }
 
-class MapSubPageState extends State<MapSubPage> {
+class MapSubPageState extends State<MapPage> {
   late final WebViewController controller;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final MapController mapController = Get.put(MapController());
@@ -56,15 +56,25 @@ class MapSubPageState extends State<MapSubPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
+      backgroundColor: Colors.white,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(40),
+        child: AppBar(
+          scrolledUnderElevation: 0,
+          elevation: 0,
+          backgroundColor: Colors.white,
+          leading: const CustomBackButton(),
+          title: Text("개원 입지", style: Theme.of(context).textTheme.labelMedium),
+        ),
+      ),
       body: PopScope(
-        onPopInvoked: (bool didPop) {
+        onPopInvokedWithResult: (bool didPop, Object? result) async {
           if (didPop) {
             controller.goBack();
           }
         },
         child: Column(
           children: [
-            const SizedBox(height: 40),
             Expanded(
               child: SizedBox(
                   child: isLoading

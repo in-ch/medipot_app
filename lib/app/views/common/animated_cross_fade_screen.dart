@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class AnimatedCrossFadeScreen extends StatefulWidget {
-  const AnimatedCrossFadeScreen({Key? key}) : super(key: key);
+  const AnimatedCrossFadeScreen({super.key});
 
   @override
   AnimatedCrossFadeScreenState createState() => AnimatedCrossFadeScreenState();

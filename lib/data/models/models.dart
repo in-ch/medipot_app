@@ -19,3 +19,4 @@ export './keyword_rank_model.dart';
 export './alarm_model.dart';
 export './app_init_model.dart';
 export './chat_model.dart';
+export './article_list_item_model.dart';

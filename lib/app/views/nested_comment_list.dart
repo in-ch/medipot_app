@@ -7,12 +7,12 @@ import 'package:docspot_app/data/models/models.dart';
 
 class NestedCommentList extends StatelessWidget {
   const NestedCommentList({
-    Key? key,
+    super.key,
     required this.nestedReplys,
     required this.isLoading,
     required this.hasMore,
     required this.fetchMore,
-  }) : super(key: key);
+  });
 
   final List<NestedReply> nestedReplys;
   final bool isLoading;
@@ -40,10 +40,10 @@ class NestedCommentList extends StatelessWidget {
                 ElevatedButton(
                   onPressed: fetchMore,
                   style: ButtonStyle(
-                    elevation: MaterialStateProperty.all(0), // 그림자 없애기
-                    backgroundColor: MaterialStateProperty.all(
+                    elevation: WidgetStateProperty.all(0), // 그림자 없애기
+                    backgroundColor: WidgetStateProperty.all(
                         Colors.transparent), // 배경색 투명으로 설정하여 border 없애기
-                    shape: MaterialStateProperty.all(
+                    shape: WidgetStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius:
                             BorderRadius.circular(0), // 버튼의 모서리를 둥글지 않게 설정
@@ -65,7 +65,7 @@ class NestedCommentList extends StatelessWidget {
 }
 
 class _CommentData extends StatelessWidget {
-  const _CommentData({Key? key, required this.nestedReply}) : super(key: key);
+  const _CommentData({required this.nestedReply});
   final NestedReply nestedReply;
 
   @override

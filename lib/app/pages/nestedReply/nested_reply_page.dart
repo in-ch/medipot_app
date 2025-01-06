@@ -6,7 +6,7 @@ import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/views/views.dart';
 
 class NestedReplyPage extends GetView<NestedReplyController> {
-  const NestedReplyPage({Key? key}) : super(key: key);
+  const NestedReplyPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -25,12 +25,14 @@ class CareerCardHeader extends GetView<CareerController> {
         top: 0,
         left: 0,
         child: Obx(() => Container(
-              color: Colors.white.withOpacity(controller.bodyHeight.value),
+              color:
+                  Colors.white.withValues(alpha: controller.bodyHeight.value),
               child: SafeArea(
                 maintainBottomViewPadding: true,
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  color: Colors.white.withOpacity(controller.bodyHeight.value),
+                  color: Colors.white
+                      .withValues(alpha: controller.bodyHeight.value),
                   height: AppBar().preferredSize.height + correctionVal,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10.0, right: 10.0),

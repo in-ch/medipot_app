@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Hr extends StatelessWidget {
-  const Hr({Key? key}) : super(key: key);
+  const Hr({super.key});
 
   @override
   Widget build(BuildContext context) {

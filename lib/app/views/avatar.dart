@@ -4,28 +4,25 @@ import 'dart:typed_data';
 
 class Avatar extends StatelessWidget {
   const Avatar({
-    Key? key,
+    super.key,
     required this.url,
     required this.radius,
-  }) : super(key: key);
+  });
 
   const Avatar.small({
-    Key? key,
+    super.key,
     required this.url,
-  })  : radius = 16,
-        super(key: key);
+  }) : radius = 16;
 
   const Avatar.medium({
-    Key? key,
+    super.key,
     required this.url,
-  })  : radius = 22,
-        super(key: key);
+  }) : radius = 22;
 
   const Avatar.large({
-    Key? key,
+    super.key,
     required this.url,
-  })  : radius = 44,
-        super(key: key);
+  }) : radius = 44;
 
   final double radius;
   final String url;

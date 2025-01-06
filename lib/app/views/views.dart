@@ -35,8 +35,8 @@ export './modals/please_login_at_main_modal.dart';
 export './modals/please_input_email_modal.dart';
 export './modals/taro_result_modal.dart';
 export './modals/message_clip_board_modal.dart';
-export './modals/login_modal.dart';
 export './modals/grant_modal.dart';
+export './modals/select_department_modal.dart';
 
 export './small_circle.dart';
 export './avatar.dart';
@@ -85,3 +85,5 @@ export './alram/go_to_taro_game.dart';
 
 export './game/roulette_painter.dart';
 export './game/triangle_painter.dart';
+
+export './article/article_item.dart';

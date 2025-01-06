@@ -95,12 +95,12 @@ class _ShowRecentState extends State<ShowRecent> {
 
 class PositionItem extends StatelessWidget {
   const PositionItem({
-    Key? key,
+    super.key,
     required this.no,
     required this.company,
     required this.position,
     required this.img,
-  }) : super(key: key);
+  });
 
   final int no;
   final String company;

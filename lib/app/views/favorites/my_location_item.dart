@@ -13,12 +13,12 @@ class MyLocationItem extends StatefulWidget {
   final void Function(dynamic) unlike;
 
   const MyLocationItem({
-    Key? key,
+    super.key,
     required this.location,
     required this.likes,
     required this.like,
     required this.unlike,
-  }) : super(key: key);
+  });
 
   @override
   State<MyLocationItem> createState() => _MyLocationItemState();

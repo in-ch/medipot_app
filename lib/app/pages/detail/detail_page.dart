@@ -8,7 +8,7 @@ import 'package:docspot_app/app/views/views.dart';
 import 'package:docspot_app/data/models/models.dart';
 
 class DetailPage extends GetView<DetailController> {
-  const DetailPage({Key? key}) : super(key: key);
+  const DetailPage({super.key});
 
   @override
   Widget build(BuildContext context) {

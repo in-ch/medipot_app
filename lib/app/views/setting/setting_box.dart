@@ -7,12 +7,12 @@ class SettingBoxItem extends StatefulWidget {
       Color.fromARGB(255, 240, 240, 240);
 
   const SettingBoxItem({
-    Key? key,
+    super.key,
     required this.title,
     required this.description,
     required this.event,
     this.backgroundColor = defaultBackgroundColor,
-  }) : super(key: key);
+  });
 
   final String title;
   final String description;

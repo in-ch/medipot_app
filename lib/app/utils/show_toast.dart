@@ -4,7 +4,7 @@ void showToast(scaffold, String message) {
   scaffold.showSnackBar(
     SnackBar(
       content: Text(message),
-      backgroundColor: Colors.black.withOpacity(0.7),
+      backgroundColor: Colors.black.withValues(alpha: 0.7),
       elevation: 6,
       behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(

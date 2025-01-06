@@ -4,7 +4,7 @@ import 'package:docspot_app/app/style/theme.dart';
 import 'package:docspot_app/app/views/views.dart';
 
 class FollowModal extends StatelessWidget {
-  const FollowModal({Key? key}) : super(key: key);
+  const FollowModal({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -116,10 +116,11 @@ class FollowModal extends StatelessWidget {
                       height: 45,
                       child: ElevatedButton(
                         style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
+                            backgroundColor: WidgetStateProperty.all<Color>(
                                 colorScheme.secondary),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                            shape:
+                                WidgetStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ))),
                         child: const Text('확인'),

@@ -4,8 +4,7 @@ class SettingSnsBoxItem extends StatefulWidget {
   static const Color defaultBackgroundColor = Color(0xff191A1F);
 
   const SettingSnsBoxItem(
-      {Key? key, required this.text, required this.onTap, required this.img})
-      : super(key: key);
+      {super.key, required this.text, required this.onTap, required this.img});
 
   final String text;
   final void Function() onTap;
