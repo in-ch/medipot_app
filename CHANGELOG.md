@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.8.5 (2025-01-06)
+
+- [feat(chat): 로그인 요청 모달창 삭제 -> 로그인 페이지 이동으로 대체](69b68d6af0a6d46f1766d7b36d43da9dac911528)
+- [chore: auto update fixes](23b6c1e65a0f740cbd9ca8a960365e254be05326)
+- [feat(map): 개원 입지 페이지 분리](413fae2c4e220dc8531bf82aa580ea1953fc0e13)
+- [feat(article): 학술지 페이지 생성](1f93c50cd16a41194570fbcffffb9894e321a9ed)
+- [feat(article): 학술지 페이지 list api 연동](c42a3ddae1bc71e63ce947418ce883baf7a088ed)
+- [feat(article): article 상세페이지 생성](b38cc7334bd225f8106394a5f4a44b56c06b930c)
+- [feat(career): 초빙공고 zip 삭제 및 직무별 보기에 전체보기와 치과 항목 추가](dc193db87b97afd8e73c0602c2956cd13735019b)
+- [feat: removeHtmlTags 유틸 함수 추가](8cc63c14428317fef1d75d4a988c404abc42e45d)
+- [feat(article): 로그인한 유저일 경우 초기 department를 변경하는 코드 추가](246e24e6b17d3b1393b6b61b82a736a4e30996bb)
+- [build: webview_flutter 버전 업그레이드](3f23f88bd839d39511c29402d1a4b74a14c218d9)
+- [build: flutter 버전 업그레이드에 따른 AGP 버전 업그레이드](8cc839c23ed0d9b39a0ce13a1cd38a5bb3ae71c6)
+- [style(article): 학술지 리스트 및 상세보기 스타일 수정](d04cbbc12f46e5b0181a0ce1d039108d0c72a6e7)
+- [fix: withOpacity -> withValues 마이그레이션](49924a32963b976acc5b202d3f813a14e6517b4a)
+
 ### 1.8.4 (2024-12-16)
 
 - [chore(BottomNavItem): 실시간 채팅 -> 오픈 채팅으로 수정](51266ed5813fc3d5eb1a7911a8a54b1a8cd68590)
