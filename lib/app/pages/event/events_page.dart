@@ -10,7 +10,7 @@ import 'package:docspot_app/data/models/models.dart';
 import 'package:docspot_app/app/views/views.dart';
 
 class EventsPage extends GetView<EventsController> {
-  const EventsPage({Key? key}) : super(key: key);
+  const EventsPage({super.key});
 
   @override
   Widget build(BuildContext context) {

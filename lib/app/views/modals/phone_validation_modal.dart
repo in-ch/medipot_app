@@ -5,7 +5,7 @@ import 'package:docspot_app/app/routes/routes.dart';
 import 'package:docspot_app/app/style/theme.dart';
 
 class PhoneValidationModal extends StatefulWidget {
-  const PhoneValidationModal({Key? key}) : super(key: key);
+  const PhoneValidationModal({super.key});
 
   @override
   State<PhoneValidationModal> createState() => _PhoneValidationModalState();

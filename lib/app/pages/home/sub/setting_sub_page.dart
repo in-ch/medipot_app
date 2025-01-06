@@ -212,6 +212,12 @@ class _SettingSubPageState extends State<SettingSubPage> {
                                 })
                             : const SizedBox()),
                         SettingBoxItem(
+                            title: '개원 입지',
+                            description: '개원 입지를 확인해보세요.',
+                            event: () {
+                              Get.toNamed(Routes.map);
+                            }),
+                        SettingBoxItem(
                             title: '이벤트 확인하기',
                             description: '진행 중인 다양한 이벤트를 확인해보세요.',
                             event: () {

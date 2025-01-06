@@ -23,7 +23,6 @@ class _CareerSubPageState extends State<CareerSubPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       controller.verifyVersion(context);
       controller.requestDepartmentAndEmail();
-      controller.getCareersInit();
       controller.saveFcmToken();
     });
   }
@@ -67,18 +66,13 @@ class _CareerSubPageState extends State<CareerSubPage> {
             width: double.infinity,
             height: double.infinity,
             color: Colors.white,
-            child: SingleChildScrollView(
+            child: const SingleChildScrollView(
               child: Column(
                 children: [
-                  const ShowNewAlarms(),
-                  const ViewByDepartment(),
-                  const ShowRecent(),
-                  Obx(() => controller.isLoading.value
-                      ? const SizedBox(
-                          height: 212,
-                          child: Center(child: CircularProgressIndicator()))
-                      : CareerSlider(careers: controller.careersInit)),
-                  const CareerLocations(),
+                  ShowNewAlarms(),
+                  ViewByDepartment(),
+                  ShowRecent(),
+                  CareerLocations(),
                 ],
               ),
             ),

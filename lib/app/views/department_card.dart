@@ -33,7 +33,7 @@ enum UserDepartmentColor {
 class PopularCard extends StatelessWidget {
   final String? department;
 
-  const PopularCard({Key? key, this.department}) : super(key: key);
+  const PopularCard({super.key, this.department});
 
   Color getDepartmentColor(String? department) {
     switch (department) {

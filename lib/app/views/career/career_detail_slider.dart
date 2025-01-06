@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 class CareerDetailSlider extends StatefulWidget {
   final List<String> imageUrls;
 
-  const CareerDetailSlider({Key? key, required this.imageUrls})
-      : super(key: key);
+  const CareerDetailSlider({super.key, required this.imageUrls});
 
   @override
   CareerDetailSliderState createState() => CareerDetailSliderState();
@@ -59,7 +58,7 @@ class CareerDetailSliderState extends State<CareerDetailSlider> {
                   child: Container(
                     padding: const EdgeInsets.all(8.0),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.5),
+                      color: Colors.black.withValues(alpha: 0.5),
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: Text(

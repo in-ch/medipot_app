@@ -14,7 +14,9 @@ import 'package:uuid/uuid.dart';
 
 import 'package:docspot_app/app/constants/constants.dart';
 import 'package:docspot_app/app/controllers/controllers.dart';
+
 import 'package:docspot_app/app/style/theme.dart';
+import 'package:docspot_app/app/routes/routes.dart';
 import 'package:docspot_app/app/views/views.dart';
 import 'package:docspot_app/data/models/models.dart';
 import 'package:docspot_app/services/services.dart';
@@ -200,12 +202,7 @@ class ChatController extends GetxController with WidgetsBindingObserver {
   }
 
   void goToLogin(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return LoginModal();
-      },
-    );
+    Get.toNamed(Routes.login);
   }
 
   void goToGrant(BuildContext context) {

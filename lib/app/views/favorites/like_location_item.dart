@@ -12,11 +12,11 @@ class LikeLocationItem extends StatefulWidget {
   final Future<void> Function(dynamic) unlike;
 
   const LikeLocationItem({
-    Key? key,
+    super.key,
     required this.likeLocation,
     required this.like,
     required this.unlike,
-  }) : super(key: key);
+  });
 
   @override
   State<LikeLocationItem> createState() => _LikeLocationItemState();

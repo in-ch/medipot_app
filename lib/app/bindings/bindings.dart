@@ -16,3 +16,4 @@ export './alarm_binding.dart';
 export './email_binding.dart';
 export './game_binding.dart';
 export './chat_binding.dart';
+export './article_detail_binding.dart';

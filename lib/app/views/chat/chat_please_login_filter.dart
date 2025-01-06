@@ -14,7 +14,7 @@ class ChatPleaseLoginFilter extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
         child: Container(
-          color: Colors.black.withOpacity(0.3),
+          color: Colors.black.withValues(alpha: 0.3),
           child: Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,

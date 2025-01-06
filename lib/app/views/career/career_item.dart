@@ -120,7 +120,7 @@ class CareerItem extends StatelessWidget {
             Get.toNamed(Routes.careerDetail, arguments: {'no': no});
           },
           child: SizedBox(
-            height: 55,
+            height: 52,
             width: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,

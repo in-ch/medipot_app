@@ -7,7 +7,7 @@ import 'package:docspot_app/app/routes/routes.dart';
 export './NotFound/not_found.dart';
 
 export './home/home_page.dart';
-export './home/sub/map_sub_page.dart';
+export './home/sub/article_sub_page.dart';
 export './home/sub/setting_sub_page.dart';
 export './home/sub/favorites_sub_page.dart';
 export './home/sub/career_page.dart';
@@ -31,6 +31,8 @@ import './alarm/alarm_page.dart';
 import './email/email_page.dart';
 import './game/roulette_game_page.dart';
 import './chat/chat_page.dart';
+import './map/map_page.dart';
+import './article/article_detail.dart';
 
 abstract class AppPages {
   static final pages = [
@@ -140,5 +142,15 @@ abstract class AppPages {
         page: () => const ChatPage(),
         transition: Transition.downToUp,
         bindings: [ChatBinding()]),
+    GetPage(
+      name: Routes.map,
+      page: () => const MapPage(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+        name: Routes.articleDetail,
+        page: () => const ArticleDetailPage(),
+        transition: Transition.rightToLeft,
+        bindings: [ArticleDetailBinding()]),
   ];
 }

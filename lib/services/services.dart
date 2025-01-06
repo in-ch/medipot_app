@@ -16,3 +16,4 @@ export './alarm_service.dart';
 export './device_info_service.dart';
 export './upload_service.dart';
 export './chat_service.dart';
+export './article_service.dart';
