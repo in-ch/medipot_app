@@ -1,3 +1,6 @@
+import 'package:html/parser.dart' show parse;
+import 'package:html/dom.dart' as dom;
+
 class ArticleListItem {
   final int no;
   final String titleKr;
@@ -17,11 +20,23 @@ class ArticleListItem {
 
   factory ArticleListItem.fromJson(Map<String, dynamic> json) {
     return ArticleListItem(
-        no: json['no'],
-        titleKr: json['titleKr'],
-        contentKr: json['contentKr'],
-        img: json['img'],
-        date: json['date'] ?? 'Dep 2024.12',
-        link: json['link']);
+      no: json['no'],
+      titleKr: json['titleKr'],
+      img: json['img'],
+      contentKr: _removeUnwantedTags(json['contentKr']),
+      date: json['date'] ?? 'Dep 2024.12',
+      link: json['link'],
+    );
+  }
+
+  static String _removeUnwantedTags(String htmlContent) {
+    dom.Document document = parse(htmlContent);
+    document.querySelectorAll('div.article__footer').forEach((element) {
+      element.remove();
+    });
+    document.querySelectorAll('div.top-pick').forEach((element) {
+      element.remove();
+    });
+    return document.body?.outerHtml ?? '';
   }
 }
