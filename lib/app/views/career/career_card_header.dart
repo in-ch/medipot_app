@@ -9,11 +9,11 @@ class CareerCardHeader extends GetView<CareerController> {
   const CareerCardHeader(
       {super.key,
       required this.hospitalName,
-      required this.hospitalNo,
+      required this.contentNo,
       required this.text});
 
   final String hospitalName;
-  final int hospitalNo;
+  final int contentNo;
   final String text;
 
   @override
@@ -60,7 +60,7 @@ class CareerCardHeader extends GetView<CareerController> {
                         ),
                         GestureDetector(
                           onTap: () =>
-                              controller.onClickShareCourtUrl(hospitalNo, text),
+                              controller.onClickShareCourtUrl(contentNo, text),
                           child: const Padding(
                             padding: EdgeInsets.only(right: 12.0, bottom: 4.0),
                             child: Icon(CupertinoIcons.share),
