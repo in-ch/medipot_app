@@ -1,3 +1,11 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'com.google.gms.google-services' // Firebase 설정
+    id 'com.google.firebase.crashlytics'
+    id 'dev.flutter.flutter-gradle-plugin' // Flutter Gradle Plugin 최신 방식 적용
+}
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -11,29 +19,14 @@ if (flutterRoot == null) {
     throw GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
-def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
-if (flutterVersionCode == null) {
-    flutterVersionCode = '22'
-}
-
-def flutterVersionName = localProperties.getProperty('flutter.versionName')
-if (flutterVersionName == null) {
-    flutterVersionName = '22.0'
-}
-
-apply plugin: 'com.android.application'
-// START: FlutterFire Configuration
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'
-// END: FlutterFire Configuration
-apply plugin: 'kotlin-android'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-apply plugin: 'com.google.firebase.crashlytics' 
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode', '24')
+def flutterVersionName = localProperties.getProperty('flutter.versionName', '24.0')
 
 android {
     namespace "com.inch.docspot_app"
-    compileSdkVersion flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+    compileSdkVersion 34 // 최신 안정 버전
+
+    ndkVersion "26.1.10909125" // 최신 NDK 버전
 
     compileOptions {
         coreLibraryDesugaringEnabled true
@@ -45,18 +38,15 @@ android {
         jvmTarget = '1.8'
     }
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
-
     defaultConfig {
         applicationId "com.inch.docspot_app"
         minSdkVersion 21
         targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        multiDexEnabled true 
+        multiDexEnabled true
     }
+
     signingConfigs {
         release {
             keyAlias "docspot"
@@ -65,10 +55,12 @@ android {
             storePassword "dlscjf12#"
         }
     }
+
     buildTypes {
         release {
-            // signingConfig signingConfigs.debug
             signingConfig signingConfigs.release
+            minifyEnabled false
+            shrinkResources false
         }
     }
 }
@@ -78,7 +70,7 @@ flutter {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation 'androidx.window:window:1.0.0'
     implementation 'androidx.window:window-java:1.0.0'
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
